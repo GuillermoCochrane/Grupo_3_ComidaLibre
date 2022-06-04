@@ -1,0 +1,83 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif
+}
+
+header{
+    display: flex;
+}
+#menuAlign{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.burger-menu{
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 3px;
+    background-color: chocolate;
+    align-items: flex-start;
+}
+
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+.container3 {
+    display: flex;
+    justify-content: left;
+}
+.container4 {
+    height: 62%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.accion{
+    padding: 30px;
+    border-radius: 10px;
+    background-color: brown;
+    color: aliceblue;
+    font-style: italic;
+}
+
+.login{
+    margin: 10px;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 4px;
+    background-color: gainsboro;
+    width: 90%;
+    height: 500px;
+}
+.item{
+    margin: 10px 0px 10px 0px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 4px;
+    background-color: rgb(124, 57, 70);
+    font-style: italic;
+    color: white;
+    width: 50%;
+    height: 40px;
+    text-align: left;
+}
+
+label.boton{
+    align-items: flex-start;
+}
+
+@media (min-width: 768px) {
+    
+}
+
+@media (min-width: 1024px) {
+    #logo{
+
+    }
+}
