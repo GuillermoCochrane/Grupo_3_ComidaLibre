@@ -29,7 +29,7 @@ header{
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid black;
-    border-radius: 5px;
+    border-radius: 8px;
     background-color: white;
     color: #aaa
 }
@@ -68,14 +68,28 @@ footer {
 .foot-container {
     margin: 0px 10px;
     display: flex;
-    justify-content: left;
+    justify-content: space-around;
+}
+.listas{
+    text-decoration: none;
+    font-size: 14px;
 }
 .foot-container ul li {
-    margin: 5px 15px;
+    margin: 15px 10px;
 }
-.social{
-    margin-left: auto;
+.m-socials-container {
+    display: flex;
+    justify-content: center;
+    align-content: center;
 }
+.m-socials-container ul li {
+    margin: 5px;
+}
+.tab-lap-social {
+    display: none;
+}
+
+
 .fab.fa-twitter{
     font-size: 25px;
 }
@@ -97,20 +111,38 @@ footer {
     .log-container{
         width: 50%;
     }
+    header {
+        justify-content: space-between;
+    }
+    .m-socials-container{
+        display: none;
+    }
+    .tab-lap-social{
+        display: flex;
+        flex-direction: column;
+    }
+    ul.tab-lap-social li{
+        margin: 5px;
+    }
 }
 
 @media (min-width: 1024px) {
     header {
-        justify-content: flex-start;
+        justify-content: space-around;
+
     }
     .cu-icon {
         margin-right: 30px;
-        margin-left: auto;
+        
     }
     .nav-bar {
-        display: block;
+        display: flex;
+        flex-direction: column;
     }
     .burger-menu{
         display: none;
+    }
+    .log-container{
+        width: 30%;
     }
 }
