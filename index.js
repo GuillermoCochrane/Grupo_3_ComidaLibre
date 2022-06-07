@@ -9,13 +9,13 @@ index.use('/views', express.static(path.resolve(__dirname,'./views')));
 
 
 index.get('/', (req,res) => {
-    res.sendFile(path.join(__dirname, './views/index.html'))
+    res.sendFile(path.join(__dirname, '/views/index.html'))
 });
 index.get('/products', (req,res) => {
-    res.sendFile(path.join(__dirname, './views/productDetail.html'))
+    res.sendFile(path.join(__dirname, '/views/productDetail.html'))
 });
 index.get('/cart', (req,res) => {
-    res.sendFile(path.join(__dirname, './views/productCart.html'))
+    res.sendFile(path.join(__dirname, '/views/productCart.html'))
 });
 index.get('/register', (req,res) => {
     res.sendFile(path.join(__dirname, './views/register.html'))
@@ -27,4 +27,5 @@ index.get('/login', (req,res) => {
 
 index.listen(3000, () => {
     console.log('Server up')
+    console.log(__dirname)
 })
