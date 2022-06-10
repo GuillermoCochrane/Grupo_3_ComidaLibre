@@ -11,7 +11,7 @@
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
 
-    <link rel="stylesheet" href="css/estilos_log.css">
+    <link rel="stylesheet" href="css/styles_log.css">
 
     <title>LOG IN</title>
 </head>
@@ -50,39 +50,23 @@
     </header>
     
     <main>
-        <div class="log-container">
-            <h3>
-                Accedé a tu cuenta
-            </h3>
-
-            <label for="userlog">User
-                    <div>
-                        <input class="log-item" type="text" id="userlog">
-                    </div>
-                </label>
-                
-                <label for="passlog">Password
-                    <div>
-                        <input class="log-item" type="password" id="passlog">
-                    </div>
-                </label>
-                
-                <div class="container1">
-                    <label>
-                        <input type="checkbox"> Recordarme
-                        <span class="checkmark"></span>
-                    </label>
-                </div>
-                
+        <form class="log-container" action="/" method="GET">
+            <h3>Accedé a tu cuenta</h3>
             
-            <div class="bu-log">
-                <button>INGRESAR</button>
+            <input class="log-item" type="text" name="userLog" id="userLog" placeholder="Usuario">
+            
+            <input class="log-item" type="password" name="passLog" id="passLog" placeholder="Contraseña">
+            
+            <div class="rememberme-container">
+                <input type="checkbox" name="checkbox" id="checkbox">
+                <label for="checkbox">Recordarme</label>
             </div>
             
-            <div class="pass-forgot">
-                <a href="#">¿Olvidaste tu contraseña?</a>
-            </div>
-        </div>
+            <button class="log-button">LOG IN</button>
+        
+            <a class="pass-forgot" href="#">¿Olvidaste tu contraseña?</a>
+            
+        </form>
         
         <div class="reg-log">
             ¿No tienes cuenta? <a href="/register">Ingresá aquí</a>
@@ -129,5 +113,6 @@
         </div>
         
     </footer>
+   
 </body>
 </html>
