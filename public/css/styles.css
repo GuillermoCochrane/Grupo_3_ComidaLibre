@@ -144,3 +144,21 @@ footer {
         display: none;
     }
 }
+
+.container-fluid {
+    padding: 10px;
+    margin: 0px;
+}
+
+.carousel-inner {
+    max-height: 400px;
+}
+.carousel-item {
+    max-height: 400px;
+}
+.carousel-item img{
+    height: 100%;
+    width: 100%;
+
+    
+}

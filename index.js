@@ -1,5 +1,6 @@
 const express = require('express');
 const index = express();
+const livereload = require("livereload");
 const path = require('path');
 
 index.use('/static', express.static(path.resolve(__dirname,'./public')));
@@ -7,7 +8,8 @@ index.use('/images', express.static(path.resolve(__dirname,'./public/images')));
 index.use('/css', express.static(path.resolve(__dirname,'./public/css')));
 index.use('/views', express.static(path.resolve(__dirname,'./views')));
 
-
+const liveReloadServer = livereload.createServer();
+liveReloadServer.watch(path.join(__dirname, '/views'));
 index.get('/', (req,res) => {
     res.sendFile(path.join(__dirname, '/views/index.html'))
 });
