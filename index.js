@@ -25,6 +25,9 @@ index.get('/register', (req,res) => {
 index.get('/login', (req,res) => {
     res.sendFile(path.join(__dirname, './views/login.html'))
 });
+index.get('/notFound', (req,res) => {
+    res.sendFile(path.join(__dirname, './views/notFound.html'))
+});
 
 
 index.listen(3000, () => {
