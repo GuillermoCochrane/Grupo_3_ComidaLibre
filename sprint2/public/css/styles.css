@@ -1,3 +1,4 @@
+/*Parametros globales*/
 * {
     margin: 0;
     padding: 0;
@@ -6,12 +7,13 @@
 
 body {
     background-color: rgb(235, 235, 235);
-    font-family: 'Open Sans', sans-serif
+    font-family: 'Patrick Hand', sans-serif
 }
 
+/*Estilos del header*/
 header{
-    padding: 12px;
-    background-color: #AF473C;
+    background-color: #efebe2;
+    color: #5e451b;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -19,8 +21,8 @@ header{
 
 #logo {
     margin: 10px 0px;
-    width: 150px;
-    height: 50px;
+    width: 200px;
+    height: 100px;
 }
 .search-bar {
     display: block;
@@ -65,10 +67,10 @@ header{
 
 
 
-
-
+/*Estilos del footer*/
 footer {
-    background-color: #945d60;
+    background-color: #897d69;
+    color: #4c3524;
 }
 .foot-container {
     margin: 0px 10px;
@@ -94,7 +96,6 @@ footer {
     display: none;
 }
 
-
 .fab.fa-twitter{
     font-size: 25px;
 }
@@ -112,7 +113,7 @@ footer {
 
 
 
-
+/*media queries para adaptar el sitio*/
 @media (min-width: 768px) {
     header {
         justify-content: space-between;
@@ -145,6 +146,8 @@ footer {
     }
 }
 
+
+/*Lineas agregadas por andres*/
 .container-fluid {
     padding: 10px;
     margin: 0px;
@@ -158,7 +161,5 @@ footer {
 }
 .carousel-item img{
     height: 100%;
-    width: 100%;
-
-    
+    width: 100%;    
 }
