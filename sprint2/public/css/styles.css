@@ -22,7 +22,7 @@ header{
 #logo {
     margin: 10px 0px;
     width: 200px;
-    height: 100px;
+    /* height: 100px; */
 }
 .search-bar {
     display: block;

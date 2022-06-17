@@ -1,8 +1,7 @@
 body{
     background-color:#152746;
     background-image: url(/images/404.webp);
-    background-size: cover;
-    background-size: 100%;
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
