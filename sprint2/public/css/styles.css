@@ -7,7 +7,16 @@
 
 body {
     background-color: rgb(235, 235, 235);
-    font-family: 'Patrick Hand', sans-serif
+    font-family: 'Archivo Narrow', sans-serif
+}
+a {
+    color: #4c3524;
+    text-decoration: none;
+    transition-duration: 0.25s;
+}
+a:hover{
+    background-color: #87c99b;
+    border-radius: 3px;
 }
 
 /*Estilos del header*/
@@ -20,7 +29,6 @@ header{
 }
 
 #logo {
-    margin: 10px 0px;
     width: 200px;
     /* height: 100px; */
 }
@@ -33,7 +41,7 @@ header{
     border: 1px solid white;
     border-radius: 8px;
     background-color: white;
-    color: #aaa
+    color: #aaa;
 }
 .burger-menu {
     margin: 10px 15px;
@@ -42,14 +50,8 @@ header{
 .burger-menu i {
     font-size: 25px;
 }
-
 .nav-bar{
     display: none;
-}
-.nav-bar ul li {
-    display: inline-block;
-    padding: 0px 25px;
-    margin: 5px 0px
 }
 
 .fas.fa-shopping-cart {
@@ -134,15 +136,21 @@ footer {
     header {
         justify-content: space-around;
     }
-    .cu-icon {
-        margin-right: 30px;  
-    }
     .nav-bar {
         display: flex;
         flex-direction: column;
+        align-self: center;
     }
     .burger-menu{
         display: none;
+    }
+    .nav-bar ul {
+        width: 100%;
+    }
+    .nav-bar ul li {
+        display: inline-block;
+        padding: 0px 25px;
+        margin: 5px 0px
     }
 }
 
