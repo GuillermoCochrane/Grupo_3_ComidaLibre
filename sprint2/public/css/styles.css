@@ -9,18 +9,20 @@ body {
     background-color: rgb(235, 235, 235);
     font-family: 'Archivo Narrow', sans-serif
 }
+
 a {
     color: #4c3524;
     text-decoration: none;
     transition-duration: 0.25s;
 }
-a:hover{
+
+a:hover {
     background-color: #87c99b;
     border-radius: 3px;
 }
 
 /*Estilos del header*/
-header{
+header {
     background-color: #efebe2;
     color: #5e451b;
     display: flex;
@@ -32,6 +34,7 @@ header{
     width: 200px;
     /* height: 100px; */
 }
+
 .search-bar {
     display: block;
     width: 100%;
@@ -43,14 +46,17 @@ header{
     background-color: white;
     color: #aaa;
 }
+
 .burger-menu {
     margin: 10px 15px;
     padding: 10px;
 }
+
 .burger-menu i {
     font-size: 25px;
 }
-.nav-bar{
+
+.nav-bar {
     display: none;
 }
 
@@ -59,6 +65,7 @@ header{
     margin-right: 10px;
     font-size: 25px;
 }
+
 .fas.fa-user-circle {
     margin-left: 10px;
     margin-right: 10px;
@@ -74,42 +81,49 @@ footer {
     background-color: #897d69;
     color: #4c3524;
 }
+
 .foot-container {
     margin: 0px 10px;
     display: flex;
     justify-content: space-around;
 }
-.listas{
+
+.listas {
     text-decoration: none;
     font-size: 14px;
 }
+
 .foot-container ul li {
     margin: 15px 10px;
 }
+
 .m-socials-container {
     display: flex;
     justify-content: center;
     align-content: center;
 }
+
 .m-socials-container ul li {
     margin: 5px;
 }
+
 .tab-lap-social {
     display: none;
 }
 
-.fab.fa-twitter{
-    font-size: 25px;
-}
-.fab.fa-facebook{
+.fab.fa-twitter {
     font-size: 25px;
 }
 
-.fab.fa-whatsapp{
+.fab.fa-facebook {
     font-size: 25px;
 }
 
-.fab.fa-instagram{
+.fab.fa-whatsapp {
+    font-size: 25px;
+}
+
+.fab.fa-instagram {
     font-size: 25px;
 }
 
@@ -120,14 +134,17 @@ footer {
     header {
         justify-content: space-between;
     }
-    .m-socials-container{
+
+    .m-socials-container {
         display: none;
     }
-    .tab-lap-social{
+
+    .tab-lap-social {
         display: flex;
         flex-direction: column;
     }
-    ul.tab-lap-social li{
+
+    ul.tab-lap-social li {
         margin: 5px;
     }
 }
@@ -136,17 +153,21 @@ footer {
     header {
         justify-content: space-around;
     }
+
     .nav-bar {
         display: flex;
         flex-direction: column;
         align-self: center;
     }
-    .burger-menu{
+
+    .burger-menu {
         display: none;
     }
+
     .nav-bar ul {
         width: 100%;
     }
+
     .nav-bar ul li {
         display: inline-block;
         padding: 0px 25px;
@@ -162,12 +183,12 @@ footer {
 }
 
 .carousel-inner {
-    max-height: 400px;
+    max-height: 70vh;
 }
 .carousel-item {
-    max-height: 400px;
+    max-height: 70vh;
 }
-.carousel-item img{
-    height: 100%;
-    width: 100%;    
+.carousel.header img {
+    object-fit: fill;
+    object-position: center;
 }
