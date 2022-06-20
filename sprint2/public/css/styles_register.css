@@ -8,12 +8,14 @@ body {
     background-color: #efebe2;
     font-family: 'Archivo Narrow', sans-serif
 }
+
 a {
     color: #4c3524;
     text-decoration: none;
     transition-duration: 0.25s;
     align-self: center;
 }
+
 a:hover{
     background-color: #87c99b;
     border-radius: 3px;
@@ -32,59 +34,67 @@ main {
     justify-content: space-around;
     align-content: center;
 }
-.log-container {
+
+.buy-navbar{
+    display: flex;
+    justify-content:space-around;
+    width:90%;
+    margin: auto;
+    padding: 10px;
+    /*background-color: #ccb489;*/
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 8px;
+    font-size: 20px;
+}
+
+.log-container,
+.log-container-profile {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 90%;
-    height: 50%;
-    margin-left: auto;
-    margin-right: auto;
+    margin:auto;
     padding: 40px;
     background-color: #ccb489;
     border: 1px solid rgba(0, 0, 0, 0);
     border-radius: 8px;
     font-size: 20px;
+    
+}
+
+.log-container{
     box-shadow: 0px 0px 10px rgb(161, 161, 161);
 }
-h3 {
+
+h2{
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
+
+h5{
+    text-align: center;
+    margin-bottom: 20px
+}
+
 .log-item{
     width: 100%;
     height: 25px;
+    margin: 0px 0px 0px 10px;
     padding: 15px;
     border: 2px solid #ccb489;
-    border-bottom: 2.75px solid #ebd2a3;
+    border-bottom: 2px solid #ebd2a3;
     background-color: #ccb489;
     font-size: 16px;
     font-weight: bold;
-    align-self: flex-end;
-}
-.log-item::placeholder{
-    color: rgba(66, 66, 66, 0.66);
-}
-.log-item:focus{
-    background-color: #87c99b6e;
-}
-.rememberme-container {
-    width: 90%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    margin: 10px 0px 10px 0px;
-}
-.rememberme-container label {
-    font-size: 14px;
-    margin: 0px 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
-.pass-forgot {
-    
-    font-size: 14px;
-    align-self: center;
+.log-item:focus{
+    background-color: #ccae7b;
 }
+
 
 .log-button {
     display: flex;
@@ -104,6 +114,7 @@ h3 {
     font-size: 18px;
     transition-duration: 0.25s;
 }
+
 .log-button:hover{
     background-color: #6fa57f
 }
@@ -119,7 +130,7 @@ form label{
     
 }
 
-.item-container {
+.container {
     width: 90%;
     display: flex;
     flex-direction: row;
@@ -127,23 +138,33 @@ form label{
     align-self: flex-start;  
     margin: 5px auto 10px auto; 
 }
-.item-container i {
+
+.container i {
     font-size: 30px;
-    border: 2px solid #ebd2a3;
-    padding: 5px;
-    border-radius: 7px;
+}
+
+.container-button{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
 }
 
 
 
+
+
 @media (min-width: 768px) {
-    .log-container{
+    .log-container-profile,
+    .log-container,
+    .buy-navbar{
         width: 50%;
     }
 }
 
 @media (min-width: 1024px) {
-    .log-container{
+    .log-container-profile,
+    .log-container,
+    .buy-navbar{
         width: 30%;
     }
 }

@@ -1,4 +1,4 @@
-/*Parametros globales*/
+/*Parámetros globales*/
 * {
     margin: 0;
     padding: 0;
@@ -21,8 +21,8 @@ a:hover {
     border-radius: 3px;
 }
 
-/*Estilos del header*/
-header {
+/* Estilos del header */
+header{
     background-color: #efebe2;
     color: #5e451b;
     display: flex;
@@ -62,21 +62,33 @@ header {
 
 .fas.fa-shopping-cart {
     margin-left: 10px;
-    margin-right: 10px;
+    margin-right: 6px; /* Modificado por Laura, porque en 360px el ícono del carrito se bajaba */
     font-size: 25px;
 }
 
 .fas.fa-user-circle {
-    margin-left: 10px;
+    margin-left: 6px; /* Modificado por Laura, porque con 10px en pantallas de 360px el ícono del carrito se bajaba */
     margin-right: 10px;
     font-size: 25px;
+}
+
+/* Líneas agregadas por Laura */
+
+.fas.fa-shopping-cart:hover{
+    background-color: #87c99b;
+    border-radius: 3px;
+}
+
+.fas.fa-user-circle:hover{
+    background-color: #87c99b;
+    border-radius: 3px;
 }
 
 
 
 
 
-/*Estilos del footer*/
+/* Estilos del footer */
 footer {
     background-color: #897d69;
     color: #4c3524;
@@ -101,6 +113,7 @@ footer {
     display: flex;
     justify-content: center;
     align-content: center;
+    text-align: center; /* Agregada por Laura */
 }
 
 .m-socials-container ul li {
@@ -129,7 +142,20 @@ footer {
 
 
 
-/*media queries para adaptar el sitio*/
+/* Media queries para adaptar el sitio */
+
+@media (min-width: 460px) { /* Media querie agregada por Laura */
+    .fas.fa-shopping-cart {
+        margin-right: 10px;
+    }
+    .fas.fa-user-circle {
+        margin-left: 10px;
+    }
+    .cu-icon{
+        margin-right: 15px;
+    }
+}
+
 @media (min-width: 768px) {
     header {
         justify-content: space-between;
@@ -176,7 +202,7 @@ footer {
 }
 
 
-/*Lineas agregadas por andres*/
+/* Líneas agregadas por Andrés */
 .container-fluid {
     padding: 10px;
     margin: 0px;
