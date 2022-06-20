@@ -54,16 +54,19 @@ h3 {
 .log-item{
     width: 100%;
     height: 25px;
-    margin: 0px 0px 0px 10px;
     padding: 15px;
     border: 2px solid #ccb489;
-    border-bottom: 2px solid #ebd2a3;
+    border-bottom: 2.75px solid #ebd2a3;
     background-color: #ccb489;
     font-size: 16px;
     font-weight: bold;
+    align-self: flex-end;
+}
+.log-item::placeholder{
+    color: rgba(66, 66, 66, 0.66);
 }
 .log-item:focus{
-    background-color: #ccae7b;
+    background-color: #87c99b6e;
 }
 .rememberme-container {
     width: 90%;
@@ -116,7 +119,7 @@ form label{
     
 }
 
-.user-container {
+.item-container {
     width: 90%;
     display: flex;
     flex-direction: row;
@@ -124,20 +127,13 @@ form label{
     align-self: flex-start;  
     margin: 5px auto 10px auto; 
 }
-.user-container i {
+.item-container i {
     font-size: 30px;
+    border: 2px solid #ebd2a3;
+    padding: 5px;
+    border-radius: 7px;
 }
-.password-container {
-    width: 90%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    align-self: flex-start;  
-    margin: 5px auto 10px auto;  
-}
-.password-container i {
-    font-size: 30px;
-}
+
 
 
 @media (min-width: 768px) {
