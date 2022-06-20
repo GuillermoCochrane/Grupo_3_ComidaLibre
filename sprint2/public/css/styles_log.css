@@ -25,7 +25,7 @@ a:hover{
 
 main {
     height: 100vh;
-    color: rgb(70, 70, 70);
+    color: rgb(66, 66, 66);
     background-color: #efebe2;
     display: flex;
     flex-direction: column;
@@ -52,19 +52,25 @@ h3 {
     margin-bottom: 20px;
 }
 .log-item{
-    width: 95%;
+    width: 100%;
     height: 25px;
-    margin: 10px 0px;
+    margin: 0px 0px 0px 10px;
     padding: 15px;
-    border-radius: 8px;
-    border: 1px solid white;
+    border: 2px solid #ccb489;
+    border-bottom: 2px solid #ebd2a3;
+    background-color: #ccb489;
+    font-size: 16px;
+    font-weight: bold;
+}
+.log-item:focus{
+    background-color: #ccae7b;
 }
 .rememberme-container {
     width: 90%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    margin: 0px 0px 10px 0px;
+    margin: 10px 0px 10px 0px;
 }
 .rememberme-container label {
     font-size: 14px;
@@ -72,9 +78,9 @@ h3 {
 }
 
 .pass-forgot {
-    margin: 50px 0px 0px 0px;
+    
     font-size: 14px;
-    justify-content: center;
+    align-self: center;
 }
 
 .log-button {
@@ -93,6 +99,10 @@ h3 {
     color: rgb(32, 32, 32);
     font-family: 'Archivo Narrow';
     font-size: 18px;
+    transition-duration: 0.25s;
+}
+.log-button:hover{
+    background-color: #6fa57f
 }
 
 .reg-log {
@@ -101,6 +111,33 @@ h3 {
     color: #666;
 }
 
+form label{
+    align-self: flex-start;
+    
+}
+
+.user-container {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: flex-start;  
+    margin: 5px auto 10px auto; 
+}
+.user-container i {
+    font-size: 30px;
+}
+.password-container {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: flex-start;  
+    margin: 5px auto 10px auto;  
+}
+.password-container i {
+    font-size: 30px;
+}
 
 
 @media (min-width: 768px) {
