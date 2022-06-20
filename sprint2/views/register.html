@@ -1,15 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>REGISTRO</title>
-</head>
-<body>
-    <div>
-        REGISTRO
-    </div>
-    <a href="/">HOME</a>
-</body>
-</html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow&family=Open+Sans&family=Patrick+Hand&family=Roboto&display=swap" rel="stylesheet">
+    
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    
+        <link rel="stylesheet" href="css/styles_register.css">
+    
+        <title>Registro Comida libre</title>
+    </head>
+    <body>
+        
+        <main>
+    
+            <a href="/"><img id="logo" src="images/FreeFood2f.png" alt="logo"></a>
+    
+            <form class="log-container" action="/" method="GET">
+                
+                <h2>Crea tu cuenta</h2>
+
+                <h5>Por favor ingresa los siguientes datos</h5>   
+                
+                
+                <div class="container">
+    
+                    <i class="fas fa-user"></i>
+                    
+                    <input class="log-item" type="text" name="userLog" id="userLog" placeholder="Usuario" required minlength="8">
+    
+                </div>
+
+                <div class="container">
+    
+                    <i class="fas fa-at"></i>
+
+                    <input class="log-item" type="email" name="mailLog" id="mailLog" placeholder="E-Mail" required minlength="8">
+    
+                </div>
+                
+                <div class="container">
+    
+                    <i class="fas fa-lock"></i>
+                    
+                    <input class="log-item" type="password" name="passLog" id="passLog" placeholder="Contraseña" required minlength="8">
+    
+                </div>
+
+                <div class="container">
+    
+                    <i class="fas fa-lock"></i>
+                    
+                    <input class="log-item" type="password" name="passLog" id="passLog" placeholder="Repetir Contraseña" required minlength="8">
+    
+                </div>             
+                
+                           
+                <button class="log-button">Crear cuenta</button>
+            
+                
+            </form>
+            
+            <div class="reg-log">
+                ¿Ya tenes cuenta? <a href="/login">Ingresá aquí</a>
+            </div>
+        </main>
+       
+    </body>
+    </html>
