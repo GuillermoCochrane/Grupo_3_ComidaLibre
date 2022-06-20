@@ -24,6 +24,9 @@ index.get('/cart', (req,res) => {
 index.get('/register', (req,res) => {
     res.sendFile(path.join(__dirname, './views/register.html'))
 });
+index.get('/profile', (req,res) => {
+    res.sendFile(path.join(__dirname, './views/profile.html'))
+});
 index.get('/login', (req,res) => {
     res.sendFile(path.join(__dirname, './views/login.html'))
 });

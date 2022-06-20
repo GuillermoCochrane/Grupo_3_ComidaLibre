@@ -8,12 +8,14 @@ body {
     background-color: #efebe2;
     font-family: 'Archivo Narrow', sans-serif
 }
+
 a {
     color: #4c3524;
     text-decoration: none;
     transition-duration: 0.25s;
     align-self: center;
 }
+
 a:hover{
     background-color: #87c99b;
     border-radius: 3px;
@@ -33,18 +35,34 @@ main {
     align-content: center;
 }
 
-.log-container {
+.buy-navbar{
+    display: flex;
+    justify-content:space-around;
+    width:90%;
+    margin: auto;
+    padding: 10px;
+    /*background-color: #ccb489;*/
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 8px;
+    font-size: 20px;
+}
+
+.log-container,
+.log-container-profile {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 90%;
-    margin-left: auto;
-    margin-right: auto;
+    margin:auto;
     padding: 40px;
     background-color: #ccb489;
     border: 1px solid rgba(0, 0, 0, 0);
     border-radius: 8px;
     font-size: 20px;
+    
+}
+
+.log-container{
     box-shadow: 0px 0px 10px rgb(161, 161, 161);
 }
 
@@ -68,7 +86,11 @@ h5{
     background-color: #ccb489;
     font-size: 16px;
     font-weight: bold;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
+
 .log-item:focus{
     background-color: #ccae7b;
 }
@@ -121,17 +143,28 @@ form label{
     font-size: 30px;
 }
 
+.container-button{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+
 
 
 
 @media (min-width: 768px) {
-    .log-container{
+    .log-container-profile,
+    .log-container,
+    .buy-navbar{
         width: 50%;
     }
 }
 
 @media (min-width: 1024px) {
-    .log-container{
+    .log-container-profile,
+    .log-container,
+    .buy-navbar{
         width: 30%;
     }
 }
