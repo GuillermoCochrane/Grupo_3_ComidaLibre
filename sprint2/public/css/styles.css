@@ -74,15 +74,15 @@ header{
 
 /* Líneas agregadas por Laura */
 
-.fas.fa-shopping-cart:hover{
+/* a i:hover{
     background-color: #87c99b;
     border-radius: 3px;
 }
 
-.fas.fa-user-circle:hover{
+a i:hover{
     background-color: #87c99b;
     border-radius: 3px;
-}
+} */
 
 
 
@@ -217,4 +217,26 @@ footer {
 .carousel.header img {
     object-fit: fill;
     object-position: center;
+}
+
+/* Líneas agregadas por Laura */
+.btn-primary{
+    border: solid 1px #666666;
+    border-radius: 3px;
+    padding: 5px 9px;
+    text-decoration: none;
+    width: 90%; 
+    background-color: #87c99b;
+    font-weight: bold;
+    color: #2b2929;
+    font-size: 17px;
+    transition: 0.25s;
+}
+
+.btn-primary:hover{
+    background-color: #6fa57f
+}
+
+.card-body{
+    text-align: center;
 }

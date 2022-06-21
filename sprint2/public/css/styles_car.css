@@ -46,6 +46,7 @@ header{
     display: flex;
     justify-content: space-between;
     padding: 10px;
+    background-color: white;
 }
 
 article{
@@ -142,6 +143,7 @@ article img{
     font-size: 17px;
     font-weight: bold;
     color: #2b2929;
+    transition: 0.25s;
 }
 
 .button{
@@ -160,6 +162,7 @@ article img{
     font-weight: bold;
     color: #2b2929;
     font-size: 17px;
+    transition: 0.25s;
 }
 
 .end{
@@ -172,6 +175,19 @@ article img{
     font-weight: bold;
     color: #2b2929;
     font-size: 17px;
+    transition: 0.25s;
+}
+
+.apply:hover{
+    background-color: #6fa57f
+}
+
+.continue:hover{
+    background-color: #6fa57f
+}
+
+.end:hover{
+    background-color: #6fa57f
 }
 
 @media(min-width: 768px){
