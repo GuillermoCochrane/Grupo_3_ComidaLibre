@@ -7,7 +7,8 @@
 body{
     font-family: 'Archivo Narrow', sans-serif;
     color: #666666;
-    background-color: white;
+    /* background-color: white; */
+    background-color: #efebe2;
 }
 
 header{
@@ -90,7 +91,9 @@ article img{
 }
 
 .quantity{
-    border: solid 1px #666666;
+    /* border: solid 1px #666666; */
+    background-color: #87c99b;
+    border: 1px solid #87c99bcc;
     border-radius: 3px;
     font-family: 'Archivo Narrow', sans-serif;
     font-size: 17px;
