@@ -6,7 +6,8 @@
 }
 
 body {
-    background-color: rgb(235, 235, 235);
+    /* background-color: rgb(235, 235, 235); */
+    background-color: #efebe2;
     font-family: 'Archivo Narrow', sans-serif
 }
 
@@ -140,6 +141,38 @@ footer {
     font-size: 25px;
 }
 
+/* Líneas agregadas por Laura */
+.btn-primary{
+    border: solid 1px #666666;
+    border-radius: 3px;
+    padding: 5px 9px;
+    text-decoration: none;
+    width: 90%; 
+    background-color: #87c99b;
+    font-weight: bold;
+    color: #2b2929;
+    font-size: 17px;
+    transition: 0.25s;
+}
+
+.btn-primary:hover{
+    background-color: #6fa57f
+}
+
+.card-body{
+    text-align: center;
+}
+
+.carousel-caption h5{
+    font-weight: bold;
+    text-shadow: 0px 0px 10px rgb(100, 100, 100);
+}
+
+.carousel-caption p{
+    font-weight: bold;
+    text-shadow: 0px 0px 10px rgb(100, 100, 100);
+}
+
 
 
 /* Media queries para adaptar el sitio */
@@ -217,26 +250,4 @@ footer {
 .carousel.header img {
     object-fit: fill;
     object-position: center;
-}
-
-/* Líneas agregadas por Laura */
-.btn-primary{
-    border: solid 1px #666666;
-    border-radius: 3px;
-    padding: 5px 9px;
-    text-decoration: none;
-    width: 90%; 
-    background-color: #87c99b;
-    font-weight: bold;
-    color: #2b2929;
-    font-size: 17px;
-    transition: 0.25s;
-}
-
-.btn-primary:hover{
-    background-color: #6fa57f
-}
-
-.card-body{
-    text-align: center;
 }
