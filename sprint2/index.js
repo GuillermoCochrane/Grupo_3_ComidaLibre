@@ -16,7 +16,7 @@ index.get('/', (req,res) => {
     res.sendFile(path.join(__dirname, '/views/index.html'))
 });
 index.get('/products', (req,res) => {
-    res.sendFile(path.join(__dirname, '/views/productDetail.html'))
+    res.sendFile(path.join(__dirname, '/views/productsDetail.html'))
 });
 index.get('/cart', (req,res) => {
     res.sendFile(path.join(__dirname, '/views/productCart.html'))

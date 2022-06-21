@@ -10,11 +10,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow&family=Open+Sans&family=Patrick+Hand&family=Roboto&display=swap" rel="stylesheet">
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
-
+    <link rel="icon" href="images/favicon.ico">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/styles_register.css">
 
-    <title>Perfil de Usuario</title>
+    <title>Free Food - Perfil de Usuario</title>
 </head>
 <body>
     
@@ -47,8 +47,8 @@
 
         <div class="cu-icon">
         <!-- 2 etiquetas siguientes, modificadas por Laura para que los estilos del hover se vieran mejor -->
-            <span href="/cart"><i class="fas fa-shopping-cart"></i></span>
-            <span href="/register"><i class="fas fa-user-circle"></i></span>
+            <a href="/cart"><i class="fas fa-shopping-cart"></i></a>
+            <a href="/register"><i class="fas fa-user-circle"></i></a>
         </div>
     </header>
 
@@ -56,12 +56,16 @@
         
         <br> 
         
-        <div class="buy-navbar">
-            <a href="#">Historial de compras</a>
-            <a href="/cart"><i class="fas fa-shopping-cart"></i>Ir al Carrito</a>
-        </div>
+       
 
         <form class="log-container-profile" action="/profile" method="GET">
+            <div>
+            <!--<div  class="buy-navbar" >-->
+                <a href="#">Historial de compras</a>
+              <!--  <a href="/cart"><i class="fas fa-shopping-cart"></i>Ir al Carrito</a>-->
+            </div>
+            
+            <br>
             
             <h2>Información personal</h2>
 
@@ -69,7 +73,7 @@
             
             <div class="container">
 
-                <i class="far fa-id-card"></i>
+                <i class="fas fa-id-badge"></i>
                 
                 <input class="log-item" type="text" name="name" id="name" placeholder="Nombre y apellido" required minlength="10">
 
@@ -87,7 +91,7 @@
 
                 <i class="fas fa-mobile-alt"></i>
                 
-                <input class="log-item" type="tel" name="telefono" id="telefono" placeholder="Telefono" required minlength="10">
+                <input class="log-item" type="tel" name="telefono" id="telefono" placeholder="Teléfono" required minlength="10">
 
             </div>
 
@@ -128,7 +132,7 @@
             
             <div class="container-button">
                 
-                <button class="log-button">Guardar cambios</button>
+                <button class="log-button">Guardar</button>
                 
                 <button class="log-button" type="reset">Borrar</button>
 
@@ -169,12 +173,13 @@
             <ul class="tab-lap-social" type="none">
                 <li>Contactanos</li>
                 <li>
-                    <i class="fab fa-facebook"></i>
-                    <i class="fab fa-instagram"></i>
-                    <i class="fab fa-whatsapp"></i>
-                    <i class="fab fa-twitter"></i>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>                    
                 </li>
-                <li>3804-889911</li>
+                <a href=""></a>
+                <li><a href="#"></a>3804-889911</li>
                 <li>Calle falsa 123</li>
             </ul>
         </div>
