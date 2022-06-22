@@ -1,0 +1,1 @@
+URL del tablero en el que organizamos el trabajo: https://trello.com/b/39KfmT1q/grupo3comidalibre
