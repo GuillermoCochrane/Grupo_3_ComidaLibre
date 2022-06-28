@@ -1,72 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow&family=Open+Sans&family=Patrick+Hand&family=Roboto&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow&family=Open+Sans&family=Patrick+Hand&family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="icon" href="images/favicon.ico">
     <link rel="stylesheet" href="css/styles.css">
-
-  <title>Bienvenidos a Free Food</title>
-</head>
+  
+    <title>Bienvenidos a Free Food</title>
+  </head> 
 
 <body>
-  <header>
-
-
-
-    <div class="burger-menu">
-      <i class="fas fa-bars"></i>
-    </div>
-    
-    <a href="/"><img id="logo" src="images/FreeFood2f.png" alt="logo"></a>
-
-    <nav class="nav-bar">
-      <input class="search-bar" type="search" value="Buscar productos...">
-
-      <ul>
-        <li>
-          <li class="main-menu">
-            <a href="/products">Categorias</a>
-            <ul class="list">
-                <li><a href="#">Carnes</a></li>
-                <li><a href="#">Pastas</a></li>
-                <li><a href="#">Ensaladas</a></li>
-                <li><a href="#">Tartas</a></li>
-                <li><a href="/login">Postres</a></li>
-                <li><a href="#">Bebidas</a></li>
-                <li><a href="#">Hamburguesas</a></li>
-            </ul>
-        </li>
-        </li>
-        <li>
-          <a href="#">Ofertas</a>
-        </li>
-        <li>
-          <a href="#">Historia</a>
-        </li>
-        <li>
-          <a href="#">Ayuda</a>
-        </li>
-      </ul>
-    </nav>
-
-    <div class="cu-icon">
-      <a href="/cart"><i class="fas fa-shopping-cart"></i></a>
-      <a href="/register"><i class="fas fa-user-circle"></i></a>
-    </div>
-
-  </header>
+  <%- include('partials/header.ejs') %>
 
   <main>
     <div class="container-fluid">
@@ -200,45 +155,8 @@
 
   </main>
 
-  <footer>
-    <div class="m-socials-container">
-      <ul type="none">
-        <li>Contactanos</li>
-        <li>
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-whatsapp"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-        </li>
-        <li><a href="#">3804-889911</a></li>
-        <li>Calle falsa 123</li>
-      </ul>
-    </div>
+  <%- include('partials/footer.ejs') %> 
 
-    <div class="foot-container">
-      <ul class="listas" type="none">
-        <li><a href="#">Legales</a></li>
-        <li><a href="#">Política de privacidad</a></li>
-        <li><a href="#">Defensa del consumidor</a></li>
-      </ul>
-      <ul class="listas" type="none">
-        <li><a href="#">FAQ</a></li>
-        <li><a href="#">Zonas de reparto</a></li>
-        <li><a href="#">Trabajá con nosotros</a></li>
-      </ul>
-      <ul class="tab-lap-social" type="none">
-        <li>Contactanos</li>
-        <li>
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-whatsapp"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-        </li>
-        <li><a href="#">3804-889911</a></li>
-        <li>Calle falsa 123</li>
-      </ul>
-    </div>
-  </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>

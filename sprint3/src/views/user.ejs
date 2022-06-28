@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow&family=Open+Sans&family=Patrick+Hand&family=Roboto&display=swap" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link rel="icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles_register.css">
+
+    <title>Free Food - Perfil de Usuario</title>
+</head>
+<body>
+    
+    <%- include('partials/header.ejs') %>
+
+    <main>
+        
+        <br> 
+        
+       
+
+        <form class="log-container-profile" action="/profile" method="GET">
+            <div>
+            <!--<div  class="buy-navbar" >-->
+                <a href="#">Historial de compras</a>
+              <!--  <a href="/cart"><i class="fas fa-shopping-cart"></i>Ir al Carrito</a>-->
+            </div>
+            
+            <br>
+            
+            <h2>Información personal</h2>
+
+            <h5></h5>   
+            
+            <div class="container">
+
+                <i class="fas fa-id-badge"></i>
+                
+                <input class="log-item" type="text" name="name" id="name" placeholder="Nombre y apellido" required minlength="10">
+
+            </div>
+
+            <div class="container">
+
+                <i class="fas fa-map-marker-alt"></i>
+                
+                <input class="log-item" type="text" name="Domicilio" id="Domicilio" placeholder="Domicilio" required minlength="8">
+
+            </div>
+
+            <div class="container">
+
+                <i class="fas fa-mobile-alt"></i>
+                
+                <input class="log-item" type="tel" name="telefono" id="telefono" placeholder="Teléfono" required minlength="10">
+
+            </div>
+
+            
+
+            <div class="container">
+
+                <i class="fas fa-user"></i>
+                
+                <input class="log-item" type="text" name="userLog" id="userLog" placeholder="Usuario" required minlength="6">
+
+            </div>
+
+          
+            <div class="container">
+
+                <i class="fas fa-at"></i>
+
+                <input class="log-item" type="email" name="mailLog" id="mailLog" placeholder="E-Mail" required minlength="13">
+
+            </div>
+            
+            <div class="container">
+
+                <i class="fas fa-lock"></i>
+                
+                <input class="log-item" type="password" name="passLog" id="passLog" placeholder="Contraseña" required minlength="8">
+
+            </div>
+
+            <div class="container">
+
+                <i class="fas fa-lock"></i>
+                
+                <input class="log-item" type="password" name="passLog" id="passLog" placeholder="Repetir Contraseña" required minlength="8">
+
+            </div>             
+            
+            <div class="container-button">
+                
+                <button class="log-button">Guardar</button>
+                
+                <button class="log-button" type="reset">Borrar</button>
+
+            </div>     
+             
+        </form>
+        
+        <br>
+        
+    </main>
+
+    <%- include('partials/footer.ejs') %> 
+
+</body>

@@ -72,7 +72,12 @@ header{
     margin-right: 10px;
     font-size: 25px;
 }
-
+.cu-icon{
+    display: flex;
+}
+.u-icon{
+    display: flex;
+}
 /* Líneas agregadas por Laura */
 
 /* a i:hover{
@@ -91,13 +96,53 @@ a i:hover{
 }
 .main-menu>ul.list { 
     display:none;
-	position:absolute; left:0px; top:10px; z-index:1;
+	position:absolute; left:0px; top:10px; z-index:999;
 	background:rgba(255, 255, 255, 0.795); color:#333;
     width: 250px;
 }
 .main-menu:hover ul.list{
     display: block;
 }
+/* Estilos menu emergente*/
+.u-icon { 
+    position:relative 
+}
+.u-icon>ul.list { 
+    display:none;
+	position:absolute; left:-5px; top:15px; z-index:999;
+	background:rgba(255, 255, 255, 0.795); color:#333;
+    list-style: none;
+}
+.u-icon:hover ul.list{
+    display: block;
+    position:absolute; left:-5px; top:15px; z-index:999;
+}
+
+/* Estilos burger menu */
+ul.burger-list{
+    display: none;
+}
+
+.test{
+    display: none;
+    position: absolute; bottom: 66%; z-index: 999;
+    background-color: aliceblue;
+    width: 100%;
+    list-style: none;
+}
+.test li {
+    margin: 20px;
+}
+#burger-button{
+    position: relative;
+    border: none;
+    background-color: #efebe2;
+}
+#burger-button:focus + ul.test{
+    display: block;
+    background-color: #efebe2;
+}
+
 
 
 
@@ -204,6 +249,27 @@ footer {
 @media (min-width: 768px) {
     header {
         justify-content: space-between;
+    }
+    .nav-bar {
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+    }
+
+    .burger-menu {
+        display: none;
+    }
+    #burger-button{
+        display: none;
+    }
+
+    .nav-bar ul {
+        width: 100%;
+    }
+    .nav-bar ul li {
+        display: inline-block;
+        padding: 0px 25px;
+        margin: 5px 0px
     }
 
     .m-socials-container {
