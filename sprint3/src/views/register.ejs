@@ -1,27 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow&family=Open+Sans&family=Patrick+Hand&family=Roboto&display=swap" rel="stylesheet">
+    <%- include('partials/head.ejs') %> 
     
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
-        <link rel="icon" href="/images/favicon.ico">    
-        <link rel="stylesheet" href="/css/styles_register.css">
-    
-        <title>Free Food - Registro</title>
-    </head>
     <body>
         
         <main>
     
             <a href="/"><img id="logo" src="/images/FreeFood2f.png" alt="logo"></a>
     
-            <form class="log-container" action="/profile" method="GET">
+            <form class="log-container" action="/user" method="GET">
                 
                 <h2>Crea tu cuenta</h2>
 
@@ -67,9 +55,9 @@
             </form>
             
             <div class="reg-log">
-                ¿Ya tenes cuenta? <a href="/login">Ingresá aquí</a>
+                ¿Ya tenes cuenta? <a href="/user/login">Ingresá aquí</a>
             </div>
         </main>
        
     </body>
-    </html>
+</html>

@@ -1,21 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow&family=Open+Sans&family=Patrick+Hand&family=Roboto&display=swap" rel="stylesheet">
+    <%- include('partials/head.ejs') %>
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
-    <link rel="icon" href="images/favicon.ico">
-    <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" href="/css/styles_register.css">
-
-    <title>Free Food - Perfil de Usuario</title>
-</head>
 <body>
     
     <%- include('partials/header.ejs') %>
@@ -26,7 +13,7 @@
         
        
 
-        <form class="log-container-profile" action="/profile" method="GET">
+        <form class="log-container-profile" action="/user" method="GET">
             <div>
             <!--<div  class="buy-navbar" >-->
                 <a href="#">Historial de compras</a>
@@ -94,7 +81,7 @@
 
                 <i class="fas fa-lock"></i>
                 
-                <input class="log-item" type="password" name="passLog" id="passLog" placeholder="Repetir Contraseña" required minlength="8">
+                <input class="log-item" type="password" name="passLog" id="rePassLog" placeholder="Repetir Contraseña" required minlength="8">
 
             </div>             
             
