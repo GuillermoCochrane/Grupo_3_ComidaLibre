@@ -10,21 +10,21 @@ app.set('views', path.join(__dirname, '/views'));
 app.set('view engine', 'ejs');
 
 
-app.use('/public', express.static(path.join(__dirname, '../public')))
+app.use('/static', express.static(path.join(__dirname, '../public')))
 app.use('/images', express.static(path.join(__dirname, '../public/images')))
 app.use('/css', express.static(path.join(__dirname, '../public/css')))
-app.use('/views', express.static(path.join(__dirname, '/public/views')))
-app.use('/partials', express.static(path.join(__dirname, '/views/partials')))
+app.use('/views', express.static(path.join(__dirname, './views')))
+app.use('/partials', express.static(path.join(__dirname, './views/partials')))
 
 
 const mainRouter = require('./routes/mainRouter');
-app.use(mainRouter)
+app.use('/', mainRouter)
 
 const userRouter = require('./routes/userRouter');
-app.use(userRouter)
+app.use('/user', userRouter)
 
 const productsRouter = require('./routes/productsRouter');
-app.use(productsRouter)
+app.use('/products', productsRouter)
 
 
 

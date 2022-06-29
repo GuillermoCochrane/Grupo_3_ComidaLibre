@@ -2,8 +2,11 @@ const userController = {
     profile: (req,res)=>{
         res.render('user')
     },
-    h: (req,res)=>{
+    log: (req,res)=>{
         res.render('login')
+    },
+    reg: (req,res)=>{
+        res.render('register')
     },
 }
 
