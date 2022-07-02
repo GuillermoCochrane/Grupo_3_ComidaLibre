@@ -4,11 +4,6 @@ const mainController = require('../controllers/mainController')
 
 router.get('/', mainController.home);
 router.get('/cart', mainController.cart);
-
-//agregó FC
-router.get('/create', mainController.add);
-//
-
 router.get('/notFound', mainController.notFound);
 
 

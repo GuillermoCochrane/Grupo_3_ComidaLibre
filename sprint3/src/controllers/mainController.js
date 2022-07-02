@@ -14,17 +14,6 @@ const mainController = {
     notFound: (req,res)=>{
         res.render('notFound')
     },
-
-//Agregó FC
-    add: (req,res)=>{
-        res.render('create', {
-            headTitle: 'Free Food - Crear Producto',
-            stylesheet: 'styles_register.css'
-        
-        })
-    }  
-//
-
 }
 
 module.exports = mainController;
