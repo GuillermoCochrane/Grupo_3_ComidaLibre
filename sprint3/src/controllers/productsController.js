@@ -1,3 +1,5 @@
+const products= require('./products') //agregado temporalmente por guille hasta que eset disponible la base de datos
+
 const productsController = {
     producto: (req,res)=>{
         res.render('products', {
@@ -23,8 +25,15 @@ const productsController = {
             headTitle: 'Free Food - Crear Producto',
             stylesheet: 'styles_register.css'
         })
-    }
-    //
+    },
+    //Agrego Guille
+    edit: (req,res)=>{
+        res.render('productEdit', {
+            headTitle: 'Free Food - Editar Producto',
+            stylesheet: 'styles_register.css',
+            products: products,
+        })
+    },
 }
 
 module.exports = productsController;
