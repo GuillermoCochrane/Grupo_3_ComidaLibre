@@ -2,7 +2,7 @@
   "name": "web_comidas",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start": "node ./sprint3/src/app.js",
     "dev": "nodemon ./sprint3/src/app.js",

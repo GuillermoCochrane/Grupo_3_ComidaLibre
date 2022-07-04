@@ -7,9 +7,23 @@
     <%- include('partials/header.ejs') %>
 
     <main>
-        <h1>PAGINA DE PRODUCTOS/CATEGORIAS</h1>
-        <br>
-        <h1>UNDER CONSTRUCTION</h1>
+        <h1>Productos del menú</h1>
+        <br> 
+        <section class="section-article">
+            <% for(let product of productList){ %>
+            <article class="main-article">
+                <img src="../../images/<%= product.img %>" alt="<%= product.name %>">
+                <div class="product-detail">
+                    <h5 class="product-description"> <%= product.name %> </h5>
+                    <p class="price">$ <%= product.price %></p>
+                    <p class="discount"><%= product.discountAmount %> % off</p>
+                    <br>
+                    <a href="/products/<%= product.idCat %>/<%= product.id %>" class="btn-detail">Ver detalle</a>
+                </div>
+            </article>
+            <% } %> 
+    
+        </section>
     </main>
 
     <%- include('partials/footer.ejs') %>

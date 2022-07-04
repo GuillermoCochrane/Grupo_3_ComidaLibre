@@ -12,20 +12,18 @@
             <p><a href="#"><i class="fas fa-angle-left"></i>Anterior plato</a></p>
             <p><a href="/products"><i class="fas fa-utensils"></i>Menú principal</a></p>
             <p><a href="#">Siguiente plato<i class="fas fa-angle-right"></i></a></p>
-            
         </nav>
+        <br>
+
+        <h1>Detalle del producto</h1>
         
         <article class="main-product">
-            <h2 class="title">Pasta fresca con Langostinos</h2>
-            
-            <img id="main-image" src="/images/fNoodles.png" alt="Milanesa Vegetales">
-            
-            
+            <h2 class="title"><%= product.name %></h2>
+            <img id="main-image" src="/images/<%=product.img %>" alt="<%= product.name %>">
             <div class="main-detail">
-                <h2 class="title0">Pasta fresca con Langostinos</h2>
-                
-                <p class="name">Descripción: Cintas de harina de semola envuelta en vegetales frescos con langostinos salteados</p>
-                <p class="price">$2100</p>
+                <h2 class="title0"><%= product.name %></h2>
+                <p class="name"><%= product.description %></p>
+                <p class="price">$<%= product.price %></p>
                 <p class="list">Elegir la cantidad: 
                     <select name="lista">
                         <option>1</option>
@@ -35,25 +33,26 @@
                         <option>5</option>
                     </select>
                 </p>
-                <button class="add-button">Agregar al carrito</button>
+                <br>
+                <a href="/cart" class="add-button">Agregar al carrito</a>
             </div>
-
         </article>
+        <br>
 
         <section>
-            <h3>PRODUCTOS RELACIONADOS</h3>
+            <h1>Productos relacionados</h1>
             <article class="reco">
+
+                <% for( let productR of productRel) { %>
                 <div class="product">
-                
                     
-                    <img id="image" src="/images/fFalafelHummus.png" alt="" title="">
-                    
+                    <img id="image" src="/images/<%= productR.img %>" alt="" title="">
                     
                     <div class="info">
-                        <p class="price">$1000</p>
-                        <p class="dicount">40% OFF</p>
-                        <p class="name">Falafel vegetariano con hummus</p>
-                        <p class="descrip">Descripción: Albóndigas con base de garbanzos y especias varias acompañada de suave crema de garbanzos y vegetales</p>
+                        <p class="price">$ <%= productR.price %></p>
+                        <p class="dicount"><%= productR.discountAmount %> % off</p>
+                        <p class="name"><%= productR.name %> </p>
+                        <p class="descrip">Descripción: <%= productR.description %> </p>
                         
                     </div>
                     <div class="add-to">
@@ -66,91 +65,10 @@
                                 <option>5</option>
                             </select>
                         </p>
-                        <button class="add-button0">Agregar al carrito</button>
+                        <a href="/cart" class="add-button">Agregar al carrito</a>
                     </div>
                 </div>
-                
-                <div class="product">
-                
-                    
-                    <img id="image" src="/images/fCostillas.png" alt="" title="">
-                    
-                    
-                    <div class="info">
-                        <p class="price">$1750</p>
-                        <p class="dicount">40% OFF</p>
-                        <p class="name">Ribs de cerdo</p>
-                        <p class="descrip">Descripción: Tiernas costillas de carne de cerdo a la parrilla con salsas varias</p>
-
-                    </div>
-                    <div class="add-to">
-                        <p class="list">Elegir la cantidad: 
-                            <select name="lista">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </p>
-                        <button class="add-button0">Agregar al carrito</button>
-                    </div>
-                </div>
-
-                <div class="product">
-                
-                    
-                    <img id="image" src="/images/fPaellaMediterranea.png" alt="" title="">
-                    
-                    
-                    <div class="info">
-                        <p class="price">$1900</p>
-                        <p class="dicount">40% OFF</p>
-                        <p class="name">Paella Mediterránea</p>
-                        <p class="descrip">Descripción: Arroz acompañado de mariscos varios con vegetales al wok</p>
-
-                    </div>
-                    <div class="add-to">
-                        <p class="list">Elegir la cantidad: 
-                            <select name="lista">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </p>
-                        <button class="add-button0">Agregar al carrito</button>
-                    </div>
-                </div>
-
-                <div class="product">
-                
-                    
-                    <img id="image" src="/images/fPolloFritoVegetales.png" alt="" title="">
-                    
-                    
-                    <div class="info">
-                        <p class="price">$1350</p>
-                        <p class="dicount">40% OFF</p>
-                        <p class="name">Pollo Frito</p>
-                        <p class="descrip">Descripción: menudos de pollo marinados fritos a la sartén.</p>
-
-                    </div>
-                    <div class="add-to">
-                        <p class="list">Elegir la cantidad: 
-                            <select name="lista">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </p>
-                        <button class="add-button0">Agregar al carrito</button>
-                    </div>
-                </div>
-                
+                <% } %>
 
             </article>
 

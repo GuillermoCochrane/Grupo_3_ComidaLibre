@@ -78,17 +78,6 @@ header{
 .u-icon{
     display: flex;
 }
-/* Líneas agregadas por Laura */
-
-/* a i:hover{
-    background-color: #87c99b;
-    border-radius: 3px;
-}
-
-a i:hover{
-    background-color: #87c99b;
-    border-radius: 3px;
-} */
 
 /* Estilos menu emergente*/
 .main-menu { 
@@ -143,8 +132,9 @@ ul.burger-list{
     background-color: #efebe2;
 }
 
-
-
+.card-body{
+    border-top: 1px solid #ebebeb;
+}
 
 /* Estilos del footer */
 footer {
