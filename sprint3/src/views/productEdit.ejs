@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <%- include('partials/head.ejs') %> 
+    
+    <body>
+        
+        <main>
+    
+            <a href="/"><img id="logo" src="/images/FreeFood2f.png" alt="logo"></a>
+    
+            <form class="log-container" action="/user" method="GET">
+                
+                <h2>Editar Producto</h2>
+
+                <br>
+                
+                <div class="container">
+                    <label for="name" class="label">Seleccione el producto</label>
+                </div>
+                
+                <div class="container">
+    
+                    <i class="fas fa-file-signature"></i>
+                        <select name="name" id="name" class="log-item">
+                            <% for (let product of products){ %>
+                                <option value="<%= product.id %>">
+                                    <%= product.name %>
+                                </option>                    
+                        
+                            <% } %>
+                </select>
+                    <!-- <input class="log-item" type="text" name="name" id="name" placeholder="Nombre del producto" required minlength="1"> -->
+    
+                </div>
+
+                <div class="container">
+    
+                    <i class="fas fa-info"></i>
+
+                    <input class="log-item" type="text" name="description" id="description" placeholder="Descripción" required minlength="1">
+    
+                </div>
+                
+                <div class="container">
+    
+                    <i class="fas fa-file-image"></i>
+
+                    <input class="log-item" type="text" name="image" id="image" placeholder="Agregar Imagen" required minlength="1">
+    
+                    <input type="file" id="img" name="img" accept="image/png, image/jpeg">
+                </div>
+
+                <div class="container">
+    
+                    <i class="fas fa-clipboard-list"></i>
+
+                    <input class="log-item" type="text" name="idCat" id="idCat" placeholder="Categoría" required minlength="1">
+    
+                    <p class="categList">Elija una: 
+                        <select name="categorias">
+                            <option>Entrada</option>
+                            <option>Plato Principal</option>
+                            <option>Postre</option>
+                            <option>Bebida</option>
+                        </select>
+                    </p>
+
+                </div>
+
+                <div class="container">
+    
+                    <i class="fas fa-dollar-sign"></i>
+                    
+                    <input class="log-item" type="text" name="price" id="price" placeholder="Precio" required minlength="1">
+    
+                </div>
+                
+
+                <div class="container">
+                    <h5>¿Aplica descuento?</h5>  
+                    <input type="radio" name="discount" value="Si" id="discount"> <label for="Si">Si</label> 
+                    
+                    <input type="radio" name="discount" value="No" id="discount"> <label for="No">No</label> 
+                
+                </div>
+
+                <div class="container">
+    
+                    <i class="fas fa-percent"></i>
+                    
+                    <input class="log-item" type="text" name="discountAmount" id="discountAmount" placeholder="Si aplica Ingresar % Descuento">
+    
+                </div>             
+                
+                <div class="container">
+                    <h5>¿Es producto recomendado?</h5>  
+                    <input type="radio" name="reco" value="Si" id="reco"> <label for="Si">Si</label> 
+                    <br>
+                    <input type="radio" name="reco" value="No" id="reco"> <label for="No">No</label> 
+                    <br>
+                </div>
+    
+                <div class="button-box">
+                    <button class="log-button">Editar</button>
+                    <button class="log-button" type="reset">Borrar</button>
+                </div>
+                
+                
+            </form>
+            
+        </main>
+    
+    </body>
+</html>

@@ -26,7 +26,6 @@ a:hover{
 }
 
 main {
-    height: 100vh;
     color: rgb(66, 66, 66);
     background-color: #efebe2;
     display: flex;
@@ -54,7 +53,8 @@ main {
     align-items: center;
     width: 90%;
     margin:auto;
-    margin-top: 0px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     padding: 40px;
     background-color: #ccb489;
     border: 1px solid rgba(0, 0, 0, 0);
@@ -163,7 +163,14 @@ form label{
     justify-content: space-between;
 }
 
-
+.label{
+    width: 90%;
+    text-align: center;
+}
+.button-box{
+    display: flex;
+    justify-content: space-evenly;
+}
 
 
 

@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const allProducts = JSON.parse(fs.readFileSync(path.join(__dirname, '../productos.json'), 'utf-8'));
+const products= require('./products') //agregado temporalmente por guille hasta que eset disponible la base de datos
 
 const productsController = {
     producto: (req, res) => {
@@ -38,6 +39,21 @@ const productsController = {
             product: product,
             productRel: productRel, 
         });
+    },
+    //Agregó FC
+    add: (req,res)=>{
+        res.render('create', {
+            headTitle: 'Free Food - Crear Producto',
+            stylesheet: 'styles_register.css'
+        })
+    },
+    //Agrego Guille
+    edit: (req,res)=>{
+        res.render('productEdit', {
+            headTitle: 'Free Food - Editar Producto',
+            stylesheet: 'styles_register.css',
+            products: products,
+        })
     },
 }
 
