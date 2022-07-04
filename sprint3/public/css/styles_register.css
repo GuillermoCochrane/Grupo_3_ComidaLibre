@@ -79,7 +79,7 @@ h5{
     text-align: center;
     margin-bottom: 20px
 }
-
+.log-item-image,
 .log-item{
     width: 100%;
     height: 25px;
@@ -95,6 +95,12 @@ h5{
     text-overflow: ellipsis;
     text-align: justify;
 }
+
+.log-item-image{
+    height: 45px;
+    padding: 5px;
+}
+
 
 .log-item::placeholder{
     color: rgba(66, 66, 66, 0.66);
@@ -139,6 +145,7 @@ form label{
     
 }
 
+.container-radio,
 .container {
     width: 90%;
     display: flex;
@@ -147,6 +154,10 @@ form label{
     align-self: flex-start;  
     margin: 5px auto 10px auto; 
 }
+.container-radio{
+    justify-content: center;
+}
+
 
 .container i {
     width: 50px;
@@ -166,10 +177,20 @@ form label{
 .label{
     width: 90%;
     text-align: center;
+    margin: 20px;
+    margin-bottom: 10px;
+    font-size: 25px;
+    font-weight: bold;
 }
 .button-box{
     display: flex;
     justify-content: space-evenly;
+}
+
+.radio-box{
+    display: flex;
+    justify-content:space-around;
+    width: 15%;
 }
 
 
