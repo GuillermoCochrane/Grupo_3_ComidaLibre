@@ -26,7 +26,11 @@ app.use('/user', userRouter)
 const productsRouter = require('./routes/productsRouter');
 app.use('/products', productsRouter)
 
-
+//Ruta para el error 404
+app.all('*', (req, res) => {
+    res.render('notFound');
+} // end of 404 route
+);
 
 app.listen(puerto, ()=>{
     console.log('http://localhost:' + puerto);
