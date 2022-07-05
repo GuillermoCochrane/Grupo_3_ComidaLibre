@@ -36,12 +36,13 @@ const productsController = {
             headTitle: 'Free Food - Detalle de producto',
             stylesheet: 'styles_productDetail.css',
             product: product,
-            productRel: productRel, 
+            productRel: productRel,
+            productList: allProducts,
         });
     },
     //Agregó FC
     add: (req,res)=>{
-        res.render('create', {
+        res.render('productCreate', {
             headTitle: 'Free Food - Crear Producto',
             stylesheet: 'styles_register.css'
         })

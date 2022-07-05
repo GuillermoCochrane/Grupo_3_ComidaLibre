@@ -8,10 +8,25 @@
 
     <main>
         <nav class="nav-dishes">
+            <% let index = productList.indexOf(product) %>
+            <% let length = productList.length %>
+
+            <% if(index == 0) {%>
+                
+                <p><a href="/products/<%= productList[length-1].idCat %>/<%= productList[length-1].id %>"><i class="fas fa-angle-left"></i>Anterior plato</a></p>
+                
+            <% } else { %><p><a href="/products/<%= productList[index-1].idCat %>/<%= productList[index-1].id %>"><i class="fas fa-angle-left"></i>Anterior plato</a></p>
+                <% } %> 
             
-            <p><a href="#"><i class="fas fa-angle-left"></i>Anterior plato</a></p>
             <p><a href="/products"><i class="fas fa-utensils"></i>Menú principal</a></p>
-            <p><a href="#">Siguiente plato<i class="fas fa-angle-right"></i></a></p>
+            
+            <% if(index == length-1) {%>
+                
+                <p><a href="/products/<%= productList[0].idCat %>/<%= productList[0].id %>">Siguiente plato<i class="fas fa-angle-right"></i></a></p>
+                
+            <% } else { %><p><a href="/products/<%= productList[index+1].idCat %>/<%= productList[index+1].id %>">Siguiente plato<i class="fas fa-angle-right"></i></a></p>
+                    
+            <% } %>
         </nav>
         <br>
 
@@ -24,6 +39,11 @@
                 <h2 class="title0"><%= product.name %></h2>
                 <p class="name"><%= product.description %></p>
                 <p class="price">$<%= product.price %></p>
+
+                <% if(product.discount === true) {%>
+                    <p class="discount">-<%= product.discountAmount %>% OFF</p>
+                <% } %>
+
                 <p class="list">Elegir la cantidad: 
                     <select name="lista">
                         <option>1</option>
@@ -34,7 +54,9 @@
                     </select>
                 </p>
                 <br>
-                <a href="/cart" class="add-button">Agregar al carrito</a>
+                <form action="/cart">
+                    <button class="add-button" type="submit">Agregar al carrito</button>
+                </form>
             </div>
         </article>
         <br>
@@ -52,7 +74,7 @@
                         <p class="price">$ <%= productR.price %></p>
                         <p class="dicount"><%= productR.discountAmount %> % off</p>
                         <p class="name"><%= productR.name %> </p>
-                        <p class="descrip">Descripción: <%= productR.description %> </p>
+                        <p class="descrip"><%= productR.description %> </p>
                         
                     </div>
                     <div class="add-to">
@@ -65,7 +87,9 @@
                                 <option>5</option>
                             </select>
                         </p>
-                        <a href="/cart" class="add-button">Agregar al carrito</a>
+                        <form action="/cart">
+                            <button class="add-button" type="submit">Agregar al carrito</button>
+                        </form>
                     </div>
                 </div>
                 <% } %>

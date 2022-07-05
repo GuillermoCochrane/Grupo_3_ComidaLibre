@@ -1,31 +1,36 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
-body {
-    background-color: #efebe2;
-    font-family: 'Archivo Narrow', sans-serif
-}
-
-a {
+.a-form{
     color: #4c3524;
     text-decoration: none;
     transition-duration: 0.25s;
     align-self: center;
 }
-
-a:hover{
-    background-color: #87c99b;
-    border-radius: 3px;
+#logo-edit-create{
+    text-align: center;
 }
 
 #logo {
     width: 200px;
 }
 
-main {
+.main-register{
+    height: 100vh;
+    color: rgb(66, 66, 66);
+    background-color: #efebe2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.main-user-profile{
+    margin: 0px 0px 30px 0px;
+    color: rgb(66, 66, 66);
+    background-color: #efebe2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.main-edit-create {
     color: rgb(66, 66, 66);
     background-color: #efebe2;
     display: flex;
@@ -52,9 +57,8 @@ main {
     flex-direction: column;
     align-items: center;
     width: 90%;
-    margin:auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
     padding: 40px;
     background-color: #ccb489;
     border: 1px solid rgba(0, 0, 0, 0);
@@ -65,6 +69,7 @@ main {
 
 .log-container-profile{
     padding-top: 20px;
+    box-shadow: 0px 0px 10px rgb(161, 161, 161);
 }
 .log-container{
     box-shadow: 0px 0px 10px rgb(161, 161, 161);
@@ -179,7 +184,7 @@ form label{
     text-align: center;
     margin: 20px;
     margin-bottom: 10px;
-    font-size: 25px;
+    font-size: 22px;
     font-weight: bold;
 }
 .button-box{

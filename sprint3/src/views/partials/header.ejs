@@ -1,17 +1,39 @@
 <header>
 
-    <button id="burger-button">
-      <div class="burger-menu">
-        <i class="fas fa-bars"></i>
-      </div>
-    </button>
+  <button id="burger-button-header">
+    <div class="burger-menu-header">
+      <i class="fas fa-bars"></i>
+    </div>
+  </button>
+  
+  <ul class="mobile-menu-header">
+      <li><a href="/products/platoFuerte">Platos principales</a></li>
+      <li><a href="/products/entrada">Entradas</a></li>
+      <li><a href="/products/postre">Postres</a></li>
+      <li><a href="/products/bebida">Bebidas</a></li>
+  </ul>
+  
+  
+  <a href="/"><img id="logo-header" src="/images/FreeFood2f.png" alt="logo"></a>
 
-    <ul class="test">
-      <li>
-        <li>
+  <nav class="nav-bar-header">
+    <form class="search-bar-form-header" action="" method="">
+      <input class="search-bar-header" type="search" value="Buscar productos...">
+    </form>
+    
+
+    <ul>
+      
+        <li class="main-menu-header">
           <a href="/products">Menu</a>
-      </li>
-      </li>
+          <ul class="main-menu-header-list">
+              <li><a href="/products/platoFuerte">Platos principales</a></li>
+              <li><a href="/products/entrada">Entradas</a></li>
+              <li><a href="/products/postre">Postres</a></li>
+              <li><a href="/products/bebida">Bebidas</a></li>
+          </ul>
+        </li>
+      
       <li>
         <a href="#">Ofertas</a>
       </li>
@@ -22,68 +44,41 @@
         <a href="#">Ayuda</a>
       </li>
     </ul>
-    </ul>
-    
-    
-    <a href="/"><img id="logo" src="/images/FreeFood2f.png" alt="logo"></a>
+  </nav>
 
-    <nav class="nav-bar">
-      <input class="search-bar" type="search" value="Buscar productos...">
-
-      <ul>
-        
-          <li class="main-menu">
-            <a href="/products">Menú</a>
-            <ul class="list">
-                <li><a href="/products/entrada">Entradas</a></li>
-                <li><a href="/products/platoFuerte">Platos principales</a></li>
-                <li><a href="/products/bebida">Bebidas</a></li>
-                <li><a href="/products/postre">Postres</a></li>
-                <!-- <li><a href="/products/carnes">Carnes</a></li>
-                <li><a href="/products/pastas">Pastas</a></li>
-                <li><a href="/products/ensaladas">Ensaladas</a></li>
-                <li><a href="/products/tartas">Tartas</a></li>
-                <li><a href="/products/postres">Postres</a></li>
-                <li><a href="/products/bebidas">Bebidas</a></li>
-                <li><a href="/products/hamburguesas">Hamburguesas</a></li> -->
-            </ul>
+  <div class="cu-icon-header">
+    <a href="/cart"><i class="fas fa-shopping-cart"></i></a>
+    <div class="u-icon-header">
+      <a href="/user/register"><i class="fas fa-user-circle"></i></a>
+        <ul class="user-menu-list">
+          <li>
+            <form action="/user" method="GET">
+              <button class="user-menu-button" type="submit">PERFIL</button>
+            </form>
           </li>
-        
-        <li>
-          <a href="#">Ofertas</a>
-        </li>
-        <li>
-          <a href="#">Historial</a>
-        </li>
-        <li>
-          <a href="#">Ayuda</a>
-        </li>
-      </ul>
-    </nav>
-
-    <div class="cu-icon">
-      <a href="/cart"><i class="fas fa-shopping-cart"></i></a>
-      <div class="u-icon">
-        <a href="/user/register"><i class="fas fa-user-circle"></i></a>
-          <ul class="list">
-            <li>
-              <form action="/user" method="GET">
-                <button type="submit">PERFIL</button>
-              </form>
-            </li>
-            <li>
-              <form action="/user/register" method="GET">
-                <button type="submit">REGISTRATE</button>
-              </form>
-            </li>
-            <li>
-              <form action="/user/login" method="GET">
-                <button type="submit">INGRESA</button>
-              </form>
-            </li>
-          </ul>
-      </div>
-      
+          <li>
+            <form action="/user/register" method="GET">
+              <button class="user-menu-button" type="submit">REGISTRATE</button>
+            </form>
+          </li>
+          <li>
+            <form action="/user/login" method="GET">
+              <button class="user-menu-button" type="submit">INGRESA</button>
+            </form>
+          </li>
+          <li>
+            <form action="/products/create" method="GET">
+              <button class="user-menu-button" type="submit">CREAR PRODUCTO</button>
+            </form>
+          </li>
+          <li>
+            <form action="/products/edit" method="GET">
+              <button class="user-menu-button" type="submit">EDITAR PRODUCTO</button>
+            </form>
+          </li>
+        </ul>
     </div>
+    
+  </div>
 
 </header>

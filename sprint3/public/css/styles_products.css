@@ -21,20 +21,6 @@ main h1{
     font-size: 30px;
 }
 
-/*stilos menú emergente*/
-.main-menu { 
-    position:relative 
-}
-.main-menu>ul.list { 
-    display:none;
-	position:absolute; left:0px; top:10px; z-index:1;
-	background:rgba(255, 255, 255, 0.795); color:#333;
-}
-.main-menu:hover ul.list{
-    display: block;
-}
-/*fin estilos menú emergente*/
-
 .section-article{
     display: flex;
     flex-wrap: wrap;
@@ -45,47 +31,54 @@ main h1{
     margin: 15px 0;
     width: 100%;
     background-color: white;
-    padding-bottom: 10px;
+    padding: 0px 15px 15px 15px;
     box-shadow: 0px 0px 10px rgb(100, 100, 100);
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 article img{
     width: 100%;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .product-detail{
     border-top: 1px solid #ebebeb;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    padding: 15px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 15px 0px 0px 0px;
 }
 
-.product-description{
-    font-size: 21px;
+.product-name{
+    font-size: 22px;
 }
 
 .price, .discount{
-    font-size: 19px;
+    font-size: 20px;
+}
+.discount-hidden{
+    visibility: hidden;
 }
 
 .btn-detail{
-    border: solid 1px #666666;
-    border-radius: 3px;
-    padding: 5px 9px;
+    border: 1px solid #87c99bcc;
+    border-radius: 10px;
     text-decoration: none;
-    width: 90%; 
+    width: 100%;
+    height: 40px;
     background-color: #87c99b;
     font-weight: bold;
-    color: #2b2929;
-    font-size: 17px;
+    color: rgb(32, 32, 32);
+    font-size: 18px;
     transition: 0.25s;
+    cursor: pointer;
 }
 
 .btn-detail:hover{
-    background-color: #6fa57f
+    background-color: #6fa57f;
+    border: 1px solid #87c99bcc;
+    border-radius: 8px;
+    color: white;
 }
 
 @media (min-width: 768px){
@@ -97,6 +90,6 @@ article img{
 
 @media (min-width: 1024px){
     .main-article{
-        width: 30%;
+        width: 23%;
     }
 } 
