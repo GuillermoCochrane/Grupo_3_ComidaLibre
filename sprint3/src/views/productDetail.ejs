@@ -15,8 +15,11 @@
                 
                 <p><a href="/products/<%= productList[length-1].idCat %>/<%= productList[length-1].id %>"><i class="fas fa-angle-left"></i>Anterior plato</a></p>
                 
-            <% } else { %><p><a href="/products/<%= productList[index-1].idCat %>/<%= productList[index-1].id %>"><i class="fas fa-angle-left"></i>Anterior plato</a></p>
-                <% } %> 
+            <% } else { %>
+                
+                <p><a href="/products/<%= productList[index-1].idCat %>/<%= productList[index-1].id %>"><i class="fas fa-angle-left"></i>Anterior plato</a></p>
+            
+            <% } %> 
             
             <p><a href="/products"><i class="fas fa-utensils"></i>Menú principal</a></p>
             
@@ -72,7 +75,9 @@
                     
                     <div class="info">
                         <p class="price">$ <%= productR.price %></p>
-                        <p class="dicount"><%= productR.discountAmount %> % off</p>
+                        <% if(productR.discount === true) {%>
+                            <p class="discount">-<%= productR.discountAmount %>% OFF</p>
+                        <% } %>
                         <p class="name"><%= productR.name %> </p>
                         <p class="descrip"><%= productR.description %> </p>
                         

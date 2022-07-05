@@ -3,30 +3,25 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 body{
     font-family: 'Archivo Narrow', sans-serif;
     color: #666666;
     background-color: #efebe2;
 }
-
 main{
     margin: auto;
     width: 95%;
     text-align: center;
 }
-
 main h1{
     color:#2b2929;
     font-size: 30px;
 }
-
 .section-article{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
 }
-
 .main-article{
     margin: 15px 0;
     width: 100%;
@@ -35,31 +30,26 @@ main h1{
     box-shadow: 0px 0px 10px rgb(100, 100, 100);
     border-radius: 10px;
 }
-
 article img{
     width: 100%;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
-
 .product-detail{
     border-top: 1px solid #ebebeb;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     padding: 15px 0px 0px 0px;
 }
-
 .product-name{
     font-size: 22px;
 }
-
 .price, .discount{
     font-size: 20px;
 }
 .discount-hidden{
     visibility: hidden;
 }
-
 .btn-detail{
     border: 1px solid #87c99bcc;
     border-radius: 10px;
@@ -73,7 +63,6 @@ article img{
     transition: 0.25s;
     cursor: pointer;
 }
-
 .btn-detail:hover{
     background-color: #6fa57f;
     border: 1px solid #87c99bcc;
@@ -81,10 +70,15 @@ article img{
     color: white;
 }
 
-@media (min-width: 768px){
-    
+@media (min-width: 576px){
     .main-article{
         width: 47%;
+    }
+}
+
+@media (min-width: 768px){
+    .main-article{
+        width: 30%;
     }
 }
 

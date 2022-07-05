@@ -8,7 +8,6 @@
 .nav-dishes i{
     margin: 0px 5px;
 }
-
 h2{
     margin: 15px;
     align-self: center;
@@ -24,7 +23,6 @@ h1{
     color:#2b2929;
     font-size: 30px;
 }
-
 #image{
     width: 100%;
     justify-self: center;
@@ -57,13 +55,11 @@ h1{
     margin: 10px;
     font-size: 30px;
     font-weight: bold;
-    /* align-self: flex-start; */
 }
 .list{
     font-size: 19px;
     margin: 15px;
     text-align: center;
-    /* align-self: flex-start; */
 }
 select{
     font-size: 19px;
@@ -72,11 +68,9 @@ select{
     color: rgb(32, 32, 32);
     cursor: pointer;
 }
-
 .add-button {
-
     border: 1px solid #87c99bcc;
-    border-radius: 30px;
+    border-radius: 10px;
     text-decoration: none;
     width: 100%;
     height: 45px;
@@ -91,23 +85,12 @@ select{
     background-color: #6fa57f;
     border: 1px solid #87c99bcc;
 }
-
 .reco {
-    /* display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap; */
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
 }
 .product{
-    /* width: 80%;
-    display: flex;
-    flex-direction: column;
-    margin: 15px;
-    background-color: white;
-    border-radius: 10px; */
     margin: 15px 0;
     width: 95%;
     background-color: white;
@@ -125,27 +108,13 @@ select{
     text-align: center;
 }
 .descrip {
-    /* display: none; */
     margin: 10px;
     font-size: 19px;
 }
-/* .product:hover p.descrip{
-    display: block;
-} */
 .add-to{
     display: flex;
     flex-direction: column;
 }
-/* .add-button0{
-    font-size: 18px;
-    background-color: #87c99b;
-    border: 1px solid #87c99bcc;
-    border-radius: 8px;
-    height: 50px;
-    color: rgb(32, 32, 32);
-    font-family: 'Archivo Narrow';
-} */
-
 
 @media (min-width: 768px){
     .nav-dishes{
@@ -172,6 +141,7 @@ select{
         width: 45%;
     }
 }
+
 @media (min-width: 1024px){
     #main-image{
         width: 40%;
