@@ -1,1 +1,63 @@
+[
+    {
+	"id": 1,
+	"firstName": "Laura",
+	"lastName": "Navarro",
+	"address": "Calle falsa 123",
+	"email": "laura.navarro@test.com",
+	"phone": "12345678",
+	"username": "laura.navarro",
+	"password": "ClaveLN",
+	"category": "administrador",
+	"image": "LN.png"
+    },
+    {
+	"id": 2,
+	"firstName": "Andres",
+	"lastName": "Escobar",
+	"address": "Calle falsa 123",
+	"email": "andres.escobar@test.com",
+	"phone": "12345678",
+	"username": "andres.escobar",
+	"password": "ClaveAE",
+	"category": "usuario",
+	"image": "AE.png"
+    },
+    {
+	"id": 3,
+	"firstName": "Guillermo",
+	"lastName": "Cochrane",
+	"address": "Calle falsa 123",
+	"email": "guillermo.cochrane@test.com",
+	"phone": "12345678",
+	"username": "guillermo.cochrane",
+	"password": "ClaveGC",
+	"category": "visitante",
+	"image": "GC.png"
+    },
+    {
+	"id": 4,
+	"firstName": "Ariel",
+	"lastName": "Murua",
+	"address": "Calle falsa 123",
+	"email": "ariel.murua@test.com",
+	"phone": "12345678",
+	"username": "ariel.murua",
+	"password": "ClaveAM",
+	"category": "usuario",
+	"image": "AM.png"
+    },
+    {
+	"id": 5,
+	"firstName": "Fabricio",
+	"lastName": "Celi",
+	"address": "Calle falsa 123",
+	"email": "fabricio.celi@test.com",
+	"phone": "12345678",
+	"username": "fabricio.celi",
+	"password": "ClaveLN",
+	"category": "visitante",
+	"image": "FC.png"
+    }
+]
 
