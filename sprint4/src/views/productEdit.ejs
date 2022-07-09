@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <%- include('partials/head.ejs') %> 
+    
+    <body>
+        
+        <main class="main-edit-create">
+    
+            <a class="a-form" href="/"><img id="logo" src="/images/FreeFood2f.png" alt="logo"></a>
+    
+            <form class="log-container" action="/user" method="GET">
+                
+                <h2>Editar Producto</h2>
+
+                <br>
+                
+                <div class="container">
+                    <label for="name" class="label">Seleccione el producto</label>
+                </div>
+                
+                <div class="container">
+    
+                    <i class="fas fa-file-signature"></i>
+                        <select name="name" id="name" class="log-item">
+                            <% for (let product of products){ %>
+                                <option value="<%= product.id %>">
+                                    <%= product.name %>
+                                </option>                   
+                            <% } %>
+                        </select>                   
+    
+                </div>
+
+                <div class="container">
+                    <label for="description" class="label">
+                        Descripción
+                    </label>
+                </div>
+
+                <div class="container">
+    
+                    <i class="fas fa-info"></i>
+
+                    <input class="log-item" type="text" name="description" id="description" placeholder="Carne empanada frita en aceite ..." required minlength="1">
+    
+                </div>
+                
+                <div class="container">
+                    
+                    <label for="img" class="label">
+                        Agregar Imagen
+                    </label>
+                    
+                </div>
+
+                <div class="container">
+                    <i class="fas fa-file-image"></i>
+                    <input type="file" id="img" name="img" accept="image/png, image/jpeg" class="log-item-image">
+                </div>
+
+                <div class="container">
+                    <label for="categorias" class="label">
+                        Elija una Categoría
+                    </label>
+                </div>
+
+                <div class="container">  
+                    
+                        <i class="fas fa-clipboard-list"></i>
+                        <select name="categorias" id="categorias" class="log-item">
+                            <option>Entrada</option>
+                            <option>Plato Principal</option>
+                            <option>Postre</option>
+                            <option>Bebida</option>
+                        </select>                    
+
+                </div>
+
+                <div class="container">
+                    <label for="price" class="label">
+                        Precio
+                    </label>
+                </div>
+
+                <div class="container">
+    
+                    <i class="fas fa-dollar-sign"></i>                    
+                    
+                    <input name="price" id="price" placeholder="999.99" type="number" min="1" pattern="^[0-9]+" class="log-item">
+                </div>
+                
+
+                <div class="container">
+                    <label for="discount" class="label" >
+                        ¿Aplica descuento?
+                    </label>  
+                </div>
+
+                <div class="container-radio">
+                    <div class="radio-box">
+                        <label for="Si">
+                            Si
+                        </label>
+                        <input type="radio" name="reco" value="Si" id="reco">
+                    </div>
+                    
+                    <br>
+                    <div class="radio-box">
+                        <label for="No">
+                            No
+                        </label>
+                        <input type="radio" name="reco" value="No" id="reco">
+                    </div>
+                    
+                    <br>
+                </div>
+
+                <div class="container">
+                    <label for="discountAmount" class="label">
+                        Si aplica descuento ingréselo
+                    </label>
+                </div>
+                <div class="container">
+    
+                    <i class="fas fa-percent"></i>
+                    
+                    <input class="log-item" type="number" name="discountAmount" id="discountAmount" placeholder="20" required min="1" max="100">
+                    
+                </div>             
+                
+                <div class="container">
+                    <label for="discountAmount" class="label">
+                        ¿Es producto recomendado?
+                    </label> 
+                </div>
+
+                <div class="container-radio">
+                    <div class="radio-box">
+                        <label for="Si">
+                            Si
+                        </label>
+                        <input type="radio" name="reco" value="Si" id="reco">
+                    </div>
+                    
+                    <br>
+                    <div class="radio-box">
+                        <label for="No">
+                            No
+                        </label>
+                        <input type="radio" name="reco" value="No" id="reco">
+                    </div>
+                    
+                    <br>
+                </div>
+    
+                <div class="button-box">
+                    <button class="log-button">Editar</button>
+                    <button class="log-button" type="reset">Borrar</button>
+                </div>
+                
+                
+            </form>
+            
+        </main>
+    
+    </body>
+</html>
