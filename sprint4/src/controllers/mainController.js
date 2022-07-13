@@ -1,40 +1,45 @@
 const fs = require('fs');
 const path = require('path');
 const productsController = require('./productsController');
-const allProducts = JSON.parse(fs.readFileSync(path.join(__dirname, '../productos.json'), 'utf-8'));
+const fileProducts = path.join(__dirname, '../data/products.json');
+const allProducts = JSON.parse(fs.readFileSync(path.join(__dirname, '../../data/products.json'), 'utf-8'));
 
 const mainController = {
     home: (req,res)=>{
-        // Recorre el array de allProducts y separa los productos que están en recomendados a un array diferente
-        let recomendation = [];
-        let noRecomendation = [];
-        allProducts.forEach((product)=>{
-            if(product.reco == true){
-                recomendation.push(product);
-            }else{
-                noRecomendation.push(product);
-            }
+        // filter products by status = recommended
+        let recommendedProducts = allProducts.filter(product => product.status === 'recomendado');
+        // filter products by status = new
+        let newProducts = allProducts.filter(product => product.status === 'novedad');
+        // filter products by status = sale
+        let saleProducts = allProducts.filter(product => product.status === 'mas vendido');
+
+        // Choose 4 random products from recommendedProducts
+        let randomRecommendedProducts = [];
+        for (let i = 0; i < 4; i++) {
+            let randomIndex = Math.floor(Math.random() * recommendedProducts.length);
+            randomRecommendedProducts.push(recommendedProducts[randomIndex]);
+            recommendedProducts.splice(randomIndex, 1);
         }
-        );
-        //Escoge 4 productos aleatorios del array de recomendados
-        let randomRecomendation = [];
-        for(let i = 0; i < 4; i++){
-            let random = Math.floor(Math.random() * recomendation.length);
-            randomRecomendation.push(recomendation[random]);
-            recomendation.splice(random, 1);
+        // Choose 4 random products from newProducts
+        let randomNewProducts = [];
+        for (let i = 0; i < 4; i++) {
+            let randomIndex = Math.floor(Math.random() * newProducts.length);
+            randomNewProducts.push(newProducts[randomIndex]);
+            newProducts.splice(randomIndex, 1);
         }
-        //Escoge 4 productos aleatorios del array de no recomendados
-        let randomNoRecomendation = [];
-        for(let i = 0; i < 4; i++){
-            let random = Math.floor(Math.random() * noRecomendation.length);
-            randomNoRecomendation.push(noRecomendation[random]);
-            noRecomendation.splice(random, 1);
+        // Choose 4 random products from saleProducts
+        let randomSaleProducts = [];
+        for (let i = 0; i < 4; i++) {
+            let randomIndex = Math.floor(Math.random() * saleProducts.length);
+            randomSaleProducts.push(saleProducts[randomIndex]);
+            saleProducts.splice(randomIndex, 1);
         }
+
         
         res.render('index', {
             headTitle: 'Bienvenidos a Free Food',
             stylesheet: '',
-            productList: [randomRecomendation, randomNoRecomendation],
+            productList: [randomRecommendedProducts, randomNewProducts, randomSaleProducts],
         })
     },
     cart: (req,res)=>{
