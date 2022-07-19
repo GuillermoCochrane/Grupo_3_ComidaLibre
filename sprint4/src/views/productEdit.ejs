@@ -7,159 +7,75 @@
         
         <main class="main-edit-create">
     
-            <a class="a-form" href="/"><img id="logo" src="/images/FreeFood2f.png" alt="logo"></a>
+            <a class="logo-form" href="/"><img id="logo" src="/images/FreeFood2f.png" alt="logo"></a>
+            <br>
+            <h1>Estas editando: <%= producto.name %> </h1>
     
-            <form class="log-container" action="/user" method="GET">
-                
-                <h2>Editar Producto</h2>
+            <form class="input-container-form" action="/products/<%= producto.idCat %>/<%= producto.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
 
-                <br>
-                
-                <div class="container">
-                    <label for="name" class="label">Seleccione el producto</label>
-                </div>
-                
-                <div class="container">
-    
+                <!--<label for="id"><h4>ID del producto</h4></label>
+                <div class="info-container-div">
                     <i class="fas fa-file-signature"></i>
-                        <select name="name" id="name" class="log-item">
-                            <% for (let product of products){ %>
-                                <option value="<%= product.id %>">
-                                    <%= product.name %>
-                                </option>                   
-                            <% } %>
-                        </select>                   
-    
+                    <input type="number" name="id" id="id" value="<%= producto.id %>" required minlength="1">
+                </div>-->
+
+                <label for="name"><h4>Nombre del producto</h4></label>
+                <div class="info-container-div">
+                    <i class="fas fa-file-signature"></i>
+                    <input type="text" name="name" id="name" value="<%= producto.name %>" required minlength="1">
                 </div>
 
-                <div class="container">
-                    <label for="description" class="label">
-                        Descripción
-                    </label>
+                <label for="price"><h4>Precio</h4></label>
+                <div class="info-container-div">
+                    <i class="fas fa-dollar-sign"></i>
+                    <input type="number" name="price" id="price" value="<%= producto.price %>" required min="0" pattern="^\d*(\.\d{0,2})?$">
                 </div>
 
-                <div class="container">
-    
-                    <i class="fas fa-info"></i>
-
-                    <input class="log-item" type="text" name="description" id="description" placeholder="Carne empanada frita en aceite ..." required minlength="1">
-    
-                </div>
-                
-                <div class="container">
-                    
-                    <label for="img" class="label">
-                        Agregar Imagen
-                    </label>
-                    
+                <label for="idCat"><h4>Categoria</h4></label>
+                <div class="info-container-div">
+                    <i class="fas fa-clipboard-list"></i>
+                    <select name="idCat" id="idCat">
+                        <option value="<%= producto.idCat %>" selected="selected"><%= producto.idCat %></option>
+                        <option value="entrada">Entrada</option>
+                        <option value="platoFuerte">Plato Principal</option>
+                        <option value="postre">Postre</option>
+                        <option value="bebida">Bebida</option>
+                    </select>    
                 </div>
 
-                <div class="container">
-                    <i class="fas fa-file-image"></i>
-                    <input type="file" id="img" name="img" accept="image/png, image/jpeg" class="log-item-image">
+                <label for="status"><h4>Estado de producto</h4></label>
+                <div class="info-container-div">
+                    <i class="fas fa-clipboard-list"></i>
+                    <select name="status" id="status">
+                        <option value="<%= producto.status %>" selected="selected"><%= producto.status %></option>
+                        <option value="novedad">Novedad</option>
+                        <option value="oferta">Oferta</option>
+                        <option value="recomendado">Recomendado</option>
+                        <option value="mas-vendido">Mas Vendido</option>
+                    </select>    
                 </div>
 
-                <div class="container">
-                    <label for="categorias" class="label">
-                        Elija una Categoría
-                    </label>
-                </div>
-
-                <div class="container">  
-                    
-                        <i class="fas fa-clipboard-list"></i>
-                        <select name="categorias" id="categorias" class="log-item">
-                            <option>Entrada</option>
-                            <option>Plato Principal</option>
-                            <option>Postre</option>
-                            <option>Bebida</option>
-                        </select>                    
-
-                </div>
-
-                <div class="container">
-                    <label for="price" class="label">
-                        Precio
-                    </label>
-                </div>
-
-                <div class="container">
-    
-                    <i class="fas fa-dollar-sign"></i>                    
-                    
-                    <input name="price" id="price" placeholder="999.99" type="number" min="1" pattern="^[0-9]+" class="log-item">
-                </div>
-                
-
-                <div class="container">
-                    <label for="discount" class="label" >
-                        ¿Aplica descuento?
-                    </label>  
-                </div>
-
-                <div class="container-radio">
-                    <div class="radio-box">
-                        <label for="Si">
-                            Si
-                        </label>
-                        <input type="radio" name="reco" value="Si" id="reco">
-                    </div>
-                    
-                    <br>
-                    <div class="radio-box">
-                        <label for="No">
-                            No
-                        </label>
-                        <input type="radio" name="reco" value="No" id="reco">
-                    </div>
-                    
-                    <br>
-                </div>
-
-                <div class="container">
-                    <label for="discountAmount" class="label">
-                        Si aplica descuento ingréselo
-                    </label>
-                </div>
-                <div class="container">
-    
+                <label for="discountAmount"><h4>Cantidad de descuento</h4></label>
+                <div class="info-container-div">
                     <i class="fas fa-percent"></i>
-                    
-                    <input class="log-item" type="number" name="discountAmount" id="discountAmount" placeholder="20" required min="1" max="100">
-                    
-                </div>             
-                
-                <div class="container">
-                    <label for="discountAmount" class="label">
-                        ¿Es producto recomendado?
-                    </label> 
+                    <input type="number" name="discountAmount" id="discountAmount" value="<%= producto.discountAmount %>" required min="0" max="100">
                 </div>
 
-                <div class="container-radio">
-                    <div class="radio-box">
-                        <label for="Si">
-                            Si
-                        </label>
-                        <input type="radio" name="reco" value="Si" id="reco">
-                    </div>
-                    
-                    <br>
-                    <div class="radio-box">
-                        <label for="No">
-                            No
-                        </label>
-                        <input type="radio" name="reco" value="No" id="reco">
-                    </div>
-                    
-                    <br>
-                </div>
-    
-                <div class="button-box">
-                    <button class="log-button">Editar</button>
-                    <button class="log-button" type="reset">Borrar</button>
+                <label for="img"><h4>Imagen del producto (.png/.jpg)</h4></label>
+                <img src="/images/products/<%= producto.img %>" alt="">
+                <div class="info-container-div">
+                    <i class="fas fa-file-image"></i>
+                    <input class="img-input" type="file" id="img" name="img" accept="image/png, image/jpeg" required>
                 </div>
                 
+                <label for="description"><h4>Descripcion del producto</h4></label>
+                <textarea name="description" id="description" cols="30" rows="5" maxlength="500" placeholder="Descripcion (max 500 caracteres)"><%= producto.description %></textarea>
                 
+                <div class="btn-container">
+                    <button type="submit">Guardar</button>
+                    <button type="reset">Borrar</button>
+                </div>
+                 
             </form>
             
         </main>

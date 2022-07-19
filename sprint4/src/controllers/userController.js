@@ -2,7 +2,7 @@ const userController = {
     profile: (req,res)=>{
         res.render('user', {
             headTitle: 'Free Food - Perfil de Usuario',
-            stylesheet: 'styles_register.css'
+            stylesheet: 'styles_forms.css'
         })
     },
     log: (req,res)=>{

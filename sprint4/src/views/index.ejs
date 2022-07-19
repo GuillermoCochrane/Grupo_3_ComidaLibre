@@ -72,7 +72,7 @@
 
               <div class="col-sm-6 col-md-4 col-xl-3 mt-3">
                 <div class="card h-100">
-                  <img src="/images/<%= product.img %>" class="card-img-top h-100" alt="...">
+                  <img src="/images/products/<%= product.img %>" class="card-img-top h-100" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">
                       <%= product.name %>
@@ -80,7 +80,7 @@
                     <p class="card-text">
                       $ <%= product.price %>
                     </p>
-                    <a href="/products/<%= product.idCat %>/<%= product.id %>" " class="btn btn-primary">Ver detalle</a>
+                    <a href="/products/<%= product.idCat %>/<%= product.id %>" class="btn btn-primary">Ver detalle</a>
                   </div>
                 </div>
               </div>
@@ -97,7 +97,7 @@
             <% for(let product of productList[1]){ %>
               <div class="col-sm-6 col-md-4 col-xl-3 mt-3">
                 <div class="card h-100">
-                  <img src="/images/<%= product.img %>" class="card-img-top h-100" alt="...">
+                  <img src="/images/products/<%= product.img %>" class="card-img-top h-100" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">
                       <%= product.name %>

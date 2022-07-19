@@ -153,10 +153,10 @@ form label{
 .container-radio,
 .container {
     width: 90%;
-    display: flex;
+    /*display: flex;
     flex-direction: row;
     align-items: center;
-    align-self: flex-start;  
+    align-self: flex-start;  */
     margin: 5px auto 10px auto; 
 }
 .container-radio{
@@ -197,21 +197,23 @@ form label{
     justify-content:space-around;
     width: 15%;
 }
-
+.container>input{
+    margin-left: 44px;
+}
 
 
 @media (min-width: 768px) {
     .log-container-profile,
     .log-container,
     .buy-navbar{
-        width: 50%;
+        width: 66%;
     }
 }
 
 @media (min-width: 1024px) {
-    .log-container-profile,
+   /* .log-container-profile,
     .log-container,
     .buy-navbar{
-        width: 30%;
-    }
+        width: 66%;
+    }*/
 }
