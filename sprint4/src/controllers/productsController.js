@@ -3,6 +3,7 @@ const path = require('path');
 const allProducts = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/products.json'), 'utf-8'));
 
 const productsController = {
+    //LISTADO PRODUCTOS
     producto: (req, res) => {
         res.render('products', {
             headTitle: 'Free Food - Productos',
@@ -10,6 +11,7 @@ const productsController = {
             productList: allProducts,
         });
     },
+    //LISTADO POR CATEGORIA
     category: (req, res) => {
         let category = req.params.idCategory;
         let productCategory = allProducts.filter((products) => {
@@ -22,6 +24,7 @@ const productsController = {
             productList: productCategory,
         });
     },
+    //DETALLES DE PRODUCTO
     detail: (req, res) => {
         let id = req.params.idProduct;
         let product = allProducts.find((product) => {
@@ -40,12 +43,14 @@ const productsController = {
             productList: allProducts,
         });
     },
+    //MUSTRA FORMULARIO DE CREACION
     create: (req,res)=>{
         res.render('productCreate', {
             headTitle: 'Free Food - Crear Producto',
             stylesheet: 'styles_forms.css'
         })
     },
+    //AGRAGA UN PRODUCTO AL LISTADO
     add: (req, res, next) => {
         if(!req.file) {
 			const error = new Error ("Por favor seleccionar un archivo válido")
@@ -68,6 +73,7 @@ const productsController = {
         
         res.redirect('/products');
     },
+    //MUSTRA FORMULARIO DE EDICION DE PRODUCTO
     edit: (req,res)=>{
         res.render('productEdit', {
             headTitle: 'Free Food - Editar Producto',
@@ -75,6 +81,7 @@ const productsController = {
             producto: allProducts.find(item => item.id == req.params.idProduct)
         })
     },
+    //ACTUALISA INFORMACION DE UN PRODUCTO
     update: (req, res, next) => {
         if(!req.file) {
 			const error = new Error ("Por favor seleccionar un archivo válido")
@@ -96,6 +103,7 @@ const productsController = {
         };
         res.redirect('/products');
     },
+    //BORRA UN PRODUCTO DE LA LISTA
     delete: (req, res) => {
         let itemToDelete = allProducts.indexOf(allProducts.find(item => item.id == req.params.idProduct))
 		allProducts.splice(itemToDelete, 1)
