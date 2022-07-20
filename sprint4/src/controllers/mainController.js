@@ -56,6 +56,26 @@ const mainController = {
     notFound: (req,res)=>{
         res.render('notFound')
     },
+    
+    search: (req, res) => {
+		let busqueda = req.query.searchBar;
+		let resultado = [];
+		for (let i=0; i<allProducts.length; i++){
+			if ((allProducts[i].name.toUpperCase()).includes(busqueda.toUpperCase())){
+				resultado.push(allProducts[i]);
+			}
+		};
+		
+		let cantidad= resultado.length;
+
+		res.render('results',{
+            headTitle: 'Free Food - Resultados de Búsqueda',
+            stylesheet: 'styles_products.css',
+			productList: resultado,
+			cantidad: cantidad,
+            }
+        );
+	},
 }
 
 module.exports = mainController;
