@@ -101,6 +101,10 @@ h5{
     text-align: justify;
 }
 
+#image{
+    height: auto;
+}
+
 .log-item-image{
     height: 45px;
     padding: 5px;

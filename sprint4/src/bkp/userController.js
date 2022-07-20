@@ -45,6 +45,12 @@ const userController = {
             let id = userSelected.id
             res.redirect("/user/edit/" + id)
         }
+        
+        // res.redirect("/user/edit/" + id)
+        // res.render('login', {
+        //     headTitle: 'Free Food - Ingresar',
+        //     stylesheet: 'styles_log.css'
+        // })
     },
 
     reg: (req,res)=>{
