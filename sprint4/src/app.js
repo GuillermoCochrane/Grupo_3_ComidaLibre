@@ -1,26 +1,29 @@
+//REQUIRES
 const express = require('express');
-const app = express();
 const path = require('path');
-const methodOverride =  require('method-override');
+const methodOverride = require('method-override')
+
+//EXPRESS
+const app = express();
+
+//DEFINICION DE PUERTO
 const puerto = process.env.PORT || 3000;
 
-/* npm start (node)
-npm run dev (nodemon)*/
-
+//TEMPLATE ENGINE
 app.set('views', path.join(__dirname, '/views'));
 app.set('view engine', 'ejs');
 
-
+//MIDDLEWARES
 app.use('/static', express.static(path.join(__dirname, '../public')))
 app.use('/images', express.static(path.join(__dirname, '../public/images')))
 app.use('/css', express.static(path.join(__dirname, '../public/css')))
 app.use('/views', express.static(path.join(__dirname, './views')))
 app.use('/partials', express.static(path.join(__dirname, './views/partials')))
-app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 app.use(methodOverride('_method'));
 
-
+//USO DE RUTAS
 const mainRouter = require('./routes/mainRouter');
 app.use('/', mainRouter)
 
@@ -33,9 +36,9 @@ app.use('/products', productsRouter)
 //Ruta para el error 404
 app.all('*', (req, res) => {
     res.render('notFound');
-} // end of 404 route
-);
+});
 
+//LISTEN SERVIDOR
 app.listen(puerto, ()=>{
-    console.log('http://localhost:' + puerto);
+    console.log(`Server corriendo en puerto ${puerto}\nhttp://localhost:${puerto}`);
 })

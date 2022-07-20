@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const productsController = require('./productsController');
-const allProducts = JSON.parse(fs.readFileSync(path.join(__dirname, '../productos.json'), 'utf-8'));
+const allProducts = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/products.json'), 'utf-8'));
 
 const mainController = {
     home: (req,res)=>{
@@ -9,7 +9,7 @@ const mainController = {
         let recomendation = [];
         let noRecomendation = [];
         allProducts.forEach((product)=>{
-            if(product.reco == true){
+            if(product.status == 'recomendado'){
                 recomendation.push(product);
             }else{
                 noRecomendation.push(product);

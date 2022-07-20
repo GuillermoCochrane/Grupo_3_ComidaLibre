@@ -1,14 +1,14 @@
 const fs = require('fs');
 const path = require('path');
 
-const userFilePath = path.join(__dirname, '../../data/users.json');
+const userFilePath = path.join(__dirname, '../data/users.json');
 const users = JSON.parse(fs.readFileSync(userFilePath, 'utf-8'));
 
 const userController = {
     profile: (req,res)=>{
         res.render('user', {
             headTitle: 'Free Food - Perfil de Usuario',
-            stylesheet: 'styles_register2.css'
+            stylesheet: 'styles_forms.css'
         })
     },
 
@@ -50,7 +50,7 @@ const userController = {
     reg: (req,res)=>{
         res.render('register', {
             headTitle: 'Free Food - Registro',
-            stylesheet: 'styles_register2.css'
+            stylesheet: 'styles_register.css'
         })
     },
 
@@ -84,7 +84,7 @@ const userController = {
 		res.render('userEdit', {
 			usuario: userSelected,
             headTitle: 'Free Food - Perfil de Usuario',
-            stylesheet: 'styles_register2.css'
+            stylesheet: 'styles_register.css'
 		})
     },
     
