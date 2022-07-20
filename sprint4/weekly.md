@@ -28,13 +28,16 @@
 ***Guillermo***
 
 - ¿Qué hice en la semana?
+    Implementé CRUD en el sistema de ruteo y contorladores de usuarios.
+    Implementé validaciones y mensajes de errores en el login.
+    Puse en funcionamiento la barra de busqueda.
     
-
 - ¿En qué tuve problemas?
-    
+    Al migrar el proyecto de la carpeta del sprint 3 al sprint 4, tube problemas de conflictos entre los archivos de los mismos al ejecutar el nodemon. Al modificar el package.json pude solucionarlos. 
+    Al realizar pull con el repositorio del proyecto, tube problemas de sincronicidad en archivos que también habían estado trabajando los compañeros. Los estilos de una vista no se cargaban. También pude solucionarlo al modificar la referencia a la plantilla de estilos en el controlador de dicha vista.
 
 - ¿Qué voy a hacer?
-    
+    Terminar de pulir detalles para la entrega del proyecto. Estar a disposición de los compañeros para solucionar cualquier eventualidad que surja.
 
 
 ***Andrés***

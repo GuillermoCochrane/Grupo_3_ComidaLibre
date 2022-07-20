@@ -202,19 +202,17 @@ form label{
     width: 15%;
 }
 
-
-
 @media (min-width: 768px) {
-    .log-container-profile,
-    .log-container,
     .buy-navbar{
         width: 50%;
+    }
+    .log-container,
+    .log-container-profile{
+        max-width: 620px;
     }
 }
 
 @media (min-width: 1024px) {
-    .log-container-profile,
-    .log-container,
     .buy-navbar{
         width: 30%;
     }

@@ -37,7 +37,7 @@ main {
     flex-direction: column;
     align-items: center;
     width: 90%;
-    height: 50%;
+    max-width: 380px;
     margin-left: auto;
     margin-right: auto;
     padding: 40px;
@@ -137,18 +137,4 @@ form label{
     border: 2px solid #ebd2a3;
     padding: 5px;
     border-radius: 7px;
-}
-
-
-
-@media (min-width: 768px) {
-    .log-container{
-        width: 50%;
-    }
-}
-
-@media (min-width: 1024px) {
-    .log-container{
-        width: 30%;
-    }
 }
