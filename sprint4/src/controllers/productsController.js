@@ -1,6 +1,8 @@
+const { all } = require('express/lib/application');
 const fs = require('fs');
 const path = require('path');
-const allProducts = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/products.json'), 'utf-8'));
+const productsFilePath = path.join(__dirname, '../data/products.json');
+let allProducts = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 
 const productsController = {
     //LISTADO PRODUCTOS
@@ -11,7 +13,7 @@ const productsController = {
             productList: allProducts,
         });
     },
-    //LISTADO POR CATEGORIA
+    //LISTADO POR CATEGORÍA
     category: (req, res) => {
         let category = req.params.idCategory;
         let productCategory = allProducts.filter((products) => {
@@ -43,17 +45,17 @@ const productsController = {
             productList: allProducts,
         });
     },
-    //MUSTRA FORMULARIO DE CREACION
+    //FORMULARIO DE CREACIÓN
     create: (req,res)=>{
         res.render('productCreate', {
             headTitle: 'Free Food - Crear Producto',
             stylesheet: 'styles_forms.css'
         })
     },
-    //AGRAGA UN PRODUCTO AL LISTADO
-    add: (req, res, next) => {
+    //AGREGA UN PRODUCTO AL LISTADO
+    store: (req, res, next) => {
         if(!req.file) {
-			const error = new Error ("Por favor seleccionar un archivo válido")
+			const error = new Error ("Por favor seleccioná un archivo válido")
 			error.httpStatusCode=400
 			return next(error)
 		} else {
@@ -68,12 +70,12 @@ const productsController = {
                 discountAmount: req.body.discount
             };
             allProducts.push(newProduct);
-            fs.writeFileSync((path.join(__dirname, '../data/products.json')), JSON.stringify(allProducts));
+            fs.writeFileSync(productsFilePath, JSON.stringify(allProducts));
         };
         
         res.redirect('/products');
     },
-    //MUSTRA FORMULARIO DE EDICION DE PRODUCTO
+    //FORMULARIO DE EDICIÓN DE PRODUCTO
     edit: (req,res)=>{
         res.render('productEdit', {
             headTitle: 'Free Food - Editar Producto',
@@ -81,10 +83,10 @@ const productsController = {
             producto: allProducts.find(item => item.id == req.params.idProduct)
         })
     },
-    //ACTUALISA INFORMACION DE UN PRODUCTO
+    //ACTUALIZA INFORMACIÓN DE UN PRODUCTO
     update: (req, res, next) => {
         if(!req.file) {
-			const error = new Error ("Por favor seleccionar un archivo válido")
+			const error = new Error ("Por favor seleccioná un archivo válido")
 			error.httpStatusCode=400
 			return next(error)
 		} else {
@@ -99,19 +101,24 @@ const productsController = {
                     item.discountAmount = req.body.discountAmount 
                 }
             }
-            fs.writeFileSync((path.join(__dirname, '../data/products.json')), JSON.stringify(allProducts)); 
+            fs.writeFileSync(productsFilePath, JSON.stringify(allProducts)); 
         };
         res.redirect('/products');
     },
-    //BORRA UN PRODUCTO DE LA LISTA
+    //ELIMINA UN PRODUCTO DE LA LISTA
     delete: (req, res) => {
-        let itemToDelete = allProducts.indexOf(allProducts.find(item => item.id == req.params.idProduct))
-		allProducts.splice(itemToDelete, 1)
-        fs.writeFileSync((path.join(__dirname, '../data/products.json')), JSON.stringify(allProducts));
-
+        // let itemToDelete = allProducts.indexOf(allProducts.find(item => item.id == req.params.idProduct))
+		// allProducts.splice(itemToDelete, 1)
+        // fs.writeFileSync((path.join(__dirname, '../data/products.json')), JSON.stringify(allProducts));
+        let id = req.params.idProduct;
+        let productsFilter = allProducts.filter((product) => {
+            return product.id != id;
+        });
+        allProducts = productsFilter;
+        fs.writeFileSync(productsFilePath, JSON.stringify(allProducts));
+        
         res.redirect('/products');
     }
-
 }
 
 module.exports = productsController;

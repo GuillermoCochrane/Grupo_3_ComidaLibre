@@ -9,7 +9,7 @@
     
             <a class="logo-form" href="/"><img id="logo" src="/images/FreeFood2f.png" alt="logo"></a>
            
-            <h1>Agrega un producto</h1>
+            <h1>Agregá un producto</h1>
     
             <form class="input-container-form" action="/products" method="POST" enctype="multipart/form-data">
 
@@ -28,16 +28,16 @@
                 <label for="price"><h4>Precio</h4></label>
                 <div class="info-container-div">
                     <i class="fas fa-dollar-sign"></i>
-                    <input type="number" name="price" id="price" placeholder="ej: 00,00" required min="1" pattern="^\d*(\.\d{0,2})?$">
+                    <input type="number" step = "any" name="price" id="price" placeholder="ej: 00,00" required min="1" pattern="^\d*(\.\d{0,2})?$">
                 </div>
 
-                <label for="idCat"><h4>Categoria</h4></label>
+                <label for="idCat"><h4>Categoría</h4></label>
                 <div class="info-container-div">
                     <i class="fas fa-clipboard-list"></i>
                     <select name="idCat" id="idCat">
-                        <option value="" selected disabled hidden>Categoria</option>
+                        <option value="" selected disabled hidden>Categoría</option>
                         <option value="entrada">Entrada</option>
-                        <option value="platoFuerte">Plato Principal</option>
+                        <option value="platoFuerte">Plato principal</option>
                         <option value="postre">Postre</option>
                         <option value="bebida">Bebida</option>
                     </select>    
@@ -51,11 +51,11 @@
                         <option value="novedad">Novedad</option>
                         <option value="oferta">Oferta</option>
                         <option value="recomendado">Recomendado</option>
-                        <option value="mas-vendido">Mas Vendido</option>
+                        <option value="mas-vendido">Más vendido</option>
                     </select>    
                 </div>
 
-                <label for="discount"><h4>Cantidad de descuento</h4></label>
+                <label for="discount"><h4>Porcentaje de descuento</h4></label>
                 <div class="info-container-div">
                     <i class="fas fa-percent"></i>
                     <input type="number" name="discount" id="discount" placeholder="ej: 00" required min="0" max="100">
@@ -67,8 +67,8 @@
                     <input class="img-input" type="file" id="img" name="img" accept="image/png, image/jpeg" required>
                 </div>
                 
-                <label for="description"><h4>Descripcion del producto</h4></label>
-                <textarea name="description" id="description" cols="30" rows="5" maxlength="500" placeholder="Descripcion (max 500 caracteres)"></textarea>
+                <label for="description"><h4>Descripción del producto</h4></label>
+                <textarea name="description" id="description" cols="30" rows="5" maxlength="500" placeholder="Descripción (max 500 caracteres)"></textarea>
                 
                 <div class="btn-container">
                     <button type="submit">Guardar</button>

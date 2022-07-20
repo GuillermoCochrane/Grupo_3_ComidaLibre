@@ -7,7 +7,7 @@ const path = require('path')
 //ROUTER
 const router = express.Router();
 
-//DEFINICION STORAGE Y UPLOAD DE ARCHIVOS
+//DEFINICIÓN STORAGE Y UPLOAD DE ARCHIVOS
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, path.join(__dirname, '../../public/images/products'))
@@ -21,23 +21,23 @@ const upload = multer({ storage })
 //LISTADO DE TODOS LOS PRODUCTOS
 router.get('/', productsController.producto);
 
-//FORMULARIOS CREACION Y EDICION
+//FORMULARIOS CREACIÓN Y EDICIÓN
 router.get('/create', productsController.create);
 router.get('/edit/:idProduct', productsController.edit); 
 
-//LISTADO POR CATEGORIA
+//LISTADO POR CATEGORÍA
 router.get('/:idCategory', productsController.category);
 
-//DETALLES DE PRODUCTO
+//DETALLE DE PRODUCTO
 router.get('/:idCategory/:idProduct', productsController.detail);
 
 //AGREGAR PRODUCTO
-router.post('/', upload.single('img'), productsController.add);
+router.post('/', upload.single('img'), productsController.store);
 
 //EDITAR PRODUCTO
 router.put('/:idCategory/:idProduct/', upload.single('img'), productsController.update);
 
-//BORRAR PRODUCTO
+//ELIMINAR PRODUCTO
 router.delete('/delete/:idProduct/', productsController.delete);
 
 module.exports = router;

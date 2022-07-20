@@ -9,7 +9,7 @@
     
             <a class="logo-form" href="/"><img id="logo" src="/images/FreeFood2f.png" alt="logo"></a>
             <br>
-            <h1>Estas editando: <%= producto.name %> </h1>
+            <h1>Estás editando: <%= producto.name %> </h1>
     
             <form class="input-container-form" action="/products/<%= producto.idCat %>/<%= producto.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
 
@@ -22,7 +22,7 @@
                 <label for="name"><h4>Nombre del producto</h4></label>
                 <div class="info-container-div">
                     <i class="fas fa-file-signature"></i>
-                    <input type="text" name="name" id="name" value="<%= producto.name %>" required minlength="1">
+                    <input type="text" step = "any" name="name" id="name" value="<%= producto.name %>" required minlength="1">
                 </div>
 
                 <label for="price"><h4>Precio</h4></label>
@@ -31,13 +31,13 @@
                     <input type="number" name="price" id="price" value="<%= producto.price %>" required min="0" pattern="^\d*(\.\d{0,2})?$">
                 </div>
 
-                <label for="idCat"><h4>Categoria</h4></label>
+                <label for="idCat"><h4>Categoría</h4></label>
                 <div class="info-container-div">
                     <i class="fas fa-clipboard-list"></i>
                     <select name="idCat" id="idCat">
                         <option value="<%= producto.idCat %>" selected="selected"><%= producto.idCat %></option>
                         <option value="entrada">Entrada</option>
-                        <option value="platoFuerte">Plato Principal</option>
+                        <option value="platoFuerte">Plato principal</option>
                         <option value="postre">Postre</option>
                         <option value="bebida">Bebida</option>
                     </select>    
@@ -51,11 +51,11 @@
                         <option value="novedad">Novedad</option>
                         <option value="oferta">Oferta</option>
                         <option value="recomendado">Recomendado</option>
-                        <option value="mas-vendido">Mas Vendido</option>
+                        <option value="mas-vendido">Más vendido</option>
                     </select>    
                 </div>
 
-                <label for="discountAmount"><h4>Cantidad de descuento</h4></label>
+                <label for="discountAmount"><h4>Porcentaje de descuento</h4></label>
                 <div class="info-container-div">
                     <i class="fas fa-percent"></i>
                     <input type="number" name="discountAmount" id="discountAmount" value="<%= producto.discountAmount %>" required min="0" max="100">
@@ -68,7 +68,7 @@
                     <input class="img-input" type="file" id="img" name="img" accept="image/png, image/jpeg" required>
                 </div>
                 
-                <label for="description"><h4>Descripcion del producto</h4></label>
+                <label for="description"><h4>Descripción del producto</h4></label>
                 <textarea name="description" id="description" cols="30" rows="5" maxlength="500" placeholder="Descripcion (max 500 caracteres)"><%= producto.description %></textarea>
                 
                 <div class="btn-container">
