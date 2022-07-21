@@ -16,13 +16,13 @@
 ***Ariel***
 
 - ¿Qué hice en la semana?
-    
+    Me encargué de realizar la base del proyecto en el entry-point más la lógica de funcionamiento del formulario de edición de productos y el botón de borrado.
 
 - ¿En qué tuve problemas?
-    
+    No encontré ningún impedimento de importancia.
 
 - ¿Qué voy a hacer?
-    
+    Seguiré puliendo los elementos estéticos del proyecto.
 
 
 ***Guillermo***
