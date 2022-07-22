@@ -60,11 +60,17 @@ const mainController = {
     search: (req, res) => {
 		let busqueda = req.query.searchBar;
 		let resultado = [];
-		for (let i=0; i<allProducts.length; i++){
-			if ((allProducts[i].name.toUpperCase()).includes(busqueda.toUpperCase())){
-				resultado.push(allProducts[i]);
-			}
-		};
+        if(busqueda){
+            for (let i=0; i<allProducts.length; i++){
+                if ((allProducts[i].name.toUpperCase()).includes(busqueda.toUpperCase()) || 
+                    (allProducts[i].status.toUpperCase()).includes(busqueda.toUpperCase()) || 
+                    (allProducts[i].idCat.toUpperCase()).includes(busqueda.toUpperCase())){
+                    resultado.push(allProducts[i]);
+                }
+            };
+        } else {
+            res.redirect('/')
+        }
 		
 		let cantidad= resultado.length;
 
