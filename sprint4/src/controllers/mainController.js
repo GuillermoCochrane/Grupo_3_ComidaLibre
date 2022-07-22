@@ -68,7 +68,7 @@ const mainController = {
 		
 		let cantidad= resultado.length;
 
-		res.render('results',{
+		res.render('products',{
             headTitle: 'Free Food - Resultados de Búsqueda',
             stylesheet: 'styles_products.css',
 			productList: resultado,

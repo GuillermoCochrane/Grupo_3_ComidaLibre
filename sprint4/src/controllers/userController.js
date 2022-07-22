@@ -102,12 +102,24 @@ const userController = {
 			phone: datos.phone,
             username: datos.username,
             password: datos.password,
+            repeatPassword: '',
             category: datos.category,
-			image: originalImage,
+			image: originalImage,           
 		}
 		if (imagen != undefined){
 			datosUsuario.image = imagen.filename;
 		}
+
+        // if(datos.password!=datos.repeatPassword){
+        //     datosUsuario.repeatPassword = 'Las contraseñas no coinciden';
+        //     console.log('no coiniciden');
+        //     return res.render('userEdit', {
+        //         usuario: datosUsuario,
+        //         headTitle: 'Free Food - Perfil de Usuario',
+        //         stylesheet: 'styles_register.css'
+        //         }
+        //     )
+        // }
 
 		for(i=0; i<users.length; i++){
 			if(users[i].id==id){

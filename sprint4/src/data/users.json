@@ -1,1 +1,74 @@
-[{"id":1,"firstName":"Laura","lastName":"Navarro","address":"Calle falsa 123","email":"laura.navarro@test.com","phone":"12345678","username":"laura.navarro","password":"ClaveLN","category":"administrador","image":"LN.png"},{"id":2,"firstName":"Andres","lastName":"Escobar","address":"Calle falsa 123","email":"andres.escobar@test.com","phone":"12345678","username":"andres.escobar","password":"ClaveAE","category":"usuario","image":"AE.png"},{"id":3,"firstName":"Guillermo","lastName":"Cochrane","address":"Calle falsa 123","email":"guillermo.cochrane@test.com","phone":"12345678","username":"guillermo.cochrane","password":"ClaveGC","category":"visitante","image":"GC.png"},{"id":4,"firstName":"Ariel","lastName":"Murua","address":"Calle falsa 123","email":"ariel.murua@test.com","phone":"12345678","username":"ariel.murua","password":"ClaveAM","category":"usuario","image":"AM.png"},{"id":5,"firstName":"Fabricio","lastName":"Celi","address":"Calle falsa 123","email":"fabricio.celi@test.com","phone":"12345678","username":"fabricio.celi","password":"ClaveLN","category":"visitante","image":"FC.png"},{"id":6,"firstName":"Robb","lastName":"Stark","address":"Winterfell 123","email":"Winter@isComing.com","phone":"3531261621","username":"YoungWolf","password":"123123123","category":"usuario","image":"img-user1658300279675.png"}]
+[
+  {
+    "id": 1,
+    "firstName": "Laura",
+    "lastName": "Navarro",
+    "address": "Calle falsa 123",
+    "email": "laura.navarro@test.com",
+    "phone": "12345678",
+    "username": "laura.navarro",
+    "password": "ClaveLN",
+    "category": "administrador",
+    "image": "LN.png"
+  },
+  {
+    "id": 2,
+    "firstName": "Andres",
+    "lastName": "Escobar",
+    "address": "Calle falsa 123",
+    "email": "andres.escobar@test.com",
+    "phone": "12345678",
+    "username": "andres.escobar",
+    "password": "ClaveAE",
+    "category": "usuario",
+    "image": "AE.png"
+  },
+  {
+    "id": 3,
+    "firstName": "Guillermo",
+    "lastName": "Cochrane",
+    "address": "Calle falsa 123",
+    "email": "guillermo.cochrane@test.com",
+    "phone": "12345678",
+    "username": "guillermo.cochrane",
+    "password": "ClaveGC",
+    "category": "visitante",
+    "image": "GC.png"
+  },
+  {
+    "id": 4,
+    "firstName": "Ariel",
+    "lastName": "Murua",
+    "address": "Calle falsa 123",
+    "email": "ariel.murua@test.com",
+    "phone": "12345678",
+    "username": "ariel.murua",
+    "password": "ClaveAM",
+    "category": "usuario",
+    "image": "AM.png"
+  },
+  {
+    "id": 5,
+    "firstName": "Fabricio",
+    "lastName": "Celi",
+    "address": "Calle falsa 123",
+    "email": "fabricio.celi@test.com",
+    "phone": "12345678",
+    "username": "fabricio.celi",
+    "password": "ClaveLN",
+    "category": "visitante",
+    "image": "FC.png"
+  },
+  {
+    "id": 6,
+    "firstName": "Robb",
+    "lastName": "Stark",
+    "address": "Winterfell 123",
+    "email": "Winter@isComing.com",
+    "phone": "3531261621",
+    "username": "YoungWolf",
+    "password": "123123123",
+    "category": "usuario",
+    "image": "img-user1658300279675.png"
+  }
+]
