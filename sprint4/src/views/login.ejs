@@ -9,7 +9,7 @@
 
         <a href="/"><img id="logo" src="/images/FreeFood2f.png" alt="logo"></a>
 
-        <form class="log-container" action="/" method="GET">
+        <form class="log-container" action="/user/login" method="post">
             
             <h3>Accedé a tu cuenta</h3>
             
@@ -17,7 +17,7 @@
 
                 <i class="fas fa-user"></i>
                 
-                <input class="log-item" type="text" name="userLog" id="userLog" placeholder="Usuario" required minlength="4">
+                <input class="log-item" type="text" name="username" id="username" placeholder="Usuario" required minlength="4" value="<%= userLog %>">
 
             </div>
             
@@ -25,10 +25,15 @@
 
                 <i class="fas fa-lock"></i>
                 
-                <input class="log-item" type="password" name="passLog" id="passLog" placeholder="Contraseña" required minlength="4">
+                <input class="log-item" type="password" name="password" id="password" placeholder="Contraseña" required minlength="4">
 
             </div>
             
+            <div class="item-container-info">
+
+                <%= info %>
+
+            </div>
             
             <div class="rememberme-container">
                 <input type="checkbox" name="checkbox" id="checkbox">
@@ -42,7 +47,7 @@
         </form>
         
         <div class="reg-log">
-            ¿No tenes cuenta? <a href="/user/register">Ingresá aquí</a>
+            ¿No tenés cuenta? <a href="/user/register">Ingresá aquí</a>
         </div>
     </main>
    

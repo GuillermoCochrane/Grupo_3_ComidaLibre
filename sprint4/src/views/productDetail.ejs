@@ -37,17 +37,21 @@
         
         <article class="main-product">
             <h2 class="title"><%= product.name %></h2>
-            <img id="main-image" src="/images/<%=product.img %>" alt="<%= product.name %>">
+            <img id="main-image" src="/images/products/<%=product.img %>" alt="<%= product.name %>">
             <div class="main-detail">
                 <h2 class="title0"><%= product.name %></h2>
                 <p class="name"><%= product.description %></p>
-                <p class="price">$<%= product.price %></p>
-
-                <% if(product.discount === true) {%>
+                
+                <% if(product.discountAmount !== 0) {%>
+                    <div class="discount-div">
+                        <p class="price-original">$<%= product.price %></p><p class="price">$<%= (product.price-(product.price*(product.discountAmount/100))).toFixed(2) %></p>
+                    </div>
                     <p class="discount">-<%= product.discountAmount %>% OFF</p>
-                <% } %>
+                <% } else {%>
+                    <p class="price">$<%= product.price %></p>
+                <% } %> 
 
-                <p class="list">Elegir la cantidad: 
+                <div class="list">Elegí la cantidad: 
                     <select name="lista">
                         <option>1</option>
                         <option>2</option>
@@ -55,12 +59,20 @@
                         <option>4</option>
                         <option>5</option>
                     </select>
-                </p>
+                </div>
                 <br>
                 <form action="/cart">
                     <button class="add-button" type="submit">Agregar al carrito</button>
                 </form>
-            </div>
+                <div class="delete-edit-div">
+                    <form class="edit-btn" action="/products/edit/<%= product.id %>" method="GET">
+                        <button type="submit">Editar</button>
+                    </form>
+                    <form class="delete-btn" action="/products/delete/<%= product.id %>?_method=DELETE" method="POST">
+                        <button type="submit">Eliminar</button>
+                    </form>
+                </div>
+                </div>
         </article>
         <br>
 
@@ -71,11 +83,11 @@
                 <% for( let productR of productRel) { %>
                 <div class="product">
                     
-                    <img id="image" src="/images/<%= productR.img %>" alt="" title="">
+                    <img id="image" src="/images/products/<%= productR.img %>" alt="" title="">
                     
                     <div class="info">
                         <p class="price">$ <%= productR.price %></p>
-                        <% if(productR.discount === true) {%>
+                        <% if(productR.discountAmount !== 0) {%>
                             <p class="discount">-<%= productR.discountAmount %>% OFF</p>
                         <% } %>
                         <p class="name"><%= productR.name %> </p>
