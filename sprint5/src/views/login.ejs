@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/head.ejs') %> 
+
+<body>
+    
+    <main>
+
+        <a href="/"><img id="logo" src="/images/FreeFood2f.png" alt="logo"></a>
+
+        <form class="log-container" action="/user/login" method="post">
+            
+            <h3>Accedé a tu cuenta</h3>
+            
+            <div class="item-container">
+
+                <i class="fas fa-user"></i>
+                
+                <input class="log-item" type="text" name="username" id="username" placeholder="Usuario" required minlength="4" value="<%= userLog %>">
+
+            </div>
+            
+            <div class="item-container">
+
+                <i class="fas fa-lock"></i>
+                
+                <input class="log-item" type="password" name="password" id="password" placeholder="Contraseña" required minlength="4">
+
+            </div>
+            
+            <div class="item-container-info">
+
+                <%= info %>
+
+            </div>
+            
+            <div class="rememberme-container">
+                <input type="checkbox" name="checkbox" id="checkbox">
+                <label for="checkbox">Recordarme</label>
+            </div>
+            
+            <button class="log-button">INGRESAR</button>
+        
+            <a class="pass-forgot" href="#">¿Olvidaste tu contraseña?</a>
+            
+        </form>
+        
+        <div class="reg-log">
+            ¿No tenés cuenta? <a href="/user/register">Ingresá aquí</a>
+        </div>
+    </main>
+   
+</body>
+</html>
