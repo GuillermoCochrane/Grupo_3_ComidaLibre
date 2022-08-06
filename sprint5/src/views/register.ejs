@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <%- include('partials/head.ejs') %> 
+    
+    <body>
+        
+        <main class="main-register">
+    
+            <a class="a-form" href="/"><img id="logo" src="/images/FreeFood2f.png" alt="logo"></a>
+    
+            <form class="log-container" action="/user/register" method="post" >
+                
+                <h2>Creá tu cuenta</h2>
+
+                <h5>Por favor ingresá los siguientes datos</h5>   
+                
+                
+                <div class="container">
+    
+                    <i class="fas fa-user"></i>
+                    
+                    <input class="log-item" type="text" name="username" id="username" placeholder="Usuario" required minlength="8">
+    
+                </div>
+
+                <div class="container">
+    
+                    <i class="fas fa-at"></i>
+
+                    <input class="log-item" type="email" name="email" id="email" placeholder="E-Mail" required minlength="8">
+    
+                </div>
+                
+                <div class="container">
+    
+                    <i class="fas fa-lock"></i>
+                    
+                    <input class="log-item" type="password" name="password" id="password" placeholder="Contraseña" required minlength="8">
+    
+                </div>
+
+                <div class="container">
+    
+                    <i class="fas fa-lock"></i>
+                    
+                    <input class="log-item" type="password" name="repeatPassword" id="repeatPassword" placeholder="Repetir Contraseña" required minlength="8">
+    
+                </div>             
+                
+                <button class="log-button">Crear cuenta</button>
+            
+                
+            </form>
+            
+            <div class="reg-log">
+                ¿Ya tenés cuenta? <a href="/user/login">Ingresá aquí</a>
+            </div>
+        </main>
+    
+    </body>
+</html>
