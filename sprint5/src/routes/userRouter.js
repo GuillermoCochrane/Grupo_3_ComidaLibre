@@ -30,7 +30,7 @@ const loginValidation = [
 
 const userController = require('../controllers/userController');
 
-router.get('/:id', userController.profile);
+router.get('/', userController.profile);
 
 router.get('/login', userController.log);
 router.post('/login', userController.validate);

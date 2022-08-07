@@ -3,16 +3,18 @@ const path = require('path');
 const {validationResult} = require('express-validator');
 const User = require('../models/Users');
 const bcryptjs = require('bcryptjs');
+const { localsName } = require('ejs');
 const userFilePath = path.join(__dirname, '../data/users.json');
 const users = JSON.parse(fs.readFileSync(userFilePath, 'utf-8'));
+const cookieParser = require('cookie-parser');
 
 const userController = {
     profile: (req,res)=>{
-        let userId = req.params.id;
+        let userLogged = (req.session.login) ? req.session.login : null;
         res.render('user', {
             headTitle: 'Free Food - Perfil de Usuario',
             stylesheet: 'styles_forms.css',
-            user: User.findById(userId)
+            user: userLogged,
         })
     },
 
@@ -44,7 +46,8 @@ const userController = {
         console.log(usertoLogin);
         if(usertoLogin){
             if(bcryptjs.compareSync(req.body.password, usertoLogin.password)){
-                res.redirect('/user/' + usertoLogin.id)
+                req.session.login = usertoLogin;
+                res.redirect('/user/');
             }
             else{
                 res.render('login', {

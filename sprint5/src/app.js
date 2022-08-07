@@ -2,7 +2,7 @@
 const express = require('express');
 const path = require('path');
 const methodOverride = require('method-override')
-
+const session = require('express-session');
 //EXPRESS
 const app = express();
 
@@ -20,6 +20,7 @@ app.use('/css', express.static(path.join(__dirname, '../public/css')))
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(methodOverride('_method'));
+app.use(session({secret: 'secret'}));
 
 //USO DE RUTAS
 const mainRouter = require('./routes/mainRouter');
