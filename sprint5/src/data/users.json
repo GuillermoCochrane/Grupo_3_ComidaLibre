@@ -19,7 +19,7 @@
     "email": "andres.escobar@test.com",
     "phone": "12345678",
     "username": "andres.escobar",
-    "password": "ClaveAE",
+    "password": "$2a$10$EVMqoPtWpnd6yLIAEs46R./gPE6/mgFfiU.D72viX3onYTxJd3tVa",
     "category": "usuario",
     "image": "AE.png"
   },

@@ -18,6 +18,9 @@
                 <i class="fas fa-user"></i>
                 
                 <input class="log-item" type="text" name="username" id="username" placeholder="Usuario" required minlength="4" value="<%= userLog %>">
+                <% if (locals.errors && errors.username) { %>
+                    <p class="error-message"><%= errors.username.msg %></p>
+                <% } %>
 
             </div>
             
@@ -25,13 +28,18 @@
 
                 <i class="fas fa-lock"></i>
                 
-                <input class="log-item" type="password" name="password" id="password" placeholder="Contraseña" required minlength="4">
+                <input class="log-item" type="password" name="password" id="password" placeholder="Contraseña" required minlength="8">
+                <% if (locals.errors && errors.password) { %>
+                    <p class="error-message"><%= errors.password.msg %></p>
+                <% } %>
 
             </div>
             
             <div class="item-container-info">
 
-                <%= info %>
+                <% if (locals.errors && errors.login) { %>
+                    <p class="error-message"><%= errors.login.msg %></p>	
+                <% } %>
 
             </div>
             

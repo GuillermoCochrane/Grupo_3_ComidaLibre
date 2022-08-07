@@ -1,14 +1,18 @@
 const fs = require('fs');
 const path = require('path');
-
+const {validationResult} = require('express-validator');
+const User = require('../models/Users');
+const bcryptjs = require('bcryptjs');
 const userFilePath = path.join(__dirname, '../data/users.json');
 const users = JSON.parse(fs.readFileSync(userFilePath, 'utf-8'));
 
 const userController = {
     profile: (req,res)=>{
+        let userId = req.params.id;
         res.render('user', {
             headTitle: 'Free Food - Perfil de Usuario',
-            stylesheet: 'styles_forms.css'
+            stylesheet: 'styles_forms.css',
+            user: User.findById(userId)
         })
     },
 
@@ -22,28 +26,50 @@ const userController = {
     },
 
     validate: (req,res)=>{
-        // res.send('datos validados')
-        let data = req.body;
-        let userSelected =  users.find(user => {
-			return user.username == data.username;
-		});
-        if(userSelected == undefined){
+        
+
+        const resultValidation = validationResult(req);
+
+        
+        if(!resultValidation.isEmpty()){
             res.render('login', {
                 headTitle: 'Free Food - Ingresar',
                 stylesheet: 'styles_log.css',
-                info: 'Ingrese un Usuario Valido',
-                userLog: '',
+                errors: resultValidation.mapped(),
+                userLog: req.body.username,
             })
-        }else if(userSelected.password != data.password){
+        }
+        let usertoLogin = User.findByUsername(req.body.username);
+       
+        console.log(usertoLogin);
+        if(usertoLogin){
+            if(bcryptjs.compareSync(req.body.password, usertoLogin.password)){
+                res.redirect('/user/' + usertoLogin.id)
+            }
+            else{
+                res.render('login', {
+                    headTitle: 'Free Food - Ingresar',
+                    stylesheet: 'styles_log.css',
+                    errors:{
+                        login: {
+                            msg: 'Contraseña incorrectos'
+                        }
+                    },
+                    userLog: req.body.username,
+                })
+            }
+        }
+        else{
             res.render('login', {
                 headTitle: 'Free Food - Ingresar',
                 stylesheet: 'styles_log.css',
-                info: 'Contraseña Incorrecta',
-                userLog: userSelected.username,
+                errors: {
+                    login: {
+                        msg: 'Usuario no existe'
+                    }
+                },
+                userLog: req.body.username,
             })
-        }else{
-            let id = userSelected.id
-            res.redirect("/user/edit/" + id)
         }
     },
 
