@@ -75,12 +75,12 @@
   "id": 7,
   "firstName": "Test",
   "lastName": "User",
-  "address": "Avenida siempre viva 555",
-  "email": "testUser@dh.com",
-  "phone": "3758452585",
-  "username": "testUser1",
-  "password": "789456123",
+  "address": "Av. siempre viva 555",
+  "email": "test@dh.com",
+  "phone": "7894561235",
+  "username": "testuser1",
+  "password": "$2a$10$ThcwSZI08tkxmIdTqZrq3u7N8oZtnbwYwG23CpohRPQKjLa4OrF12",
   "category": "usuario",
-  "image": "1660499666173_userImage.png"
+  "image": "1660506046378_userImage.png"
  }
 ]

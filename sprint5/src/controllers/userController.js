@@ -9,6 +9,7 @@ const users = JSON.parse(fs.readFileSync(userFilePath, 'utf-8'));
 const cookieParser = require('cookie-parser');
 
 const userController = {
+    //PERFIL DEL USUARIO
     profile: (req,res)=>{
         let userLogged = (req.session.login) ? req.session.login : null;
         res.render('user', {
@@ -17,7 +18,7 @@ const userController = {
             user: userLogged,
         })
     },
-
+    //FORMULARIO DE LOGIN
     log: (req,res)=>{
         res.render('login', {
             headTitle: 'Free Food - Ingresar',
@@ -26,12 +27,10 @@ const userController = {
             userLog: '',
         })
     },
-
-    validate: (req,res)=>{
-        
+    //LOGIN DEL USUARIO
+    validate: (req,res)=>{        
 
         const resultValidation = validationResult(req);
-
         
         if(!resultValidation.isEmpty()){
             res.render('login', {
@@ -75,17 +74,18 @@ const userController = {
             })
         }
     },
-
+    //FORMULARIO DE REGISTRO
     reg: (req,res)=>{
         res.render('register', {
             headTitle: 'Free Food - Registro',
             stylesheet: 'styles_register.css'
         })
     },
-
+    //REGISTRO DEL USUARIO
     create: (req, res) => {
         let datos = req.body;
 		let newId = users.length+1;
+        let encryptedPass = bcryptjs.hashSync(datos.password, 10);
         if(!req.file) {
 			const error = new Error ("Por favor seleccioná un archivo válido")
 			error.httpStatusCode=400
@@ -99,7 +99,7 @@ const userController = {
                 email: datos.email,
                 phone: datos.phone,
                 username: datos.username,
-                password: datos.password,
+                password: encryptedPass,
                 category: 'usuario',
                 image: req.file.filename
             };
@@ -109,7 +109,7 @@ const userController = {
 
         res.redirect("/user/edit/" + newId);		
     },
-
+    //FORMULARIO DE EDICIÓN
     edit: (req,res)=>{
         let userId = req.params.id;
 		let userSelected =  users.find(user => {
@@ -122,7 +122,7 @@ const userController = {
             stylesheet: 'styles_register.css'
 		})
     },
-    
+    //EDICIÓN DEL USUARIO    
     update: (req,res)=>{
         
 		let id = req.params.id;
