@@ -83,25 +83,31 @@ const userController = {
         })
     },
 
-    create: (req,res)=>{
+    create: (req, res) => {
         let datos = req.body;
-		let idNuevo = users.length+1;
-		let usuarioNuevo = {
-			id: idNuevo,
-			firstName: '',
-            lastName: '',
-            address: '',
-			email: datos.email,
-            phone: '',
-            username: datos.username,
-            password: datos.password,
-			category: '',
-			image: '¡¡¡Olvidó cargar la imagen!!!'
-		};
-        users.push(usuarioNuevo);
-        let jsonUsers = JSON.stringify(users, null, ' ');
-        fs.writeFileSync(userFilePath,jsonUsers);
-        res.redirect("/user/edit/" + idNuevo)		
+		let newId = users.length+1;
+        if(!req.file) {
+			const error = new Error ("Por favor seleccioná un archivo válido")
+			error.httpStatusCode=400
+			return next(error)
+		} else {
+            let newUser = {
+                id: newId,
+                firstName: datos.firstName,
+                lastName: datos.lastName,
+                address: datos.address,
+                email: datos.email,
+                phone: datos.phone,
+                username: datos.username,
+                password: datos.password,
+                category: 'usuario',
+                image: req.file.filename
+            };
+            users.push(newUser);
+            fs.writeFileSync(userFilePath, JSON.stringify(users, null, ' '));
+        };
+
+        res.redirect("/user/edit/" + newId);		
     },
 
     edit: (req,res)=>{

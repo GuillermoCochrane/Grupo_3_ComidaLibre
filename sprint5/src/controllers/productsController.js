@@ -60,7 +60,7 @@ const productsController = {
 			return next(error)
 		} else {
             let newProduct = {
-                id: allProducts.length+2,
+                id: allProducts.length+1,
                 idCat: req.body.idCat,
                 name: req.body.name,
                 description: req.body.description,

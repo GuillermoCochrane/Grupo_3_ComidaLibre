@@ -5,18 +5,17 @@ const bcryptjs = require('bcryptjs');
 const multer = require('multer');
 const path = require('path');
 
-var storage = multer.diskStorage({  
-        destination: function (req, file, cb) {
-            let imgAdress = path.join(__dirname,'../../public/images/avatar') ;
-            cb(null, imgAdress);
-        },
-        filename: function (req, file, cb) {
-            let newName = "img-user" + Date.now() + path.extname(file.originalname);
-            cb(null, newName );
-        },
+const storage = multer.diskStorage({  
+    destination: (req, file, cb) => {
+        let imgAdress = path.join(__dirname,'../../public/images/avatars');
+        cb(null, imgAdress);
+    },
+    filename: (req, file, cb) => {
+        let newName = `${Date.now()}_userImage${path.extname(file.originalname)}`;
+        cb(null, newName);
+    }
 })
-
-var upload= multer({storage: storage});
+const upload = multer({ storage });
 
 const loginValidation = [
     body('username')
@@ -36,7 +35,7 @@ router.get('/login', userController.log);
 router.post('/login', userController.validate);
 
 router.get('/register', userController.reg);
-router.post('/register', userController.create);
+router.post('/register', upload.single('image'), userController.create);
 
 router.get('/edit/:id', userController.edit); 
 router.put('/edit/:id',upload.single('image'), userController.update); 
