@@ -20,7 +20,11 @@ app.use('/css', express.static(path.join(__dirname, '../public/css')))
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(methodOverride('_method'));
-app.use(session({secret: 'secret'}));
+app.use(session({
+    secret: 'secret',
+    resave: false,
+	saveUninitialized: false,git
+}));
 
 //USO DE RUTAS
 const mainRouter = require('./routes/mainRouter');

@@ -5,6 +5,8 @@ const bcryptjs = require('bcryptjs');
 const multer = require('multer');
 const path = require('path');
 const userController = require('../controllers/userController');
+const guestMDW = require('../middlewares/guestMDW');
+const loggedMDW = require('../middlewares/loggedMDW');
 
 //ROUTER
 const router = express.Router();
@@ -34,18 +36,18 @@ const loginValidation = [
 ]
 
 //PERFIL DEL USUARIO
-router.get('/', userController.profile);
+router.get('/', guestMDW, userController.profile);
 
 //LOGIN DEL USUARIO
-router.get('/login', userController.log);
+router.get('/login', loggedMDW, userController.log);
 router.post('/login', userController.validate);
 
 //REGISTRO DEL USUARIO
-router.get('/register', userController.reg);
+router.get('/register', loggedMDW, userController.reg);
 router.post('/register', upload.single('image'), userController.create);
 
 //EDICIÓN DEL USUARIO
-router.get('/edit/:id', userController.edit); 
+router.get('/edit/:id', guestMDW, userController.edit); 
 router.put('/edit/:id',upload.single('image'), userController.update); 
 
 module.exports = router;

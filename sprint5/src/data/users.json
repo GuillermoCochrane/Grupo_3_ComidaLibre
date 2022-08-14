@@ -82,5 +82,29 @@
   "password": "$2a$10$ThcwSZI08tkxmIdTqZrq3u7N8oZtnbwYwG23CpohRPQKjLa4OrF12",
   "category": "usuario",
   "image": "1660506046378_userImage.png"
+ },
+ {
+  "id": 8,
+  "firstName": "Guillermo Alejandro",
+  "lastName": "Cochrane",
+  "address": "Belgrano 351",
+  "email": "guilleac81@gmail.com",
+  "phone": "3584120101",
+  "username": "GuilleAC81",
+  "password": "123123123",
+  "category": "usuario",
+  "image": "1660515316217_userImage.jpg"
+ },
+ {
+  "id": 9,
+  "firstName": "Guillermo Alejandro",
+  "lastName": "Cochrane",
+  "address": "Belgrano 351",
+  "email": "guilleac81@gmail.com",
+  "phone": "3584120101",
+  "username": "GUILLEAC81",
+  "password": "$2a$10$JcolpHd1tDMDpa1dJXnNleABahJpYlrWbajRcpgqH9DJ82WvxcqO2",
+  "category": "usuario",
+  "image": "1660515815347_userImage.jpg"
  }
 ]

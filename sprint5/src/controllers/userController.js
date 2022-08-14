@@ -41,7 +41,7 @@ const userController = {
             })
         }
         let usertoLogin = User.findByUsername(req.body.username);
-       
+    
         console.log(usertoLogin);
         if(usertoLogin){
             if(bcryptjs.compareSync(req.body.password, usertoLogin.password)){

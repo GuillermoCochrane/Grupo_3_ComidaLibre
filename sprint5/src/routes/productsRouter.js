@@ -3,6 +3,7 @@ const express = require('express');
 const productsController = require('../controllers/productsController');
 const multer = require('multer')
 const path = require('path')
+const guestMDW = require('../middlewares/guestMDW');
 
 //ROUTER
 const router = express.Router();
@@ -22,8 +23,8 @@ const upload = multer({ storage })
 router.get('/', productsController.producto);
 
 //FORMULARIOS CREACIÓN Y EDICIÓN
-router.get('/create', productsController.create);
-router.get('/edit/:idProduct', productsController.edit); 
+router.get('/create', guestMDW, productsController.create);
+router.get('/edit/:idProduct', guestMDW, productsController.edit); 
 
 //LISTADO POR CATEGORÍA
 router.get('/:idCategory', productsController.category);
@@ -38,6 +39,6 @@ router.post('/', upload.single('img'), productsController.store);
 router.put('/:idCategory/:idProduct/', upload.single('img'), productsController.update);
 
 //ELIMINAR PRODUCTO
-router.delete('/delete/:idProduct/', productsController.delete);
+router.delete('/delete/:idProduct/', guestMDW, productsController.delete);
 
 module.exports = router;
