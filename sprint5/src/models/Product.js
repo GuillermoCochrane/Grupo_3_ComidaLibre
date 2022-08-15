@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 
-const Products = {
+module.exports = {
     fileName: path.join(__dirname, '../data/products.json'),
 
     getData: function () {
@@ -22,37 +22,54 @@ const Products = {
         let allProducts = this.getData();
         return productFound = allProducts.find(product => product.id == id)   
     },
+    findByName: function (productName) {
+        let allProducts = this.getData();
+        return productFound = allProducts.find(product => product.name == productName)   
+    },
 
     create: function (productData, productFile) {
         let allProducts = this.getData();
-        //agregar if para imagen default
-        let newProduct = {
-            id: this.genId(),
-            ...productData,
-            img: productFile.filename
-        }
+        let newProduct
         
+        if( productFile ) {
+            newProduct = {
+                id: this.genId(),
+                ...productData,
+                img: productFile.filename
+            }
+        } else {
+            newProduct = {
+                id: this.genId(),
+                ...productData,
+                img: 'default.png'
+            }
+        }
+
         allProducts.push(newProduct)
         fs.writeFileSync(this.fileName, JSON.stringify(allProducts, null, ' '));
         
         return true;
     },
     edit: function (id, productData, productFile) {
-        //cambiar por el nuevo metodo
         let allProducts = this.getData();
+        let productFound = this.findById( id )
+        let updatedProduct
 
-        for(product of allProducts){
-            if(product.id == id){
-                product.idCat = productData.idCat
-                product.name = productData.name
-                product.description = productData.description
-                product.price = productData.price
-                product.img = productFile.filename
-                product.status = productData.status
-                product.discountAmount = productData.discountAmount
+        if( productFile ) {
+            updatedProduct = {
+                ...productFound,
+                ...productData,
+                img: productFile.filename
+            }
+        } else {
+            updatedProduct = {
+                ...productFound,
+                ...productData
             }
         }
-        
+
+        allProducts.splice(id-1, 1, updatedProduct)
+
         fs.writeFileSync(this.fileName, JSON.stringify(allProducts, null, ' '));
         
         return true;
@@ -66,4 +83,3 @@ const Products = {
         return true;
     }
 }
-module.exports = Products

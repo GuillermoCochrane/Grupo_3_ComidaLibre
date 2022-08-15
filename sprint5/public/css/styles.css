@@ -52,10 +52,12 @@ ul{
 header {
     position: fixed;
     top: 0;
+    left: 0;
     background-color: #efebe2;
-    width: 90%;
+    width: 100%;
     z-index: 1;
     transition-duration: 0.5s;
+    box-shadow: 0px 0px 10px rgb(100, 100, 100);
 }
 .logo-header-m{
     width: 200px;
@@ -67,10 +69,25 @@ header {
 }
 .burger-menu{
     margin: 20px;
+    position: relative;
 }
+
+/*menu emergente*/
 .burger-menu>a{
     font-size: 26px;
 }
+
+.burger-menu>ul.user-menu{
+    display: none;
+    position: absolute; top:130px; right: 0px; z-index:999;
+	background: rgba(255, 255, 255, 0.904);
+    list-style: none;
+}
+.burger-menu:hover ul.user-menu{
+    display: block;
+}
+
+
 .container-header{
     display: none;
 }
@@ -125,6 +142,9 @@ header {
 .main-menu-header { 
     position:relative 
 }
+.main-menu-header>a>i {
+    margin: 0 5px 0 5px;
+}
 .main-menu-header>ul.main-menu-header-list { 
     display:none;
 	position:absolute; left:0px; top:20px; z-index:999;
@@ -143,7 +163,7 @@ header {
 }
 .icons-header>ul.user-menu{
     display: none;
-    position:absolute; top:30px; z-index:999;
+    position:absolute; top:50px; left: 60px; z-index:999;
 	background: rgba(255, 255, 255, 0.904);
     list-style: none;
 }
@@ -155,7 +175,7 @@ header {
     width: 130px;
 }
 .user-menu-button {
-    margin: 10px 0px;
+    margin: 10px;
     width: 140px;
     height: 50px;
     background-color: #87c99b;
@@ -169,6 +189,27 @@ header {
 .user-menu-button:hover{
     cursor: pointer;
     background-color: #6fa57f
+}
+.user-menu-button>i {
+    margin: 0 8px 0 8px;
+}
+.user-name-container {
+    margin: 0 30px 0 30px; 
+    display: flex; 
+    align-items: center;
+}
+.user-name-container>img {
+    width:50px; 
+    height:50px; 
+    margin: 0 0 0 10px; 
+    border-radius: 25px;
+}
+.user-name-container>p {
+    font-size: 24px; 
+    margin: 0 10px 0 10px
+}
+.user-name-container>p>i {
+    margin: 0 5px 0 5px;
 }
 
 /* 1-header Estilos burger menu */
@@ -201,9 +242,13 @@ ul.burger-list{
 
 /* Estilos del footer */
 footer {
+    /*position: absolute;*/
     position: relative;
     background-color: #897d69;
     color: #4c3524;
+    bottom: auto;
+    width: 100%;
+    left: 0px;
     top: 200px;
 }
 
@@ -318,6 +363,79 @@ footer {
     border-radius: 10px;
 }
 
+/*Perfil del usuario*/
+.profile-container {
+    display: flex;
+    flex-direction: column;
+}
+.user-info-card {
+    margin: 10px 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgb(100, 100, 100);
+}
+.user-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.user-info-card>.username-img-container>img {
+    width: 100%;
+    height: 150px;
+    border-radius: 10px;
+}
+.user-info-container>.info-line {
+    display: flex;
+    padding: 5px 0; 
+    align-self: flex-start;
+}
+.info-line>.field-name{
+    color: #999999;
+    margin-right: 10px;
+    font-size: 16px;
+}
+.info-line>.field-info{
+    font-weight: bold;
+    font-size: 18px;
+}
+
+
+.user-info-card>.tarjetas {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.user-info-card>.tarjetas>p {
+    flex-grow: 1;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 10px 5px;
+}
+
+.user-favs-container{
+    padding: 20px;
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgb(100, 100, 100);
+}
+.fav-product-container {
+    margin: 20px 0;
+    width: 100%;
+    height: 350px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+
 /* Media queries para adaptar el sitio */
 
 @media (min-width: 640px) {
@@ -396,6 +514,22 @@ footer {
         font-weight: bold;
         margin: 7px;
     }
+
+    /*user profile*/
+    .user-info-card{
+        flex-direction: row;
+    }
+    .username-img-container {
+        flex-grow: 0.33;
+    }
+    .user-info-card>.username-img-container>img{
+        height: 300px;
+    }
+    .user-info-container {
+        flex-grow: 0.66;
+        margin: 0 0 0 50px;
+    }
+
 }
 
 @media (min-width: 1024px) {
@@ -420,5 +554,32 @@ footer {
     .nav-bar-header>ul>li{
         display: inline-block;
         margin: 0px 50px;
+    }
+
+    /*user profile*/
+    .profile-container {
+        padding: 20px 0;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .user-info-container {
+        margin: 0;
+    }
+    .user-info-card {
+        margin: 0 20px 0 0;
+        
+        flex-direction: column;
+    }
+    .user-info-card>.username-img-container>img{
+        height: 325px;
+    }
+
+    .user-favs-container{
+        margin: 0;
+        
+    }
+    .user-favs-container>.fav-product-container{
+        margin: 0;
+        height: 500px;
     }
 }

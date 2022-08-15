@@ -174,15 +174,16 @@ select{
         margin-left: 25px;
         margin-right: 25px;
     }
-    .main-product{
+    /*.main-product{
         flex-direction: row;
         margin-left: 25px;
         margin-right: 25px;
         justify-content: space-around;
-    }
+    }*/
     #main-image{
         margin-left:25px;
-        width: 40%;
+        width: 100%;
+        max-width: 500px;
     }
     .title0{
         display: block;
@@ -194,18 +195,33 @@ select{
         width: 45%;
     }
 }
+@media (min-width: 900px){
+    #main-image{
+        width: 100%;
+    }
+    /*.main-product{
+        flex-direction: row;
+        margin-left: 25px;
+        margin-right: 25px;
+        justify-content: space-around;
+    }*/
+    
+}
 
 @media (min-width: 1024px){
     #main-image{
-        width: 40%;
+        width: 100%;
+        min-width: 500px;
     }
     .nav-dishes{
         margin-left: 50px;
         margin-right: 50px;
     }
     .main-product{
+        flex-direction: row;
         margin-left: 50px;
         margin-right: 50px;
+        justify-content: space-around;
     }
     .product{
         width: 30%;

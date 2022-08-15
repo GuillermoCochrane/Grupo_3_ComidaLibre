@@ -68,6 +68,12 @@ module.exports = {
         if(userData.password != ''){
             hashedPassword = bcryptjs.hashSync(userData.password, 10)
         }
+        
+        for(let input in userData){
+            if( userData[input] == '' ){
+                delete userData[input]
+            }
+        }
 
         let updatedUser
         if(userFile && hashedPassword){

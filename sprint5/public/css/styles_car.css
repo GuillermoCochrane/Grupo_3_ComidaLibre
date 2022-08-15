@@ -1,5 +1,6 @@
 .tittle-close{
     display: flex;
+    align-items: center;
     justify-content: space-between;
     padding: 0px 20px 10px;
 }
@@ -171,9 +172,11 @@ article img{
 .end:hover{
     background-color: #6fa57f
 }
-
-.fas.fa-trash.trash{
-    cursor: pointer;
+.delete-cart-item{
+    font-size: 20px;
+}
+.delete-cart-item:hover{
+    background-color: transparent;
 }
 
 @media(min-width: 768px){

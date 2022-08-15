@@ -70,41 +70,5 @@
   "password": "123123123",
   "category": "usuario",
   "image": "img-user1658300279675.png"
- },
- {
-  "id": 7,
-  "firstName": "Test",
-  "lastName": "User",
-  "address": "Av. siempre viva 555",
-  "email": "test@dh.com",
-  "phone": "7894561235",
-  "username": "testuser1",
-  "password": "$2a$10$ThcwSZI08tkxmIdTqZrq3u7N8oZtnbwYwG23CpohRPQKjLa4OrF12",
-  "category": "usuario",
-  "image": "1660506046378_userImage.png"
- },
- {
-  "id": 8,
-  "firstName": "Guillermo Alejandro",
-  "lastName": "Cochrane",
-  "address": "Belgrano 351",
-  "email": "guilleac81@gmail.com",
-  "phone": "3584120101",
-  "username": "GuilleAC81",
-  "password": "123123123",
-  "category": "usuario",
-  "image": "1660515316217_userImage.jpg"
- },
- {
-  "id": 9,
-  "firstName": "Guillermo Alejandro",
-  "lastName": "Cochrane",
-  "address": "Belgrano 351",
-  "email": "guilleac81@gmail.com",
-  "phone": "3584120101",
-  "username": "GUILLEAC81",
-  "password": "$2a$10$JcolpHd1tDMDpa1dJXnNleABahJpYlrWbajRcpgqH9DJ82WvxcqO2",
-  "category": "usuario",
-  "image": "1660515815347_userImage.jpg"
  }
 ]

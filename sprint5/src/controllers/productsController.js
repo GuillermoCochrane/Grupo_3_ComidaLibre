@@ -1,26 +1,23 @@
-const { all } = require('express/lib/application');
-const fs = require('fs');
-const path = require('path');
-const productsFilePath = path.join(__dirname, '../data/products.json');
-let allProducts = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+const Product = require('../models/Product')
+const { validationResult } = require('express-validator')
 
-const productsController = {
+module.exports = {
     //LISTADO PRODUCTOS
     producto: (req, res) => {
-        res.render('products', {
+        return res.render('products/products', {
             headTitle: 'Free Food - Productos',
             stylesheet: 'styles_products.css',
-            productList: allProducts,
+            productList: Product.getData(),
         });
     },
     //LISTADO POR CATEGORÍA
     category: (req, res) => {
         let category = req.params.idCategory;
-        let productCategory = allProducts.filter((products) => {
+        let productCategory = Product.getData().filter((products) => {
             return products.idCat == category;
         });
 
-        res.render('products', {
+        return res.render('products/products', {
             headTitle: 'Free Food - Categoría',
             stylesheet: 'styles_products.css',
             productList: productCategory,
@@ -28,94 +25,70 @@ const productsController = {
     },
     //DETALLES DE PRODUCTO
     detail: (req, res) => {
-        let id = req.params.idProduct;
-        let product = allProducts.find((product) => {
-            return product.id == id;
-        });
+
         let category = req.params.idCategory;
-        let productRel = allProducts.filter((products) => {
+        let productRel = Product.getData().filter((products) => {
             return (products.idCat == category && products.status == 'recomendado');
         });
 
-        res.render('productDetail', {
+        return res.render('products/productDetail', {
             headTitle: 'Free Food - Detalle de producto',
             stylesheet: 'styles_productDetail.css',
-            product: product,
+            product: Product.findById(req.params.idProduct),
             productRel: productRel,
-            productList: allProducts,
+            productList: Product.getData(),
+            id: req.params.idProduct
         });
     },
     //FORMULARIO DE CREACIÓN
     create: (req,res)=>{
-        res.render('productCreate', {
+        return res.render('products/productCreate', {
             headTitle: 'Free Food - Crear Producto',
             stylesheet: 'styles_forms.css'
         })
     },
     //AGREGA UN PRODUCTO AL LISTADO
-    store: (req, res, next) => {
-        if(!req.file) {
-			const error = new Error ("Por favor seleccioná un archivo válido")
-			error.httpStatusCode=400
-			return next(error)
-		} else {
-            let newProduct = {
-                id: allProducts.length+1,
-                idCat: req.body.idCat,
-                name: req.body.name,
-                description: req.body.description,
-                price: req.body.price,
-                img: req.file.filename,
-                status: req.body.status,
-                discountAmount: req.body.discount
-            };
-            allProducts.push(newProduct);
-            fs.writeFileSync(productsFilePath, JSON.stringify(allProducts, null, ' '));
-        };
+    store: (req, res) => {
+        let errors = validationResult(req)
+        if(!errors.isEmpty()) {
+            return res.render('products/productCreate', {
+                headTitle: 'Free Food - Crear Producto',
+                stylesheet: 'styles_forms.css',
+                errors: errors.mapped()
+            })
+        }
+            
+        Product.create(req.body, req.file)
         
-        res.redirect('/products');
+        return res.redirect('/products');
     },
     //FORMULARIO DE EDICIÓN DE PRODUCTO
     edit: (req,res)=>{
-        res.render('productEdit', {
+        return res.render('products/productEdit', {
             headTitle: 'Free Food - Editar Producto',
             stylesheet: 'styles_forms.css',
-            producto: allProducts.find(item => item.id == req.params.idProduct)
+            producto: Product.findById(req.params.idProduct)
         })
     },
     //ACTUALIZA INFORMACIÓN DE UN PRODUCTO
-    update: (req, res, next) => {
-        if(!req.file) {
-			const error = new Error ("Por favor seleccioná un archivo válido")
-			error.httpStatusCode=400
-			return next(error)
-		} else {
-            for(item of allProducts){
-                if(item.id == req.params.idProduct){
-                    item.idCat = req.body.idCat
-                    item.name = req.body.name
-                    item.description = req.body.description
-                    item.price = req.body.price
-                    item.img = req.file.filename
-                    item.status = req.body.status
-                    item.discountAmount = req.body.discountAmount 
-                }
-            }
-            fs.writeFileSync(productsFilePath, JSON.stringify(allProducts, null, ' ')); 
-        };
-        res.redirect('/products');
+    update: (req, res) => {
+        let errors = validationResult(req)
+        if(!errors.isEmpty()) {
+            return res.render('products/productEdit', {
+                headTitle: 'Free Food - Editar Producto',
+                stylesheet: 'styles_forms.css',
+                oldData: Product.findById(req.params.idProduct),
+                errors: errors.mapped()
+            })
+        }
+        
+        Product.edit(req.params.idProduct, req.body, req.file)
+        return res.redirect('/products');
     },
     //ELIMINA UN PRODUCTO DE LA LISTA
     delete: (req, res) => {
-        let id = req.params.idProduct;
-        let productsFilter = allProducts.filter((product) => {
-            return product.id != id;
-        });
-        allProducts = productsFilter;
-        fs.writeFileSync(productsFilePath, JSON.stringify(allProducts, null, ' '));
+        Product.delete(req.params.idProduct)
         
-        res.redirect('/products');
+        return res.redirect('/products');
     }
 }
-
-module.exports = productsController;

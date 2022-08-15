@@ -1,190 +1,127 @@
-const fs = require('fs');
-const path = require('path');
-const {validationResult} = require('express-validator');
-const User = require('../models/Users');
-const bcryptjs = require('bcryptjs');
-const { localsName } = require('ejs');
-const userFilePath = path.join(__dirname, '../data/users.json');
-const users = JSON.parse(fs.readFileSync(userFilePath, 'utf-8'));
-const cookieParser = require('cookie-parser');
+const User = require('../models/User')
+const { validationResult } = require('express-validator')
 
-const userController = {
-    //PERFIL DEL USUARIO
-    profile: (req,res)=>{
-        let userLogged = (req.session.login) ? req.session.login : null;
-        res.render('user', {
+module.exports = {
+    //LISTADO DE USUARIOS
+    index: (req, res) => {
+        res.render('users/userList',{
+            headTitle: 'Free Food - Listado de usuarios',
+            stylesheet: ' ',
+            allUsers: User.getData()
+        })
+    },
+    //PERFIL DE USUARIOS
+    profile: (req, res)=>{
+        return res.render('users/userProfile', {
             headTitle: 'Free Food - Perfil de Usuario',
-            stylesheet: 'styles_forms.css',
-            user: userLogged,
+            stylesheet: 'styles.css',
+            user: User.findById(req.params.id)
         })
     },
     //FORMULARIO DE LOGIN
-    log: (req,res)=>{
-        res.render('login', {
+    login: (req, res)=>{
+        res.render('users/login', {
             headTitle: 'Free Food - Ingresar',
             stylesheet: 'styles_log.css',
-            info: '',
-            userLog: '',
         })
     },
-    //LOGIN DEL USUARIO
-    validate: (req,res)=>{        
+    //PROCESO DE LOGIN
+    loginPost: (req, res) => {
+       let errors = validationResult(req)
+       if( !errors.isEmpty() ){  
+            return res.render('users/login', {
+                headTitle: 'Free Food - Ingresar',
+                stylesheet: 'styles_log.css',
+                errors: errors.mapped()
+            })
+       }
 
-        const resultValidation = validationResult(req);
-        
-        if(!resultValidation.isEmpty()){
-            res.render('login', {
-                headTitle: 'Free Food - Ingresar',
-                stylesheet: 'styles_log.css',
-                errors: resultValidation.mapped(),
-                userLog: req.body.username,
-            })
-        }
-        let usertoLogin = User.findByUsername(req.body.username);
-    
-        console.log(usertoLogin);
-        if(usertoLogin){
-            if(bcryptjs.compareSync(req.body.password, usertoLogin.password)){
-                req.session.login = usertoLogin;
-                //fabri
-            if(req.body.checkbox) 
-            {
-            res.cookie('username',req.body.username,{maxAge: 1000*60})
+       let foundByEmail = User.findByEmail(req.body.emailUser)
+       let foundByUsername = User.findByUsername(req.body.emailUser)
+
+       if( foundByEmail ) {
+            delete foundByEmail.password
+            if( req.body.remember_user ) {
+                res.cookie( 'userEmail', foundByEmail.email , { maxAge: 600000*6 })
             }
-            //fabri
-                res.redirect('/user/');
+            req.session.userLogged = { ...foundByEmail }
+            return res.redirect(`/user/${foundByEmail.id}`)
+
+       } else {
+            delete foundByUsername.password
+            if( req.body.remember_user ) {
+                res.cookie( 'userEmail', foundByUsername.email , { maxAge: 600000*6 })
             }
-            else{
-                res.render('login', {
-                    headTitle: 'Free Food - Ingresar',
-                    stylesheet: 'styles_log.css',
-                    errors:{
-                        login: {
-                            msg: 'Contraseña incorrectos'
-                        }
-                    },
-                    userLog: req.body.username,
-                })
-            }
-        }
-        else{
-            res.render('login', {
-                headTitle: 'Free Food - Ingresar',
-                stylesheet: 'styles_log.css',
-                errors: {
-                    login: {
-                        msg: 'Usuario no existe'
-                    }
-                },
-                userLog: req.body.username,
-            })
-        }
+            req.session.userLogged = { ...foundByUsername }
+            return res.redirect(`/user/${foundByUsername.id}`)
+       }
+
     },
     //FORMULARIO DE REGISTRO
-    reg: (req,res)=>{
-        res.render('register', {
+    register: (req, res)=>{
+        res.render('users/register', {
             headTitle: 'Free Food - Registro',
             stylesheet: 'styles_register.css'
         })
     },
-    //REGISTRO DEL USUARIO
-    create: (req, res) => {
-        let datos = req.body;
-		let newId = users.length+1;
-        let encryptedPass = bcryptjs.hashSync(datos.password, 10);
-        if(!req.file) {
-			const error = new Error ("Por favor seleccioná un archivo válido")
-			error.httpStatusCode=400
-			return next(error)
-		} else {
-            let newUser = {
-                id: newId,
-                firstName: datos.firstName,
-                lastName: datos.lastName,
-                address: datos.address,
-                email: datos.email,
-                phone: datos.phone,
-                username: datos.username,
-                password: encryptedPass,
-                category: 'usuario',
-                image: req.file.filename
-            };
-            users.push(newUser);
-            fs.writeFileSync(userFilePath, JSON.stringify(users, null, ' '));
-        };
-
-        res.redirect("/user/edit/" + newId);		
-    },
-    //FORMULARIO DE EDICIÓN
-    edit: (req,res)=>{
-        //fabri
-        if(req.body.checkbox) {
-            res.cookie('username',req.body.username,{maxAge: 1000*60})
+    //CREACION DE USUARIO
+    add: (req, res) => {
+        let errors = validationResult(req)
+        if( !errors.isEmpty() ){
+           return res.render('users/register', {
+                headTitle: 'Free Food - Registro',
+                stylesheet: 'styles_register.css',
+                errors: errors.mapped()
+           })
         }
-        //fabri
-        let userId = req.params.id;
-		let userSelected =  users.find(user => {
-			return user.id == userId;
-		});
 
-		res.render('userEdit', {
-			usuario: userSelected,
-            headTitle: 'Free Food - Perfil de Usuario',
-            stylesheet: 'styles_register.css'
+        User.create(req.body)
+
+        res.redirect('/')
+    },
+    //FORMULARIO DE EDICION DE USUARIO
+    edit: (req, res)=>{
+
+        if( req.session.userLogged.category === 'administrador'){
+            return res.render('users/userEdit', {
+                headTitle: 'Free Food - Editar usuario',
+                stylesheet: 'styles_forms.css',
+                usuario: User.findById(req.params.id)
+            })
+        }
+
+		res.render('users/userEdit', {
+            headTitle: 'Free Food - Editar usuario',
+            stylesheet: 'styles_forms.css',
+            usuario: User.findById(req.session.userLogged.id)
 		})
     },
-    //EDICIÓN DEL USUARIO    
-    update: (req,res)=>{
-        
-		let id = req.params.id;
-		let datos = req.body;
-		let imagen = req.file;
-		let originalImage = users[id-1].image;
-		let datosUsuario ={
-			firstName: datos.firstName,
-			lastName: datos.lastName,
-			address: datos.address,
-			email: datos.email,
-			phone: datos.phone,
-            username: datos.username,
-            password: datos.password,
-            repeatPassword: '',
-            category: datos.category,
-			image: originalImage,           
-		}
-		if (imagen != undefined){
-			datosUsuario.image = imagen.filename;
-		}
+    //ACTUALIZA INFORMACION DE USUARIO
+    update: (req, res) => {
+        let errors = validationResult(req)
+        if( !errors.isEmpty() ){
+            return res.render( 'users/userEdit', {
+                headTitle: 'Free Food - Editar usuario',
+                stylesheet: 'styles_forms.css',
+                errors: errors.mapped(),
+                oldData: User.findById(req.params.id)
+            })
+        }
+        //return res.send(req.body)
+        User.edit(req.params.id, req.body, req.file)
 
-        // if(datos.password!=datos.repeatPassword){
-        //     datosUsuario.repeatPassword = 'Las contraseñas no coinciden';
-        //     console.log('no coiniciden');
-        //     return res.render('userEdit', {
-        //         usuario: datosUsuario,
-        //         headTitle: 'Free Food - Perfil de Usuario',
-        //         stylesheet: 'styles_register.css'
-        //         }
-        //     )
-        // }
-
-		for(i=0; i<users.length; i++){
-			if(users[i].id==id){
-				users[i].firstName = datosUsuario.firstName;
-				users[i].lastName = datosUsuario.lastName;
-				users[i].address = datosUsuario.address;				
-				users[i].email = datosUsuario.email;
-                users[i].phone = datosUsuario.phone;
-                users[i].username= datosUsuario.username
-                users[i].password = datosUsuario.password;
-                users[i].category = datosUsuario.category;
-				users[i].image = datosUsuario.image;
-			}
-		}
-
-        let jsonUsers = JSON.stringify(users, null, ' ');
-		fs.writeFileSync(userFilePath,jsonUsers);
-		res.redirect("/user/edit/" + id)
+        res.redirect(`/user/${req.params.id}`)
     },
-}
+    //ELIMINA UN USUARIO
+    delete: (req, res) => {
+        User.delete(req.params.id)
 
-module.exports = userController;
+        res.redirect('/user')
+    },
+    //DESLOGUEA AL USUARIO
+    logout: (req, res) => {
+        req.session.destroy();
+        res.clearCookie( 'userEmail' );
+        return res.redirect('/')
+    }
+}

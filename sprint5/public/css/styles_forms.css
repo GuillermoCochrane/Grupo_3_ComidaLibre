@@ -123,6 +123,14 @@
     border-radius: 10px;
     padding: 8px;
 }
+.error-input {
+    padding: 0 10px 0 10px; 
+    margin: 10px 0px; 
+    font-size: 16px; 
+    background-color: #c98787be; 
+    color: rgb(66, 66, 66);
+    border-radius: 5px;
+}
 
 @media (min-width: 640px){
     .input-container-form>.btn-container{

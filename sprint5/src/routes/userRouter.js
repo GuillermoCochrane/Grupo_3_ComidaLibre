@@ -1,53 +1,45 @@
-//REQUIRES
+//EXPRESS Y ROUTER
 const express = require('express');
-const { body, check } = require('express-validator');
-const bcryptjs = require('bcryptjs');
-const multer = require('multer');
-const path = require('path');
-const userController = require('../controllers/userController');
-const guestMDW = require('../middlewares/guestMDW');
-const loggedMDW = require('../middlewares/loggedMDW');
-
-//ROUTER
 const router = express.Router();
 
-//DEFINICIÓN STORAGE Y UPLOAD DE ARCHIVOS
-const storage = multer.diskStorage({  
-    destination: (req, file, cb) => {
-        let imgAdress = path.join(__dirname,'../../public/images/avatars');
-        cb(null, imgAdress);
-    },
-    filename: (req, file, cb) => {
-        let newName = `${Date.now()}_userImage${path.extname(file.originalname)}`;
-        cb(null, newName);
-    }
-})
-const upload = multer({ storage });
+//CONTROLADOR DE USUARIOS
+const userController = require('../controllers/userController');
 
-//VALIDACIONES DEL LOGIN
-const loginValidation = [
-    body('username')
-        .notEmpty().withMessage('El campo Usuario es obligatorio').bail()
-        .isLength({min:4}).withMessage('El nombre de usuario debe tener al menos 4 caracteres'),
-    body('password')
-        .notEmpty().withMessage('Debe ingresar una contraseña').bail()
-        .isLength({ min: 8 }).withMessage('La contraseña debe tener al menos 8 caracteres'),
-        
-]
+//MULTER Y CONFIGURACION
+const uploadImg = require('../middlewares/multerUser')
 
-//PERFIL DEL USUARIO
-router.get('/', guestMDW, userController.profile);
+//VALIDACIONES
+const registerValidations = require('../middlewares/registerValidations')
+const loginValidations = require('../middlewares/loginValidations')
+const editUserValidations = require('../middlewares/editUserValidations')
 
-//LOGIN DEL USUARIO
-router.get('/login', loggedMDW, userController.log);
-router.post('/login', userController.validate);
+//RESTRICCION DE ACCESO A RUTAS
+const isGuestMdw = require('../middlewares/isGuestMdw')
+const isUserMdw = require('../middlewares/isUserMdw')
+const isAdminMdw = require('../middlewares/isAdminMdw')
 
-//REGISTRO DEL USUARIO
-router.get('/register', loggedMDW, userController.reg);
-router.post('/register', upload.single('image'), userController.create);
+//LISTADO DE USUARIOS
+router.get('/', isAdminMdw, userController.index)
 
-//EDICIÓN DEL USUARIO
-router.get('/edit/:id', guestMDW, userController.edit); 
-router.put('/edit/:id',upload.single('image'), userController.update); 
+//FORMULARIO DE REGISTRO
+router.get('/register', isUserMdw, userController.register);
+router.post('/register', registerValidations, userController.add);
+
+//FORMULARIO DE LOGIN
+router.get('/login', isUserMdw, userController.login);
+router.post('/login', loginValidations, userController.loginPost);
+
+//FORMULARIO DE EDICION DE USUARIO
+router.get('/edit/:id', isGuestMdw, userController.edit);
+router.put('/edit/:id', isGuestMdw, uploadImg.single('image'), editUserValidations, userController.update);
+
+//PERFIL DE USUARIO
+router.get('/:id', isGuestMdw, userController.profile);
+
+//DESLOGUEA AL USUARIO
+router.post('/logout', isGuestMdw, userController.logout);
+
+//BORRADO DE USUARIO
+router.post('/:id', isAdminMdw, userController.delete);
 
 module.exports = router;

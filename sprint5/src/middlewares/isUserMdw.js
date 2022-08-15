@@ -1,4 +1,4 @@
-function loggedMDW(req, res, next){
+module.exports = (req, res, next) => {
 
     if (req.session.login){
     
@@ -8,5 +8,3 @@ function loggedMDW(req, res, next){
 
     next();
 };
-
-module.exports = loggedMDW

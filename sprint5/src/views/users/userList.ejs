@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <%- include('../partials/head.ejs') %>
+
+<body>
+    
+    <%- include('../partials/header.ejs') %>
+
+    <main class="main-user">
+
+        <div style="display: flex; flex-wrap: wrap;" class="user-list-container">
+        
+            <% for(user of allUsers) {%>
+                
+                <div style="margin:15px; background-color: lightgray; width: 17%;">
+                    <img style="width: 100%; max-height: 250px;" src="/images/avatar/<%= user.image %>" alt=""> 
+                    <p><%= user.username %></p>
+                    <p><%= user.email %> </p>
+                    <p style="display: inline;"><%= user.firstName %> </p>
+                    <p style="display: inline;"><%= user.lastName %> </p>
+                    <p><%= user.address %> </p>
+                    <p><%= user.phone %> </p>
+                    <p><%= user.category %> </p>
+                    <a style="border:1px solid black; padding-left: 10px; padding-right: 10px;" href="/user/edit/<%= user.id %>">Editar perfil</a>
+                    <form action="/user/<%=user.id%>" method="post">
+                        <button style="cursor: pointer;" type="submit">Borrar usuario</button>
+                    </form>
+                </div>
+
+            <% } %>
+
+        </div> 
+        
+        
+    </main>
+
+    <%- include('../partials/footer.ejs') %> 
+
+</body>

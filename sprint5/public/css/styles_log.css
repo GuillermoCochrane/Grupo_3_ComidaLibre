@@ -37,10 +37,10 @@ main {
     flex-direction: column;
     align-items: center;
     width: 90%;
-    max-width: 380px;
+    max-width: 490px;
     margin-left: auto;
     margin-right: auto;
-    padding: 40px;
+    padding: 50px;
     background-color: #ccb489;
     border: 1px solid rgba(0, 0, 0, 0);
     border-radius: 8px;
@@ -69,7 +69,7 @@ h3 {
     background-color: #87c99b6e;
 }
 .rememberme-container {
-    width: 90%;
+    width: 80%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -78,6 +78,10 @@ h3 {
 .rememberme-container label {
     font-size: 14px;
     margin: 0px 5px;
+    cursor: pointer;
+}
+.rememberme-container>input {
+    cursor: pointer;
 }
 
 .pass-forgot {
@@ -90,11 +94,10 @@ h3 {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 15px 0px;
-    min-width: 90px;
-    max-width: 175px;
-    width: 33%;
-    height: 50px;
+    margin: 30px 0px;
+    min-width: 100px;
+    width: 90%;
+    height: 44px;
     background-color: #87c99b;
     border: 1px solid #87c99bcc;
     border-radius: 8px;
@@ -103,6 +106,7 @@ h3 {
     font-family: 'Archivo Narrow';
     font-size: 18px;
     transition-duration: 0.25s;
+    cursor: pointer;
 }
 .log-button:hover{
     background-color: #6fa57f
@@ -137,4 +141,13 @@ form label{
     border: 2px solid #ebd2a3;
     padding: 5px;
     border-radius: 7px;
+}
+
+.error-input {
+    padding: 0 10px 0 10px; 
+    margin: 5px auto 0px auto; 
+    font-size: 16px; 
+    background-color: #c98787be; 
+    color: rgb(66, 66, 66);
+    border-radius: 5px;
 }

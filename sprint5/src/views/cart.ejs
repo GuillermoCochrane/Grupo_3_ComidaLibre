@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <%- include('partials/head.ejs') %>
+
+<body>
+    
+    <%- include('partials/header.ejs') %> 
+
+    <main class="main-cart">
+
+        <div class="tittle-close">
+            <h2 class="tittle-page">Carrito de compras</h2>
+            <a href="/cart/delete">Vaciar carrito</a>
+        </div>
+        
+        <% if( typeof productList != 'undefined' ) {%>
+            
+            <% for(let producto of productList) { %>
+            <article class="main-article">
+                <img src="/images/products/<%- producto.img %>" alt="<%- producto.name %>">
+                <div class="product-detail">
+
+                    <br>
+                    <h3>
+                        <%= producto.name %>
+                    </h3>
+                    <br>
+                    <h4>
+                        $ <%= producto.price %>
+                    </h4>
+                    <br>
+                    <div class="subtotal-module">
+                        <span class="subtotal">
+                            $ <%= producto.price %>
+                        </span>
+                    </div>
+                </div>
+                <a class="delete-cart-item" href="/cart/delete/<%= producto.id %>" type="submit"><i class="fas fa-trash-alt"></i></a>
+            </article>
+
+            <% } %>
+        
+        <% } else {%>
+            <article class="main-article">
+
+                <h3>Vacio, <a href="/products">ir de compras</a></h3>
+
+            </article>
+        
+        <% } %>  
+
+    
+        <section class="end-section">
+            <div class="end-subtotal">
+                <h4>Subtotal</h4>
+                <span>$ <%= typeof subtotal != 'undefined' ? subtotal : null %></span>
+            </div>
+            <div class="shipping">
+                <h4>Envío</h4>
+                <span>$ <%= typeof shipping != 'undefined' ? shipping : null %> </span>
+            </div>
+            <div class="total">
+                <h4>Total</h4>
+                <span>$ <%= typeof total != 'undefined' ? total : null %></span>
+            </div>
+        </section>
+    
+        <form action="/cart" method="get" class="apply-code">
+            <input type="text" name="discount-code" id="discount-code" placeholder="Código de descuento" minlength="8" maxlength="12" class="code">
+            <button type="submit" value="apply" class="apply">Aplicar</button>
+        </form>
+        <form action="/notFound" method="get" class="button">
+            <button type="submit" value="end" class="end">Finalizar Compra</button>
+        </form>
+        <form action="/" method="get" class="button">
+            <button type="submit" value="continue" class="continue">Seguir comprando</button>
+        </form>
+
+    </main>
+
+    <%- include('partials/footer.ejs') %> 
+
+
+
+</body>
+</html>

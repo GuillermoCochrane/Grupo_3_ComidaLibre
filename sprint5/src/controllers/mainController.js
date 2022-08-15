@@ -1,14 +1,12 @@
-const fs = require('fs');
-const path = require('path');
-const productsController = require('./productsController');
-const allProducts = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/products.json'), 'utf-8'));
+const Product = require('../models/Product')
 
-const mainController = {
-    home: (req,res)=>{
+module.exports = {
+    //VISTA DEL HOME
+    home: (req,res) => {
         // Recorre el array de allProducts y separa los productos que están en recomendados a un array diferente
         let recomendation = [];
         let noRecomendation = [];
-        allProducts.forEach((product)=>{
+        Product.getData().forEach((product)=>{
             if(product.status == 'recomendado'){
                 recomendation.push(product);
             }else{
@@ -37,31 +35,75 @@ const mainController = {
             productList: [randomRecomendation, randomNoRecomendation],
         })
     },
-    cart: (req,res)=>{
-        const arrayList = [];
-        // Funcion para generar el array de productos
-        for (let i = 0; i < 3; i++) {
-            const random = Math.floor(Math.random() * allProducts.length);
-            arrayList.push(allProducts[random]);
-            allProducts.splice(random, 1);
-            
+    //VISTA DEL CARRITO
+    cart: (req,res) => {
+        if( req.cookies.cart ) {
+            let count = 0
+            for (i = 0; i < req.cookies.cart.length; i++) {
+                count = count + req.cookies.cart[i].price
+            }
+          
+            //shipping = numero fijo
+            return res.render('cart', {
+                headTitle: 'Free Food - Carrito de compras',
+                stylesheet: 'styles_car.css',
+                productList: req.cookies.cart,
+                subtotal: count.toFixed(2),
+                shipping: 50,
+                total: (count + 50).toFixed(2)
+            })
         }
         
-        res.render('productCart', {
+        return res.render('cart', {
             headTitle: 'Free Food - Carrito de compras',
             stylesheet: 'styles_car.css',
-            productList: arrayList,
         })
     },
-    notFound: (req,res)=>{
-        res.render('notFound')
+    //AGREGA PRODUCTOS AL CARRITO
+    cartAdd: (req, res) => {
+        if( req.session.cart ) {
+            let productToCart = Product.findById( req.params.id )
+
+            for (i = 0; i < req.body.quantity; i++) {
+                req.session.cart.push(productToCart)
+            }
+            res.cookie( 'cart', req.session.cart, { maxAge: 60000*5 })
+
+        } else {
+            req.session.cart = []
+            let productToCart = Product.findById( req.params.id )
+
+            for (i = 0; i < req.body.quantity; i++) {
+                req.session.cart.push(productToCart)
+            }
+            res.cookie( 'cart', req.session.cart, { maxAge: 60000*5 })
+        }
+        return res.redirect('/cart')
+
     },
-    
+    cartDelete: (req, res) => {
+        if( req.params.id && req.session.cart.length > 1) {
+            for(let i=0; i<req.session.cart.length; i++){
+                if( req.session.cart[i].id == req.params.id ) {
+                    req.session.cart.splice(i, 1)
+                }
+                break;
+            }
+            res.cookie( 'cart', req.session.cart, { maxAge: 60000*5 })
+            return res.redirect('/cart')
+        }
+        
+        delete req.session.cart
+        res.clearCookie( 'cart' );
+        return res.redirect('/cart')
+    },
+    //FUNCIONALIDAD DE LA BARRA DE BUSQUEDA
     search: (req, res) => {
 		let busqueda = req.query.searchBar;
 		let resultado = [];
+        let allProducts = Product.getData();
         if(busqueda){
-            for (let i=0; i<allProducts.length; i++){
+            for (let i=0; i< allProducts.length; i++){
                 if ((allProducts[i].name.toUpperCase()).includes(busqueda.toUpperCase()) || 
                     (allProducts[i].status.toUpperCase()).includes(busqueda.toUpperCase()) || 
                     (allProducts[i].idCat.toUpperCase()).includes(busqueda.toUpperCase())){
@@ -69,12 +111,12 @@ const mainController = {
                 }
             };
         } else {
-            res.redirect('/')
+            return res.redirect('/')
         }
 		
-		let cantidad= resultado.length;
+		let cantidad = resultado.length;
 
-		res.render('products',{
+		res.render('products/products',{
             headTitle: 'Free Food - Resultados de Búsqueda',
             stylesheet: 'styles_products.css',
 			productList: resultado,
@@ -83,5 +125,3 @@ const mainController = {
         );
 	},
 }
-
-module.exports = mainController;
