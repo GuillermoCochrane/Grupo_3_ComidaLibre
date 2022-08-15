@@ -81,6 +81,7 @@ module.exports = {
         return res.redirect('/cart')
 
     },
+    //ELIMINA PRODUCTOS DEL CARRITO
     cartDelete: (req, res) => {
         if( req.params.id && req.session.cart.length > 1) {
             for(let i=0; i<req.session.cart.length; i++){
