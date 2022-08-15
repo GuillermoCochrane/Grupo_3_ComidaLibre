@@ -9,6 +9,10 @@ const app = express();
 //DEFINICION DE PUERTO
 const puerto = process.env.PORT || 3000;
 
+//fabri
+const cookies=require('cookie-parser')
+//fabri
+
 //TEMPLATE ENGINE
 app.set('views', path.join(__dirname, '/views'));
 app.set('view engine', 'ejs');
@@ -25,6 +29,9 @@ app.use(session({
     resave: false,
 	saveUninitialized: false,git
 }));
+//fabri
+app.use(cookies())
+//fabri
 
 //USO DE RUTAS
 const mainRouter = require('./routes/mainRouter');
