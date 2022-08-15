@@ -46,6 +46,12 @@ const userController = {
         if(usertoLogin){
             if(bcryptjs.compareSync(req.body.password, usertoLogin.password)){
                 req.session.login = usertoLogin;
+                //fabri
+            if(req.body.checkbox) 
+            {
+            res.cookie('username',req.body.username,{maxAge: 1000*60})
+            }
+            //fabri
                 res.redirect('/user/');
             }
             else{
@@ -111,6 +117,11 @@ const userController = {
     },
     //FORMULARIO DE EDICIÓN
     edit: (req,res)=>{
+        //fabri
+        if(req.body.checkbox) {
+            res.cookie('username',req.body.username,{maxAge: 1000*60})
+        }
+        //fabri
         let userId = req.params.id;
 		let userSelected =  users.find(user => {
 			return user.id == userId;
