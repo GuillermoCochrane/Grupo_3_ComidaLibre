@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <%- include('../partials/head.ejs') %>
+
+<body>
+    <%- include('../partials/header.ejs') %>
+
+    <main class="main-products">
+        <% if (locals && locals.cantidad >= 0){ %>
+            <h1>Resultados de la búsqueda: <%= cantidad %> </h1>                    
+        <% } else { %> 
+            <br>
+            <h1>Productos del menú</h1>
+        <% } %>
+        <br> 
+        <section class="section-article">
+            <% for(let product of productList){ %>
+            <article class="main-article">
+                <img src="/images/products/<%= product.img %>" alt="<%= product.name %>">
+                <div class="product-detail">
+                    <h5 class="product-name"> <%= product.name %> </h5>
+                    <p class="price">$ <%= (product.price-(product.price*(product.discountAmount/100))).toFixed(2) %></p>
+                    <% if(product.discountAmount != 0) {%>
+                        <p class="discount">%<%= product.discountAmount %> OFF</p>
+                        
+                    <% } else {%> <p class="discount-hidden"><%= product.discountAmount %> % OFF</p> <% } %>
+                </div>
+                <form action="/products/<%= product.idCat %>/<%= product.id %>">
+                    <button type="submit" class="btn-detail">Ver detalle</button>
+                </form>
+
+            </article>
+            <% } %>
+            <% if (locals && locals && locals.cantidad >= 0 && cantidad==0) { %>
+                <h2 class="products-title" style="color: tomato;">No hay productos que coincidan con esa búsqueda</h2>
+            <% } %>
+            </section>
+    </main>
+
+    <%- include('../partials/footer.ejs') %>
+</body>
+</html>

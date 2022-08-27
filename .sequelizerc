@@ -1,0 +1,7 @@
+const path = require('path')
+module.exports = {
+config: path.resolve('./sprint6/src/database/config', 'config.js'),
+'models-path': path.resolve('./sprint6/src/database/models'),
+'seeders-path': path.resolve('./sprint6/src/database/seeders'),
+'migrations-path': path.resolve('./sprint6/src/database/migrations'),
+}
