@@ -22,5 +22,17 @@ module.exports = (sequelize, dataTypes) => {
 
     const Sale = sequelize.define(alias, cols, config);
 
+    Sale.associate = function(models){
+        Sale.belongsTo(models.Users, {
+            as: "sale_user",
+            foreignKey: "user_id"
+        });
+
+        Sale.hasMany(models.SaleDetails, {
+            as: "sale_saleDetails",
+            foreignKey: "sale_id"
+        });
+    };
+
     return Sale;
-}
+};

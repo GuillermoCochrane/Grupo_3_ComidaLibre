@@ -21,6 +21,18 @@ module.exports = (sequelize, dataTypes) => {
     };
 
     const Favourite = sequelize.define(alias, cols, config);
+    
+    Favourite.associate = function(models){
+        Favourite.belongsTo(models.Products, {
+            as: "favourite_product",
+            foreignKey: "product_id"
+        });
+
+        Favourite.belongsTo(models.Users, {
+            as: "favourite_user",
+            foreignKey: "user_id"
+        });
+    };
 
     return Favourite;
 }
