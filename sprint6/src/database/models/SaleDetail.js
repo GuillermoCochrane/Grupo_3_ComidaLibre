@@ -1,46 +1,52 @@
-module.exports = (sequelize, dataTypes) => {
-    let alias = "SaleDetails";
+module.exports = (sequelize, DataTypes) => {
+    let alias = "SaleDetail";
     let cols = {
-        id: {
-            type: dataTypes.INTEGER(10),
-            primaryKey: true,
-            autoIncrement: true
-        },
-        sale_id: {
-            type: dataTypes.INTEGER(10),
-            notNull: true
-        },
-        product_id: {
-            type: dataTypes.INTEGER(6),
-            notNull: true
-        },
-        quantity: {
-            type: dataTypes.TINYINT(2),
-            notNull: true
-        },
-        subtotal: {
-            type: dataTypes.DECIMAL(10,2),
-            notNull: true
-        }
+      id: {
+        type: DataTypes.INTEGER(10).UNSIGNED,
+        autoIncrement: true,
+        primaryKey: true,
+        allowNull: false,
+      },
+      sales_id: {
+        type: DataTypes.INTEGER(10).UNSIGNED,
+        allowNull: false,
+      },
+      products_id: {
+        type: DataTypes.INTEGER(6).UNSIGNED,
+        allowNull: false,
+      },
+      quantity: {
+        type: DataTypes.TINYINT(1),
+      },
+      unit_price: {
+        type: DataTypes.DECIMAL(10, 2),
+      },
+      discount: {
+        type: DataTypes.TINYINT(3),
+      },
+      total: {
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: false,
+      },
     };
     let config = {
-        tableName: "sale_details",
-        timestamps: false
+      tableName: "sales_details",
+      timestamps: false,
     };
-
-    const SaleDetail = sequelize.define(alias, cols, config);
-
-    SaleDetail.associate = function(models){
-        SaleDetail.belongsTo(models.Sales, {
-            as: "saleDetail_sale",
-            foreignKey: "sale_id"
-        });
-
-        SaleDetail.belongsTo(models.Products, {
-            as: "saleDetail_product",
-            foreignKey: "product_id"
-        });
+  
+    const SaleDetails = sequelize.define(alias, cols, config);
+  
+    SaleDetails.associate = (models) => {
+      SaleDetails.belongsTo(models.Product, {
+        as: "saleDetail_product",
+        foreignKey: "products_id",
+      });
+  
+      SaleDetails.belongsTo(models.Sale, {
+        as: "saleDetail_sale",
+        foreignKey: "sales_id",
+      });
     };
-
-    return SaleDetail;
-};
+  
+    return SaleDetails;
+  };

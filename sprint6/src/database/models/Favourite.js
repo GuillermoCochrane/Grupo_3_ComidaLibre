@@ -1,38 +1,40 @@
-module.exports = (sequelize, dataTypes) => {
-    let alias = "Favourites";
+module.exports = (sequelize, DataTypes) => {
+    let alias = "Favourite";
     let cols = {
-        id: {
-            type: dataTypes.INTEGER(4),
-            primaryKey: true,
-            autoIncrement: true
-        },
-        product_id: {
-            type: dataTypes.INTEGER(6),
-            notNull: true
-        },
-        user_id: {
-            type: dataTypes.INTEGER(6),
-            notNull: true
-        }
+      id: {
+        type: DataTypes.INTEGER(4).UNSIGNED,
+        autoIncrement: true,
+        primaryKey: true,
+        allowNull: false,
+      },
+      products_id: {
+        type: DataTypes.INTEGER(6).UNSIGNED,
+        allowNull: false,
+      },
+      users_id: {
+        type: DataTypes.INTEGER(6).UNSIGNED,
+        allowNull: false,
+      },
     };
     let config = {
-        tableName: "favourites",
-        timestamps: false
+      tableName: "favourites",
+      timestamps: false,
     };
-
+  
     const Favourite = sequelize.define(alias, cols, config);
-    
-    Favourite.associate = function(models){
-        Favourite.belongsTo(models.Products, {
-            as: "favourite_product",
-            foreignKey: "product_id"
-        });
-
-        Favourite.belongsTo(models.Users, {
-            as: "favourite_user",
-            foreignKey: "user_id"
-        });
+  
+    Favourite.associate = (models) => {
+      Favourite.belongsTo(models.Product, {
+        as: "fav_product",
+        foreignKey: "products_id",
+      });
+  
+      Favourite.belongsTo(models.User, {
+        as: "fav_user",
+        foreignKey: "users_id",
+      });
     };
-
+  
     return Favourite;
-}
+  };
+  

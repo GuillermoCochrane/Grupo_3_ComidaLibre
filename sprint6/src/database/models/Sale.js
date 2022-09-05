@@ -1,38 +1,53 @@
-module.exports = (sequelize, dataTypes) => {
-    let alias = "Sales";
+module.exports = (sequelize, DataTypes) => {
+    let alias = "Sale";
     let cols = {
-        id: {
-            type: dataTypes.INTEGER(10),
-            primaryKey: true,
-            autoIncrement: true
-        },
-        user_id: {
-            type: dataTypes.INTEGER(6),
-            notNull: true
-        },
-        total: {
-            type: dataTypes.DECIMAL(10,2),
-            notNull: true
-        }
+      id: {
+        type: DataTypes.INTEGER(10).UNSIGNED,
+        autoIncrement: true,
+        primaryKey: true,
+        allowNull: false,
+      },
+      created_at: {
+        type: DataTypes.DATE,
+        default: null,
+      },
+      updated_at: {
+        type: DataTypes.DATE,
+        default: null,
+      },
+      users_id: {
+        type: DataTypes.INTEGER(6).UNSIGNED,
+        allowNull: false,
+      },
+      payment_method: {
+        type: DataTypes.STRING(45),
+        allowNull: false,
+        default: "debit",
+      },
+      total: {
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: false,
+      },
     };
     let config = {
-        tableName: "sales",
-        timestamps: true
+      tableName: "sales",
+      timestamps: true,
+      underscored: true,
     };
-
+  
     const Sale = sequelize.define(alias, cols, config);
-
-    Sale.associate = function(models){
-        Sale.belongsTo(models.Users, {
-            as: "sale_user",
-            foreignKey: "user_id"
-        });
-
-        Sale.hasMany(models.SaleDetails, {
-            as: "sale_saleDetails",
-            foreignKey: "sale_id"
-        });
+  
+    Sale.associate = (models) => {
+      Sale.hasMany(models.SaleDetail, {
+        as: "sale_details",
+        foreignKey: "sales_id",
+      });
+  
+      Sale.belongsTo(models.User, {
+        as: "sale_user",
+        foreignKey: "users_id",
+      });
     };
-
+  
     return Sale;
-};
+  };

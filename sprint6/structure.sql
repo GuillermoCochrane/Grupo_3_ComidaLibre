@@ -1,168 +1,126 @@
 -- CREAR LA DB
 DROP DATABASE IF EXISTS freefood_db;
-CREATE DATABASE freefood_db;
-
+CREATE DATABASE freefood_db DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 -- USAR LA DB
 USE freefood_db;
 
 -- CREAR LAS TABLAS
-
-
-
--- TABLA products
-DROP TABLE IF EXISTS `products`;
-CREATE TABLE `products` (
-  `id` int(6) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(100),
-  `description` text(500),
-  `price` decimal(10,2),
-  `image` varchar(255),
-  `discount` tinyint(3),
-  `category_id` int(6) unsigned NOT NULL,
-  `status_id` int(6) unsigned NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `products_category_id_foreign` (`category_id`),
-  KEY `products_status_id_foreign` (`status_id`),
-  CONSTRAINT `products_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`)
-  CONSTRAINT `products_status_id_foreign` FOREIGN KEY (`status_id`) REFERENCES `statuses` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-
-
--- TABLA statuses
-DROP TABLE IF EXISTS `statuses`;
-CREATE TABLE `statuses` (
-  `id` int(6) unsigned NOT NULL AUTO_INCREMENT,
-  `status` varchar(45) NOT NULL UNIQUE,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-
-
-
--- TABLA categories
 DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
-  `id` int(6) unsigned NOT NULL AUTO_INCREMENT,
-  `category` varchar(45) NOT NULL UNIQUE,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+    `id` INT(6) unsigned NOT NULL AUTO_INCREMENT,
+    `category` VARCHAR(45) NOT NULL UNIQUE,
+    PRIMARY KEY (`id`)
+);
 
+DROP TABLE IF EXISTS `statuses`;
+CREATE TABLE `statuses` (
+    `id` INT(6) unsigned NOT NULL AUTO_INCREMENT,
+    `status` VARCHAR(45) NOT NULL UNIQUE,
+    PRIMARY KEY (`id`)
+);
 
-
-
-
--- TABLA favourites
-DROP TABLE IF EXISTS `favourites`;
-CREATE TABLE `favourites` (
-  `id` int(4) unsigned NOT NULL AUTO_INCREMENT,
-  `product_id` int(6) unsigned NOT NULL,
-  `user_id` int(6) unsigned NOT NULL,
-  PRIMARY KEY (`id`)
-  KEY `favourites_product_id_foreign` (`product_id`),
-  KEY `favourites_user_id_foreign` (`user_id`),
-  CONSTRAINT `favourites_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
-  CONSTRAINT `favourites_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
- ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-
-
-
-
--- TABLA cart
-DROP TABLE IF EXISTS `cart`;
-CREATE TABLE `cart` (
-  `id` int(6) unsigned NOT NULL AUTO_INCREMENT,
-  `quantity` tinyint(2),
-  `subtotal` decimal(10,2),
-  `product_id` int(6) unsigned NOT NULL,
-  `user_id` int(6) unsigned NOT NULL,
-  PRIMARY KEY (`id`)
-  KEY `cart_product_id_foreign` (`product_id`),
-  KEY `cart_user_id_foreign` (`user_id`),
-  CONSTRAINT `cart_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
-  CONSTRAINT `cart_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
- ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-
-
-
-
--- TABLA users
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE `users` (
-  `id` int(6) unsigned NOT NULL AUTO_INCREMENT,
-  `first_name` varchar(45),
-  `last_name` varchar(45),
-  `address` varchar(100),
-  `email` varchar(45) NOT NULL UNIQUE,
-  `phone` varchar(45),
-  `username` varchar(45) NOT NULL UNIQUE,
-  `password` varchar(45) NOT NULL UNIQUE,
-  `image` varchar(255),
-  `role_id` int(2) unsigned NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `users_role_id_foreign` (`role_id`),
-  CONSTRAINT `users_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-
-
-
-
-
--- TABLA roles
 DROP TABLE IF EXISTS `roles`;
 CREATE TABLE `roles` (
-  `id` int(2) unsigned NOT NULL AUTO_INCREMENT,
-  `role` varchar(45) NOT NULL UNIQUE,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+    `id` INT(2) unsigned NOT NULL AUTO_INCREMENT,
+    `role` VARCHAR(45) NOT NULL UNIQUE,
+    PRIMARY KEY (`id`)
+);
 
+DROP TABLE IF EXISTS `products`;
+CREATE TABLE `products` (
+    `id` INT(6) unsigned NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(100) NOT NULL UNIQUE,
+    `price` DECIMAL(10,2) NOT NULL,
+    `image` VARCHAR(255) NOT NULL DEFAULT 'default.png',
+    `description` TEXT(500),
+    `discount` TINYINT(3) DEFAULT 0,
+    `categories_id` INT(6) unsigned NOT NULL,
+    `statuses_id` INT(6) unsigned NOT NULL,
+    PRIMARY KEY (`id`),
+    INDEX `categories_id_idx` (`categories_id` ASC),
+    INDEX `statuses_id_idx` (`statuses_id` ASC),
+    FOREIGN KEY (`categories_id`)
+        REFERENCES `categories` (`id`),
+    FOREIGN KEY (`statuses_id`)
+        REFERENCES `statuses` (`id`)
+);
 
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users` (
+    `id` INT(6) unsigned NOT NULL AUTO_INCREMENT,
+    `username` VARCHAR(45) NOT NULL UNIQUE,
+    `email` VARCHAR(45) NOT NULL UNIQUE,
+    `password` VARCHAR(255) NOT NULL UNIQUE,
+    `image` VARCHAR(255) NOT NULL DEFAULT 'default.png',
+    `first_name` VARCHAR(45),
+    `last_name` VARCHAR(45),
+    `address` VARCHAR(100),
+    `phone` VARCHAR(45),
+    `roles_id` INT(2) unsigned NOT NULL,
+    PRIMARY KEY (`id`),
+    INDEX `roles_id_idx` (`roles_id` ASC),
+    FOREIGN KEY (`roles_id`)
+        REFERENCES `roles` (`id`)
+);
 
+DROP TABLE IF EXISTS `favourites`;
+CREATE TABLE `favourites` (
+    `id` INT(4) unsigned NOT NULL AUTO_INCREMENT,
+    `users_id` INT(6) unsigned NOT NULL,
+    `products_id` INT(6) unsigned NOT NULL,
+    PRIMARY KEY (`id`),
+    INDEX `users_id_idx` (`users_id` ASC),
+    INDEX `products_id_idx` (`products_id` ASC),
+    FOREIGN KEY (`users_id`)
+        REFERENCES `users` (`id`),
+    FOREIGN KEY (`products_id`) 
+        REFERENCES `products` (`id`)
+);
 
+DROP TABLE IF EXISTS `cart`;
+CREATE TABLE `cart` (
+    `id` INT(6) unsigned NOT NULL AUTO_INCREMENT,
+    `users_id` INT(6) unsigned NOT NULL,
+    `products_id` INT(6) unsigned NOT NULL,
+    `quantity` TINYINT(1) DEFAULT 1,
+    PRIMARY KEY (`id`),
+    INDEX `users_id_idx` (`users_id` ASC),
+    INDEX `products_id_idx` (`products_id` ASC),
+    FOREIGN KEY (`users_id`) 
+        REFERENCES `users` (`id`),
+    FOREIGN KEY (`products_id`) 
+        REFERENCES `products` (`id`)
+);
 
-
-
-
--- TABLA sales
 DROP TABLE IF EXISTS `sales`;
 CREATE TABLE `sales` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `created_at` timestamp,
-  `updated_at` timestamp,
-  `total` decimal(10,2),
-    `user_id` int(6) unsigned NOT NULL,
-  PRIMARY KEY (`id`)
-  KEY `sales_user_id_foreign` (`user_id`),
-  CONSTRAINT `sales_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
- ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+    `id` INT(10) unsigned NOT NULL AUTO_INCREMENT,
+    `created_at` TIMESTAMP NULL DEFAULT NULL,
+    `updated_at` TIMESTAMP NULL DEFAULT NULL,
+    `payment_method` VARCHAR (45) DEFAULT 'debit',
+    `total` DECIMAL(10,2) NOT NULL,
+    `users_id` INT(6) unsigned NOT NULL,
+    PRIMARY KEY (`id`),
+    INDEX `users_id_idx` (`users_id` ASC),
+    FOREIGN KEY (`users_id`)
+        REFERENCES `users` (`id`)
+);
 
-
-
-
-
-
-
-
-
-
-
--- TABLA sales_details
 DROP TABLE IF EXISTS `sales_details`;
 CREATE TABLE `sales_details` (
-  `id` int(6) unsigned NOT NULL AUTO_INCREMENT,
-  `quantity` tinyint(2),
-  `subtotal` decimal(10,2),
-  `product_id` int(6) unsigned NOT NULL,
-  `sale_id` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`id`)
-  KEY `sales_details_product_id_foreign` (`product_id`),
-  KEY `sales_details_sale_id_foreign` (`sale_id`),
-  CONSTRAINT `sales_details_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
-  CONSTRAINT `sales_details_sale_id_foreign` FOREIGN KEY (`sale_id`) REFERENCES `sales` (`id`)
- ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-
+    `id` INT(10) unsigned NOT NULL AUTO_INCREMENT,
+    `quantity` TINYINT(2),
+    `unit_price` DECIMAL(10,2),
+    `discount` TINYINT(3),
+    `total` DECIMAL(10,2) DEFAULT NULL,
+    `sales_id` INT(10) unsigned NOT NULL,
+    `products_id` INT(10) unsigned NOT NULL,
+    PRIMARY KEY (`id`),
+    INDEX `sales_id_idx` (`sales_id` ASC),
+    INDEX `products_id_idx` (`products_id` ASC),
+    FOREIGN KEY (`sales_id`)
+        REFERENCES `sales` (`id`),
+    FOREIGN KEY (`products_id`)
+        REFERENCES `products` (`id`)
+);
 

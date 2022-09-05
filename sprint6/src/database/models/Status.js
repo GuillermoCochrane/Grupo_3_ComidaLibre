@@ -1,30 +1,31 @@
-module.exports = (sequelize, dataTypes) => {
-    let alias = "Statuses";
+module.exports = (sequelize, DataTypes) => {
+    let alias = "Status";
     let cols = {
-        id: {
-            type: dataTypes.INTEGER(6),
-            primaryKey: true,
-            autoIncrement: true
-        },
-        status: {
-            type: dataTypes.STRING(45),
-            unique: true,
-            notNull: true
-        }
+      id: {
+        type: DataTypes.INTEGER(6).UNSIGNED,
+        autoIncrement: true,
+        primaryKey: true,
+        allowNull: false,
+      },
+      status: {
+        type: DataTypes.STRING(45),
+        unique: true,
+      },
     };
     let config = {
-        tableName: "statuses",
-        timestamps: false
+      tableName: "statuses",
+      timestamps: false,
     };
-
+  
     const Status = sequelize.define(alias, cols, config);
-
-    Status.associate = function(models){
-        Status.hasMany(models.Products, {
-            as: "status_products",
-            foreignKey: "status_id"
-        });
+  
+    Status.associate = (models) => {
+      Status.hasMany(models.Product, {
+        as: "status_products",
+        foreignKey: "statuses_id",
+      });
     };
-
+  
     return Status;
-};
+  };
+  

@@ -1,76 +1,76 @@
-module.exports = (sequelize, dataTypes) => {
-    let alias = "Users";
+module.exports = (sequelize, DataTypes) => {
+    let alias = "User";
     let cols = {
-        id: {
-            type: dataTypes.INTEGER(6),
-            primaryKey: true,
-            autoIncrement: true
-        },
-        role_id: {
-            type: dataTypes.INTEGER(2),
-            notNull: true
-        },
-        first_name: {
-            type: dataTypes.STRING(45),
-            notNull: true
-        },
-        last_name: {
-            type: dataTypes.STRING(45),
-            notNull: true
-        },
-        address: {
-            type: dataTypes.STRING(100),
-            notNull: true
-        },
-        email: {
-            type: dataTypes.STRING(45),
-            unique:true,
-            notNull: true
-        },
-        phone: {
-            type: dataTypes.STRING(45)
-        },
-        username: {
-            type: dataTypes.STRING(45),
-            unique: true,
-            notNull: true
-        },
-        password: {
-            type: dataTypes.STRING,
-            notNull: true
-        },
-        image: {
-            type: dataTypes.STRING
-        }
+      id: {
+        type: DataTypes.INTEGER(6).UNSIGNED,
+        autoIncrement: true,
+        primaryKey: true,
+        allowNull: false,
+      },
+      username: {
+        type: DataTypes.STRING(45),
+        allowNull: false,
+        unique: true,
+      },
+      email: {
+        type: DataTypes.STRING(45),
+        allowNull: false,
+        unique: true,
+      },
+      password: {
+        type: DataTypes.STRING(255),
+        allowNull: false,
+        unique: true,
+      },
+      image: {
+        type: DataTypes.STRING(255),
+        defaultValue: "default.png",
+      },
+      first_name: {
+        type: DataTypes.STRING(45),
+      },
+      last_name: {
+        type: DataTypes.STRING(45),
+      },
+      address: {
+        type: DataTypes.STRING(100),
+      },
+      phone: {
+        type: DataTypes.STRING(45),
+      },
+      roles_id: {
+        type: DataTypes.INTEGER(2).UNSIGNED,
+      },
     };
     let config = {
-        tableName: "users",
-        timestamps: false
+      tableName: "users",
+      timestamps: false,
     };
-
+  
     const User = sequelize.define(alias, cols, config);
-
-    User.associate = function(models){
-        User.hasMany(models.Favourites, {
-            as: "user_favourites",
-            foreignKey: "user_id"
-        });
-
-        User.hasMany(models.Cart, {
-            as: "user_carts",
-            foreignKey: "user_id"
-        });
-
-        User.hasMany(models.Sales, {
-            as: "user_sales",
-            foreignKey: "user_id"
-        });
-
-        User.belongsTo(models.Roles, {
-            as: "user_role",
-            foreignKey: "role_id"
-        });
-    }
-
+  
+    User.associate = (models) => {
+      User.belongsTo(models.Role, {
+        as: "user_role",
+        foreignKey: "roles_id",
+      });
+  
+      User.belongsToMany(models.Product, {
+        as: "users_products",
+        through: "favourites",
+        foreignKey: "users_id",
+        otherKey: "products_id",
+        timestamps: false,
+      });
+  
+      User.belongsToMany(models.Product, {
+        as: "users_cart",
+        through: "cart",
+        foreignKey: "users_id",
+        otherKey: "products_id",
+        timestamps: false,
+      });
+    };
+  
     return User;
-}
+  };

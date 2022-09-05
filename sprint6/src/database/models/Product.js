@@ -1,74 +1,73 @@
-module.exports = (sequelize, dataTypes) => {
-    let alias = "Products";
+module.exports = (sequelize, DataTypes) => {
+    let alias = "Product";
     let cols = {
-        id: {
-            type: dataTypes.INTEGER(6),
-            primaryKey: true,
-            autoIncrement: true
-        },
-        category_id: {
-            type: dataTypes.INTEGER(6),
-            notNull: true
-        },
-        status_id: {
-            type: dataTypes.INTEGER(6),
-            notNull: true
-        },
-        name: {
-            type: dataTypes.STRING(100),
-            unique: true,
-            notNull: true            
-        },
-        description: {
-            type: dataTypes.STRING(500),
-            notNull: true
-        },
-        price: {
-            type: dataTypes.DECIMAL(10,2),
-            notNull: true
-        },
-        image: {
-            type: dataTypes.STRING
-        },
-        discount: {
-            type: dataTypes.TINYINT(3),
-            notNull: true
-        }
+      id: {
+        type: DataTypes.INTEGER(6).UNSIGNED,
+        autoIncrement: true,
+        primaryKey: true,
+        allowNull: false,
+      },
+      name: {
+        type: DataTypes.STRING(100),
+        allowNull: false,
+        unique: true,
+      },
+      price: {
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: false,
+      },
+      image: {
+        type: DataTypes.STRING(255),
+        defaultValue: "default.png",
+      },
+      description: {
+        type: DataTypes.TEXT(500),
+      },
+      discount: {
+        type: DataTypes.TINYINT(3),
+        default: 0
+      },
+      categories_id: {
+        type: DataTypes.INTEGER(6).UNSIGNED,
+      },
+      statuses_id: {
+        type: DataTypes.INTEGER(6).UNSIGNED,
+      },
     };
     let config = {
-        tableName: "products",
-        timestamps: false
+      tableName: "products",
+      timestamps: false,
     };
-
+  
     const Product = sequelize.define(alias, cols, config);
-
-    Product.associate = function(models){
-        Product.belongsTo(models.Statuses, {
-            as: "product_status",
-            foreignKey: "status_id"
-        });
-
-        Product.belongsTo(models.Categories, {
-            as: "product_category",
-            foreignKey: "category_id"
-        });
-
-        Product.hasMany(models.Favourites, {
-            as: "product_favourites",
-            foreignKey: "product_id"
-        });
-
-        Product.hasMany(models.Cart, {
-            as: "product_carts",
-            foreignKey: "product_id"
-        });
-
-        Product.hasMany(models.SaleDetails, {
-            as: "product_saleDetails",
-            foreignKey: "product_id"
-        });
-
+  
+    Product.associate = (models) => {
+      Product.belongsTo(models.Category, {
+        as: "product_category",
+        foreignKey: "categories_id",
+      });
+  
+      Product.belongsTo(models.Status, {
+        as: "product_status",
+        foreignKey: "statuses_id",
+      });
+  
+      Product.belongsToMany(models.User, {
+        as: "products_users",
+        through: "favourites",
+        foreignKey: "products_id",
+        otherKey: "users_id",
+        timestamps: false,
+      });
+  
+      Product.belongsToMany(models.User, {
+        as: "products_cart",
+        through: "cart",
+        foreignKey: "products_id",
+        otherKey: "users_id",
+        timestamps: false,
+      });
     };
-
+  
     return Product;
-};
+  };
