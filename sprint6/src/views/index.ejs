@@ -57,28 +57,33 @@
             </div>
           </div>
         </div>
-
-        <!-- Líneas agregadas por Laura -->
         <h2>
           <center>Recomendados del mes</center>
         </h2>
-
-
         <div class="container-fluid d-inline-flex">
           <div class="row">
             <% for(let product of productList[0]){ %>
 
               <div class="col-sm-6 col-md-4 col-xl-3 mt-3">
                 <div class="card h-100">
-                  <img src="/images/products/<%= product.img %>" class="card-img-top h-100" alt="...">
+                  <% if(product.discount) {%>
+                    <spam class="discount-circle">-%<%= product.discount %></spam>
+                  <% } %>
+                  <img src="/images/products/<%= product.image %>" class="card-img-top h-100" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">
                       <%= product.name %>
                     </h5>
-                    <p class="card-text">
-                      $ <%= product.price %>
-                    </p>
-                    <a href="/products/<%= product.idCat %>/<%= product.id %>" class="btn btn-primary">Ver detalle</a>
+                    <% if(product.discount) {%>
+                      <p class="card-text">
+                        $ <%= (product.price - (product.price * (product.discount/100))) %>
+                      </p>
+                    <% } else {%>
+                      <p class="card-text">
+                        $ <%= product.price %>
+                      </p>     
+                    <% } %>
+                    <a href="/products/<%= product.categories_id %>/<%= product.id %>" class="btn btn-primary">Ver detalle</a>
                   </div>
                 </div>
               </div>
@@ -87,7 +92,7 @@
         </div>
 
         <h2>
-          <center>Otras opciones de platos</center>
+          <center>Mas vendidos</center>
         </h2>
 
         <div class="container-fluid d-inline-flex">
@@ -95,15 +100,23 @@
             <% for(let product of productList[1]){ %>
               <div class="col-sm-6 col-md-4 col-xl-3 mt-3">
                 <div class="card h-100">
-                  <img src="/images/products/<%= product.img %>" class="card-img-top h-100" alt="...">
+                  <% if(product.discount) {%>
+                    <spam class="discount-circle">-%<%= product.discount %></spam>
+                  <% } %>
+                  <img src="/images/products/<%= product.image %>" class="card-img-top h-100" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">
                       <%= product.name %>
                     </h5>
+                    <% if(product.discount) {%>
+                      <p class="card-text">
+                        $ <%= (product.price - (product.price * (product.discount/100))) %>
+                      </p>
+                    <% } %>
                     <p class="card-text">
                       $ <%= product.price %>
                     </p>
-                    <a href="/products/<%= product.idCat %>/<%= product.id %>"  class="btn btn-primary">Ver detalle</a>
+                    <a href="/products/<%= product.categories_id %>/<%= product.id %>"  class="btn btn-primary">Ver detalle</a>
                   </div>
                 </div>
               </div>

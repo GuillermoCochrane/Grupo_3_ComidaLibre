@@ -1,128 +1,202 @@
-const Product = require('../models/Product')
+const db = require("../database/models");
+const sequelize = require('sequelize')
 
 module.exports = {
-    //VISTA DEL HOME
-    home: (req,res) => {
-        // Recorre el array de allProducts y separa los productos que están en recomendados a un array diferente
-        let recomendation = [];
-        let noRecomendation = [];
-        Product.getData().forEach((product)=>{
-            if(product.status == 'recomendado'){
-                recomendation.push(product);
-            }else{
-                noRecomendation.push(product);
-            }
+  //VISTA DEL HOME
+  home: async (req, res) => {
+    let randomRecomended = await db.Product.findAll({
+      include: ["product_category", "product_status"],
+      where: { statuses_id: 3 },
+      order: sequelize.literal('rand()'),
+      limit: 4,
+      raw: true,
+      nest: true,
+    });
+    let randomMostSold = await db.Product.findAll({
+      include: ["product_category", "product_status"],
+      where: { statuses_id: 4 },
+      order: sequelize.literal('rand()'),
+      limit: 4,
+      raw: true,
+      nest: true,
+    });
+
+    return res.render("index", {
+      headTitle: "Bienvenidos a Free Food",
+      stylesheet: "",
+      productList: [randomRecomended, randomMostSold],
+    });
+  },
+  //VISTA DEL CARRITO
+  cart: async (req, res) => {
+    let userId = req.session.userLogged.id;
+    let cartList = await db.Cart.findAll({
+      include: ["cart_product"],
+      where: { users_id: userId },
+      raw: true,
+      nest: true,
+    });
+    if (cartList.length > 0) {
+      let subtotal = 0;
+      let shipping = 50;
+      for (let product of cartList) {
+        let price = product.cart_product.price
+        let discount = product.cart_product.discount
+        let quantity = product.quantity
+        let priceWithDiscount = (Number(price) - (discount / 100) * Number(price)) * quantity;
+        subtotal = subtotal + priceWithDiscount;
+      }
+      let total = subtotal + shipping;
+      //shipping = numero fijo
+      return res.render("cart", {
+        headTitle: "Free Food - Carrito de compras",
+        stylesheet: "styles_car.css",
+        productList: cartList,
+        subtotal: subtotal.toFixed(2),
+        shipping: shipping,
+        total: total.toFixed(2),
+      });
+    } else {
+      return res.render("cart", {
+        headTitle: "Free Food - Carrito de compras",
+        stylesheet: "styles_car.css",
+      });
+    }
+  },
+  //AGREGA PRODUCTOS AL CARRITO
+  cartAdd: (req, res) => {
+    let productId = req.params.idProduct;
+    let userId = req.session.userLogged.id;
+    let quantity = req.body.quantity;
+    db.Cart.create({
+      products_id: productId,
+      users_id: userId,
+      quantity: quantity,
+    });
+
+    return res.redirect("/cart");
+  },
+  //ELIMINA PRODUCTOS DEL CARRITO
+  cartDeleteOne: (req, res) => {
+    let productId = req.params.idProduct;
+    let userId = req.session.userLogged.id;
+    db.Cart.destroy({ where: { products_id: productId, users_id: userId } });
+
+    return res.redirect("/cart");
+  },
+  cartDeleteAll: (req, res) => {
+    let userId = req.session.userLogged.id;
+    db.Cart.destroy({ where: { users_id: userId } });
+
+    return res.redirect("/cart");
+  },
+  //FUNCIONALIDAD DE LA BARRA DE BUSQUEDA
+  search: async (req, res) => {
+    let allProducts
+    let busqueda
+    if(req.query.key){
+      busqueda = req.query.key;
+      allProducts = await db.Product.findAll({
+        include: ["product_category", "product_status"],
+        where: {},
+        raw: true,
+        nest: true,
+      });
+    }
+    allProducts = await db.Product.findAll({
+      include: ["product_category", "product_status"],
+      raw: true,
+      nest: true,
+    });
+    if (busqueda) {
+      for (let i = 0; i < allProducts.length; i++) {
+        if (
+          allProducts[i].name.toUpperCase().includes(busqueda.toUpperCase()) ||
+          allProducts[i].product_status.status.toUpperCase().includes(busqueda.toUpperCase()) ||
+          allProducts[i].product_category.category.toUpperCase().includes(busqueda.toUpperCase())
+        ) {
+          resultado.push(allProducts[i]);
         }
-        );
-        //Escoge 4 productos aleatorios del array de recomendados
-        let randomRecomendation = [];
-        for(let i = 0; i < 4; i++){
-            let random = Math.floor(Math.random() * recomendation.length);
-            randomRecomendation.push(recomendation[random]);
-            recomendation.splice(random, 1);
-        }
-        //Escoge 4 productos aleatorios del array de no recomendados
-        let randomNoRecomendation = [];
-        for(let i = 0; i < 4; i++){
-            let random = Math.floor(Math.random() * noRecomendation.length);
-            randomNoRecomendation.push(noRecomendation[random]);
-            noRecomendation.splice(random, 1);
-        }
-        
-        res.render('index', {
-            headTitle: 'Bienvenidos a Free Food',
-            stylesheet: '',
-            productList: [randomRecomendation, randomNoRecomendation],
+      }
+    } else {
+      return res.redirect("/");
+    }
+
+    let cantidad = resultado.length;
+
+    return res.render("products/products", {
+      headTitle: "Free Food - Resultados de Búsqueda",
+      stylesheet: "styles_products.css",
+      productList: resultado,
+      cantidad: cantidad,
+    });
+  },
+  favAdd: (req, res) => {
+    let productId = req.params.idProduct;
+    let userId = req.session.userLogged.id;
+    db.Favourite.create({
+      products_id: productId,
+      users_id: userId,
+    });
+
+    return res.redirect("/products");
+  },
+  favDelete: (req, res) => {
+    let productId = req.params.idProduct;
+    let userId = req.session.userLogged.id;
+    db.Favourite.destroy({ where: { products_id: productId, users_id: userId } });
+
+    return res.redirect("/products");
+  },
+  sale: async (req, res) => {
+    let userId = req.session.userLogged.id;
+    let cartList = await db.Cart.findAll({
+      include: ["cart_product"],
+      where: { users_id: userId },
+      raw: true,
+      nest: true,
+    });
+    if (cartList.length > 0) {
+      await db.Sale.create({
+        total: 0,
+        users_id: userId,
+        payment_method: 'debit'
+      });
+      let sale = await db.Sale.findOne({ 
+        attributes: ['id'], 
+        order: [['id', 'DESC']], 
+        raw: true 
+      })
+      let subtotal = 0;
+      let shipping = 50;
+      for (let product of cartList) {
+        let price = product.cart_product.price
+        let discount = product.cart_product.discount
+        let quantity = product.quantity
+        let productId = product.cart_product.id
+        let productPrice = (Number(price) - (discount / 100) * Number(price)) * quantity;
+        subtotal = subtotal + productPrice;
+
+        db.Sale_details.create({
+          sales_id: sale.id,
+          products_id: productId,
+          quantity: quantity,
+          discount: discount,
+          unit_price: Number(price),
+          total: productPrice
         })
-    },
-    //VISTA DEL CARRITO
-    cart: (req,res) => {
-        if( req.cookies.cart ) {
-            let count = 0
-            for (i = 0; i < req.cookies.cart.length; i++) {
-                count = count + req.cookies.cart[i].price
-            }
-          
-            //shipping = numero fijo
-            return res.render('cart', {
-                headTitle: 'Free Food - Carrito de compras',
-                stylesheet: 'styles_car.css',
-                productList: req.cookies.cart,
-                subtotal: count.toFixed(2),
-                shipping: 50,
-                total: (count + 50).toFixed(2)
-            })
-        }
-        
-        return res.render('cart', {
-            headTitle: 'Free Food - Carrito de compras',
-            stylesheet: 'styles_car.css',
-        })
-    },
-    //AGREGA PRODUCTOS AL CARRITO
-    cartAdd: (req, res) => {
-        if( req.session.cart ) {
-            let productToCart = Product.findById( req.params.id )
+      }
+      let total = subtotal + shipping;
+      db.Sale.update({
+        total: total
+      },{
+        where: { id: sale.id }
+      })
 
-            for (i = 0; i < req.body.quantity; i++) {
-                req.session.cart.push(productToCart)
-            }
-            res.cookie( 'cart', req.session.cart, { maxAge: 60000*5 })
-
-        } else {
-            req.session.cart = []
-            let productToCart = Product.findById( req.params.id )
-
-            for (i = 0; i < req.body.quantity; i++) {
-                req.session.cart.push(productToCart)
-            }
-            res.cookie( 'cart', req.session.cart, { maxAge: 60000*5 })
-        }
-        return res.redirect('/cart')
-
-    },
-    //ELIMINA PRODUCTOS DEL CARRITO
-    cartDelete: (req, res) => {
-        if( req.params.id && req.session.cart.length > 1) {
-            for(let i=0; i<req.session.cart.length; i++){
-                if( req.session.cart[i].id == req.params.id ) {
-                    req.session.cart.splice(i, 1)
-                }
-                break;
-            }
-            res.cookie( 'cart', req.session.cart, { maxAge: 60000*5 })
-            return res.redirect('/cart')
-        }
-        
-        delete req.session.cart
-        res.clearCookie( 'cart' );
-        return res.redirect('/cart')
-    },
-    //FUNCIONALIDAD DE LA BARRA DE BUSQUEDA
-    search: (req, res) => {
-		let busqueda = req.query.searchBar;
-		let resultado = [];
-        let allProducts = Product.getData();
-        if(busqueda){
-            for (let i=0; i< allProducts.length; i++){
-                if ((allProducts[i].name.toUpperCase()).includes(busqueda.toUpperCase()) || 
-                    (allProducts[i].status.toUpperCase()).includes(busqueda.toUpperCase()) || 
-                    (allProducts[i].idCat.toUpperCase()).includes(busqueda.toUpperCase())){
-                    resultado.push(allProducts[i]);
-                }
-            };
-        } else {
-            return res.redirect('/')
-        }
-		
-		let cantidad = resultado.length;
-
-		res.render('products/products',{
-            headTitle: 'Free Food - Resultados de Búsqueda',
-            stylesheet: 'styles_products.css',
-			productList: resultado,
-			cantidad: cantidad,
-            }
-        );
-	},
-}
+      db.Cart.destroy({ where: { users_id: userId } });
+    } else {
+      return res.send('No tienes productos en el carrito')
+    }
+    return res.redirect("/");
+  },
+};

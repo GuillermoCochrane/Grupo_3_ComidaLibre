@@ -11,7 +11,7 @@
            
             <h1>Agregá un producto</h1>
     
-            <form class="input-container-form" action="/products" method="POST" enctype="multipart/form-data">
+            <form class="input-container-form" action="/products/store" method="POST" enctype="multipart/form-data">
 
                 <label for="name"><h4>Nombre del producto</h4></label>
                 <div class="info-container-div">
@@ -44,10 +44,10 @@
                     <i class="fas fa-clipboard-list"></i>
                     <select name="idCat" id="idCat">
                         <option value="" selected disabled hidden>Categoría</option>
-                        <option value="entrada">Entrada</option>
-                        <option value="platoFuerte">Plato principal</option>
-                        <option value="postre">Postre</option>
-                        <option value="bebida">Bebida</option>
+                        <option value= 1>Entrada</option>
+                        <option value= 2>Plato principal</option>
+                        <option value= 3>Postre</option>
+                        <option value= 4>Bebida</option>
                     </select>    
                 </div>
                 <% if( typeof errors != 'undefined' && errors.idCat) {%>
@@ -63,26 +63,33 @@
                     <i class="fas fa-clipboard-list"></i>
                     <select name="status" id="status">
                         <option value="" selected disabled hidden>Estado</option>
-                        <option value="novedad">Novedad</option>
-                        <option value="oferta">Oferta</option>
-                        <option value="recomendado">Recomendado</option>
-                        <option value="mas-vendido">Más vendido</option>
+                        <option value=1>Novedad</option>
+                        <option value=2>Oferta</option>
+                        <option value=3>Recomendado</option>
+                        <option value=4>Más vendido</option>
                     </select>    
                 </div>
+                <% if( typeof errors != 'undefined' && errors.status) {%>
+                    
+                    <p class="error-input">
+                        <%= errors.status.msg %>
+                    </p>
+                    
+                <% } %>
 
-                <label for="discountAmount">
+                <label for="discount">
                     <h4>
                         Porcentaje de descuento: %<output id="rangevalue">0</output>
                     </h4>
                 </label>
                 <div class="info-container-div">
                     <i class="fas fa-percent"></i>
-                    <input oninput="rangevalue.value=value" type="range" name="discountAmount" id="discountAmount" min="0" max="100" step="1" value="0">
+                    <input oninput="rangevalue.value=value" type="range" name="discount" id="discount" min="0" max="100" step="1" value="0">
                 </div>
-                <% if( typeof errors != 'undefined' && errors.discountAmount) {%>
+                <% if( typeof errors != 'undefined' && errors.discount) {%>
                     
                     <p class="error-input">
-                        <%= errors.discountAmount.msg %>
+                        <%= errors.discount.msg %>
                     </p>
                     
                 <% } %>

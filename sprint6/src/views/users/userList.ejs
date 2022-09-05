@@ -13,16 +13,14 @@
             <% for(user of allUsers) {%>
 
                 <div class="user-list-card">
-                    <div class="user-list-img-container">
-                        
-                        <img src="/images/avatar/<%= user.image %>" alt="profile_pic">
-                    </div>
+                    <img src="/images/avatar/<%= user.image %>" alt="profile_pic">
+
                     <div class="user-list-info-container">
                         <div class="info-line">
                             <h1><%= user.username %></h1>
                         </div>
                         <div class="info-line">
-                            <p class="field-name">Nombre</p><p class="field-info"><%= user.firstName %> <%= user.lastName %></p>
+                            <p class="field-name">Nombre</p><p class="field-info"><%= user.first_name %> <%= user.last_name %></p>
                         </div>
                         <div class="info-line">
                             <p class="field-name">Direccion</p><p class="field-info"><%= user.address %></p>
@@ -34,7 +32,7 @@
                             <p class="field-name">Email</p><p class="field-info"><%= user.email %></p>
                         </div>
                         <div class="info-line">
-                            <p class="field-name">Categoria</p><p class="field-info"><%= user.category %></p>
+                            <p class="field-name">Categoria</p><p class="field-info"><%= user.user_role.role %></p>
                         </div>
                         <br>
                         <div class="user-list-btn">

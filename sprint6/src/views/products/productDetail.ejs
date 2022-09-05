@@ -7,47 +7,22 @@
     <%- include('../partials/header.ejs') %>
 
     <main class="main-product-detail">
-
-        <nav class="nav-dishes">
-            <% let length = productList.length %> 
-    
-            <% if(product.id == 1) {%>
-                    
-                <p><a href="/products/<%= productList[length-1].idCat %>/<%= productList[length-1].id %>"><i class="fas fa-angle-left"></i>Anterior plato</a></p>
-                    
-            <% } else { %>
-                    
-                <p><a href="/products/<%= productList[product.id-2].idCat %>/<%= productList[product.id-2].id %>"><i class="fas fa-angle-left"></i>Anterior plato</a></p>
-                
-            <% } %> 
-                
-            <p><a href="/products"><i class="fas fa-utensils"></i>Menú principal</a></p>
-                
-            <% if(product.id == length) {%>
-                    
-                <p><a href="/products/<%= productList[0].idCat %>/<%= productList[0].id %>">Siguiente plato<i class="fas fa-angle-right"></i></a></p>
-                    
-            <% } else { %><p><a href="/products/<%= productList[product.id].idCat %>/<%= productList[product.id].id %>">Siguiente plato<i class="fas fa-angle-right"></i></a></p>
-                        
-            <% } %>
-        </nav>
-       
         <br>
 
         <h1>Detalle del producto</h1>
         
         <article class="main-product">
             <h2 class="title"><%= product.name %></h2>
-            <img id="main-image" src="/images/products/<%=product.img %>" alt="<%= product.name %>">
+            <img id="main-image" src="/images/products/<%=product.image %>" alt="<%= product.name %>">
             <div class="main-detail">
                 <h2 class="title0"><%= product.name %></h2>
                 <p class="name"><%= product.description %></p>
                 
-                <% if(product.discountAmount !== 0) {%>
+                <% if(product.discount) {%>
                     <div class="discount-div">
-                        <p class="price-original">$<%= product.price %></p><p class="price">$<%= (product.price-(product.price*(product.discountAmount/100))).toFixed(2) %></p>
+                        <p class="price-original">$<%= product.price %></p><p class="price">$<%= (product.price-(product.price*(product.discount/100))).toFixed(2) %></p>
                     </div>
-                    <p class="discount">-<%= product.discountAmount %>% OFF</p>
+                    <p class="discount">-<%= product.discount %>% OFF</p>
                 <% } else {%>
                     <p class="price">$<%= product.price %></p>
                 <% } %> 
@@ -55,17 +30,17 @@
                 <form class="add-to" action="/cart/<%= product.id %>" method="POST">
                     <p class="list">Elegir la cantidad: 
                         <select name="quantity">
-                            <option value=1 >1</option>
-                            <option value=2 >2</option>
-                            <option value=3 >3</option>
-                            <option value=4 >4</option>
-                            <option value=5 >5</option>
+                            <option value=1>1</option>
+                            <option value=2>2</option>
+                            <option value=3>3</option>
+                            <option value=4>4</option>
+                            <option value=5>5</option>
                         </select>
                     </p>
                     <button class="add-button" type="submit">Agregar al carrito</button>
                 </form>
 
-                <% if( locals.userLogged && locals.userLogged.category === 'administrador' ) {%>
+                <% if( locals.userLogged && locals.userLogged.roles_id === 1 ) {%>
                     
                     <div class="delete-edit-div">
                         <form class="edit-btn" action="/products/edit/<%= product.id %>" method="GET">
@@ -88,29 +63,28 @@
                 <% for( let productR of productRel) { %>
                 <div class="product">
                     
-                    <img id="image" src="/images/products/<%= productR.img %>" alt="" title="">
+                    <img id="image" src="/images/products/<%= productR.image %>" alt="" title="">
                     
                     <div class="info">
                         <p class="price">$ <%= productR.price %></p>
-                        <% if(productR.discountAmount !== 0) {%>
-                            <p class="discount">-<%= productR.discountAmount %>% OFF</p>
+                        <% if(productR.discount) {%>
+                            <p class="discount">-<%= productR.discount %>% OFF</p>
                         <% } %>
                         <p class="name"><%= productR.name %> </p>
                         <p class="descrip"><%= productR.description %> </p>
-                        
+                        <form class="add-to" action="/cart/<%= productR.id %>" method="POST">
+                            <p class="list">Elegir la cantidad: 
+                                <select name="quantity">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </p>
+                            <button class="add-button" type="submit">Agregar al carrito</button>
+                        </form>
                     </div>
-                    <form class="add-to" action="/cart" method="POST">
-                        <p class="list">Elegir la cantidad: 
-                            <select name="quantity">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </p>
-                        <button class="add-button" type="submit">Agregar al carrito</button>
-                    </form>
                 </div>
                 <% } %>
 

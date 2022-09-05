@@ -1,19 +1,24 @@
-const User = require('../models/User')
+const db = require("../database/models");
 
-module.exports = (req,res,next) => {
-    let emailInCookie = req.cookies.userEmail
+module.exports = async (req, res, next) => {
+  let emailInCookie = req.cookies.userEmail;
+  let userFromCookie;
 
-    if ( emailInCookie ) {
-        let userFromCookie = User.findByEmail( emailInCookie )
-        if ( userFromCookie ) {
-            delete userFromCookie.password
-            req.session.userLogged = { ...userFromCookie }
-        };
-    };
+  if (emailInCookie) {
+    userFromCookie = await db.User.findOne({
+      where: { email: emailInCookie },
+      raw: true,
+    });
+  }
 
-    if ( req.session.userLogged ) {
-        res.locals.userLogged = { ...req.session.userLogged }
-    };
+  if (userFromCookie) {
+    delete userFromCookie.password;
+    req.session.userLogged = { ...userFromCookie };
+  }
 
-    next();
-}
+  if (req.session.userLogged) {
+    res.locals.userLogged = { ...req.session.userLogged };
+  }
+
+  next();
+};

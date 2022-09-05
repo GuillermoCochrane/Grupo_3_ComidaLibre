@@ -6,6 +6,7 @@ const router = express.Router();
 const uploadImg = require('../middlewares/multerProducts')
 const isAdminMdw = require('../middlewares/isAdminMdw')
 const productValidation = require('../middlewares/productValidation')
+const editProductValidation = require('../middlewares/editProductValidation')
 
 //LISTADO DE TODOS LOS PRODUCTOS
 router.get('/', productsController.producto);
@@ -17,10 +18,10 @@ router.get('/:idCategory', productsController.category);
 //DETALLE DE PRODUCTO
 router.get('/:idCategory/:idProduct', productsController.detail);
 //AGREGAR PRODUCTO
-router.post('/', isAdminMdw, uploadImg.single('img'), productValidation, productsController.store);
+router.post('/store', isAdminMdw, uploadImg.single('img'), productValidation, productsController.store);
 //EDITAR PRODUCTO
-router.put('/:idCategory/:idProduct/', isAdminMdw, uploadImg.single('img'), productValidation, productsController.update);
+router.put('/update/:idCategory/:idProduct', isAdminMdw, uploadImg.single('img'), editProductValidation, productsController.update);
 //ELIMINAR PRODUCTO
-router.delete('/delete/:idProduct/', isAdminMdw, productsController.delete);
+router.delete('/delete/:idProduct', isAdminMdw, productsController.delete);
 
 module.exports = router;

@@ -1,12 +1,12 @@
 <header>
   <div class="container-header-m">
     <a href="/">
-      <img class="logo-header-m" src="/images/FreeFood2f.png" alt="main-logo" title="Page logo">
+      <img class="logo-header-m" src="/images/FreeFood2f-removebg.png" alt="main-logo" title="Page logo">
     </a>
     
     <div class="form-search-header">
       <form class="form-search-header" action="/search" method="GET">
-        <input type="search" name="searchBar" id="searchBar" placeholder="Buscar productos...">
+        <input type="search" name="key" id="key" placeholder="Buscar productos...">
         <button type="submit"><i class="fas fa-search"></i></button>
       </form>
       
@@ -16,10 +16,10 @@
             <a>Menú<i class="fas fa-caret-down"></i></a>
             <ul class="main-menu-header-list">
               <li><a href="/products">Lista completa</a></li>
-              <li><a href="/products/platoFuerte">Platos principales</a></li>
-              <li><a href="/products/entrada">Entradas</a></li>
-              <li><a href="/products/postre">Postres</a></li>
-              <li><a href="/products/bebida">Bebidas</a></li>
+              <li><a href="/products/2">Platos principales</a></li>
+              <li><a href="/products/1">Entradas</a></li>
+              <li><a href="/products/3">Postres</a></li>
+              <li><a href="/products/4">Bebidas</a></li>
             </ul>
           </li>
           <li><a href="#">Ofertas</a></li>
@@ -51,7 +51,7 @@
             </form>
           </li>
 
-          <% if( locals.userLogged.category === 'administrador' ) {%>
+          <% if( locals.userLogged.role_id === 1 ) {%>
           
             <li>
               <form action="/products/create" method="GET">
@@ -126,7 +126,7 @@
             </form>
           </li>
 
-          <% if( locals.userLogged.category === 'administrador' ) {%>
+          <% if( locals.userLogged.roles_id === 1 ) {%>
           
             <li>
               <form action="/products/create" method="GET">
@@ -155,10 +155,10 @@
         <a>Menu</a>
         <ul class="main-menu-header-list">
           <li><a href="/products">Lista completa</a></li>
-          <li><a href="/products/platoFuerte">Platos principales</a></li>
-          <li><a href="/products/entrada">Entradas</a></li>
-          <li><a href="/products/postre">Postres</a></li>
-          <li><a href="/products/bebida">Bebidas</a></li>
+          <li><a href="/products/2">Platos principales</a></li>
+          <li><a href="/products/1">Entradas</a></li>
+          <li><a href="/products/3">Postres</a></li>
+          <li><a href="/products/4">Bebidas</a></li>
         </ul>
       </li>
       <li><a href="#">Ofertas</a></li>

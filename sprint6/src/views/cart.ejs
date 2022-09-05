@@ -14,29 +14,34 @@
             <a href="/cart/delete">Vaciar carrito</a>
         </div>
         
-        <% if( typeof productList != 'undefined' ) {%>
+        <% if( typeof productList != 'undefined' && productList) {%>
             
             <% for(let producto of productList) { %>
             <article class="main-article">
-                <img src="/images/products/<%- producto.img %>" alt="<%- producto.name %>">
+                <a class="a-img" href="/products/<%= producto.cart_product.categories_id %>/<%= producto.cart_product.id %>">
+                    <img class="product-img" src="/images/products/<%= producto.cart_product.image %>" alt="product img">
+                </a>
                 <div class="product-detail">
-
-                    <br>
                     <h3>
-                        <%= producto.name %>
+                        <span>
+                            <%= producto.cart_product.name %>
+                        </span>
                     </h3>
-                    <br>
-                    <h4>
-                        $ <%= producto.price %>
-                    </h4>
-                    <br>
                     <div class="subtotal-module">
+                        <select class="quantity" name="quantity"> 
+                            <option value=1>1</option>
+                            <option value=2>2</option>
+                            <option value=3>3</option>
+                            <option value=4>4</option>
+                            <option value=5>5</option>
+                            <option selected value=<%= producto.quantity %>><%= producto.quantity %></option>
+                        </select>
                         <span class="subtotal">
-                            $ <%= producto.price %>
+                            $ <%= ((producto.cart_product.price - (producto.cart_product.discount/100 * producto.cart_product.price)) * producto.quantity).toFixed(2) %>
                         </span>
                     </div>
+                    <a class="delete-cart-item" href="/cart/delete/<%= producto.cart_product.id %>" type="submit"><i class="fas fa-trash"></i></a>
                 </div>
-                <a class="delete-cart-item" href="/cart/delete/<%= producto.id %>" type="submit"><i class="fas fa-trash-alt"></i></a>
             </article>
 
             <% } %>
@@ -70,8 +75,8 @@
             <input type="text" name="discount-code" id="discount-code" placeholder="Código de descuento" minlength="8" maxlength="12" class="code">
             <button type="submit" value="apply" class="apply">Aplicar</button>
         </form>
-        <form action="/notFound" method="get" class="button">
-            <button type="submit" value="end" class="end">Finalizar Compra</button>
+        <form action="/sale" method="POST" class="button">
+            <button type="submit" class="end">Finalizar Compra</button>
         </form>
         <form action="/" method="get" class="button">
             <button type="submit" value="continue" class="continue">Seguir comprando</button>

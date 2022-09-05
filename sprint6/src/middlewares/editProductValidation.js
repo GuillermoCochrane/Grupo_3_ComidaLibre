@@ -7,9 +7,18 @@ module.exports = [
     .withMessage("Ingresa un nombre")
     .custom((value, { req }) => {
       let data = { ...req.body };
-      return db.Product.findOne({ where: { name: data.name } }).then(
-        (product) => {
-          if (product) {
+      let productId = req.params.idProduct;
+      let findByName = db.Product.findOne({
+        where: { name: data.name },
+        raw: true,
+      });
+      let findById = db.Product.findOne({
+        where: { id: productId },
+        raw: true,
+      });
+      return Promise.all([findByName, findById]).then(
+        ([productByName, productById]) => {
+          if (productByName && productById.name != productByName.name) {
             return Promise.reject("Nombre no disponible");
           }
         }
