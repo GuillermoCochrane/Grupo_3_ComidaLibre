@@ -7,39 +7,39 @@
     <div class="profile-container">
       <div class="user-info-card">
         <div class="username-img-container">
-          <img src="/images/avatar/<%= user[0].image %>" alt="profile_pic">
+          <img src="/images/avatar/<%= user.image %>" alt="profile_pic">
         </div>
           <div class="user-info-container">
             <div class="info-line">
-              <h1><%= user[0].username %></h1>
+              <h1><%= user.username %></h1>
             </div>
             <div class="info-line">
               <p class="field-name">Nombre</p>
-              <p class="field-info"><%= user[0].first_name %> <%= user[0].last_name %></p>
+              <p class="field-info"><%= user.first_name %> <%= user.last_name %></p>
             </div>
             <div class="info-line">
               <p class="field-name">Direccion</p>
-              <p class="field-info"><%= user[0].address %></p>
+              <p class="field-info"><%= user.address %></p>
             </div>
             <div class="info-line">
               <p class="field-name">Telefono</p>
-              <p class="field-info"><%= user[0].phone %></p>
+              <p class="field-info"><%= user.phone %></p>
             </div>
             <div class="info-line">
               <p class="field-name">Email</p>
-              <p class="field-info"><%= user[0].email %></p>
+              <p class="field-info"><%= user.email %></p>
             </div>
             <div class="info-line">
               <p class="field-name">Categoria</p>
-              <p class="field-info"><%= user[0].user_role.role %></p>
+              <p class="field-info"><%= user.roles_id.role %></p>
             </div>
             <br>
             <div class="info-line">
-              <a href="/user/edit/<%= user[0].id %>">Editar <i class="far fa-edit"></i></a>
+              <a href="/user/edit/<%= user.id %>">Editar <i class="far fa-edit"></i></a>
             </div>
           </div>
       </div>
-      <div class="user-sale-container">
+      <!-- <div class="user-sale-container">
         <h1>Compras realizadas</h1>
         <div class="sale-product-container">
           <% for(let sale of userSales) {%>
@@ -84,7 +84,7 @@
           <% } %>  
         </div>
       </div>
-    </div>
+    </div> -->
 </main>
 <%- include('../partials/footer.ejs') %> 
 </body>

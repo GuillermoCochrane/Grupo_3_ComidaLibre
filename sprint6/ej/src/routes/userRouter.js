@@ -14,7 +14,7 @@ const isUserMdw = require('../middlewares/isUserMdw')
 const isAdminMdw = require('../middlewares/isAdminMdw')
 
 //LISTADO DE USUARIOS
-router.get('/', /* isAdminMdw ,*/ userController.index)
+router.get('/', /*isAdminMdw,*/ userController.index)
 
 //REGISTRO DE USUARIO
 router.get('/register', isUserMdw, userController.register);
@@ -29,12 +29,12 @@ router.get('/edit/:id', isGuestMdw, userController.edit);
 router.put('/edit/:id', isGuestMdw, uploadImg.single('image'), editUserValidations, userController.update);
 
 //PERFIL DE USUARIO
-router.get('/:id', /*isGuestMdw,*/ userController.profile);
+router.get('/:id', isGuestMdw, userController.profile);
 
 //DESLOGUEA AL USUARIO
 router.post('/logout', isGuestMdw, userController.logout);
 
 //ELIMINA UN USUARIO
-router.get('/delete/:id',/* isAdminMdw, */ userController.delete);
+router.get('/delete/:id', isAdminMdw, userController.delete);
 
 module.exports = router;

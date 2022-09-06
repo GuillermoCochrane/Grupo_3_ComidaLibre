@@ -1,0 +1,98 @@
+[
+ {
+  "id": 1,
+  "username": "laura.navarro",
+  "email": "laura.navarro@test.com",
+  "password": "$2a$10$W3BT8l6zG42NrH7sLw9YI.GguVEfEbM67wuA3u0TyJPaDqT5u2pEC",
+  "category": "administrador",
+  "image": "img_user_1660593112594.png",
+  "firstName": "Laura",
+  "lastName": "Navarro",
+  "address": "Calle falsa 123",
+  "phone": "12345678"
+ },
+ {
+  "id": 2,
+  "username": "andres.escobar",
+  "email": "andres.escobar@test.com",
+  "password": "$2a$10$8hbqjSNFfrdhk17E8R8sPOVYi9Ps5Ex8BLf5nIpK/gBRdxUD3rAQG",
+  "category": "administrador",
+  "image": "img_user_1660593294797.png",
+  "firstName": "Andres",
+  "lastName": "Escobar",
+  "address": "Calle falsa 123",
+  "phone": "12345678"
+ },
+ {
+  "id": 3,
+  "username": "guillermo.cochrane",
+  "email": "guillermo.cochrane@test.com",
+  "password": "$2a$10$TXfuQc03/H8/rvX69X2Q0uorWYPTsyHBwC9gAA/YGdalnjewpuS2W",
+  "category": "administrador",
+  "image": "default.png",
+  "firstName": "Guillermo",
+  "lastName": "Cochrane",
+  "address": "Calle falsa 123",
+  "phone": "12345678"
+ },
+ {
+  "id": 4,
+  "username": "ariel.murua",
+  "email": "ariel.murua@test.com",
+  "password": "$2a$10$xtFiuXHCYTIaf8zFTNzl/OUAu5wodIGjk./6.qetK1xXJZ/JeJIBC",
+  "category": "administrador",
+  "image": "img_user_1660593634254.png",
+  "firstName": "Ariel Nicolas",
+  "lastName": "Murua",
+  "address": "Calle falsa 123",
+  "phone": "12345678"
+ },
+ {
+  "id": 5,
+  "username": "fabricio.celi",
+  "email": "fabricio.celi@test.com",
+  "password": "$2a$10$fJStKTcvkvWpnoHYxmDG6u/Jc8JOLJwp.IHicsvsY4qN0qDlpvciG",
+  "category": "administrador",
+  "image": "img_user_1660593752197.png",
+  "firstName": "Fabricio",
+  "lastName": "Celi",
+  "address": "Calle falsa 123",
+  "phone": "12345678"
+ },
+ {
+  "id": 6,
+  "username": "YoungWolf",
+  "email": "Winter@isComing.com",
+  "password": "$2a$10$RkugEYgTbj.KZyQ6PsnBVOHO7Z89KJuwtytfFm7V9eytxdAa7misC",
+  "category": "usuario",
+  "image": "img_user_1660593955448.jpg",
+  "firstName": "Robb",
+  "lastName": "Stark",
+  "address": "Winterfell 123",
+  "phone": "3531261621"
+ },
+ {
+  "id": 7,
+  "username": "leo.messi10",
+  "email": "leo.messi10@gmail.com.ar",
+  "password": "$2a$10$.bdXdoX.GgGzOcQOO.3CT.Z/mjrun9RsV7rwRHncK2qDWskO2/7IW",
+  "category": "usuario",
+  "image": "img_user_1660594047871.jpg",
+  "firstName": "Leo",
+  "lastName": "Messi",
+  "address": "Paris Saint Germain",
+  "phone": "35003000"
+ },
+ {
+  "id": 8,
+  "username": "RobbStark1",
+  "email": "Winter@isComing1.com",
+  "password": "$2a$10$wSp8aQi7KfsKQzfctOcT8./H3jpZ.NJpDTA1c1rOS1dB6LW6kM5jy",
+  "category": "usuario",
+  "image": "img_user_1662416480700.jpg",
+  "firstName": "Robb",
+  "lastName": "Stark",
+  "address": "Des Moines 678",
+  "phone": "3584120101"
+ }
+]
