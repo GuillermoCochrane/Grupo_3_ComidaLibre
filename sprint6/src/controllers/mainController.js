@@ -1,5 +1,10 @@
 const db = require("../database/models");
 const sequelize = require('sequelize')
+const Product = db.Product;
+const Category = db.Category;
+const Status = db.Status;
+const { Op } = require("sequelize");
+
 
 module.exports = {
   //VISTA DEL HOME
@@ -92,44 +97,24 @@ module.exports = {
   },
   //FUNCIONALIDAD DE LA BARRA DE BUSQUEDA
   search: async (req, res) => {
-    let allProducts
-    let busqueda
-    if(req.query.key){
-      busqueda = req.query.key;
-      allProducts = await db.Product.findAll({
-        include: ["product_category", "product_status"],
-        where: {},
-        raw: true,
-        nest: true,
-      });
-    }
-    allProducts = await db.Product.findAll({
-      include: ["product_category", "product_status"],
-      raw: true,
-      nest: true,
-    });
-    if (busqueda) {
-      for (let i = 0; i < allProducts.length; i++) {
-        if (
-          allProducts[i].name.toUpperCase().includes(busqueda.toUpperCase()) ||
-          allProducts[i].product_status.status.toUpperCase().includes(busqueda.toUpperCase()) ||
-          allProducts[i].product_category.category.toUpperCase().includes(busqueda.toUpperCase())
-        ) {
-          resultado.push(allProducts[i]);
-        }
-      }
-    } else {
-      return res.redirect("/");
-    }
+    let key =req.query.key
+    
+    Product.findAll({
+      include: ["product_category", "product_status"],  
+      where: {
+          name: {[Op.like] : '%'+key+'%'},
+        },
+    })
 
-    let cantidad = resultado.length;
-
-    return res.render("products/products", {
+    .then(productByName=>{
+      let cantidad = productByName.length; 
+      return res.render("products/products", {
       headTitle: "Free Food - Resultados de Búsqueda",
       stylesheet: "styles_products.css",
-      productList: resultado,
+      productList: productByName,
       cantidad: cantidad,
     });
+    })
   },
   favAdd: (req, res) => {
     let productId = req.params.idProduct;
