@@ -45,6 +45,7 @@ module.exports = {
 
         Promise.all([promUser,promSale,promDetail,promFavourites])
         .then(([user,sale,detail,favourites])=>{
+            console.log(favourites)
             res.render('users/userProfile', {
                         headTitle: 'Free Food - Perfil de Usuario',
                         stylesheet: 'styles.css',

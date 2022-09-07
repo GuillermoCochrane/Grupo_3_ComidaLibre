@@ -42,7 +42,6 @@
       <div class="user-sale-container">
         <h1>Compras realizadas</h1>
         <div class="sale-product-container">
-          <% if (userSales && userSales.lenght >0) { %>
           <% for(let sale of userSales) {%>
             <div>
               <p><strong>fecha de compra:</strong> <%= sale.created_at.toDateString() %></p>
@@ -51,7 +50,6 @@
             </div>
             <ul>
               <% for(let item of userSalesDetails) {%>
-                <% if(sale.id == item.sales_id) {%>
                   <li>
                     <img src="/images/products/<%= item.saleDetail_product.image %>" alt="">
                     <div>
@@ -67,14 +65,11 @@
                 <% } %>
               <% } %>
             </ul>
-          <% } %>
-          <% } %>
         </div>
       </div>
       <div class="user-favs-container">
         <h1>Favoritos</h1>
-        <div class="fav-product-container">
-          <% if (userFavourites && userFavourites.lenght >0) { %> 
+        <div class="fav-product-container">          
           <% for(let fav of userFavourites) {%>
             <div class="fav-product-info">
               <img src="/images/products/<%= fav.fav_product.image %>" alt="">
@@ -84,8 +79,7 @@
               </div>
               <a href="/fav/delete/<%= fav.fav_product.id %>"><i class="fas fa-times"></i></a>
             </div>
-          <% } %> 
-          <% } %> 
+          <% } %>          
         </div>
       </div>
     </div>
