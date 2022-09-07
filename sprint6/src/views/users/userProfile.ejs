@@ -39,9 +39,10 @@
             </div>
           </div>
       </div>
-      <!-- <div class="user-sale-container">
+      <div class="user-sale-container">
         <h1>Compras realizadas</h1>
         <div class="sale-product-container">
+          <% if (userSales && userSales.lenght >0) { %>
           <% for(let sale of userSales) {%>
             <div>
               <p><strong>fecha de compra:</strong> <%= sale.created_at.toDateString() %></p>
@@ -67,24 +68,27 @@
               <% } %>
             </ul>
           <% } %>
+          <% } %>
         </div>
       </div>
       <div class="user-favs-container">
         <h1>Favoritos</h1>
         <div class="fav-product-container">
-          <% for(let usuario of user) {%>
+          <% if (userFavourites && userFavourites.lenght >0) { %> 
+          <% for(let fav of userFavourites) {%>
             <div class="fav-product-info">
-              <img src="/images/products/<%= usuario.users_products.image %>" alt="">
+              <img src="/images/products/<%= fav.fav_product.image %>" alt="">
               <div>
-                <strong><%= usuario.users_products.name %></strong>
-                <strong>$ <%= usuario.users_products.price %></strong>
+                <strong><%= fav.fav_product.name %></strong>
+                <strong>$ <%= fav.fav_product.price %></strong>
               </div>
-              <a href="/fav/delete/<%= usuario.users_products.id %>"><i class="fas fa-times"></i></a>
+              <a href="/fav/delete/<%= fav.fav_product.id %>"><i class="fas fa-times"></i></a>
             </div>
-          <% } %>  
+          <% } %> 
+          <% } %> 
         </div>
       </div>
-    </div> -->
+    </div>
 </main>
 <%- include('../partials/footer.ejs') %> 
 </body>

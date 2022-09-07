@@ -4,7 +4,11 @@ const { Op } = require("sequelize");
 const { validationResult } = require('express-validator')
 const bcryptjs = require('bcryptjs');
 
+
 const Users = db.User
+const Sale =  db.Sale
+const SaleDetail = db.SaleDetail
+const Favourites = db.Favourite
 
 module.exports = {
     //LISTADO DE USUARIOS
@@ -21,20 +25,35 @@ module.exports = {
     
     //PERFIL DE USUARIOS
     profile: (req, res)=>{
-        Users.findByPk(req.params.id)
-        .then(user =>{
+        let promUser = Users.findByPk(req.params.id)
+        let promSale = Sale.findAll({
+            where: {
+                users_id: req.params.id
+            }
+        });
+
+        let promDetail = SaleDetail.findAll({
+            include: ['saleDetail_product']
+        });
+
+        let promFavourites = Favourites.findAll({
+                where:{
+                    users_id: req.params.id
+                },
+                include: ['fav_product'],
+            })
+
+        Promise.all([promUser,promSale,promDetail,promFavourites])
+        .then(([user,sale,detail,favourites])=>{
             res.render('users/userProfile', {
-                headTitle: 'Free Food - Perfil de Usuario',
-                stylesheet: 'styles.css',
-                user: user
-            })            
+                        headTitle: 'Free Food - Perfil de Usuario',
+                        stylesheet: 'styles.css',
+                        user:             user,
+                        userSales:        sale,
+                        userSalesDetails: detail,
+                        userFavourites:   favourites,
+                    })     
         })
-        
-        // return res.render('users/userProfile', {
-        //     headTitle: 'Free Food - Perfil de Usuario',
-        //     stylesheet: 'styles.css',
-        //     user: User.findById(req.params.id)
-        // })
     },
     //FORMULARIO DE LOGIN
     login: (req, res)=>{
