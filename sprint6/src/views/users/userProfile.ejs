@@ -80,18 +80,20 @@
               <% if(usuario.users_products.id === null) { %>
                 <p>No tenes favoritos <a href="/products/">ver productos</a></p>  
               <% break }%>
-              <img src="/images/products/<%= usuario.users_products.image %>" alt="">
+              <a href="/products/<%= usuario.users_products.categories_id %>/<%= usuario.users_products.id %>">
+                <img src="/images/products/<%= usuario.users_products.image %>" alt="">
+              </a>
               <div>
                 <strong><%= usuario.users_products.name %></strong>
                 <strong>$ <%= usuario.users_products.price %></strong>
               </div>
-              <a href="/fav/delete/<%= usuario.users_products.id %>"><i class="fas fa-times"></i></a>
+              <a class="fav-delete" href="/fav/delete/<%= usuario.users_products.id %>"><i class="fas fa-times"></i></a>
             </div>
           <% } %> 
         </div>
       </div>
     </div>
-</main>
-<%- include('../partials/footer.ejs') %> 
+  </main>
+  <%- include('../partials/footer.ejs') %> 
 </body>
 </html>

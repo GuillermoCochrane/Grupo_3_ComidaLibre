@@ -1,92 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-
-    <%- include('partials/head.ejs') %>
-
-<body>
-    
+  <%- include('partials/head.ejs') %>
+  <body>
     <%- include('partials/header.ejs') %> 
-
     <main class="main-cart">
-
-        <div class="tittle-close">
-            <h2 class="tittle-page">Carrito de compras</h2>
-            <a href="/cart/delete">Vaciar carrito</a>
+      <div class="tittle-close">
+        <h2 class="tittle-page">Carrito de compras</h2>
+        <a href="/cart/delete">Vaciar carrito</a>
+      </div>
+      <% if( typeof productList != 'undefined' && productList) {%>
+        <% for(let producto of productList) { %>
+          <article class="main-article">
+            <a class="a-img" href="/products/<%= producto.cart_product.categories_id %>/<%= producto.cart_product.id %>">
+              <img class="product-img" src="/images/products/<%= producto.cart_product.image %>" alt="product img">
+            </a>
+            <div class="product-detail">
+              <h3>
+                <span><%= producto.cart_product.name %></span>
+              </h3>
+              <div class="subtotal-module">
+                <select class="quantity" name="quantity"> 
+                  <option value=1>1</option>
+                  <option value=2>2</option>
+                  <option value=3>3</option>
+                  <option value=4>4</option>
+                  <option value=5>5</option>
+                  <option selected value=<%= producto.quantity %>><%= producto.quantity %></option>
+                </select>
+                <span class="subtotal">
+                  $ <%= ((producto.cart_product.price - (producto.cart_product.discount/100 * producto.cart_product.price)) * producto.quantity).toFixed(2) %>
+                </span>
+              </div>
+              <a class="delete-cart-item" href="/cart/delete/<%= producto.cart_product.id %>" type="submit"><i class="fas fa-trash"></i></a>
+            </div>
+          </article>
+        <% } %>
+      <% } else {%>
+        <article class="main-article">
+          <h3>Vacio, <a href="/products">ir de compras</a></h3>
+        </article>
+      <% } %>  
+      <section class="end-section">
+        <div class="end-subtotal">
+          <h4>Subtotal</h4>
+          <span>$ <%= typeof subtotal != 'undefined' ? subtotal : null %></span>
         </div>
-        
-        <% if( typeof productList != 'undefined' && productList) {%>
-            
-            <% for(let producto of productList) { %>
-            <article class="main-article">
-                <a class="a-img" href="/products/<%= producto.cart_product.categories_id %>/<%= producto.cart_product.id %>">
-                    <img class="product-img" src="/images/products/<%= producto.cart_product.image %>" alt="product img">
-                </a>
-                <div class="product-detail">
-                    <h3>
-                        <span>
-                            <%= producto.cart_product.name %>
-                        </span>
-                    </h3>
-                    <div class="subtotal-module">
-                        <select class="quantity" name="quantity"> 
-                            <option value=1>1</option>
-                            <option value=2>2</option>
-                            <option value=3>3</option>
-                            <option value=4>4</option>
-                            <option value=5>5</option>
-                            <option selected value=<%= producto.quantity %>><%= producto.quantity %></option>
-                        </select>
-                        <span class="subtotal">
-                            $ <%= ((producto.cart_product.price - (producto.cart_product.discount/100 * producto.cart_product.price)) * producto.quantity).toFixed(2) %>
-                        </span>
-                    </div>
-                    <a class="delete-cart-item" href="/cart/delete/<%= producto.cart_product.id %>" type="submit"><i class="fas fa-trash"></i></a>
-                </div>
-            </article>
-
-            <% } %>
-        
-        <% } else {%>
-            <article class="main-article">
-
-                <h3>Vacio, <a href="/products">ir de compras</a></h3>
-
-            </article>
-        
-        <% } %>  
-
-    
-        <section class="end-section">
-            <div class="end-subtotal">
-                <h4>Subtotal</h4>
-                <span>$ <%= typeof subtotal != 'undefined' ? subtotal : null %></span>
-            </div>
-            <div class="shipping">
-                <h4>Envío</h4>
-                <span>$ <%= typeof shipping != 'undefined' ? shipping : null %> </span>
-            </div>
-            <div class="total">
-                <h4>Total</h4>
-                <span>$ <%= typeof total != 'undefined' ? total : null %></span>
-            </div>
-        </section>
-    
-        <form action="/cart" method="get" class="apply-code">
-            <input type="text" name="discount-code" id="discount-code" placeholder="Código de descuento" minlength="8" maxlength="12" class="code">
-            <button type="submit" value="apply" class="apply">Aplicar</button>
-        </form>
-        <form action="/sale" method="POST" class="button">
-            <button type="submit" class="end">Finalizar Compra</button>
-        </form>
-        <form action="/" method="get" class="button">
-            <button type="submit" value="continue" class="continue">Seguir comprando</button>
-        </form>
+        <div class="shipping">
+          <h4>Envío</h4>
+          <span>$ <%= typeof shipping != 'undefined' ? shipping : null %> </span>
+        </div>
+        <div class="total">
+            <h4>Total</h4>
+            <span>$ <%= typeof total != 'undefined' ? total : null %></span>
+        </div>
+      </section>
+      <form action="/cart" method="get" class="apply-code">
+        <input type="text" name="discount-code" id="discount-code" placeholder="Código de descuento" minlength="8" maxlength="12" class="code">
+        <button type="submit" value="apply" class="apply">Aplicar</button>
+      </form>
+      <form action="/sale" method="POST" class="button">
+        <button type="submit" class="end">Finalizar Compra</button>
+      </form>
+      <form action="/" method="get" class="button">
+        <button type="submit" value="continue" class="continue">Seguir comprando</button>
+      </form>
 
     </main>
-
     <%- include('partials/footer.ejs') %> 
-
-
-
-</body>
+  </body>
 </html>

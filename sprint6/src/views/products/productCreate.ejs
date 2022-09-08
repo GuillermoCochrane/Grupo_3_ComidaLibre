@@ -1,131 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-    
-    <%- include('../partials/head.ejs') %> 
-    
-    <body>
-        
-        <main class="main-edit-create">
-    
-            <a class="logo-form" href="/"><img id="logo" src="/images/FreeFood2f.png" alt="logo"></a>
-           
-            <h1>Agregá un producto</h1>
-    
-            <form class="input-container-form" action="/products/store" method="POST" enctype="multipart/form-data">
+  <%- include('../partials/head.ejs') %>
 
-                <label for="name"><h4>Nombre del producto</h4></label>
-                <div class="info-container-div">
-                    <i class="fas fa-file-signature"></i>
-                    <input type="text" name="name" id="name" placeholder="ej: Milanesa con puré">
-                </div>
-                <% if( typeof errors != 'undefined' && errors.name) {%>
-                    
-                    <p class="error-input">
-                        <%= errors.name.msg %>
-                    </p>
-                    
-                <% } %>
+<body>
+  <main class="main-edit-create">
+    <a class="logo-form" href="/">
+      <img id="logo" src="/images/FreeFood2f.png" alt="logo"/>
+    </a>
+    <h1>Agregá un producto</h1>
+    <form class="input-container-form" action="/products/store" method="POST" enctype="multipart/form-data">
+      <label for="name">
+        <h4>Nombre del producto</h4>
+      </label>
+        <div class="info-container-div">
+          <i class="fas fa-file-signature"></i>
+          <input type="text" name="name" id="name" placeholder="ej: Milanesa con puré"/>
+        </div>
+        <% if( typeof errors != 'undefined' && errors.name) {%>
+          <p class="error-input"><%= errors.name.msg %></p>
+        <% } %>
 
-                <label for="price"><h4>Precio</h4></label>
-                <div class="info-container-div">
-                    <i class="fas fa-dollar-sign"></i>
-                    <input type="text" step = "any" name="price" id="price" placeholder="ej: 00,00">
-                </div>
-                <% if( typeof errors != 'undefined' && errors.price) {%>
-                    
-                    <p class="error-input">
-                        <%= errors.price.msg %>
-                    </p>
-                    
-                <% } %>
+        <label for="price">
+          <h4>Precio</h4>
+        </label>
+        <div class="info-container-div">
+          <i class="fas fa-dollar-sign"></i>
+          <input type="text" step="any" name="price" id="price" placeholder="ej: 00.00"/>
+        </div>
+        <% if( typeof errors != 'undefined' && errors.price) {%>
+          <p class="error-input"><%= errors.price.msg %></p>
+        <% } %>
 
-                <label for="idCat"><h4>Categoría</h4></label>
-                <div class="info-container-div">
-                    <i class="fas fa-clipboard-list"></i>
-                    <select name="idCat" id="idCat">
-                        <option value="" selected disabled hidden>Categoría</option>
-                        <option value= 1>Entrada</option>
-                        <option value= 2>Plato principal</option>
-                        <option value= 3>Postre</option>
-                        <option value= 4>Bebida</option>
-                    </select>    
-                </div>
-                <% if( typeof errors != 'undefined' && errors.idCat) {%>
-                    
-                    <p class="error-input">
-                        <%= errors.idCat.msg %>
-                    </p>
-                    
-                <% } %>
+        <label for="idCat">
+          <h4>Categoría</h4>
+        </label>
+        <div class="info-container-div">
+          <i class="fas fa-clipboard-list"></i>
+          <select name="idCat" id="idCat">
+            <option value="" selected disabled hidden>Categoría</option>
+            <option value="1">Entrada</option>
+            <option value="2">Plato principal</option>
+            <option value="3">Postre</option>
+            <option value="4">Bebida</option>
+          </select>
+        </div>
+        <% if( typeof errors != 'undefined' && errors.idCat) {%>
+          <p class="error-input"><%= errors.idCat.msg %></p>
+        <% } %>
 
-                <label for="status"><h4>Estado de producto</h4></label>
-                <div class="info-container-div">
-                    <i class="fas fa-clipboard-list"></i>
-                    <select name="status" id="status">
-                        <option value="" selected disabled hidden>Estado</option>
-                        <option value=1>Novedad</option>
-                        <option value=2>Oferta</option>
-                        <option value=3>Recomendado</option>
-                        <option value=4>Más vendido</option>
-                    </select>    
-                </div>
-                <% if( typeof errors != 'undefined' && errors.status) {%>
-                    
-                    <p class="error-input">
-                        <%= errors.status.msg %>
-                    </p>
-                    
-                <% } %>
+        <label for="status">
+          <h4>Estado de producto</h4>
+        </label>
+        <div class="info-container-div">
+          <i class="fas fa-clipboard-list"></i>
+          <select name="status" id="status">
+            <option value="" selected disabled hidden>Estado</option>
+            <option value="1">Novedad</option>
+            <option value="2">Oferta</option>
+            <option value="3">Recomendado</option>
+            <option value="4">Más vendido</option>
+          </select>
+        </div>
+        <% if( typeof errors != 'undefined' && errors.status) {%>
+          <p class="error-input"><%= errors.status.msg %></p>
+        <% } %>
 
-                <label for="discount">
-                    <h4>
-                        Porcentaje de descuento: %<output id="rangevalue">0</output>
-                    </h4>
-                </label>
-                <div class="info-container-div">
-                    <i class="fas fa-percent"></i>
-                    <input oninput="rangevalue.value=value" type="range" name="discount" id="discount" min="0" max="100" step="1" value="0">
-                </div>
-                <% if( typeof errors != 'undefined' && errors.discount) {%>
-                    
-                    <p class="error-input">
-                        <%= errors.discount.msg %>
-                    </p>
-                    
-                <% } %>
+        <label for="discount">
+          <h4>Porcentaje de descuento: %<output id="rangevalue">0</output></h4>
+        </label>
+        <div class="info-container-div">
+          <i class="fas fa-percent"></i>
+          <input oninput="rangevalue.value=value" type="range" name="discount" id="discount" min="0" max="100" step="1" value="0"/>
+        </div>
+        <% if( typeof errors != 'undefined' && errors.discount) {%>
+          <p class="error-input"><%= errors.discount.msg %></p>
+        <% } %>
 
-                <label for="img"><h4>Imagen del producto (.png/.jpg)</h4></label>
-                <div class="info-container-div">
-                    <i class="fas fa-file-image"></i>
-                    <input class="img-input" type="file" id="img" name="img">
-                </div>
-                <% if( typeof errors != 'undefined' && errors.img) {%>
-                    
-                    <p class="error-input">
-                        <%= errors.img.msg %>
-                    </p>
-                    
-                <% } %>
-                
-                <label for="description"><h4>Descripción del producto</h4></label>
-                <textarea name="description" id="description" cols="30" rows="5" maxlength="500" placeholder="Descripción (max 500 caracteres)"></textarea>
-                <% if( typeof errors != 'undefined' && errors.description) {%>
-                    
-                    <p class="error-input">
-                        <%= errors.description.msg %>
-                    </p>
-                    
-                <% } %>
+        <label for="img">
+          <h4>Imagen del producto (.png/.jpg)</h4>
+        </label>
+        <div class="info-container-div">
+          <i class="fas fa-file-image"></i>
+          <input class="img-input" type="file" id="img" name="img" />
+        </div>
+        <% if( typeof errors != 'undefined' && errors.img) {%>
+          <p class="error-input"><%= errors.img.msg %></p>
+        <% } %>
 
-                
-                <div class="btn-container">
-                    <button type="submit">Guardar</button>
-                    <button type="reset">Borrar</button>
-                </div>
-                 
-            </form>
-            
-        </main>
-    
-    </body>
+        <label for="description">
+          <h4>Descripción del producto</h4>
+        </label>
+        <textarea name="description" id="description" cols="30" rows="5" maxlength="500" placeholder="Descripción (max 500 caracteres)"></textarea>
+        <% if( typeof errors != 'undefined' && errors.description) {%>
+          <p class="error-input"><%= errors.description.msg %></p>
+        <% } %>
+
+        <div class="btn-container">
+          <button type="submit">Guardar</button>
+          <button type="reset">Borrar</button>
+        </div>
+    </form>
+  </main>
+</body>
 </html>

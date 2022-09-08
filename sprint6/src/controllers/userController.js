@@ -76,7 +76,7 @@ module.exports = {
     Users.findOne({ where: { email: data.emailUser }, raw: true })
     .then(user => {
       if (!user) {
-        Users.findOne({ where: { username: data.emailUser }, raw: true,})
+        Users.findOne({ where: { username: data.emailUser }, raw: true })
         .then(user => {
           delete user.password;
           if (data.remember_user) {
@@ -113,7 +113,6 @@ module.exports = {
         errors: errors.mapped(),
       });
     }
-
     let userData = { ...req.body };
     delete userData.rePassword;
     let hashedPassword = bcryptjs.hashSync(userData.password, 10);
@@ -123,10 +122,7 @@ module.exports = {
       password: hashedPassword,
       roles_id: 2,
     }
-
-    
     Users.create(newUser);
-
     return res.redirect("/");
   },
   //FORMULARIO DE EDICION DE USUARIO
@@ -174,7 +170,6 @@ module.exports = {
         delete userData[input];
       }
     }
-
     let updatedUser;
     if (req.file && hashedPassword) {
       updatedUser = {
@@ -207,9 +202,7 @@ module.exports = {
         password: userFound.password,
       };
     }
-
     Users.update(updatedUser, { where: { id: userId } });
-
     return res.redirect(`/user/${req.params.id}`);
   },
   //ELIMINA UN USUARIO

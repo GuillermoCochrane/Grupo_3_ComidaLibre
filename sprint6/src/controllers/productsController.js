@@ -14,7 +14,6 @@ module.exports = {
         allProducts = await db.Product.findAll({
           include: ["product_category", "product_status"],
           order: [[paramI , paramO]],
-          limit: 15,
           raw: true,
           nest: true,
         });
@@ -22,7 +21,6 @@ module.exports = {
         allProducts = await db.Product.findAll({
           include: ["product_category", "product_status"],
           order: [[paramI]],
-          limit: 15,
           raw: true,
           nest: true,
         });
@@ -30,7 +28,6 @@ module.exports = {
     } else {
       allProducts = await db.Product.findAll({
         include: ["product_category", "product_status"],
-        limit: 15,
         raw: true,
         nest: true,
       });
@@ -51,7 +48,6 @@ module.exports = {
       raw: true,
       nest: true,
     });
-
     return res.render("products/products", {
       headTitle: "Free Food - Categoría",
       stylesheet: "styles_products.css",
@@ -71,7 +67,6 @@ module.exports = {
       },
     });
     let product = await db.Product.findOne({ where: { id: productId } });
-
     return res.render("products/productDetail", {
       headTitle: "Free Food - Detalle de producto",
       stylesheet: "styles_productDetail.css",
@@ -121,7 +116,6 @@ module.exports = {
       };
       db.Product.create(newProduct);
     }
-
     return res.redirect("/products");
   },
   //FORMULARIO DE EDICIÓN DE PRODUCTO
@@ -175,14 +169,12 @@ module.exports = {
       };
       db.Product.update(updatedProduct, { where: { id: productId } });
     }
-
     return res.redirect("/products");
   },
   //ELIMINA UN PRODUCTO DE LA LISTA
   delete: (req, res) => {
     let productId = req.params.idProduct;
     db.Product.destroy({ where: { id: productId } });
-
     return res.redirect("/products");
   },
 };

@@ -458,6 +458,7 @@ footer {
 .fav-product-info{
   margin: 0px 10px; 
   display: flex;
+  align-items: center;
   border-top: 1px solid black;
   position: relative;
 }
@@ -466,19 +467,18 @@ footer {
   display: flex; 
   flex-direction: column;
 }
-.fav-product-info > img {
+.fav-product-info > a > img {
   max-width: 150px;
   max-height: 150px;
-}
-.fav-product-info > a {
-  position: absolute;
-  top: 5px;
-  right: 5px;
 }
 .fav-product-info > a > i {
   font-size: 20px;
 }
-
+.fav-delete {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
 .user-sale-container {
   padding: 20px 0px;
   margin: 10px 0;

@@ -5,6 +5,5 @@ module.exports = (req, res, next) => {
     }
     return res.redirect("/");
   }
-
   return res.redirect("/user/login");
 };

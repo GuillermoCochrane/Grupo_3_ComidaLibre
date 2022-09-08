@@ -1,60 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+  <%- include('../partials/head.ejs') %>
 
-    <%- include('../partials/head.ejs') %>
-
-<body>
-    <%- include('../partials/header.ejs') %>
-
-    <main class="main-products">
-        <% if (typeof searchKey != 'undefined' && searchKey.length > 0 ){ %>
-            <h1>Resultados de la búsqueda: "<%= searchKey %>" </h1>                    
-        <% } else { %> 
-            <h1>Productos del menú</h1>
-        <% } %>
-        <nav class="product-params">
-            <form method="get" action="/products">
-                <select name="i" id="i">
-                    <option selected disabled hidden>Ordenar por</option>
-                    <option value="name">Nombre</option>
-                    <option value="discount">Descuento</option>
-                    <option value="price">Precio</option>
-                </select>
-                <input type="submit" name="o" id="o" value="ASC">
-                <input type="submit" name="o" id="o" value="DESC">
-            </form>
-        </nav>
-        <section class="section-article">
-            <% for(let product of productList){ %>
-            <article class="main-article">
-                <img src="/images/products/<%= product.image %>" alt="<%= product.name %>">
-                <div class="product-detail">
-                    <h5 class="product-name"> <%= product.name %> </h5>
-                    <p class="price">$ <%= (product.price-(product.price*(product.discount/100))).toFixed(2) %></p>
-                    <% if(product.discount) {%>
-                        <p class="discount">-%<%= product.discount %></p>
-                        
-                    <% } %>
-                    <div class="buttons">
-                        <form class="form-detail" action="/products/<%= product.categories_id %>/<%= product.id %>">
-                            <button type="submit" class="btn-detail">Ver detalle</button>
-                        </form>
-                        <form class="form-fav" action="/fav/add/<%= product.id %>" method="POST">
-                            <button class="btn-fav" type="submit" class="btn-detail"><i class="fas fa-heart"></i></button>
-                        </form>
-                    </div>
-                </div>
-            </article>
+  <body>
+  <%- include('../partials/header.ejs') %>
+  <main class="main-products">
+    <% if (typeof searchKey != 'undefined' && searchKey.length > 0 ){ %>
+      <h1>Resultados de la búsqueda: "<%= searchKey %>" </h1>                    
+    <% } else { %> 
+      <h1>Productos del menú</h1>
+    <% } %>
+    <nav class="product-params">
+      <form method="get" action="/products">
+        <select name="i" id="i">
+          <option selected disabled hidden>Ordenar por</option>
+          <option value="name">Nombre</option>
+          <option value="discount">Descuento</option>
+          <option value="price">Precio</option>
+        </select>
+        <input type="submit" name="o" id="o" value="ASC">
+        <input type="submit" name="o" id="o" value="DESC">
+      </form>
+    </nav>
+    <section class="section-article">
+      <% for(let product of productList){ %>
+        <article class="main-article">
+          <img src="/images/products/<%= product.image %>" alt="<%= product.name %>">
+          <div class="product-detail">
+            <h5 class="product-name"> <%= product.name %> </h5>
+            <p class="price">
+              $ <%= (product.price-(product.price*(product.discount/100))).toFixed(2) %>
+            </p>
+            <% if(product.discount) {%>
+              <p class="discount">-%<%= product.discount %></p>
             <% } %>
-            <% if (productList.length  === 0) { %>
-                <h2 class="products-title" style="color: tomato;">No hay productos que coincidan con esa búsqueda</h2>
-            <% } %>
-        </section>
-        <nav class="product-pages">
-            paginado
-        </nav>
-    </main>
-
-    <%- include('../partials/footer.ejs') %>
-</body>
+            <div class="buttons">
+              <form class="form-detail" action="/products/<%= product.categories_id %>/<%= product.id %>">
+                <button type="submit" class="btn-detail">Ver detalle</button>
+              </form>
+              <form class="form-fav" action="/fav/add/<%= product.id %>" method="POST">
+                <button class="btn-fav" type="submit" class="btn-detail"><i class="fas fa-heart"></i></button>
+              </form>
+            </div>
+          </div>
+        </article>
+      <% } %>
+      <% if (productList.length  === 0) { %>
+        <h2 class="products-title" style="color: tomato;">No hay productos que coincidan con esa búsqueda</h2>
+      <% } %>
+    </section>
+    <nav class="product-pages">
+        paginado
+    </nav>
+  </main>
+  <%- include('../partials/footer.ejs') %>
+  </body>
 </html>

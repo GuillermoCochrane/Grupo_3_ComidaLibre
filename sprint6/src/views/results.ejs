@@ -1,43 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-
-    <%- include('partials/head.ejs') %>
-
-<body>
+  <%- include('partials/head.ejs') %>
+  <body>
     <%- include('partials/header.ejs') %>
-
     <main class="main-products">
-        
-        <h1>Resultados de la busqueda: <%= cantidad %></h1>
-        <br> 
-        <section class="section-article">
-            <% for(let product of productList){ %>
-            <article class="main-article">
-                <img src="/images/products/<%= product.img %>" alt="<%= product.name %>">
-                <div class="product-detail">
-                    <h5 class="product-name"> <%= product.name %> </h5>
-                    <p class="price">$ <%= product.price %></p>
+      <h1>Resultados de la busqueda: <%= cantidad %></h1>
+      <br> 
+      <section class="section-article">
+        <% for(let product of productList){ %>
+          <article class="main-article">
+            <img src="/images/products/<%= product.img %>" alt="<%= product.name %>">
+              <div class="product-detail">
+                <h5 class="product-name"> <%= product.name %> </h5>
+                <p class="price">$ <%= product.price %></p>
+                <% if(product.discount == true) {%>
+                  <p class="discount"><%= product.discountAmount %> % OFF</p>
+                <% } else {%> 
+                    <p class="discount-hidden"><%= product.discountAmount %> % OFF</p>
+                <% } %>
+                <br>
+              </div>
+              <form action="/products/<%= product.idCat %>/<%= product.id %>">
+                <button type="submit" class="btn-detail">Ver detalle</button>
+              </form>
 
-                    <% if(product.discount == true) {%>
-                        
-                        <p class="discount"><%= product.discountAmount %> % OFF</p>
-                        
-                    <% } else {%> <p class="discount-hidden"><%= product.discountAmount %> % OFF</p> <% } %>
-                    <br>
-                </div>
-                <form action="/products/<%= product.idCat %>/<%= product.id %>">
-                    <button type="submit" class="btn-detail">Ver detalle</button>
-                </form>
-
-            </article>
-            <% } %> 
-            <% if (cantidad==0) { %>
-                <h2 class="products-title" style="color: tomato;">No hay productos que coincidan con esa búsqueda</h2>
-            <% } %>
-    
-        </section>
+          </article>
+        <% } %> 
+        <% if (cantidad==0) { %>
+          <h2 class="products-title" style="color: tomato;">No hay productos que coincidan con esa búsqueda</h2>
+        <% } %>
+      </section>
     </main>
-
     <%- include('partials/footer.ejs') %>
-</body>
+  </body>
 </html>

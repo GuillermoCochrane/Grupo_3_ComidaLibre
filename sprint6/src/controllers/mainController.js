@@ -21,7 +21,6 @@ module.exports = {
       raw: true,
       nest: true,
     });
-
     return res.render("index", {
       headTitle: "Bienvenidos a Free Food",
       stylesheet: "",
@@ -74,7 +73,6 @@ module.exports = {
       users_id: userId,
       quantity: quantity,
     });
-
     return res.redirect("/cart");
   },
   //ELIMINA PRODUCTOS DEL CARRITO
@@ -82,13 +80,11 @@ module.exports = {
     let productId = req.params.idProduct;
     let userId = req.session.userLogged.id;
     db.Cart.destroy({ where: { products_id: productId, users_id: userId } });
-
     return res.redirect("/cart");
   },
   cartDeleteAll: (req, res) => {
     let userId = req.session.userLogged.id;
     db.Cart.destroy({ where: { users_id: userId } });
-
     return res.redirect("/cart");
   },
   //FUNCIONALIDAD DE LA BARRA DE BUSQUEDA
@@ -124,14 +120,12 @@ module.exports = {
       products_id: productId,
       users_id: userId,
     });
-
     return res.redirect("/products");
   },
   favDelete: (req, res) => {
     let productId = req.params.idProduct;
     let userId = req.session.userLogged.id;
     db.Favourite.destroy({ where: { products_id: productId, users_id: userId } });
-
     return res.redirect("/products");
   },
   sale: async (req, res) => {
@@ -173,15 +167,10 @@ module.exports = {
         })
       }
       let total = subtotal + shipping;
-      db.Sale.update({
-        total: total
-      },{
-        where: { id: sale.id }
-      })
-
+      db.Sale.update({total: total}  , {where: {id: sale.id}} )
       db.Cart.destroy({ where: { users_id: userId } });
     } else {
-      return res.send('No tienes productos en el carrito')
+      return res.redirect("/cart");
     }
     return res.redirect("/");
   },

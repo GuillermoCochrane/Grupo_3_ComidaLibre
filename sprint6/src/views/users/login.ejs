@@ -1,58 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<%- include('../partials/head.ejs') %> 
-
-<body>
-    
+  <%- include('../partials/head.ejs') %> 
+  <body>
     <main>
-
-        <a href="/"><img id="logo" src="/images/FreeFood2f.png" alt="logo"></a>
-
-        <form class="log-container" action="/user/login" method="post">
-            
-            <h3>Accedé a tu cuenta</h3>
-            
-            <div class="item-container">
-
-                <i class="fas fa-user"></i>
-                <input class="log-item" type="text" name="emailUser" id="emailUser" placeholder="Email/Usuario">
-
-            </div>
-            
-            <div class="item-container">
-
-                <i class="fas fa-lock"></i>
-                
-                <input class="log-item" type="password" name="password" id="password" placeholder="Contraseña">
-
-            </div>
-            
-            <div class="rememberme-container">
-                <input type="checkbox" name="remember_user" id="remember_user">
-                <label for="remember_user">Recordarme</label>
-            </div>
-
-            <% if(typeof errors != 'undefined') {%>
-
-                <% for(singleError in errors) {%>
-                        <p class="error-input">
-                            <%= errors[singleError].msg %>
-                        </p>
-                <% } %>
-            
-            <% } %> 
-            
-            <button class="log-button">INGRESAR</button>
-        
-            <a class="pass-forgot" href="#">¿Olvidaste tu contraseña?</a>
-            
-        </form>
-        
-        <div class="reg-log">
-            ¿No tenés cuenta? <a href="/user/register">Ingresá aquí</a>
+      <a href="/">
+        <img id="logo" src="/images/FreeFood2f.png" alt="logo">
+      </a>
+      <form class="log-container" action="/user/login" method="post">
+        <h3>Accedé a tu cuenta</h3>
+        <div class="item-container">
+          <i class="fas fa-user"></i>
+          <input class="log-item" type="text" name="emailUser" id="emailUser" placeholder="Email/Usuario">
         </div>
+        
+        <div class="item-container">
+          <i class="fas fa-lock"></i>
+          <input class="log-item" type="password" name="password" id="password" placeholder="Contraseña">
+        </div>
+            
+        <div class="rememberme-container">
+          <input type="checkbox" name="remember_user" id="remember_user">
+          <label for="remember_user">Recordarme</label>
+        </div>
+        <% if(typeof errors != 'undefined') {%>
+          <% for(singleError in errors) {%>
+            <p class="error-input"><%= errors[singleError].msg %></p>
+          <% } %>
+        <% } %> 
+        <button class="log-button">INGRESAR</button>
+        <a class="pass-forgot" href="#">¿Olvidaste tu contraseña?</a>
+      </form>
+      <div class="reg-log">
+        ¿No tenés cuenta? <a href="/user/register">Ingresá aquí</a>
+      </div>
     </main>
-   
-</body>
+  </body>
 </html>
