@@ -14,6 +14,7 @@ module.exports = {
         allProducts = await db.Product.findAll({
           include: ["product_category", "product_status"],
           order: [[paramI , paramO]],
+          limit: 15,
           raw: true,
           nest: true,
         });
@@ -21,6 +22,7 @@ module.exports = {
         allProducts = await db.Product.findAll({
           include: ["product_category", "product_status"],
           order: [[paramI]],
+          limit: 15,
           raw: true,
           nest: true,
         });
@@ -28,6 +30,7 @@ module.exports = {
     } else {
       allProducts = await db.Product.findAll({
         include: ["product_category", "product_status"],
+        limit: 15,
         raw: true,
         nest: true,
       });
@@ -53,6 +56,7 @@ module.exports = {
       headTitle: "Free Food - Categoría",
       stylesheet: "styles_products.css",
       productList: productList,
+      pages: productList.length
     });
   },
   //DETALLES DE PRODUCTO

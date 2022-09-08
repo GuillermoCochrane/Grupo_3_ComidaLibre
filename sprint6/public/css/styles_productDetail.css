@@ -41,6 +41,7 @@ h1 {
   border-radius: 10px;
 }
 .main-detail {
+  position: relative;
   margin: auto;
   text-align: center;
   padding: 15px;
@@ -56,9 +57,7 @@ h1 {
   font-weight: bold;
 }
 .list {
-  font-size: 19px;
-  margin-top: 15px;
-  text-align: left;
+  display: none;
 }
 select {
   font-size: 19px;
@@ -66,7 +65,8 @@ select {
   background-color: #87c99b;
   border: 1px solid #87c99bcc;
   color: rgb(32, 32, 32);
-  cursor: pointer;
+  cursor: pointer; 
+  margin-right: 10px;
 }
 .add-button {
   border: 1px solid #87c99bcc;
@@ -123,7 +123,6 @@ select {
 }
 .add-to {
   display: flex;
-  flex-direction: column;
 }
 
 /*buttons edit-delete*/
@@ -197,23 +196,20 @@ select {
   .product {
     width: 45%;
   }
+  .list {
+    display: block;
+    text-align: start;
+  }
 }
 @media (min-width: 900px) {
   #main-image {
     width: 100%;
   }
-  /*.main-product{
-        flex-direction: row;
-        margin-left: 25px;
-        margin-right: 25px;
-        justify-content: space-around;
-    }*/
 }
 
 @media (min-width: 1024px) {
   #main-image {
     width: 100%;
-    min-width: 500px;
   }
   .nav-dishes {
     margin-left: 50px;

@@ -76,7 +76,7 @@
                     </h5>
                     <% if(product.discount) {%>
                       <p class="card-text">
-                        $ <%= (product.price - (product.price * (product.discount/100))) %>
+                        $ <%= (product.price - (product.price * (product.discount/100))).toFixed(2) %>
                       </p>
                     <% } else {%>
                       <p class="card-text">
@@ -110,12 +110,13 @@
                     </h5>
                     <% if(product.discount) {%>
                       <p class="card-text">
-                        $ <%= (product.price - (product.price * (product.discount/100))) %>
+                        $ <%= (product.price - (product.price * (product.discount/100))).toFixed(2) %>
                       </p>
+                    <% } else {%>
+                      <p class="card-text">
+                        $ <%= product.price %>
+                      </p>     
                     <% } %>
-                    <p class="card-text">
-                      $ <%= product.price %>
-                    </p>
                     <a href="/products/<%= product.categories_id %>/<%= product.id %>"  class="btn btn-primary">Ver detalle</a>
                   </div>
                 </div>

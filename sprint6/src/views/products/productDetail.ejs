@@ -16,7 +16,6 @@
             <img id="main-image" src="/images/products/<%=product.image %>" alt="<%= product.name %>">
             <div class="main-detail">
                 <h2 class="title0"><%= product.name %></h2>
-                <p class="name"><%= product.description %></p>
                 
                 <% if(product.discount) {%>
                     <div class="discount-div">
@@ -28,7 +27,6 @@
                 <% } %> 
 
                 <form class="add-to" action="/cart/<%= product.id %>" method="POST">
-                    <p class="list">Elegir la cantidad: 
                         <select name="quantity">
                             <option value=1>1</option>
                             <option value=2>2</option>
@@ -36,8 +34,7 @@
                             <option value=4>4</option>
                             <option value=5>5</option>
                         </select>
-                    </p>
-                    <button class="add-button" type="submit">Agregar al carrito</button>
+                    <button class="add-button" type="submit"><i class="fas fa-cart-plus"></i> Agregar al carrito</button>
                 </form>
 
                 <% if( locals.userLogged && locals.userLogged.roles_id === 1 ) {%>
@@ -51,7 +48,8 @@
                         </form>
                     </div>   
                 
-                <% } %>  
+                <% } %>
+                <p class="name"><strong>Descripción: </strong><%= product.description %></p>
 
         </article>
         <br>
@@ -71,17 +69,15 @@
                             <p class="discount">-<%= productR.discount %>% OFF</p>
                         <% } %>
                         <p class="name"><%= productR.name %> </p>
-                        <p class="descrip"><%= productR.description %> </p>
+                        <p class="descrip"><strong>Descripción: </strong><%= productR.description %> </p>
                         <form class="add-to" action="/cart/<%= productR.id %>" method="POST">
-                            <p class="list">Elegir la cantidad: 
                                 <select name="quantity">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
+                                    <option value=1>1</option>
+                                    <option value=2>2</option>
+                                    <option value=3>3</option>
+                                    <option value=4>4</option>
+                                    <option value=5>5</option>
                                 </select>
-                            </p>
                             <button class="add-button" type="submit">Agregar al carrito</button>
                         </form>
                     </div>

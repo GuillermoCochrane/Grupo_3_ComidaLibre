@@ -1,10 +1,6 @@
 const db = require("../database/models");
 const sequelize = require('sequelize')
-const Product = db.Product;
-const Category = db.Category;
-const Status = db.Status;
-const { Op } = require("sequelize");
-
+const { Op } = require('sequelize') 
 
 module.exports = {
   //VISTA DEL HOME
@@ -97,24 +93,29 @@ module.exports = {
   },
   //FUNCIONALIDAD DE LA BARRA DE BUSQUEDA
   search: async (req, res) => {
-    let key =req.query.key
-    
-    Product.findAll({
-      include: ["product_category", "product_status"],  
-      where: {
-          name: {[Op.like] : '%'+key+'%'},
+    if(req.query.key){
+      let searchKey = req.query.key;
+      let searchResult = await db.Product.findAll({
+        include: ['product_category', 'product_status'],
+        where: {
+          [Op.or]: [
+            {name: { [Op.like]: `%${searchKey}%` } }, 
+            {'$product_category.category$': { [Op.like]: `%${searchKey}%` }},
+            {'$product_status.status$': { [Op.like]: `%${searchKey}%` }}
+          ]
         },
-    })
-
-    .then(productByName=>{
-      let cantidad = productByName.length; 
+        raw: true,
+        nest: true,
+      });
       return res.render("products/products", {
-      headTitle: "Free Food - Resultados de Búsqueda",
-      stylesheet: "styles_products.css",
-      productList: productByName,
-      cantidad: cantidad,
-    });
-    })
+        headTitle: "Free Food - Resultados de Búsqueda",
+        stylesheet: "styles_products.css",
+        productList: searchResult,
+        searchKey: searchKey
+      });
+    } else {
+      return res.redirect('/')
+    }
   },
   favAdd: (req, res) => {
     let productId = req.params.idProduct;
@@ -162,7 +163,7 @@ module.exports = {
         let productPrice = (Number(price) - (discount / 100) * Number(price)) * quantity;
         subtotal = subtotal + productPrice;
 
-        db.Sale_details.create({
+        db.SaleDetail.create({
           sales_id: sale.id,
           products_id: productId,
           quantity: quantity,
