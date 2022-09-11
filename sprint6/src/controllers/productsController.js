@@ -7,20 +7,38 @@ module.exports = {
     let allProducts
     let paramI
     let paramO
-    if(req.query.i === 'name' || req.query.i === 'discount' || req.query.i === 'price'){
-      paramI = req.query.i
-      if(req.query.o === 'ASC' || req.query.o === 'DESC') {
-        paramO = req.query.o
-        allProducts = await db.Product.findAll({
-          include: ["product_category", "product_status"],
-          order: [[paramI , paramO]],
-          raw: true,
-          nest: true,
-        });
+    let paramP
+    let productCount = await db.Product.count();
+    let pages = Math.ceil(productCount/15)
+    if(req.query.p && req.query.p > 0 && req.query.p <= pages){
+      paramP = req.query.p
+      if(req.query.i === 'name' || req.query.i === 'discount' || req.query.i === 'price'){
+        paramI = req.query.i
+        if(req.query.o === 'ASC' || req.query.o === 'DESC') {
+          paramO = req.query.o
+          allProducts = await db.Product.findAll({
+            include: ["product_category", "product_status"],
+            order: [[paramI , paramO]],
+            offset: (15 * (paramP-1)),
+            limit: 15,
+            raw: true,
+            nest: true,
+          });
+        } else {
+          allProducts = await db.Product.findAll({
+            include: ["product_category", "product_status"],
+            order: [[paramI]],
+            offset: (15 * (paramP-1)),
+            limit: 15,
+            raw: true,
+            nest: true,
+          });
+        }
       } else {
         allProducts = await db.Product.findAll({
           include: ["product_category", "product_status"],
-          order: [[paramI]],
+          offset: (15 * (paramP-1)),
+          limit: 15,
           raw: true,
           nest: true,
         });
@@ -28,6 +46,7 @@ module.exports = {
     } else {
       allProducts = await db.Product.findAll({
         include: ["product_category", "product_status"],
+        limit: 15,
         raw: true,
         nest: true,
       });
@@ -36,7 +55,8 @@ module.exports = {
       headTitle: "Free Food - Productos",
       stylesheet: "styles_products.css",
       productList: allProducts,
-      pages: allProducts.length
+      productCount: productCount,
+      pages: pages
     });
   },
   //LISTADO POR CATEGORÍA

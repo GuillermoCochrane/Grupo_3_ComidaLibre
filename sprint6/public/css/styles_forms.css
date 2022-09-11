@@ -29,8 +29,8 @@
 }
 .input-container-form > img {
   width: 100%;
-  max-width: 380px;
-  max-height: 300px;
+  max-width: 250px;
+  /* max-height: 300px; */
   align-self: center;
   border-radius: 10px;
 }

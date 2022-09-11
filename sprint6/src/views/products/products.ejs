@@ -9,6 +9,8 @@
       <h1>Resultados de la búsqueda: "<%= searchKey %>" </h1>                    
     <% } else { %> 
       <h1>Productos del menú</h1>
+      <%= productCount %>
+      <%= pages %>  
     <% } %>
     <nav class="product-params">
       <form method="get" action="/products">
@@ -18,8 +20,11 @@
           <option value="discount">Descuento</option>
           <option value="price">Precio</option>
         </select>
-        <input type="submit" name="o" id="o" value="ASC">
-        <input type="submit" name="o" id="o" value="DESC">
+        <input type="radio" name="o" id="o" value="ASC">ASC</input>
+        <input type="radio" name="o" id="o" value="DESC">DESC</input>
+        <% for (let index=0; index < pages; index++) {%>
+          <input type="submit" name="p" value="<%= index+1 %>"></input>
+        <% } %>
       </form>
     </nav>
     <section class="section-article">
@@ -49,9 +54,6 @@
         <h2 class="products-title" style="color: tomato;">No hay productos que coincidan con esa búsqueda</h2>
       <% } %>
     </section>
-    <nav class="product-pages">
-        paginado
-    </nav>
   </main>
   <%- include('../partials/footer.ejs') %>
   </body>
