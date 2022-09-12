@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs') %>
+  <body>
+    <%- include('../partials/header.ejs') %>
+    <main class="main-user">
+      <br>
+      <h1 style="text-align: center;">Edicion de datos: <%= typeof errors != 'undefined' ? oldData.username : usuario.username %></h1>
+      <br>
+      <form class="input-container-form" action="/user/edit/<%= typeof errors != 'undefined' ? oldData.id : usuario.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+        <label for="username">
+          <h3>@Username</h3>
+        </label>
+        <div class="info-container-div">
+          <i class="fas fa-user"></i>
+          <input type="text" name="username" id="username" value="<%= typeof errors != 'undefined' ? oldData.username : usuario.username %>">
+        </div>
+
+        <label for="image">
+          <h4>Foto de perfil</h4>
+        </label>
+        <img src="/images/avatar/<%= typeof errors != 'undefined' ? oldData.image : usuario.image %>" alt="">
+        <input type="file" name="image" id="image">
+        <% if( typeof errors != 'undefined' && errors.image) {%>
+          <p class="error-input"><%= errors.image.msg %></p>
+        <% } %>  
+
+        <label for="firstName">
+          <h4>Nombre</h4>
+        </label>
+        <div class="info-container-div">
+          <i class="fas fa-id-badge"></i>
+          <input type="text" name="first_name" id="first_name" value="<%= typeof errors != 'undefined' ? oldData.first_name : usuario.first_name %>">
+        </div>
+
+        <label for="lastName">
+          <h4>Apellido</h4>
+        </label>
+        <div class="info-container-div">
+          <i class="fas fa-id-badge"></i>
+          <input type="text" name="last_name" id="last_name" value="<%= typeof errors != 'undefined' ? oldData.last_name : usuario.last_name %>">
+        </div>
+
+        <label for="address">
+          <h4>Domicilio</h4>
+        </label>
+        <div class="info-container-div">
+          <i class="fas fa-map-marker-alt"></i>
+          <input type="text" name="address" id="address" value="<%= typeof errors != 'undefined' ? oldData.address : usuario.address %>">
+        </div>
+            
+        <label for="phone">
+          <h4>Teléfono</h4>
+        </label>
+        <div class="info-container-div">
+          <i class="fas fa-mobile-alt"></i>
+          <input type="text" name="phone" id="phone" value="<%= typeof errors != 'undefined' ? oldData.phone : usuario.phone %>">
+        </div>
+        <% if( typeof errors != 'undefined' && errors.phone) {%>
+          <p class="error-input"><%= errors.phone.msg %></p>
+        <% } %>  
+
+        <label for="email">
+          <h4>Email</h4>
+        </label>
+        <div class="info-container-div">
+          <i class="fas fa-at"></i>
+          <input type="text" name="email" id="email" value="<%= typeof errors != 'undefined' ? oldData.email : usuario.email %>">
+        </div>
+        <% if( typeof errors != 'undefined' && errors.email) {%>
+          <p class="error-input"><%= errors.email.msg %></p>
+        <% } %>  
+            
+        <label for="password">
+          <h4>Contraseña</h4>
+        </label>
+        <div class="info-container-div">
+          <i class="fas fa-lock"></i>
+          <input type="password" name="password" id="password">
+        </div>
+        <label for="rePassword">
+          <h4>Repetir contraseña</h4>
+        </label>
+        <div class="info-container-div">
+          <i class="fas fa-lock"></i>
+          <input type="password" name="rePassword" id="rePassword">
+        </div>
+        <% if( typeof errors != 'undefined' && errors.password) {%>
+          <p class="error-input"><%= errors.password.msg %></p>
+        <% } %>
+      
+        <div class="btn-container">
+          <button type="submit">Guardar</button>
+          <button type="reset">Borrar</button>
+        </div>
+      </form>
+    </main>
+    <%- include('../partials/footer.ejs') %>
+  </body>
+</html>

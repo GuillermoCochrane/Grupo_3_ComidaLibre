@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs') %>
+  <body>
+    <%- include('../partials/header.ejs') %>
+    <main class="main-user">
+      <div class="user-list-container">
+        <% for(user of allUsers) {%>
+          <div class="user-list-card">
+            <img src="/images/avatar/<%= user.image %>" alt="profile_pic">
+            <div class="user-list-info-container">
+              <div class="info-line">
+                <h1><%= user.username %></h1>
+              </div>
+              <div class="info-line">
+                <p class="field-name">Nombre</p>
+                <p class="field-info"><%= user.first_name %> <%= user.last_name %></p>
+              </div>
+              <div class="info-line">
+                <p class="field-name">Direccion</p>
+                <p class="field-info"><%= user.address %></p>
+              </div>
+              <div class="info-line">
+                <p class="field-name">Telefono</p>
+                <p class="field-info"><%= user.phone %></p>
+              </div>
+              <div class="info-line">
+                <p class="field-name">Email</p>
+                <p class="field-info"><%= user.email %></p>
+              </div>
+              <div class="info-line">
+                <p class="field-name">Categoria</p>
+                <p class="field-info"><%= user.user_role.role %></p>
+              </div>
+              <br>
+              <div class="user-list-btn">
+                <a href="/user/edit/<%= user.id %>">Editar <i class="far fa-edit"></i></a>
+                <a href="/user/delete/<%= user.id %>">Eliminar</a>
+              </div>
+            </div>
+          </div>
+        <% } %>
+      </div>
+    </main>
+    <%- include('../partials/footer.ejs') %> 
+  </body>
+</html>

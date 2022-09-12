@@ -1,0 +1,170 @@
+<header>
+  <div class="container-header-m">
+    <a href="/">
+      <img class="logo-header-m" src="/images/FreeFood2f-removebg.png" alt="main-logo" title="Page logo">
+    </a>
+    
+    <div class="form-search-header">
+      <form class="form-search-header" action="/search" method="GET">
+        <input type="search" name="key" id="key" placeholder="Buscar productos...">
+        <button type="submit"><i class="fas fa-search"></i></button>
+      </form>
+      
+      <nav class="nav-bar-header">
+        <ul class="nav-bar-header-list">
+          <li class="main-menu-header">
+            <a>Menú<i class="fas fa-caret-down"></i></a>
+            <ul class="main-menu-header-list">
+              <li><a href="/products">Lista completa</a></li>
+              <li><a href="/products/2">Platos principales</a></li>
+              <li><a href="/products/1">Entradas</a></li>
+              <li><a href="/products/3">Postres</a></li>
+              <li><a href="/products/4">Bebidas</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Ofertas</a></li>
+          <li><a href="#">Historial</a></li>
+          <li><a href="#">Ayuda</a></li>
+        </ul>
+      </nav>
+    </div>
+    
+    <div class="burger-menu">
+      <a><i class="fas fa-bars"></i></a>
+                      
+      <% if( locals.userLogged ) {%>
+        
+        <ul class="user-menu">
+          <li>
+            <form action="/user/<%= locals.userLogged.id %>" method="GET">
+              <button class="user-menu-button" type="submit"><i class="fas fa-user"></i>PERFIL</button>
+            </form>
+          </li>
+          <li>
+            <form action="/cart" method="GET">
+              <button class="user-menu-button" type="submit"><i class="fas fa-shopping-cart"></i>CARRITO</button>
+            </form>
+          </li>
+          <li>
+            <form action="/user/logout" method="POST">
+              <button class="user-menu-button" type="submit"><i class="fas fa-sign-out-alt"></i>SALIR</button>
+            </form>
+          </li>
+
+          <% if( locals.userLogged.role_id === 1 ) {%>
+          
+            <li>
+              <form action="/products/create" method="GET">
+                <button class="user-menu-button" type="submit">CREAR PRODUCTO</button>
+              </form>
+            </li>
+            <li>
+              <form action="/user" method="GET">
+                <button class="user-menu-button" type="submit">LISTA DE USERS</button>
+              </form>
+            </li>
+
+          <% } %>
+       
+        </ul>
+      
+      <% } else {%>
+        
+        <ul class="user-menu">
+          <li>
+            <form action="/user/register" method="GET">
+              <button class="user-menu-button" type="submit">REGISTRATE</button>
+            </form>
+          </li>
+          <li>
+            <form action="/user/login" method="GET">
+              <button class="user-menu-button" type="submit">INGRESA</button>
+            </form>
+          </li>
+        
+      <% } %> 
+    </div>
+    
+    <div class="icons-header">
+        
+      <div class="user-name-container">
+
+        <% if( locals.userLogged ) {%>
+          
+          <img src="/images/avatar/<%= locals.userLogged.image %>" alt="">
+          <p><%= locals.userLogged.username %><i class="fas fa-caret-down"></i></p>
+          
+        <% } else {%>
+
+          <form action="/user/register" method="GET">
+            <button style="margin: 0 10px 0 10px;" class="user-menu-button" type="submit">REGISTRATE</button>
+          </form>
+          <form action="/user/login" method="GET">
+            <button style="margin: 0;" class="user-menu-button" type="submit">INGRESA</button>
+          </form>
+        
+        <% } %>
+
+      </div>
+
+      <% if( locals.userLogged ) {%>
+        
+        <ul class="user-menu">
+          <li>
+            <form action="/user/<%= locals.userLogged.id %>" method="GET">
+              <button class="user-menu-button" type="submit"><i class="fas fa-user"></i>PERFIL</button>
+            </form>
+          </li>
+          <li>
+            <form action="/cart" method="GET">
+              <button class="user-menu-button" type="submit"><i class="fas fa-shopping-cart"></i>CARRITO</button>
+            </form>
+          </li>
+          <li>
+            <form action="/user/logout" method="POST">
+              <button class="user-menu-button" type="submit"><i class="fas fa-sign-out-alt"></i>SALIR</button>
+            </form>
+          </li>
+
+          <% if( locals.userLogged.roles_id === 1 ) {%>
+          
+            <li>
+              <form action="/products/create" method="GET">
+                <button class="user-menu-button" type="submit">CREAR PRODUCTO</button>
+              </form>
+            </li>
+            <li>
+              <form action="/user" method="GET">
+                <button class="user-menu-button" type="submit">LISTA DE USERS</button>
+              </form>
+            </li>
+
+          <% } %> 
+          
+        </ul>
+      
+      <% } %>
+
+    </div>
+
+  </div>
+
+  <nav class="nav-bar-header-m">
+    <ul class="nav-bar-header-list-m">
+      <li class="main-menu-header">
+        <a>Menu</a>
+        <ul class="main-menu-header-list">
+          <li><a href="/products">Lista completa</a></li>
+          <li><a href="/products/2">Platos principales</a></li>
+          <li><a href="/products/1">Entradas</a></li>
+          <li><a href="/products/3">Postres</a></li>
+          <li><a href="/products/4">Bebidas</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Ofertas</a></li>
+      <li><a href="#">Historial</a></li>
+      <li><a href="#">Ayuda</a></li>
+    </ul>
+  </nav>
+
+</header>
