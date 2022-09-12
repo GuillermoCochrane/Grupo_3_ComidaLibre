@@ -31,17 +31,14 @@
 
 ***Guillermo***
 
--¿Qué hice en la semana?
- 
+- ¿Qué hice en la semana?
     CRUD DE Usuarios, adapte las demas partes del controlador del usuario para que sea funcional con sequelize.
     Implemente funcionalidad de la barra de busqueda en sequelize 
 
--¿En qué tuve problemas?
-
+- ¿En qué tuve problemas?
     Al implementar la funcionalidad la barra de busqueda, no encontraba la forma de buscar todos los productos que sean de una categoria especifica (por ejemplo, si       quisiera encontrar todo los productos cuya categoria sea "pri" (de primer plato))
 
--¿Qué voy a hacer esta semana?
-
+- ¿Qué voy a hacer esta semana?
     Tratar de buscar posibles errores en el codigo del cual no me haya dado cuenta.
     Estar a diposicion de los compañeros para solucionar posibles inconveninetes que surjan
 
