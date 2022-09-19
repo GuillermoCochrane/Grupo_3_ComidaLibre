@@ -27,10 +27,10 @@ module.exports = [
     .isNumeric().optional().withMessage("Ingresa un valor numerico"),
   body("idCat")
     .notEmpty().optional().withMessage("Selecciona una opcion")
-    .isInt({gt: 1, lt: 4}).optional().withMessage("Ingresa un numero entero entre 1 y 4"),
+    .isInt({min: 1, max: 4}).optional().withMessage("Ingresa un numero entero entre 1 y 4"),
   body("status")
     .notEmpty().optional().withMessage("Selecciona una opcion")
-    .isInt({gt: 1, lt: 4}).optional().withMessage("Ingresa un numero entero entre 1 y 4"),
+    .isInt({min: 1, max: 4}).optional().withMessage("Ingresa un numero entero entre 1 y 4"),
   body("discount")
     .isNumeric().optional().withMessage("Ingresa un valor numerico")
     .isLength({ min: 0 }, { max: 100 }).optional().withMessage("El valor debe ser de 0 a 100"),
