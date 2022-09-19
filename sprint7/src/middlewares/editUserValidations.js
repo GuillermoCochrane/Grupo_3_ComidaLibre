@@ -4,6 +4,10 @@ const db = require("../database/models");
 
 module.exports = [
   body("username")
+    .notEmpty().optional().withMessage("Ingrese un usuario")
+    .bail()
+    .isLength({min: 2}).optional().withMessage("Debe tener minimo 2 caracteres")
+    .bail()
     .custom((value, { req }) => {
       let data = { ...req.body };
       let userId = req.params.id;
@@ -17,46 +21,45 @@ module.exports = [
       });
       return Promise.all([findByName, findById])
       .then(([userByName, userById]) => {
-        if (userByName && userById.name != userByName.name) {
+        if (userByName && userById.username != userByName.username) {
           return Promise.reject("Usuario no disponible");
         }
       });
-  }),
+    }).optional(),
   body("password")
+    .notEmpty().optional().withMessage("Ingrese una contraseña")
+    .bail()
+    .isLength({ min: 8 }).optional().withMessage("Constraseña debe tener minimo 8 caracteres")
+    .bail()
+    .isStrongPassword().optional().withMessage("Contraseña debe tener minimo: 8 caracteres, 1 mayus, 1 minus y 1 simbolo")
     .custom((value, { req }) => {
       let password = req.body.password;
       let repeatedPassword = req.body.rePassword;
       if (password) {
-        if (password.length < 8) {
-          throw new Error("Contraseña minimo de 8 caracteres");
-        }
         if (password !== repeatedPassword) {
           throw new Error("Las contraseñas ingresadas no coinciden");
         }
       }
       return true;
-  }),
+    }).optional(),
   body("image")
     .custom((value, { req }) => {
       let file = req.file;
-      let acceptedExtensions = [".jpg", ".png"];
+      let acceptedExtensions = [".jpg", ".jpeg", ".gif", ".png"];
       if (file) {
         if (acceptedExtensions.includes(path.extname(file.originalname)) === false) {
           throw new Error(`Formatos validos: ${acceptedExtensions.join(", ")}`);
         }
       }
       return true;
-  }),
+    }),
   body("email")
+    .notEmpty().optional().withMessage("Ingrese un email")
+    .bail()
+    .isEmail().optional().withMessage("Email invalido")
+    .bail()
     .custom((value, { req }) => {
       let data = { ...req.body };
-      //solución temporal
-      var email_re = /\S+@\S+\.\S+/;
-      if (data.email) {
-        if (email_re.test(data.email) === false) {
-          throw new Error("Email invalido");
-        }
-      }
       let userId = req.params.id;
       let findByEmail = db.User.findOne({
         attributes: { exclude: ['password'] },
@@ -70,24 +73,13 @@ module.exports = [
       });
       return Promise.all([findByEmail, findById])
       .then(([userByEmail, userById]) => {
-        console.log('userbyemail')
-        console.log(userByEmail)
-        console.log('userbyID')
-        console.log(userById)
         if (userByEmail && userById.username != userByEmail.username) {
           return Promise.reject("Email no disponible");
         }
       });
-  }),
+    }).optional(),
   body("phone")
-    .custom((value, { req }) => {
-      let phone = req.body.phone;
-      if (phone) {
-        //solución temporal
-        if (isNaN(phone) === true) {
-          throw new Error("Telefono debe ser numerico");
-        }
-      }
-      return true;
-  }),
+    .isMobilePhone().optional()
+    .withMessage(`Ingrese un numero de telefono valido (sin espacios ni guiones) ej: +5493888997717`)
+    .bail(),
 ];

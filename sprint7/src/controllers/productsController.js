@@ -155,8 +155,9 @@ module.exports = {
   update: async (req, res) => {
     let errors = validationResult(req);
     if (!errors.isEmpty()) {
+      let oldData = req.body
       let productId = req.params.idProduct;
-      let oldData = await db.Product.findOne({
+      let product = await db.Product.findOne({
         where: { id: productId },
         raw: true,
       });
@@ -165,6 +166,7 @@ module.exports = {
         stylesheet: "styles_forms.css",
         oldData: oldData,
         errors: errors.mapped(),
+        producto: product
       });
     }
     let data = { ...req.body };

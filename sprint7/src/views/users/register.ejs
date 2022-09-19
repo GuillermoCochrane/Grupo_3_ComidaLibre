@@ -6,41 +6,41 @@
       <a class="a-form" href="/">
         <img id="logo" src="/images/FreeFood2f.png" alt="logo">
       </a>
-      <form class="log-container" action="/user/register" method="post">
+      <form id="reg-form" class="log-container" action="/user/register" method="post">
         <h2>Creá tu cuenta</h2>
         <h5>Por favor ingresá los siguientes datos</h5>   
+
         <div class="container">
           <i class="fas fa-user"></i>
           <input class="log-item" type="text" name="username" id="username" placeholder="Usuario" value="<%= typeof errors != 'undefined' && errors.username ? errors.username.value : null %>">
         </div>
-        <% if( typeof errors != 'undefined' && errors.username) {%>
-          <p class="error-input"><%= errors.username.msg %></p>
-        <% } %>  
-        
+        <small id="error-username" class="error-input"><%= typeof errors != 'undefined' && errors.username ? errors.username.msg : null %></small>
+
         <div class="container">
           <i class="fas fa-at"></i>
           <input class="log-item" type="text" name="email" id="email" placeholder="E-Mail" value="<%= typeof errors != 'undefined' && errors.email ? errors.email.value : null %>">
         </div>
-        <% if( typeof errors != 'undefined' && errors.email) {%>
-          <p class="error-input"><%= errors.email.msg %></p>
-        <% } %>  
-                
+        <small id="error-email" class="error-input"><%= typeof errors != 'undefined' && errors.email ? errors.email.msg : null %></small>
+                 
         <div class="container">
           <i class="fas fa-lock"></i>
           <input class="log-item" type="password" name="password" id="password" placeholder="Contraseña">
         </div>
+        <small id="error-password" class="error-input"><%= typeof errors != 'undefined' && errors.password ? errors.password.msg : null %></small>
+
         <div class="container">
           <i class="fas fa-lock"></i>
           <input class="log-item" type="password" name="rePassword" id="rePassword" placeholder="Repetir contraseña">
         </div>
-        <% if( typeof errors != 'undefined' && errors.password) {%>
-          <p class="error-input"><%= errors.password.msg %></p>
-        <% } %>  
-        <button class="log-button">Crear cuenta</button>
+        <small id="error-rePassword" class="error-input"></small>
+
+        <button type="submit" class="log-button" id="reg-button">Crear cuenta</button>
       </form>
       <div class="reg-log">
         ¿Ya tenés cuenta? <a href="/user/login">Ingresá aquí</a>
       </div>
     </main>
+    <script src="/static/js/validations.js"></script>
+    <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
   </body>
 </html>

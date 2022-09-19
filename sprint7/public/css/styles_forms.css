@@ -27,7 +27,7 @@
   font-size: 20px;
   box-shadow: 0px 0px 10px rgb(161, 161, 161);
 }
-.input-container-form > img {
+.input-container-form > label > img {
   width: 100%;
   max-width: 250px;
   /* max-height: 300px; */
@@ -79,7 +79,7 @@
 
 .input-container-form > div > input {
   width: 100%;
-  height: 25px;
+  height: 43px;
   padding: 15px;
   border: 2px solid #ccb489;
   border-bottom: 2.75px solid #ebd2a3;
@@ -94,6 +94,10 @@
 .input-container-form > div > input:focus {
   background-color: #87c99b6e;
   border: none;
+}
+.input-container-form > div > input:disabled {
+  background-color: #a3977f;
+  
 }
 
 .logo-form {
@@ -125,7 +129,6 @@
 }
 .error-input {
   padding: 0 10px 0 10px;
-  margin: 10px 0px;
   font-size: 16px;
   background-color: #c98787be;
   color: rgb(66, 66, 66);

@@ -7,14 +7,14 @@
         <img id="logo" src="/images/FreeFood2f.png" alt="logo"/>
       </a>
       <br>
-      <h1>Estás editando: <%=typeof errors != 'undefined' ? oldData.name : producto.name %></h1>
-      <form class="input-container-form" action="/products/update/<%=typeof errors != 'undefined' ? oldData.categories_id : producto.categories_id  %>/<%=typeof errors != 'undefined' ? oldData.id : producto.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+      <h1>Estás editando: <%= producto.name %></h1>
+      <form class="input-container-form" action="/products/update/<%= producto.categories_id  %>/<%= producto.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
         <label for="name">
           <h4>Nombre del producto</h4>
         </label>
         <div class="info-container-div">
           <i class="fas fa-file-signature"></i>
-          <input type="text" step="any" name="name" id="name" value="<%=typeof errors != 'undefined' ? oldData.name : producto.name %>"/>
+          <input type="text" step="any" name="name" id="name" value="<%=typeof errors != 'undefined' && errors.name ? oldData.name : producto.name %>"/>
         </div>
         <% if( typeof errors != 'undefined' && errors.name) {%>
           <p class="error-input"><%= errors.name.msg %></p>
@@ -25,7 +25,7 @@
         </label>
         <div class="info-container-div">
           <i class="fas fa-dollar-sign"></i>
-          <input type="number" name="price" id="price" value="<%=typeof errors != 'undefined' ? oldData.price : producto.price %>"/>
+          <input type="number" name="price" id="price" value="<%=typeof errors != 'undefined' && errors.price ? oldData.price : producto.price %>"/>
         </div>
         <% if( typeof errors != 'undefined' && errors.price) {%>
           <p class="error-input"><%= errors.price.msg %></p>
@@ -37,11 +37,11 @@
         <div class="info-container-div">
           <i class="fas fa-clipboard-list"></i>
           <select name="idCat" id="idCat">
-            <option value="<%=typeof errors != 'undefined' ? oldData.categories_id  : producto.categories_id  %>" selected="selected"><%=typeof errors != 'undefined' ? oldData.categories_id : producto.categories_id %></option>
-            <option value=1>Entrada</option>
-            <option value=2>Plato principal</option>
-            <option value=3>Postre</option>
-            <option value=4>Bebida</option>
+            <option value="<%=typeof errors != 'undefined' && errors.categories_id ? oldData.categories_id  : producto.categories_id  %>" selected="selected"><%=typeof errors != 'undefined' && errors.categories_id ? oldData.categories_id : producto.categories_id %></option>
+            <option value="1">1-Entrada</option>
+            <option value="2">2-Plato principal</option>
+            <option value="3">3-Postre</option>
+            <option value="4">4-Bebida</option>
           </select>
         </div>
         <% if( typeof errors != 'undefined' && errors.idCat) {%>
@@ -54,11 +54,11 @@
         <div class="info-container-div">
           <i class="fas fa-clipboard-list"></i>
           <select name="status" id="status">
-            <option value="<%=typeof errors != 'undefined' ? oldData.statuses_id : producto.statuses_id %>" selected="selected"><%=typeof errors != 'undefined' ? oldData.statuses_id : producto.statuses_id %></option>
-            <option value=1>Novedad</option>
-            <option value=2>Oferta</option>
-            <option value=3>Recomendado</option>
-            <option value=4>Más vendido</option>
+            <option value="<%=typeof errors != 'undefined' && errors.statuses_id ? oldData.statuses_id : producto.statuses_id %>" selected="selected"><%=typeof errors != 'undefined' && errors.statuses_id ? oldData.statuses_id : producto.statuses_id %></option>
+            <option value="1">1-Novedad</option>
+            <option value="2">2-Oferta</option>
+            <option value="3">3-Recomendado</option>
+            <option value="4">4-Más vendido</option>
           </select>
         </div>
         <% if( typeof errors != 'undefined' && errors.status) {%>
@@ -67,12 +67,12 @@
 
         <label for="discount">
           <h4>
-            Porcentaje de descuento: %<output id="rangevalue"><%=typeof errors != 'undefined' ? oldData.discount : producto.discount %></output>
+            Porcentaje de descuento: %<output id="rangevalue"><%=typeof errors != 'undefined' && errors.discount ? oldData.discount : producto.discount %></output>
           </h4>
         </label>
         <div class="info-container-div">
           <i class="fas fa-percent"></i>
-          <input oninput="rangevalue.value=value" type="range" name="discount" id="discount" min="0" max="100" step="1" value="<%=typeof errors != 'undefined' ? oldData.discount : producto.discount %>"/>
+          <input oninput="rangevalue.value=value" type="range" name="discount" id="discount" min="0" max="100" step="1" value="<%=typeof errors != 'undefined' && errors.discount ? oldData.discount : producto.discount %>"/>
         </div>
         <% if( typeof errors != 'undefined' && errors.discount) {%>
           <p class="error-input"><%= errors.discount.msg %></p>
@@ -81,7 +81,7 @@
         <label for="img">
           <h4>Imagen del producto (.png/.jpg)</h4>
         </label>
-        <img src="/images/products/<%=typeof errors != 'undefined' ? oldData.image : producto.image %>" alt=""/>
+        <img src="/images/products/<%= producto.image %>" alt=""/>
         <div class="info-container-div">
           <i class="fas fa-file-image"></i>
           <input class="img-input" type="file" id="img" name="img"/>
@@ -93,7 +93,7 @@
         <label for="description">
           <h4>Descripción del producto</h4>
         </label>
-        <textarea name="description" id="description" cols="30" rows="5" maxlength="500" placeholder="Descripcion (max 500 caracteres)"><%=typeof errors != 'undefined' ? oldData.description : producto.description %></textarea>
+        <textarea name="description" id="description" cols="30" rows="5" maxlength="500" placeholder="Descripcion (max 500 caracteres)"><%=typeof errors != 'undefined' && errors.description ? oldData.description : producto.description %></textarea>
         <% if( typeof errors != 'undefined' && errors.description) {%>
           <p class="error-input"><%= errors.description.msg %></p>
         <% } %>

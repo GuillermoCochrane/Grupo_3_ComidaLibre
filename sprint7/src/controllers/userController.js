@@ -1,14 +1,7 @@
 const db = require('../database/models');
-const sequelize = db.sequelize;
-const { Op } = require("sequelize");
 const { validationResult } = require('express-validator')
 const bcryptjs = require('bcryptjs');
-
-
 const Users = db.User
-const Sale =  db.Sale
-const SaleDetail = db.SaleDetail
-const Favourites = db.Favourite
 
 module.exports = {
   //LISTADO DE USUARIOS
@@ -73,12 +66,17 @@ module.exports = {
     }
 
     let data = { ...req.body };
-    Users.findOne({ where: { email: data.emailUser }, raw: true })
+    Users.findOne({ 
+      attributes: {exclude: ['password']},
+      where: { email: data.emailUser }, raw: true 
+    })
     .then(user => {
       if (!user) {
-        Users.findOne({ where: { username: data.emailUser }, raw: true })
+        Users.findOne({
+          attributes: {exclude: ['password']}, 
+          where: { username: data.emailUser }, raw: true 
+        })
         .then(user => {
-          delete user.password;
           if (data.remember_user) {
             res.cookie("userEmail", user.email, { maxAge: 600000 * 6 });
           }
@@ -86,7 +84,6 @@ module.exports = {
           return res.redirect('/');
         });
       } else {
-        delete user.password;
         if (data.remember_user) {
           res.cookie("userEmail", user.email, { maxAge: 600000 * 6 });
         }
@@ -109,7 +106,7 @@ module.exports = {
       return res.render("users/register", {
         headTitle: "Free Food - Registro",
         stylesheet: "styles_register.css",
-        //agrergar old data
+        oldData: req.body,
         errors: errors.mapped(),
       });
     }
@@ -129,7 +126,10 @@ module.exports = {
   edit: (req, res) => {
     if (req.session.userLogged.roles_id === 1) {
       let userId = req.params.id;
-      Users.findOne({ where: { id: userId }, raw: true })
+      Users.findOne({
+        attributes: {exclude: ['password']}, 
+        where: { id: userId }, raw: true 
+      })
       .then((user) => {
         return res.render("users/userEdit", {
           headTitle: "Free Food - Editar usuario",
@@ -138,10 +138,17 @@ module.exports = {
         });
       });
     } else {
-      return res.render("users/userEdit", {
-        headTitle: "Free Food - Editar usuario",
-        stylesheet: "styles_forms.css",
-        usuario: req.session.userLogged,
+      let userId = req.session.userLogged.id;
+      Users.findOne({ 
+        attributes: {exclude: ['password']}, 
+        where: { id: userId }, raw: true 
+      })
+      .then((user) => {
+        return res.render("users/userEdit", {
+          headTitle: "Free Food - Editar usuario",
+          stylesheet: "styles_forms.css",
+          usuario: user,
+        });
       });
     }
   },
@@ -149,27 +156,47 @@ module.exports = {
   update: async (req, res) => {
     let errors = validationResult(req);
     if (!errors.isEmpty()) {
-      let userId = req.params.id;
-      let oldData = await db.User.findOne({ where: { id: userId }, raw: true });
-      return res.render("users/userEdit", {
-        headTitle: "Free Food - Editar usuario",
-        stylesheet: "styles_forms.css",
-        errors: errors.mapped(),
-        oldData: oldData,
-      });
+      let oldData = req.body
+      if (req.session.userLogged.roles_id === 1) {
+        let userId = req.params.id;
+        let user = await Users.findOne({ attributes: {exclude: ['password']}, where: { id: userId } })
+        return res.render("users/userEdit", {
+          headTitle: "Free Food - Editar usuario",
+          stylesheet: "styles_forms.css",
+          errors: errors.mapped(),
+          oldData: oldData,
+          usuario: user,
+        });
+      } else {
+        let userId = req.session.userLogged.id;
+        Users.findOne({ 
+          attributes: {exclude: ['password']},
+          where: { id: userId }, raw: true 
+        })
+        .then(user => {
+          return res.render("users/userEdit", {
+            headTitle: "Free Food - Editar usuario",
+            stylesheet: "styles_forms.css",
+            errors: errors.mapped(),
+            oldData: oldData,
+            usuario: user,
+          });
+        })
+      }
     }
     let userId = req.params.id;
-    let userFound = await Users.findOne({ where: { id: userId } });
+    let userFound = await Users.findOne({ attributes: {exclude: ['password']} , where: { id: userId } });
     let userData = { ...req.body };
     let hashedPassword;
-    if (userData.password != "") {
-      hashedPassword = bcryptjs.hashSync(userData.password, 10);
-    }
     for (let input in userData) {
       if (userData[input] == "") {
         delete userData[input];
       }
     }
+    if (userData.password) {
+      hashedPassword = bcryptjs.hashSync(userData.password, 10);
+    }
+
     let updatedUser;
     if (req.file && hashedPassword) {
       updatedUser = {

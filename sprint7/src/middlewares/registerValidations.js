@@ -5,6 +5,8 @@ module.exports = [
   body("username")
     .notEmpty().withMessage("Ingrese un usuario")
     .bail()
+    .isLength({min: 2}).withMessage("Debe tener minimo 2 caracteres")
+    .bail()
     .custom((value, { req }) => {
       let data = { ...req.body };
       return db.User.findOne({ where: { username: data.username } })
@@ -25,7 +27,7 @@ module.exports = [
       return db.User.findOne({ where: { email: data.email } })
       .then(user => {
         if (user) {
-          return Promise.reject("Email no disponible");
+          return Promise.reject("Email ya esta registrado");
         }
       });
   }),
@@ -35,7 +37,9 @@ module.exports = [
     .bail()
     .isLength({ min: 8 }).withMessage("Constraseña debe tener minimo 8 caracteres")
     .bail()
+    .isStrongPassword().withMessage("Contraseña debe tener minimo: 8 caracteres, 1 mayus, 1 minus y 1 simbolo")
     .custom((value, { req }) => {
+      let data = { ...req.body };
       let password = req.body.password;
       let repeatedPassword = req.body.rePassword;
       if (password !== repeatedPassword) {

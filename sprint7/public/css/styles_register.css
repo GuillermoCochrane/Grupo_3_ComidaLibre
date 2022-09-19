@@ -196,8 +196,7 @@ form label {
 }
 .error-input {
   padding: 0 10px 0 10px;
-  margin: 0 auto 10px auto;
-  font-size: 16px;
+  font-size: 14px;
   background-color: #c98787be;
   color: rgb(66, 66, 66);
   border-radius: 5px;

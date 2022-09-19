@@ -144,8 +144,7 @@ form label {
 
 .error-input {
   padding: 0 10px 0 10px;
-  margin: 5px auto 0px auto;
-  font-size: 16px;
+  font-size: 12px;
   background-color: #c98787be;
   color: rgb(66, 66, 66);
   border-radius: 5px;
