@@ -120,7 +120,6 @@ header {
 }
 .form-search-header-m {
   display: flex;
-  margin: 10px 0px;
   border: 1px solid #87c99b;
 }
 .form-search-header-m > input {
