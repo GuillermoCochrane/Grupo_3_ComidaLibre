@@ -9,7 +9,12 @@
       <form id="edit-user-form" class="input-container-form" action="/user/edit/<%= usuario.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
         
         <label for="username">
-          <h3>@Username</h3>
+          <div class="input-title">
+            <h3>@Username</h3>
+            <button id="btn-edit-username" class="btn-edit-field">
+              <i class="fas fa-edit"></i>
+            </button>
+          </div>
         </label>
         <div class="info-container-div">
           <i class="fas fa-user"></i>
@@ -18,26 +23,30 @@
             name="username" 
             id="username" 
             value="<%= typeof errors != 'undefined' && errors.username ? oldData.username : usuario.username %>"
+            disabled
           >
-          <i id="btn-edit-username" class="fas fa-edit"></i>
         </div>
-        <small id="error-username" class="error-input"></small>
-        <% if( typeof errors != 'undefined' && errors.username) {%>
-          <small class="error-input"><%= errors.username.msg %></small>
-        <% } %>
+        <small id="error-username" class="error-input"><%= typeof errors != 'undefined' && errors.username ? errors.username.msg : null %></small>
 
         <label for="image">
-          <h4>Foto de perfil</h4>
+          <div class="input-title">
+            <h3>Foto de perfil</h4>
+            <button id="btn-edit-image" class="btn-edit-field">
+              <i class="fas fa-edit"></i>
+            </button>
+          </div>
           <img src="/images/avatar/<%= typeof errors != 'undefined' && errors.image ? oldData.image : usuario.image %>" alt="">
         </label>
-        <input type="file" name="image" id="image">
-        <small id="error-image" class="error-input"></small>
-        <% if( typeof errors != 'undefined' && errors.image) {%>
-          <small class="error-input"><%= errors.image.msg %></small>
-        <% } %>  
-
+        <input type="file" name="image" id="image" disabled>
+        <small id="error-image" class="error-input"><%= typeof errors != 'undefined' && errors.image ? errors.image.msg : null %></small>
+        
         <label for="firstName">
-          <h4>Nombre</h4>
+          <div class="input-title">
+            <h3>Nombre</h3>
+            <button id="btn-edit-first_name" class="btn-edit-field">
+              <i class="fas fa-edit"></i>
+            </button>
+          </div>
         </label>
         <div class="info-container-div">
           <i class="fas fa-id-badge"></i>
@@ -48,11 +57,15 @@
             value="<%= typeof errors != 'undefined' ? oldData.first_name : usuario.first_name %>"
             disabled
           >
-          <i id="btn-edit-first_name" class="fas fa-edit"></i>
         </div>
 
         <label for="lastName">
-          <h4>Apellido</h4>
+          <div class="input-title">
+            <h3>Apellido</h4>
+            <button id="btn-edit-last_name" class="btn-edit-field">
+              <i class="fas fa-edit"></i>
+            </button>
+          </div>
         </label>
         <div class="info-container-div">
           <i class="fas fa-id-badge"></i>
@@ -62,12 +75,17 @@
            id="last_name" 
            value="<%= typeof errors != 'undefined' ? oldData.last_name : usuario.last_name %>"
            disabled
-           >
-           <i id="btn-edit-last_name" class="fas fa-edit"></i>
+          >
         </div>
 
         <label for="address">
-          <h4>Domicilio</h4>
+          <div class="input-title">
+            <h3>Domicilio</h3>
+            <button id="btn-edit-address" class="btn-edit-field">
+              <i class="fas fa-edit"></i>
+            </button>
+          </div>
+          
         </label>
         <div class="info-container-div">
           <i class="fas fa-map-marker-alt"></i>
@@ -77,12 +95,16 @@
             id="address" 
             value="<%= typeof errors != 'undefined' ? oldData.address : usuario.address %>"
             disabled
-            >
-            <i id="btn-edit-address" class="fas fa-edit"></i>
+          >
         </div>
             
         <label for="phone">
-          <h4>Teléfono</h4>
+          <div class="input-title">
+            <h3>Teléfono</h3>
+            <button id="btn-edit-phone" class="btn-edit-field">
+              <i class="fas fa-edit"></i>
+            </button>
+          </div>
         </label>
         <div class="info-container-div">
           <i class="fas fa-mobile-alt"></i>
@@ -93,15 +115,16 @@
             value="<%= typeof errors != 'undefined' && errors.phone ? oldData.phone : usuario.phone %>"
             disabled
           >
-          <i id="btn-edit-phone" class="fas fa-edit"></i>
         </div>
-        <small id="error-phone" class="error-input"></small>
-        <% if( typeof errors != 'undefined' && errors.phone) {%>
-          <small class="error-input"><%= errors.phone.msg %></small>
-        <% } %>  
+        <small id="error-phone" class="error-input"><%= typeof errors != 'undefined' && errors.phone ? errors.phone.msg : null %></small>
 
         <label for="email">
-          <h4>Email</h4>
+          <div class="input-title">
+            <h3>Email</h3>
+            <button id="btn-edit-email" class="btn-edit-field">
+              <i class="fas fa-edit"></i>
+            </button>
+          </div>
         </label>
         <div class="info-container-div">
           <i class="fas fa-at"></i>
@@ -112,20 +135,21 @@
             value="<%= typeof errors != 'undefined' && errors.email ? oldData.email : usuario.email %>"
             disabled
           >
-          <i id="btn-edit-email" class="fas fa-edit"></i>
         </div>
-        <small id="error-email" class="error-input"></small>
-        <% if( typeof errors != 'undefined' && errors.email) {%>
-          <small class="error-input"><%= errors.email.msg %></small>
-        <% } %>  
+        <small id="error-email" class="error-input"><%= typeof errors != 'undefined' && errors.email ? errors.email.msg : null %></small>
+ 
             
         <label for="password">
-          <h4>Contraseña</h4>
+          <div class="input-title">
+            <h3>Contraseña</h3>
+            <button id="btn-edit-password" class="btn-edit-field">
+              <i class="fas fa-edit"></i>
+            </button>
+          </div>
         </label>
         <div class="info-container-div">
           <i class="fas fa-lock"></i>
           <input type="password" name="password" id="password" disabled>
-          <i id="btn-edit-password" class="fas fa-edit"></i>
         </div>
         <small id="error-password" class="error-input"></small>
         <label for="rePassword">
@@ -134,12 +158,10 @@
         <div class="info-container-div">
           <i class="fas fa-lock"></i>
           <input type="password" name="rePassword" id="rePassword" disabled>
-          <i id="btn-edit-rePassword" class="fas fa-edit"></i>
+
         </div>
-        <small id="error-rePassword" class="error-input"></small>
-        <% if( typeof errors != 'undefined' && errors.password) {%>
-          <small class="error-input"><%= errors.password.msg %></small>
-        <% } %>  
+        <small id="error-rePassword" class="error-input"><%= typeof errors != 'undefined' && errors.password ? errors.password.msg : null %></small>
+        
         <div class="btn-container">
           <button id="btn-submit" type="submit">Guardar</button>
           <button id="btn-reset" type="reset">Borrar</button>

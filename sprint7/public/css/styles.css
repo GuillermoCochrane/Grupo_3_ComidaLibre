@@ -554,6 +554,33 @@ footer {
   flex-direction: row;
   justify-content: space-between;
 }
+/*Search bar*/
+#search-result-div {
+  position: relative;
+}
+.search-result-list-off {
+  display: none; 
+  position: absolute;
+}
+.search-result-list-on {
+  display: block;
+  position: absolute; 
+  background: #87c99bf1;
+  z-index: 999;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgb(100, 100, 100);
+}
+.search-result-list-on > li {
+  margin: 10px 15px;
+  font-weight: bold;
+}
+.search-result-list-on > li:hover {
+  background: #72aa83;
+}
+.search-result-list-on > li > a:hover {
+  background: #72aa83;
+}
 
 /* Media queries para adaptar el sitio */
 

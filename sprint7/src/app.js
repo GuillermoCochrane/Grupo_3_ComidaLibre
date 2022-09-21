@@ -44,10 +44,13 @@ const productsRouter = require("./routes/productsRouter");
 app.use("/products", productsRouter);
 
 //APIS
+const mainAPI = require("./routes/api/main")
+app.use("/api", mainAPI)
 const productsAPI = require("./routes/api/products");
 app.use("/api/products", productsAPI);
 const usersAPI = require("./routes/api/users");
 app.use("/api/users", usersAPI);
+
 
 //Ruta para el error 404
 app.all("*", (req, res) => {

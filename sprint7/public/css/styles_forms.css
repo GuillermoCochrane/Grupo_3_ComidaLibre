@@ -93,11 +93,10 @@
 }
 .input-container-form > div > input:focus {
   background-color: #87c99b6e;
-  border: none;
 }
 .input-container-form > div > input:disabled {
-  background-color: #a3977f;
-  
+  background-color: #b9a379;
+  color: grey;
 }
 
 .logo-form {
@@ -135,21 +134,26 @@
   border-radius: 5px;
 }
 .btn-edit-field {
-  margin-left: 5px;
-  height: 43px;
+  margin-left: 10px;
+  height: 30px;
   background-color: #87c99b;
   border: 1px solid #87c99bcc;
-  border-radius: 10px;
+  border-radius: 5px;
   color: rgb(32, 32, 32);
   font-size: 18px;
   transition-duration: 0.1s;
-  width: 50px;
+  width: 30px;
+  align-self: flex-end;
 }
 .btn-edit-field:hover {
   background-color: #6fa57f;
+  cursor: pointer;
 }
 .btn-edit-field:active {
   color: white;
+}
+.input-title {
+  display: flex;
 }
 
 @media (min-width: 640px) {
