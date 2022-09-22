@@ -6,7 +6,7 @@ module.exports = [
   body("username")
     .notEmpty().optional().withMessage("Ingrese un usuario")
     .bail()
-    .isLength({min: 2}).optional().withMessage("Debe tener minimo 2 caracteres")
+    .isLength({min: 2}).optional().withMessage("Debe tener mínimo 2 caracteres")
     .bail()
     .custom((value, { req }) => {
       let data = { ...req.body };
@@ -29,9 +29,9 @@ module.exports = [
   body("password")
     .notEmpty().optional().withMessage("Ingrese una contraseña")
     .bail()
-    .isLength({ min: 8 }).optional().withMessage("Constraseña debe tener minimo 8 caracteres")
+    .isLength({ min: 8 }).optional().withMessage("Contraseña debe tener mínimo 8 caracteres")
     .bail()
-    .isStrongPassword().optional().withMessage("Contraseña debe tener minimo: 8 caracteres, 1 mayus, 1 minus y 1 simbolo")
+    .isStrongPassword().optional().withMessage("Contraseña debe tener mínimo: 8 caracteres, 1 mayúscula, 1 minúscula y 1 símbolo")
     .custom((value, { req }) => {
       let password = req.body.password;
       let repeatedPassword = req.body.rePassword;
@@ -48,7 +48,7 @@ module.exports = [
       let acceptedExtensions = [".jpg", ".jpeg", ".gif", ".png"];
       if (file) {
         if (acceptedExtensions.includes(path.extname(file.originalname)) === false) {
-          throw new Error(`Formatos validos: ${acceptedExtensions.join(", ")}`);
+          throw new Error(`Formatos válidos: ${acceptedExtensions.join(", ")}`);
         }
       }
       return true;
@@ -56,7 +56,7 @@ module.exports = [
   body("email")
     .notEmpty().optional().withMessage("Ingrese un email")
     .bail()
-    .isEmail().optional().withMessage("Email invalido")
+    .isEmail().optional().withMessage("Email inválido")
     .bail()
     .custom((value, { req }) => {
       let data = { ...req.body };
@@ -80,6 +80,6 @@ module.exports = [
     }).optional(),
   body("phone")
     .isMobilePhone().optional()
-    .withMessage(`Ingrese un numero de telefono valido (sin espacios ni guiones) ej: +5493888997717`)
+    .withMessage(`Ingrese un número de teléfono válido (sin espacios ni guiones) ej: +5493888997717`)
     .bail(),
 ];

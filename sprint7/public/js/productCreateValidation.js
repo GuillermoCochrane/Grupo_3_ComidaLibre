@@ -13,12 +13,13 @@ window.onload = () => {
 
     let required = (field) => {
         let errorField = document.querySelector('#error-' + field.id);
+        let label = field.id;
         if(validator.isEmpty(field.value)){
             errorField.innerText = 'El campo ' + field.id + ' es obligatorio';
-            errors.field = 'El campo ' + field.id + ' es obligatorio';
+            errors[label] = 'El campo ' + field.id + ' es obligatorio';
         }else{
             errorField.innerText = '';
-            delete errors.field;
+            delete errors[label];
         }
     }
 
@@ -158,7 +159,7 @@ window.onload = () => {
         required(name);
         required(price);
         required(status);
-        //required(idCat);
+        required(idCat);
         
         if(!errors.name){
             await fetch(`http://localhost:3000/api/products/name/${name.value}`)

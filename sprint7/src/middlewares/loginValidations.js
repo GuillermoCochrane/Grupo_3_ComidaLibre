@@ -18,7 +18,7 @@ module.exports = [
             raw: true,
           }).then(user => {
             if (!user) {
-              return Promise.reject("Credenciales invalidas");
+              return Promise.reject("Credenciales inválidas");
             }
           });
         }
@@ -27,7 +27,7 @@ module.exports = [
   body("password")
     .notEmpty().withMessage("Ingrese su contraseña")
     .bail()
-    .isLength({ min: 8 }).withMessage("Constraseña debe tener minimo 8 caracteres")
+    .isLength({ min: 8 }).withMessage("Constraseña debe tener mínimo 8 caracteres")
     .bail()
     .custom((value, { req }) => {
       let data = { ...req.body };
@@ -41,16 +41,16 @@ module.exports = [
             raw: true,
           }).then(user => {
             if (!user) {
-              return Promise.reject("Credenciales invalidas");
+              return Promise.reject("Credenciales inválidas");
             } else {
               if (bcryptjs.compareSync(data.password, user.password) === false) {
-                return Promise.reject("Credenciales invalidas");
+                return Promise.reject("Credenciales inválidas");
               }
             }
           });
         } else {
           if (bcryptjs.compareSync(data.password, user.password) === false) {
-            return Promise.reject("Credenciales invalidas");
+            return Promise.reject("Credenciales inválidas");
           }
         }
       });

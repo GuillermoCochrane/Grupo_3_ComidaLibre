@@ -56,8 +56,8 @@ const editUserValidation = () => {
   let usernameValidations = () => {
     return () => {
       if (!validator.isLength(username.value, { min: 2 }) && username.disabled === false) {
-        editUserErrors.username = "El usuario debe tener minimo 2 caracteres";
-        errorUsername.innerHTML = "El usuario debe tener minimo 2 caracteres";
+        editUserErrors.username = "El usuario debe tener mínimo 2 caracteres";
+        errorUsername.innerHTML = "El usuario debe tener mínimo 2 caracteres";
       } else {
         delete editUserErrors.username;
         errorUsername.innerHTML = "";
@@ -67,8 +67,8 @@ const editUserValidation = () => {
   let emailValidations = () => {
     return () => {
       if (!validator.isEmail(email.value) && email.disabled === false) {
-        editUserErrors.email = "El email no es valido";
-        errorEmail.innerHTML = "El email no es valido";
+        editUserErrors.email = "El email no es válido";
+        errorEmail.innerHTML = "El email no es válido";
       } else {
         delete editUserErrors.email;
         errorEmail.innerHTML = "";
@@ -79,9 +79,9 @@ const editUserValidation = () => {
     return () => {
       if (!validator.isStrongPassword(password.value) && password.disabled === false) {
         editUserErrors.password =
-          "Constraseña debe tener minimo: 8 caracteres, 1 mayuscula, 1 minuscula y 1 simbolo";
+          "Constraseña debe tener mínimo: 8 caracteres, 1 mayúscula, 1 minúscula y 1 símbolo";
         errorPassword.innerHTML =
-          "Constraseña debe tener minimo: 8 caracteres, 1 mayuscula, 1 minuscula y 1 simbolo";
+          "Constraseña debe tener mínimo: 8 caracteres, 1 mayúscula, 1 minúscula y 1 símbolo";
       } else {
         delete editUserErrors.password;
         errorPassword.innerHTML = "";
@@ -115,8 +115,8 @@ const editUserValidation = () => {
         for (let file of image.files) {
           for (let ext of acceptedExt) {
             if (!file.type.includes(ext)) {
-              editUserErrors.image = `Formato no admitido`;
-              errorImage.innerHTML = `Formato no admitido`;
+              editUserErrors.image = "Formato no admitido";
+              errorImage.innerHTML = "Formato no admitido";
             } else {
               delete editUserErrors.image;
               errorImage.innerHTML = "";
@@ -131,9 +131,9 @@ const editUserValidation = () => {
     return () => {
       if (!validator.isMobilePhone(phone.value) && image.disabled === false) {
         editUserErrors.phone =
-          "Ingrese un numero de telefono valido (sin espacios ni guiones)";
+          "Ingrese un número de teléfono válido (sin espacios ni guiones)";
         errorPhone.innerHTML =
-          "Ingrese un numero de telefono valido (sin espacios ni guiones)";
+          "Ingrese un número de teléfono válido (sin espacios ni guiones)";
       } else {
         delete editUserErrors.phone;
         errorPhone.innerHTML = "";
@@ -185,7 +185,7 @@ const editUserValidation = () => {
         .then((response) => response.json())
         .then((data) => {
           if (data.found === true && data.data.id != paramId) {
-            editUserErrors.username = `${username.value} ya esta registrado`;
+            editUserErrors.username = `${username.value} ya está registrado`;
           }
         });
     }
@@ -194,7 +194,7 @@ const editUserValidation = () => {
         .then((response) => response.json())
         .then((data) => {
           if (data.found === true && data.data.id != paramId) {
-            editUserErrors.email = `${email.value} ya esta registrado`;
+            editUserErrors.email = `${email.value} ya está registrado`;
           }
         });
     }
@@ -250,8 +250,8 @@ const editProductValidation = () => {
   let nameValidations = () => {
     return () => {
       if (!validator.isLength(name.value, {min: 5}) && name.disabled === false) {
-        editErrors.name = "Nombre del producto debe tener minimo 5 caracteres"
-        errorName.innerHTML = "Nombre del producto debe tener minimo 5 caracteres"
+        editErrors.name = "Nombre del producto debe tener mínimo 5 caracteres"
+        errorName.innerHTML = "Nombre del producto debe tener mínimo 5 caracteres"
       } else {
         delete editErrors.name
         errorName.innerHTML = ""
@@ -261,8 +261,8 @@ const editProductValidation = () => {
   let priceValidations = () => {
     return () => {
       if (!validator.isNumeric(price.value) && price.disabled === false) {
-        editErrors.price = "Precio debe ser un valor numerico"
-        errorPrice.innerHTML = "Precio debe ser un valor numerico"
+        editErrors.price = "Precio debe ser un valor numérico"
+        errorPrice.innerHTML = "Precio debe ser un valor numérico"
       } else {
         delete editErrors.price
         errorPrice.innerHTML = ""
@@ -272,8 +272,8 @@ const editProductValidation = () => {
   let categoryValidations = () => {
     return () => {
       if (!validator.isInt(category.value, {min: 1, max: 4}) && category.disabled === false) {
-        editErrors.category = "Debe seleccionar una opcion entre 1 y 4"
-        errorCategory.innerHTML = "Debe seleccionar una opcion entre 1 y 4"
+        editErrors.category = "Debe seleccionar una opción entre 1 y 4"
+        errorCategory.innerHTML = "Debe seleccionar una opción entre 1 y 4"
       } else {
         delete editErrors.category
         errorCategory.innerHTML = ""
@@ -283,8 +283,8 @@ const editProductValidation = () => {
   let statusValidations = () => {
     return () => {
       if (!validator.isInt(status.value, {min: 1, max: 4}) && status.disabled === false) {
-        editErrors.status = "Debe seleccionar una opcion entre 1 y 4"
-        errorStatus.innerHTML = "Debe seleccionar una opcion entre 1 y 4"
+        editErrors.status = "Debe seleccionar una opción entre 1 y 4"
+        errorStatus.innerHTML = "Debe seleccionar una opción entre 1 y 4"
       } else {
         delete editErrors.status
         errorStatus.innerHTML = ""
@@ -312,8 +312,8 @@ const editProductValidation = () => {
         for (let file of img.files) {
           for (let ext of acceptedExt) {
             if (!file.type.includes(ext)) {
-              editErrors.img = `Formato no admitido`;
-              errorImg.innerHTML = `Formato no admitido`;
+              editErrors.img = "Formato no admitido";
+              errorImg.innerHTML = "Formato no admitido";
             } else {
               delete editErrors.img;
               errorImg.innerHTML = "";
@@ -330,8 +330,8 @@ const editProductValidation = () => {
       charCount.innerHTML = `${description.value.length}`
       if (!validator.isLength(description.value, {max: 500}) && description.disabled === false) {
         charCount.style.color = "red" 
-        editErrors.description = "Descripcion debe tener maximo 500 caracteres"
-        errorDescription.innerHTML = "Descripcion debe tener maximo 500 caracteres"
+        editErrors.description = "Descripción debe tener máximo 500 caracteres"
+        errorDescription.innerHTML = "Descripción debe tener máximo 500 caracteres"
       } else {
         charCount.style.color = "" 
         delete editErrors.description
@@ -373,7 +373,7 @@ const editProductValidation = () => {
       .then(response => response.json())
       .then(data => {
         if(data.found === true) {
-          editErrors.name = `(${name.value}) ya esta registrado`
+          editErrors.name = `(${name.value}) ya está registrado`
         }
       });
     }
