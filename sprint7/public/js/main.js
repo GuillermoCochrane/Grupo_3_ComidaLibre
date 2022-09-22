@@ -29,10 +29,4 @@ window.onload = () => {
   }
   searchBarDesktop.addEventListener('input', search(searchBarDesktop, searchResultDesktop))
   searchBar.addEventListener('input', search(searchBar, searchResult))
-  searchBarDesktop.addEventListener('blur', () => {
-    searchResultDesktop.innerHTML = null
-  })
-  searchBar.addEventListener('blur', () => {
-    searchResult.innerHTML = null
-  })
 }

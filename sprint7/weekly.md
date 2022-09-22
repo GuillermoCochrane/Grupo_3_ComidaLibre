@@ -10,12 +10,9 @@ la creación y modificación de productos.
 Para las validaciones del Front-End también trabajamos en conjunto para validar los campos del Registro y Login de usuarios. En el caso de las validaciones del Edit de Usuarios y Productos se encargó Ariel Murua.
 
 
-
 ¿En qué tuvimos problemas? 
 
 En como llevar a cabo algunas validaciones específicas.
-
-
 
 
 ¿Qué vamos a hacer? 
