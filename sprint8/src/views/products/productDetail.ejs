@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs') %>
+<body>
+  <%- include('../partials/header.ejs') %>
+  <main class="main-product-detail">
+    <h1>Detalle del producto</h1>
+    <article class="main-product">
+      <h2 class="title"><%= product.name %></h2>
+        <img id="main-image" src="/images/products/<%=product.image %>" alt="<%= product.name %>">
+        <div class="main-detail">
+          <h2 class="title0"><%= product.name %></h2>
+          <% if(product.discount) {%>
+          <div class="discount-div">
+            <p class="price-original">$<%= product.price %></p>
+            <p class="price">
+              $<%= (product.price-(product.price*(product.discount/100))).toFixed(2) %>
+            </p>
+          </div>
+          <p class="discount">-<%= product.discount %>% OFF</p>
+          <% } else {%>
+            <p class="price">$<%= product.price %></p>
+          <% } %>
+          <div class="add-to">
+            <form class="form-fav" action="/fav/add/<%= product.id %>" method="POST">
+              <button class="btn-fav" type="submit" class="btn-detail"><i class="fas fa-heart"></i></button>
+            </form>
+            <form class="form-add-cart" action="/cart/<%= product.id %>" method="POST">
+              <select name="quantity">
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+              </select>
+              <button class="add-button" type="submit"><i class="fas fa-cart-plus"></i> Agregar al carrito</button>
+            </form>
+          </div>
+          <% if( locals.userLogged && locals.userLogged.roles_id === 1 ) {%>
+            <div class="delete-edit-div">
+              <form class="edit-btn" action="/products/edit/<%= product.id %>" method="GET">
+                <button type="submit">Editar</button>
+              </form>
+              <form class="delete-btn" action="/products/delete/<%= product.id %>?_method=DELETE" method="POST">
+                <button type="submit">Eliminar</button>
+              </form>
+            </div>
+          <% } %>
+          <p class="name">
+            <strong>Descripción: </strong><%= product.description %>
+          </p>
+        </div>
+    </article>
+    <br>
+    <section>
+      <h1>Productos relacionados</h1>
+      <article class="reco">
+        <% for( let productR of productRel) { %>
+          <div class="product">
+            <img id="image" src="/images/products/<%= productR.image %>" alt="" title="">
+            <div class="info">
+              <p class="price">$ <%= productR.price %></p>
+              <% if(productR.discount) {%>
+                <p class="discount">-<%= productR.discount %>% OFF</p>
+              <% } %>
+              <p class="name"><%= productR.name %> </p>
+              <p class="descrip">
+                <strong>Descripción: </strong><%= productR.description %>
+              </p>
+              <form class="add-to" action="/cart/<%= productR.id %>" method="POST">
+                <select name="quantity">
+                  <option value=1>1</option>
+                  <option value=2>2</option>
+                  <option value=3>3</option>
+                  <option value=4>4</option>
+                  <option value=5>5</option>
+                </select>
+                <button class="add-button" type="submit">Agregar al carrito</button>
+              </form>
+            </div>
+          </div>
+        <% } %>
+      </article>
+    </section>
+  </main>
+  <%- include('../partials/footer.ejs') %> 
+</body>
+</html>

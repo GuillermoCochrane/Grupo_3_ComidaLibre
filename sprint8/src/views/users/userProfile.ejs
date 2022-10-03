@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs') %>
+<body>
+  <%- include('../partials/header.ejs') %>
+  <main class="main-user">
+    <div class="profile-container">
+      <div class="user-info-card">
+        <div class="username-img-container">
+          <img src="/images/avatar/<%= user[0].image %>" alt="profile_pic">
+        </div>
+          <div class="user-info-container">
+            <div class="info-line">
+              <h1><%= user[0].username %></h1>
+            </div>
+            <div class="info-line">
+              <p class="field-name">Nombre</p>
+              <p class="field-info"><%= user[0].first_name %> <%= user[0].last_name %></p>
+            </div>
+            <div class="info-line">
+              <p class="field-name">Direccion</p>
+              <p class="field-info"><%= user[0].address %></p>
+            </div>
+            <div class="info-line">
+              <p class="field-name">Telefono</p>
+              <p class="field-info"><%= user[0].phone %></p>
+            </div>
+            <div class="info-line">
+              <p class="field-name">Email</p>
+              <p class="field-info"><%= user[0].email %></p>
+            </div>
+            <div class="info-line">
+              <p class="field-name">Categoria</p>
+              <p class="field-info"><%= user[0].user_role.role %></p>
+            </div>
+            <br>
+            <div class="info-line">
+              <a href="/user/edit/<%= user[0].id %>">Editar <i class="far fa-edit"></i></a>
+            </div>
+          </div>
+      </div>
+      <div class="user-sale-container">
+        <h1>Compras realizadas</h1>
+        <div class="sale-product-container">
+          <% if(userSales.length <= 0) { %>
+            <ul>No realizaste ninguna compra, <a href="/products/">ver productos</a></>  
+          <% }%>
+          <% for(let sale of userSales) {%>
+            <div>
+              <p><strong>fecha de compra:</strong> <%= sale.created_at.toDateString() %></p>
+              <p><strong>metodo de pago:</strong> <%= sale.payment_method %></p>
+              <p><strong>total pagado:</strong> <%= sale.total %></p>
+            </div>
+            <ul>
+              <% for(let item of userSalesDetails) {%>
+                <% if(sale.id == item.sales_id) {%>
+                  <li>
+                    <img src="/images/products/<%= item.saleDetail_product.image %>" alt="">
+                    <div>
+                      <%= item.saleDetail_product.name %> 
+                    </div>
+                    <div>
+                        <%= item.saleDetail_product.price %> 
+                    </div>
+                    <div>
+                      X<%= item.quantity %> 
+                    </div>
+                  </li>
+                <% } %>
+              <% } %>
+            </ul>
+          <% } %>
+        </div>
+      </div>
+      <div class="user-favs-container">
+        <h1>Favoritos</h1>
+        <div class="fav-product-container">
+          <% for(let usuario of user) {%>
+            <div class="fav-product-info">
+              <% if(usuario.users_products.id === null) { %>
+                <p>No tenes favoritos <a href="/products/">ver productos</a></p>  
+              <% break }%>
+              <a href="/products/<%= usuario.users_products.categories_id %>/<%= usuario.users_products.id %>">
+                <img src="/images/products/<%= usuario.users_products.image %>" alt="">
+              </a>
+              <div>
+                <strong><%= usuario.users_products.name %></strong>
+                <strong>$ <%= usuario.users_products.price %></strong>
+              </div>
+              <a class="fav-delete" href="/fav/delete/<%= usuario.users_products.id %>"><i class="fas fa-times"></i></a>
+            </div>
+          <% } %> 
+        </div>
+      </div>
+    </div>
+  </main>
+  <%- include('../partials/footer.ejs') %> 
+</body>
+</html>

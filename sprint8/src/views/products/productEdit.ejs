@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs') %>
+  <body>
+    <main class="main-edit-create">
+      <a class="logo-form" href="/">
+        <img id="logo" src="/images/FreeFood2f.png" alt="logo"/>
+      </a>
+      <h1>Estás editando: <%= producto.name %></h1>
+      <form id="edit-product-form" class="input-container-form" action="/products/update/<%= producto.categories_id  %>/<%= producto.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+        <label for="name">
+          <div class="input-title">
+            <h3>Nombre del producto</h4>
+            <button id="btn-edit-name" class="btn-edit-field">
+              <i class="fas fa-edit"></i>
+            </button>
+          </div>
+        </label>
+        <div class="info-container-div">
+          <i class="fas fa-file-signature"></i>
+          <input type="text" name="name" id="name" disabled value="<%=typeof errors != 'undefined' && errors.name ? oldData.name : producto.name %>"/>
+        </div>
+        <small id="error-name" class="error-input">
+          <%= typeof errors != 'undefined' && errors.name ? errors.name.msg : null %>
+        </small>
+
+        <label for="price">
+          <div class="input-title">
+            <h3>Precio</h4>
+            <button id="btn-edit-price" class="btn-edit-field">
+              <i class="fas fa-edit"></i>
+            </button>
+          </div>
+        </label>
+        <div class="info-container-div">
+          <i class="fas fa-dollar-sign"></i>
+          <input type="number" name="price" id="price" disabled value="<%=typeof errors != 'undefined' && errors.price ? oldData.price : producto.price %>"/>
+        </div>
+        <small id="error-price" class="error-input">
+          <%= typeof errors != 'undefined' && errors.price ? errors.price.msg : null %>
+        </small>
+
+        <label for="idCat">
+          <div class="input-title">
+            <h3>Categoría</h3>
+            <button id="btn-edit-idCat" class="btn-edit-field">
+              <i class="fas fa-edit"></i>
+            </button>
+          </div>   
+        </label>
+        <div class="info-container-div">
+          <i class="fas fa-clipboard-list"></i>
+          <select name="idCat" id="idCat" disabled >
+            <option value="<%=typeof errors != 'undefined' && errors.categories_id ? oldData.categories_id  : producto.categories_id  %>" selected ><%=typeof errors != 'undefined' && errors.categories_id ? oldData.categories_id : producto.categories_id %></option>
+            <option value="1">1-Entrada</option>
+            <option value="2">2-Plato principal</option>
+            <option value="3">3-Postre</option>
+            <option value="4">4-Bebida</option>
+          </select>
+        </div>
+        <small id="error-category" class="error-input">
+          <%= typeof errors != 'undefined' && errors.idCat ? errors.idCat.msg : null %>
+        </small>
+
+        <label for="status">
+          <div class="input-title">
+            <h3>Estado de producto</h3>
+            <button id="btn-edit-status" class="btn-edit-field">
+              <i class="fas fa-edit"></i>
+            </button>
+          </div>
+        </label>
+        <div class="info-container-div">
+          <i class="fas fa-clipboard-list"></i>
+          <select name="status" id="status" disabled >
+            <option value="<%=typeof errors != 'undefined' && errors.statuses_id ? oldData.statuses_id : producto.statuses_id %>" selected ><%=typeof errors != 'undefined' && errors.statuses_id ? oldData.statuses_id : producto.statuses_id %></option>
+            <option value="1">1-Novedad</option>
+            <option value="2">2-Oferta</option>
+            <option value="3">3-Recomendado</option>
+            <option value="4">4-Más vendido</option>
+          </select>
+        </div>
+        <small id="error-status" class="error-input">
+          <%= typeof errors != 'undefined' && errors.status ? errors.status.msg : null %>
+        </small>
+
+        <label for="discount">
+          <h4>
+            Porcentaje de descuento: % <output id="rangevalue"><%=typeof errors != 'undefined' && errors.discount ? oldData.discount : producto.discount %></output>
+          </h4>
+        </label>
+        <div class="info-container-div">
+          <i class="fas fa-percent"></i>
+          <input type="range" name="discount" id="discount" min="0" max="100" step="1" disabled value="<%=typeof errors != 'undefined' && errors.discount ? oldData.discount : producto.discount %>"/>
+          <button id="btn-edit-discount" class="btn-edit-field">
+            <i class="fas fa-edit"></i>
+          </button>
+        </div>
+        <small id="error-discount" class="error-input">
+          <%= typeof errors != 'undefined' && errors.discount ? errors.discount.msg : null %>
+        </small>
+
+        <label for="img">
+          <div class="input-title">
+            <h4>Imagen del producto (jpg, png, jpge, gif)</h4>
+            <button id="btn-edit-img" class="btn-edit-field">
+              <i class="fas fa-edit"></i>
+            </button>
+          </div>
+          <div class="image-product">
+            <img style="width: 50%;" src="/images/products/<%= producto.image %>" alt=""/>
+          </div>
+        </label>
+        
+        <div class="info-container-div">
+          <i class="fas fa-file-image"></i>
+          <input class="img-input" type="file" id="img" name="img" disabled/>
+        </div>
+        <small id="error-img" class="error-input">
+          <%= typeof errors != 'undefined' && errors.img ? errors.img.msg : null %>
+        </small>
+
+        <label for="description">
+          <div class="input-title">
+            <h4>
+              Descripción del producto
+              <small id="char-count"></small>
+            </h4>
+            <button id="btn-edit-description" class="btn-edit-field">
+              <i class="fas fa-edit"></i>
+            </button>
+          </div>
+
+        </label>
+        <textarea name="description" id="description" cols="30" rows="5" placeholder="Descripcion (max 500 caracteres)" disabled >
+          <%=typeof errors != 'undefined' && errors.description ? oldData.description : producto.description %>
+        </textarea>
+        <small id="error-description" class="error-input">
+          <%= typeof errors != 'undefined' && errors.description ? errors.description.msg : null %>
+        </small>
+
+        <div class="btn-container">
+          <button id="edit-button" type="submit">Guardar</button>
+          <button id="reset-button" type="reset">Borrar</button>
+        </div>
+      </form>
+    </main>
+    <script src="/static/js/editValidations.js"></script>
+    <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
+  </body>
+</html>

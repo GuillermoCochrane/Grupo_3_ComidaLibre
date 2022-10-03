@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs') %>
+  <body>
+    <%- include('../partials/header.ejs') %>
+    <main class="main-user">
+      <h1 style="text-align: center;">Edicion de datos: <%= usuario.username %></h1>
+      <br>
+      <form id="edit-user-form" class="input-container-form" action="/user/edit/<%= usuario.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+        
+        <label for="username">
+          <div class="input-title">
+            <h3>@Username</h3>
+            <button id="btn-edit-username" class="btn-edit-field">
+              <i class="fas fa-edit"></i>
+            </button>
+          </div>
+        </label>
+        <div class="info-container-div">
+          <i class="fas fa-user"></i>
+          <input
+            type="text" 
+            name="username" 
+            id="username" 
+            value="<%= typeof errors != 'undefined' && errors.username ? oldData.username : usuario.username %>"
+            disabled
+          >
+        </div>
+        <small id="error-username" class="error-input"><%= typeof errors != 'undefined' && errors.username ? errors.username.msg : null %></small>
+
+        <label for="image">
+          <div class="input-title">
+            <h3>Foto de perfil</h4>
+            <button id="btn-edit-image" class="btn-edit-field">
+              <i class="fas fa-edit"></i>
+            </button>
+          </div>
+          <img src="/images/avatar/<%= typeof errors != 'undefined' && errors.image ? oldData.image : usuario.image %>" alt="">
+        </label>
+        <input type="file" name="image" id="image" disabled>
+        <small id="error-image" class="error-input"><%= typeof errors != 'undefined' && errors.image ? errors.image.msg : null %></small>
+        
+        <label for="firstName">
+          <div class="input-title">
+            <h3>Nombre</h3>
+            <button id="btn-edit-first_name" class="btn-edit-field">
+              <i class="fas fa-edit"></i>
+            </button>
+          </div>
+        </label>
+        <div class="info-container-div">
+          <i class="fas fa-id-badge"></i>
+          <input 
+            type="text" 
+            name="first_name" 
+            id="first_name" 
+            value="<%= typeof errors != 'undefined' ? oldData.first_name : usuario.first_name %>"
+            disabled
+          >
+        </div>
+
+        <label for="lastName">
+          <div class="input-title">
+            <h3>Apellido</h4>
+            <button id="btn-edit-last_name" class="btn-edit-field">
+              <i class="fas fa-edit"></i>
+            </button>
+          </div>
+        </label>
+        <div class="info-container-div">
+          <i class="fas fa-id-badge"></i>
+          <input
+           type="text" 
+           name="last_name" 
+           id="last_name" 
+           value="<%= typeof errors != 'undefined' ? oldData.last_name : usuario.last_name %>"
+           disabled
+          >
+        </div>
+
+        <label for="address">
+          <div class="input-title">
+            <h3>Domicilio</h3>
+            <button id="btn-edit-address" class="btn-edit-field">
+              <i class="fas fa-edit"></i>
+            </button>
+          </div>
+          
+        </label>
+        <div class="info-container-div">
+          <i class="fas fa-map-marker-alt"></i>
+          <input 
+            type="text" 
+            name="address" 
+            id="address" 
+            value="<%= typeof errors != 'undefined' ? oldData.address : usuario.address %>"
+            disabled
+          >
+        </div>
+            
+        <label for="phone">
+          <div class="input-title">
+            <h3>Teléfono</h3>
+            <button id="btn-edit-phone" class="btn-edit-field">
+              <i class="fas fa-edit"></i>
+            </button>
+          </div>
+        </label>
+        <div class="info-container-div">
+          <i class="fas fa-mobile-alt"></i>
+          <input 
+            type="text" 
+            name="phone" 
+            id="phone" 
+            value="<%= typeof errors != 'undefined' && errors.phone ? oldData.phone : usuario.phone %>"
+            disabled
+          >
+        </div>
+        <small id="error-phone" class="error-input"><%= typeof errors != 'undefined' && errors.phone ? errors.phone.msg : null %></small>
+
+        <label for="email">
+          <div class="input-title">
+            <h3>Email</h3>
+            <button id="btn-edit-email" class="btn-edit-field">
+              <i class="fas fa-edit"></i>
+            </button>
+          </div>
+        </label>
+        <div class="info-container-div">
+          <i class="fas fa-at"></i>
+          <input 
+            type="text" 
+            name="email" 
+            id="email" 
+            value="<%= typeof errors != 'undefined' && errors.email ? oldData.email : usuario.email %>"
+            disabled
+          >
+        </div>
+        <small id="error-email" class="error-input"><%= typeof errors != 'undefined' && errors.email ? errors.email.msg : null %></small>
+ 
+            
+        <label for="password">
+          <div class="input-title">
+            <h3>Contraseña</h3>
+            <button id="btn-edit-password" class="btn-edit-field">
+              <i class="fas fa-edit"></i>
+            </button>
+          </div>
+        </label>
+        <div class="info-container-div">
+          <i class="fas fa-lock"></i>
+          <input type="password" name="password" id="password" disabled>
+        </div>
+        <small id="error-password" class="error-input"></small>
+        <label for="rePassword">
+          <h4>Repetir contraseña</h4>
+        </label>
+        <div class="info-container-div">
+          <i class="fas fa-lock"></i>
+          <input type="password" name="rePassword" id="rePassword" disabled>
+
+        </div>
+        <small id="error-rePassword" class="error-input"><%= typeof errors != 'undefined' && errors.password ? errors.password.msg : null %></small>
+        
+        <div class="btn-container">
+          <button id="btn-submit" type="submit">Guardar</button>
+          <button id="btn-reset" type="reset">Borrar</button>
+        </div>
+      </form>
+    </main>
+    <%- include('../partials/footer.ejs') %>
+    <script src="/static/js/editValidations.js"></script>
+    <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
+  </body>
+</html>
