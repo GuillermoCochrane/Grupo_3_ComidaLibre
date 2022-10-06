@@ -2,12 +2,15 @@ const db = require("../../database/models")
 
 module.exports = {
   allUsers: (req, res) => {
-    db.User.findAll({
-      attributes: { exclude: ['password', 'roles_id'] }
+    let page = req.query.page ? req.query.page : 1;
+    db.User.findAndCountAll({
+      attributes: { exclude: ['password', 'roles_id'] },
+      offset: (10 * (page - 1)),
+      limit: 10
     })
     .then(allUsers => {
       let responseArray = []
-      for(let user of allUsers) {
+      for(let user of allUsers.rows) {
         let resObj = {
           id: user.id,
           username: user.username,
@@ -16,10 +19,18 @@ module.exports = {
         }
         responseArray.push(resObj)
       }
-      let response = {
-        count: allUsers.length,
-        users: responseArray
+      let response
+      if (responseArray.length === 0) {
+        response = {
+          msg: 'no more users'
+        }
+      } else {
+        response = {
+          count: allUsers.count,
+          users: responseArray
+        }
       }
+
       res.json(response)
     })
     .catch(errors => console.log(errors))

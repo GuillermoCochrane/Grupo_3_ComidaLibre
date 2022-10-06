@@ -1,8 +1,12 @@
 const db = require("../../database/models")
 
 module.exports = {
-  allProducts: (req, res) => {
-    db.Product.findAll({
+  allProducts: async (req, res) => {
+    let page = req.query.page ? req.query.page : 1;
+    let allCategories = await db.Category.findAll({
+      include: ["category_products"]
+    })
+    let allProducts = await db.Product.findAndCountAll({
       include: [
         "product_category", 
         "product_status", 
@@ -16,28 +20,42 @@ module.exports = {
           as: "products_cart",
           attributes: { exclude: ['password', 'roles_id']}
         } 
-      ]
+      ],
+      distinct: true,
+      offset: (10 * (page - 1)),
+      limit: 10
     })
-    .then(allProducts => {
-      let responseArray = []
-      for(let product of allProducts) {
-        let resObj = {
-          id: product.id,
-          name: product.name,
-          description: product.description,
-          relacionPrincipal: product.product_category,
-          detail: `http://localhost:3000/api/products/${product.id}` 
-        }
-        responseArray.push(resObj)
+    let responseArray = []
+    for(let product of allProducts.rows) {
+      let resObj = {
+        id: product.id,
+        name: product.name,
+        description: product.description,
+        mainRelation: product.product_category,
+        detail: `http://localhost:3000/api/products/${product.id}` 
       }
-      let response = {
-        count: allProducts.length,
-        // countByCategory: 
+      responseArray.push(resObj)
+    }
+    let countByCategory = {}
+    for(let category of allCategories) {
+      countByCategory[category.id] = {
+        name: category.category,
+        count: category.category_products.length
+      }
+    }
+    let response
+    if (responseArray.length === 0) {
+      response = {
+        msg: 'no more products'
+      }
+    } else {
+      response = {
+        count: allProducts.count,
+        countByCategory: countByCategory,
         products: responseArray
       }
-      res.json(response)
-    })
-    .catch(errors => console.log(errors))
+    }
+    return res.json(response)
   },
   oneProduct: (req, res) => {
     db.Product.findOne({
@@ -78,6 +96,29 @@ module.exports = {
       } else {
         response = {
           msg: 'product not found'
+        }
+      }
+      res.json(response)
+    })
+    .catch(errors => console.log(errors))
+  },
+  sales: (req, res) => {
+    db.Sale.findAndCountAll({
+      include: ["sale_details"],
+      distinct: true,
+      order: [["created_at","DESC"]],
+      limit: 5
+    })
+    .then(allSales => {
+      let response
+      if (allSales.count === 0) {
+        response = {
+          msg: "no hay ventas registradas"
+        }
+      } else {
+        response = {
+          total: allSales.count,
+          lastSales: allSales.rows
         }
       }
       res.json(response)
