@@ -11,13 +11,49 @@ function SideBar(){
                     <div className="logo">
                         <img src="" alt="logo" />
                     </div>
-                    <div className="nav-links">
-                        <Link Link to="/" exact="true" className="nav-link">home</Link>
-                        <Link Link to="/" exact="true" className="nav-link">search</Link>
-                        <Link Link to="/" exact="true" className="nav-link">agregar producto</Link>
-                        <Link Link to="/" exact="true" className="nav-link">products</Link>
-                        <Link Link to="/" exact="true" className="nav-link">users</Link>
-                    </div>
+                    <ul className="nav-links">
+
+                        <li className="nav-link">
+                            <Link Link to="/" exact="true" >
+                                <span>
+                                    home
+                                </span>
+                            </Link>
+                        </li>
+
+                        <li className="nav-link">
+                            <Link Link to="/" exact="true">
+                                <span>
+                                    search
+                                </span>
+                            </Link>
+                        </li>
+
+                        <li className="nav-link">
+                            <Link Link to="/" exact="true">
+                                <span>
+                                    agregar producto
+                                </span>
+                            </Link>
+                        </li>
+
+                        <li className="nav-link">
+                            <Link Link to="/products/" exact="true" >
+                                <span>
+                                    products
+                                </span>
+                            </Link>
+                        </li>
+
+                        <li className="nav-link">
+                            <Link Link to="/users/" exact="true" >
+                                <span>
+                                    users
+                                </span>
+                            </Link>
+                        </li>
+
+                    </ul>
                 </div>
             </Fragment>
         )

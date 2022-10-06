@@ -1,36 +1,68 @@
-import React, {Fragment} from 'react'
-import '../all-users/allUsers.css'
+import React, {Fragment} from 'react';
+import '../all-users/allUsers.css';
+import UserList from './UserList';
+import UserHeader from './UserHeader'
+
+
+let usersList =[
+    {
+        id: 1,
+        userName: 'Pulga',
+        email: 'lionel@messi.com',
+        first_name: 'Lionel',
+        last_name: 'Messi',
+        phone: 541112345678,
+        address: 'ALVEAR 1670, Rosario',
+    },
+    {
+        id: 1,
+        userName: 'Pulga',
+        email: 'lionel@messi.com',
+        first_name: 'Lionel',
+        last_name: 'Messi',
+        phone: 541112345678,
+        address: 'ALVEAR 1670, Rosario',
+    },
+    {
+        id: 1,
+        userName: 'Pulga',
+        email: 'lionel@messi.com',
+        first_name: 'Lionel',
+        last_name: 'Messi',
+        phone: 541112345678,
+        address: 'ALVEAR 1670, Rosario',
+    },
+    {
+        id: 1,
+        userName: 'Pulga',
+        email: 'lionel@messi.com',
+        first_name: 'Lionel',
+        last_name: 'Messi',
+        phone: 541112345678,
+        address: 'ALVEAR 1670, Rosario',
+    },
+    
+]
+
 
 function AllUsers() {
   return (
     <Fragment>
-        <div class="allusers">
+        <div className="allusers">
             <table className='users-table'>
                 <caption>
                     USERS
                 </caption>
                 <thead>
-                    <tr>
-                        <th className='users-th'>id</th>
-                        <th className='users-th'>username</th>
-                        <th className='users-th'>email</th>
-                        <th className='users-th'>nombre</th>
-                        <th className='users-th'>apellido</th>
-                        <th className='users-th'>phone</th>
-                        <th className='users-th'>address</th>
-                    </tr>
+                    <UserHeader/>
                 </thead>
 
                 <tbody>
-                    <tr>
-                        <td className='users-td'>1</td>
-                        <td className='users-td'>@TESTUSER</td>
-                        <td className='users-td'>test@gmail.com.ar</td>
-                        <td className='users-td'>nombre</td>
-                        <td className='users-td'>apellido</td>
-                        <td className='users-td'>+54 9 2323910432</td>
-                        <td className='users-td'>Fake st 123, colombia</td>
-                    </tr>
+                    {
+                        usersList.map((item, i) => {
+                            return <UserList {...item} key = {`item-${i}`} />
+                            })
+                    }
                 </tbody>
             </table>
         </div>

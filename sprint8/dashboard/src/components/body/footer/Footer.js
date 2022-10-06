@@ -5,7 +5,7 @@ function Footer() {
   return (
     <Fragment>
         <footer>
-            <div class="content-footer">
+            <div className="content-footer">
                 <p>copyright &copy; free-food 2022</p>
             </div>
         </footer>

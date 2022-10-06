@@ -4,7 +4,7 @@ import '../search-container/searchContainer.css'
 function SearchContainer() {
   return (
     <Fragment>
-            <div class="search-container">
+            <div className="search-container">
             </div>
     </Fragment>
   )

@@ -1,5 +1,38 @@
 import React, {Fragment} from 'react'
+import ProductHeader from './ProductHeader'
+import ProductList from './ProductList'
 import '../all-products/allProducts.css'
+
+let productsList =[
+    {
+        id: 1,
+        name: 'Coca Cola',
+        price: 666,
+        category: 'bebida',
+        status: 'En oferta',
+    },
+    {
+        id: 1,
+        name: 'Coca Cola',
+        price: 666,
+        category: 'bebida',
+        status: 'En oferta',
+    },
+    {
+        id: 1,
+        name: 'Coca Cola',
+        price: 666,
+        category: 'bebida',
+        status: 'En oferta',
+    },
+    {
+        id: 1,
+        name: 'Coca Cola',
+        price: 666,
+        category: 'bebida',
+        status: 'En oferta',
+    },
+]
 
 function AllProducts() {
   return (
@@ -11,23 +44,15 @@ function AllProducts() {
                 </caption>
 
                 <thead>
-                    <tr>
-                        <th className='products-th'>id</th>
-                        <th className='products-th'>nombre</th>
-                        <th className='products-th'>precio</th>
-                        <th className='products-th'>category</th>
-                        <th className='products-th'>status</th>
-                    </tr>
+                    <ProductHeader/>
                 </thead>
 
                 <tbody>
-                    <tr>
-                        <td className='products-td'>1</td>
-                        <td className='products-td'>product name</td>
-                        <td className='products-td'>33.44</td>
-                        <td className='products-td'>bebida</td>
-                        <td className='products-td'>oferta</td>
-                    </tr>
+                    {
+                        productsList.map((item, i) => {
+                            return <ProductList {...item} key = {`item-${i}`} />
+                            })
+                    }                   
                 </tbody>
 
             </table>
