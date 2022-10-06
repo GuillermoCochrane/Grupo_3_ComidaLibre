@@ -1,0 +1,7 @@
+.header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+    background-color: antiquewhite;
+    height: 75px;
+}

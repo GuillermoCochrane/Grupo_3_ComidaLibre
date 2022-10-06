@@ -1,0 +1,11 @@
+.wrapper{
+    background-color: salmon;
+    display: flex;
+}
+
+.content-wrapper {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
