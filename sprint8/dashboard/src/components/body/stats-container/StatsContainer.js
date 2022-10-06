@@ -1,16 +1,17 @@
 import React, {Fragment} from 'react'
+import '../stats-container/statsContainer.css'
 
 function StatsContainer() {
   return (
     <Fragment>
       <div className="stats-container">
-          <div className="card">
+          <div className="stats-card">
               <p>total usuarios 999</p>
           </div>
-          <div className="card">
+          <div className="stats-card">
               <p>total products 999</p>
           </div>
-          <div className="card">
+          <div className="stats-card">
               <p>ventas realizadas 999</p>
           </div>
       </div>

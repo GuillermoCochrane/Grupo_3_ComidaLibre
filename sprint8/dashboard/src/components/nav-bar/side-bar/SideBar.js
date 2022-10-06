@@ -1,5 +1,6 @@
 import React, {Fragment} from 'react';
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
+import '../side-bar/sidebar.css'
 // import logo from '../../../assets/images/FreeFood2f';
 
 function SideBar(){

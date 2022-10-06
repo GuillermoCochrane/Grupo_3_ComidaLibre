@@ -7,6 +7,9 @@ import SearchContainer from './search-container/SearchContainer';
 import Footer from './footer/Footer';
 import AllUsers from './all-users/AllUsers';
 import '../dashboard.css'
+// import '../body/main.css';
+
+
 
 function Main(){
 

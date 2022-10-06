@@ -1,0 +1,18 @@
+.allproducts {
+    width: 90%;
+    background-color: white;
+    margin: 10px auto 10px auto;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgb(65, 65, 65);
+};
+
+.products-table {
+    width: 100%;
+    padding: 8px;
+};
+
+.products-th, .products-td{
+    text-align: start;
+    width: 20%;
+    border: 1px solid black;
+}

@@ -1,0 +1,11 @@
+.user-product-container {
+    display: flex;
+};
+
+.last-product-card,.last-user-card {
+    margin: 10px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgb(65, 65, 65);
+}

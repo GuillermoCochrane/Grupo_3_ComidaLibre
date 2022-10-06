@@ -42,7 +42,7 @@ body {
   flex: 1;
   height: 100%;
 }
-.nav-links > a {
+.nav-link {
   margin: 10px;
 }
 
@@ -65,6 +65,7 @@ footer {
 .product-info-container {
   display: flex;
 }
+
 .product-category-container{
   width: 50%;
 }
@@ -75,6 +76,11 @@ footer {
   display: flex;
 }
 
+.last-product-card,
+.last-user-card,
+.stats-card,
+.product-category-card,
+.product-status-card,
 .card {
   margin: 10px;
   padding: 10px;
@@ -96,10 +102,17 @@ footer {
   border-radius: 10px;
   box-shadow: 0 0 15px rgb(65, 65, 65);
 }
+
+.users-table,
+.products-table,
 table {
   width: 100%;
   padding: 8px;
 }
+.users-th,
+.users-td,
+.products-th,
+.products-td,
 th, td{
   text-align: start;
   width: 20%;
