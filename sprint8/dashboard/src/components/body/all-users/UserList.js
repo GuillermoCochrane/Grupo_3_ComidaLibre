@@ -5,16 +5,15 @@ function UserList(props) {
   return (
     <Fragment>
         <tr>
-            <td className='users-td'>{props.id}</td>
-            <td className='users-td'><Link to={`/users/${props.id}`}>{props.userName}</Link></td>
-            <td className='users-td'>{props.email}</td>
-            <td className='users-td'>{props.first_name}</td>
-            <td className='users-td'>{props.last_name}</td>
-            <td className='users-td'>{props.phone}</td>
-            <td className='users-td'>{props.address}</td>
+          <td className='users-td'>{props.id}</td>
+          <td className='users-td'><Link to={`/users/${props.id}`}>{props.userName}</Link></td>
+          <td className='users-td'>{props.email}</td>
+          <td className='users-td'>{props.first_name}</td>
+          <td className='users-td'>{props.last_name}</td>
+          <td className='users-td'>{props.phone}</td>
+          <td className='users-td'>{props.address}</td>
         </tr>
-</Fragment>
-
+    </Fragment>
   )
 }
 

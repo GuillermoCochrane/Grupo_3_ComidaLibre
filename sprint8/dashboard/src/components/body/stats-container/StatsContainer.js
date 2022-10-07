@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react'
-import '../stats-container/statsContainer.css'
+import './statsContainer.css'
 
 function StatsContainer() {
   return (

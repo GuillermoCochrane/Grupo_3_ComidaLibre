@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react'
-import '../search-container/searchContainer.css'
+import './searchContainer.css'
 
 function SearchContainer() {
   return (

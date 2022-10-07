@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react'
-import '../footer/footer.css'
+import './footer.css'
 
 function Footer() {
   return (

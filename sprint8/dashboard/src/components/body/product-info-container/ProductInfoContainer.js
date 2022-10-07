@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react'
-import '../product-info-container/productInfoContainer.css'
+import './productInfoContainer.css'
 
 function ProductInfoContainer() {
     return (

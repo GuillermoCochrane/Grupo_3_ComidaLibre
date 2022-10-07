@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import '../top-bar/topBar.css'
+import './topBar.css'
 function TopBar () {
 
     return(

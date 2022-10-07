@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react'
 import ProductHeader from './ProductHeader'
 import ProductList from './ProductList'
-import '../all-products/allProducts.css'
+import './allProducts.css'
 
 let productsList =[
     {

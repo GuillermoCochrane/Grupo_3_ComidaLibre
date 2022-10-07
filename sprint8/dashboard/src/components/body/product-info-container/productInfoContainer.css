@@ -1,14 +1,14 @@
 .product-info-container {
     display: flex;
-};
+}
 
 .product-category-container{
     width: 50%;
-};
+}
 
 .product-status-container{
     width: 50%;
-};
+}
 
 .product-category-card,.product-status-card {
     margin: 10px;

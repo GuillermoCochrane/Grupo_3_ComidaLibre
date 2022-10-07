@@ -1,6 +1,6 @@
 .user-product-container {
     display: flex;
-};
+}
 
 .last-product-card,.last-user-card {
     margin: 10px;

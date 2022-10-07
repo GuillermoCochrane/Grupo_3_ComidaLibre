@@ -6,8 +6,8 @@ import AllProducts from './all-products/AllProducts';
 import SearchContainer from './search-container/SearchContainer';
 import Footer from './footer/Footer';
 import AllUsers from './all-users/AllUsers';
-import '../dashboard.css'
-// import '../body/main.css';
+// import '../dashboard.css'
+import './main.css';
 
 
 

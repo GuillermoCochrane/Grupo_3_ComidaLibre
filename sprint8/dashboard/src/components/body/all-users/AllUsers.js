@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import '../all-users/allUsers.css';
+import './allUsers.css';
 import UserList from './UserList';
 import UserHeader from './UserHeader'
 
