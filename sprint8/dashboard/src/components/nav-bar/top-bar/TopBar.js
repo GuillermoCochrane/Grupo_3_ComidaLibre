@@ -5,6 +5,7 @@ function TopBar () {
     return(
         <Fragment>
             <header className="header">
+                <img src="" alt="logo"/>
                 <div className="profile-info">
                     <img src="" alt="pf-pic"/>
                     <p>username</p>

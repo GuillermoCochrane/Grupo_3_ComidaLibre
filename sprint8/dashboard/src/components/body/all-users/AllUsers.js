@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 import './allUsers.css';
-import UserList from './UserList';
+import UserRow from './UserRow';
 import UserHeader from './UserHeader'
 
 
@@ -60,7 +60,7 @@ function AllUsers() {
                 <tbody>
                     {
                         usersList.map((item, i) => {
-                            return <UserList {...item} key = {`item-${i}`} />
+                            return <UserRow {...item} key = {`userRow-${i}`} />
                             })
                     }
                 </tbody>

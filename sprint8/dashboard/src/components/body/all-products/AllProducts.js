@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react'
 import ProductHeader from './ProductHeader'
-import ProductList from './ProductList'
+import ProductRow from './ProductRow'
 import './allProducts.css'
 
 let productsList =[
@@ -50,7 +50,7 @@ function AllProducts() {
                 <tbody>
                     {
                         productsList.map((item, i) => {
-                            return <ProductList {...item} key = {`item-${i}`} />
+                            return <ProductRow {...item} key = {`productRow-${i}`} />
                             })
                     }                   
                 </tbody>

@@ -1,7 +1,7 @@
 import React,{Fragment} from 'react'
 import { Link } from 'react-router-dom';
 
-function UserList(props) {
+function UserRow(props) {
   return (
     <Fragment>
         <tr>
@@ -17,4 +17,4 @@ function UserList(props) {
   )
 }
 
-export default UserList
+export default UserRow

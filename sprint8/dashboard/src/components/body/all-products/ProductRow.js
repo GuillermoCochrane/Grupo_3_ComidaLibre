@@ -1,7 +1,7 @@
 import React,{Fragment} from 'react'
 import { Link } from 'react-router-dom';
 
-function ProductList(props) {
+function ProductRow(props) {
     return (
         <Fragment>
                 <tr>
@@ -15,4 +15,4 @@ function ProductList(props) {
 )
 }
 
-export default ProductList
+export default ProductRow

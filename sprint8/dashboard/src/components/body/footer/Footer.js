@@ -4,7 +4,7 @@ import './footer.css'
 function Footer() {
   return (
     <Fragment>
-        <footer>
+        <footer className='footer'>
             <div className="content-footer">
                 <p>copyright &copy; free-food 2022</p>
             </div>

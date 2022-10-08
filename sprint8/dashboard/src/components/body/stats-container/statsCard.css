@@ -1,0 +1,128 @@
+.card-container{
+    position: relative;
+    width: 100%;
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
+    margin-bottom: 1.5rem!important;
+    flex: 0 0 33.33333%;
+    max-width: 33.33333%;
+}
+
+.card-border{
+    padding-bottom: 0.5rem!important;
+    padding-top: 0.5rem!important;
+    height: 100%!important;
+    box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15)!important;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #e3e6f0;
+    border-radius: 0.35rem;
+}
+
+.card-body {
+    flex: 1 1 auto;
+    padding: 1.25rem;
+}
+
+.card-info-container{
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 0;
+    margin-left: 0;
+    align-items: center!important;
+}
+
+.card-info-border{
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 100%;
+    margin-right: 0.5rem!important;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.card-title{
+    font-size: .7rem;
+    color: #4e73df!important;
+    font-weight: 700!important;
+    text-transform: uppercase!important;
+    margin-bottom: 0.25rem!important;
+}
+
+.card-count{
+    font-size: 1.25rem;
+    line-height: 1.2;
+    margin-bottom: 0!important;
+    font-weight: 700!important;
+    color: #5a5c69!important
+}
+
+.icon-container{
+    flex: 0 0 auto;
+    width: auto;
+    max-width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+    position: relative;
+}
+
+.border-gray{
+    border-left: 0.5rem solid #dddfeb!important;
+}
+.border-yellow{
+    border-left: 0.5rem solid rgb(223, 203, 25)!important
+}
+.border-red{
+    border-left: 0.5rem solid #e67373cc!important
+}
+.border-green{
+    border-left: 0.5rem solid #87c99bcc!important
+}
+.border-lightGreen{
+    border-left: 0.5rem solid #87c99b!important
+}
+.border-darkBrown{
+    border-left: 0.5rem solid #4c3524!important
+}
+.border-lightBrown{
+    border-left: 0.5rem solid #ccb489!important
+}
+.border-lighterBrown{
+    border-left: 0.5rem solid #ebd2a3!important;
+}
+.border-brown{
+    border-left: 0.5rem solid #c98787be
+}
+
+.gray{
+    color: #dddfeb!important
+}
+.yellow{
+    color:    rgb(223, 203, 25)!important
+}
+.red{
+    color:#e67373cc!important
+}
+.green{
+    color: #87c99bcc!important
+}
+.lightGreen{
+    color:#87c99b!important
+}
+.darkBrown{
+    color: #4c3524!important
+}
+.lightBrown{
+    color:#ccb489!important
+}
+.lighterBrown{
+    color: #ebd2a3!important
+}
+.brown{
+    color:#c98787be!important
+}

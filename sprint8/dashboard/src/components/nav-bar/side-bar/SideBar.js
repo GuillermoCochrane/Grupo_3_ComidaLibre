@@ -1,63 +1,52 @@
 import React, {Fragment} from 'react';
-import { Link } from 'react-router-dom';
+import LinkCard from './LinkCard';
 import './sidebar.css'
-// import logo from '../../../assets/images/FreeFood2f';
+
+let linksData = [
+    {
+        link: '/',
+        text: 'Home',
+        icon: 'home'
+    },
+    {
+        link: '/',
+        text: 'Search',
+        icon: 'search'
+    },
+    {
+        link: '/',
+        text: 'Agregar Producto',
+        icon: 'cart-plus'
+    },
+    {
+        link: '/products/',
+        text: 'Productos',
+        icon: 'gifts'
+    },
+    {
+        link: '/users/',
+        text: 'Usuarios',
+        icon: 'users'
+    },    
+]
 
 function SideBar(){
 
         return (
             <Fragment>
-                <div className="sidebar">
-                    <div className="logo">
-                        <img src="" alt="logo" />
-                    </div>
+                <div className="sidebar">                    
                     <ul className="nav-links">
 
-                        <li className="nav-link">
-                            <Link Link to="/" exact="true" >
-                                <span>
-                                    home
-                                </span>
-                            </Link>
-                        </li>
-
-                        <li className="nav-link">
-                            <Link Link to="/" exact="true">
-                                <span>
-                                    search
-                                </span>
-                            </Link>
-                        </li>
-
-                        <li className="nav-link">
-                            <Link Link to="/" exact="true">
-                                <span>
-                                    agregar producto
-                                </span>
-                            </Link>
-                        </li>
-
-                        <li className="nav-link">
-                            <Link Link to="/products/" exact="true" >
-                                <span>
-                                    products
-                                </span>
-                            </Link>
-                        </li>
-
-                        <li className="nav-link">
-                            <Link Link to="/users/" exact="true" >
-                                <span>
-                                    users
-                                </span>
-                            </Link>
-                        </li>
+                        {
+                        linksData.map((item, i) => {
+                            return <LinkCard {...item} key = {`linkCard-${i}`} />
+                            })
+                        }
 
                     </ul>
                 </div>
             </Fragment>
-        )
-        
+            )
         }
 
 export default SideBar
