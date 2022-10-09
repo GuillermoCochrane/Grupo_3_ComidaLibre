@@ -16,10 +16,13 @@ function App() {
           <div id="content-wrapper" className="content-wrapper">
 
             <SideBar/>
-            <SearchContainer/>
+            
+              <div className="main-content">
+                <SearchContainer/>
+                <MainRouter/>
+
+              </div>
             <Footer/>
-            <MainRouter/>
-          
           </div>
     </Fragment>
   );

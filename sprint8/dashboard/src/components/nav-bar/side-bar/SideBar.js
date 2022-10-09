@@ -33,18 +33,18 @@ let linksData = [
 function SideBar(){
 
         return (
-            <Fragment>
-                <div className="sidebar">                    
-                    <ul className="nav-links">
+            <Fragment>                
+                <ul className="sidebar-container">
 
-                        {
-                        linksData.map((item, i) => {
-                            return <LinkCard {...item} key = {`linkCard-${i}`} />
-                            })
-                        }
+                    <hr className="sidebar-divider"/>
 
-                    </ul>
-                </div>
+                    {
+                    linksData.map((item, i) => {
+                        return <LinkCard {...item} key = {`linkCard-${i}`} />
+                        })
+                    }
+
+                </ul>                
             </Fragment>
             )
         }

@@ -4,6 +4,9 @@
     margin: 10px auto 10px auto;
     border-radius: 10px;
     box-shadow: 0 0 15px rgb(65, 65, 65);
+    overflow-x: auto;
+    overflow-y: auto;
+    display: block;
 }
 
 .users-table {

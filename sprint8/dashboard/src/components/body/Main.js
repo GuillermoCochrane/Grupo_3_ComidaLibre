@@ -13,7 +13,7 @@ function Main(){
     return(
         <Fragment>
 
-                <div className="main-content">                    
+                {/* <div className="main-content">                     */}
 
                     <StatsContainer/>
 
@@ -25,7 +25,7 @@ function Main(){
 
                     <AllUsers/>
 
-                </div>               
+                {/* </div>                */}
 
         </Fragment>
     )

@@ -38,7 +38,7 @@ function AllProducts() {
   return (
     <Fragment>
         <div className="allproducts">
-            <table className='products-table'>
+            <table className='products-table' width="100%" cellSpacing="0">
                 <caption>
                     PRODUCTS
                 </caption>
