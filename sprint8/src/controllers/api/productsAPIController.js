@@ -1,61 +1,117 @@
 const db = require("../../database/models")
 
 module.exports = {
-  allProducts: async (req, res) => {
+  products: async (req, res) => {
     let page = req.query.page ? req.query.page : 1;
-    let allCategories = await db.Category.findAll({
-      include: ["category_products"]
-    })
-    let allProducts = await db.Product.findAndCountAll({
-      include: [
-        "product_category", 
-        "product_status", 
-        {
-          model: db.User,
-          as: "products_users",
-          attributes: { exclude: ['password', 'roles_id']}
-        },
-        {
-          model: db.User,
-          as: "products_cart",
-          attributes: { exclude: ['password', 'roles_id']}
-        } 
-      ],
-      distinct: true,
-      offset: (10 * (page - 1)),
-      limit: 10
-    })
-    let responseArray = []
-    for(let product of allProducts.rows) {
-      let resObj = {
-        id: product.id,
-        name: product.name,
-        description: product.description,
-        mainRelation: product.product_category,
-        detail: `http://localhost:3000/api/products/${product.id}` 
+    if (page === "all") {
+      let allCategories = await db.Category.findAll({
+        include: ["category_products"]
+      })
+      let allProducts = await db.Product.findAndCountAll({
+        include: [
+          "product_category", 
+          "product_status", 
+          {
+            model: db.User,
+            as: "products_users",
+            attributes: { exclude: ['password', 'roles_id']}
+          },
+          {
+            model: db.User,
+            as: "products_cart",
+            attributes: { exclude: ['password', 'roles_id']}
+          } 
+        ],
+        distinct: true,
+      })
+      let responseArray = []
+      for(let product of allProducts.rows) {
+        let resObj = {
+          id: product.id,
+          name: product.name,
+          description: product.description,
+          mainRelation: product.product_category,
+          detail: `http://localhost:3000/api/products/${product.id}` 
+        }
+        responseArray.push(resObj)
       }
-      responseArray.push(resObj)
-    }
-    let countByCategory = {}
-    for(let category of allCategories) {
-      countByCategory[category.id] = {
-        name: category.category,
-        count: category.category_products.length
+      let countByCategory = []
+      for(let category of allCategories) {
+        countByCategory.push({
+          id: category.id,
+          name: category.category,
+          count: category.category_products.length
+        })
       }
-    }
-    let response
-    if (responseArray.length === 0) {
-      response = {
-        msg: 'no more products'
+      let response
+      if (responseArray.length === 0) {
+        response = {
+          msg: 'no more products'
+        }
+      } else {
+        response = {
+          count: allProducts.count,
+          countByCategory: countByCategory,
+          products: responseArray
+        }
       }
+      return res.json(response)
     } else {
-      response = {
-        count: allProducts.count,
-        countByCategory: countByCategory,
-        products: responseArray
+      let allCategories = await db.Category.findAll({
+        include: ["category_products"]
+      })
+      let allProducts = await db.Product.findAndCountAll({
+        include: [
+          "product_category", 
+          "product_status", 
+          {
+            model: db.User,
+            as: "products_users",
+            attributes: { exclude: ['password', 'roles_id']}
+          },
+          {
+            model: db.User,
+            as: "products_cart",
+            attributes: { exclude: ['password', 'roles_id']}
+          } 
+        ],
+        distinct: true,
+        offset: (10 * (page - 1)),
+        limit: 10
+      })
+      let responseArray = []
+      for(let product of allProducts.rows) {
+        let resObj = {
+          id: product.id,
+          name: product.name,
+          description: product.description,
+          mainRelation: product.product_category,
+          detail: `http://localhost:3000/api/products/${product.id}` 
+        }
+        responseArray.push(resObj)
       }
+      let countByCategory = []
+      for(let category of allCategories) {
+        countByCategory.push({
+          id: category.id,
+          name: category.category,
+          count: category.category_products.length
+        })
+      }
+      let response
+      if (responseArray.length === 0) {
+        response = {
+          msg: 'no more products'
+        }
+      } else {
+        response = {
+          count: allProducts.count,
+          countByCategory: countByCategory,
+          products: responseArray
+        }
+      }
+      return res.json(response)
     }
-    return res.json(response)
   },
   oneProduct: (req, res) => {
     db.Product.findOne({
