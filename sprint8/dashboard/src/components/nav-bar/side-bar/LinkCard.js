@@ -5,7 +5,7 @@ function LinkCard(props) {
     return (
         <Fragment>
             <li className="nav-link">
-                <Link Link to={`/${props.link}`} exact="true" >
+                <Link Link to={`${props.link}`} exact="true" >
                     <span>
                         <i className={`fas fa-${props.icon}`}></i>
                         {props.text}
