@@ -1,40 +1,25 @@
-import React, {Fragment} from 'react'
+import React, {Fragment, useState, useEffect} from 'react'
 import ProductHeader from './ProductHeader'
 import ProductRow from './ProductRow'
 import './allProducts.css'
 
-let productsList =[
-    {
-        id: 1,
-        name: 'Coca Cola',
-        price: 666,
-        category: 'bebida',
-        status: 'En oferta',
-    },
-    {
-        id: 1,
-        name: 'Coca Cola',
-        price: 666,
-        category: 'bebida',
-        status: 'En oferta',
-    },
-    {
-        id: 1,
-        name: 'Coca Cola',
-        price: 666,
-        category: 'bebida',
-        status: 'En oferta',
-    },
-    {
-        id: 1,
-        name: 'Coca Cola',
-        price: 666,
-        category: 'bebida',
-        status: 'En oferta',
-    },
-]
 
 function AllProducts() {
+    const [productsList, setProductsList] = useState([]);
+
+    useEffect(() => {
+		
+		const endpoint = 'http://localhost:3000/api/products?page=all'
+		
+        fetch(endpoint)
+        .then(response => response.json())
+        .then(data => {
+            setProductsList(data.products);
+        })
+        .catch(error => console.log(error));
+		
+	}, []);
+
   return (
     <Fragment>
         <div className="allproducts">

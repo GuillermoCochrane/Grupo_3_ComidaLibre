@@ -1,33 +1,7 @@
-import React, {Fragment} from 'react'
+import React, {Fragment, useState, useEffect} from 'react'
 import './productInfoContainer.css'
 import InfoContainer from './InfoContainer'
 
-let categories =[
-    {
-        name: 'entrada',
-        count: 13,
-        color: '',
-        backgroundColor: 'red'
-    },
-    {
-        name: 'plato principal',
-        count: 33,
-        color: '',
-        backgroundColor: 'green'
-    },
-    {
-        name: 'bebidas',
-        count: 7,
-        color: '',
-        backgroundColor: 'brown'
-    },
-    {
-        name: 'postre',
-        count: 6,
-        color: '',
-        backgroundColor: 'yellow'
-    },
-]
 let status =[
     {
         name: 'En oferta',
@@ -55,9 +29,28 @@ let status =[
     },
 ]
 function ProductInfoContainer() {
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+		// Petición Asincrónica al montarse el componente
+		const endpoint = 'http://localhost:3000/api/products'
+		
+        fetch(endpoint)
+        .then(response => response.json())
+        .then(data => {
+            setCategories(data.countByCategory);
+        })
+        .catch(error => console.log(error));
+		
+	}, []);
+
+    
     return (
             <Fragment>
                 <div className="product-info-container">
+                    {categories.lenght === 0 && <p>Cargando</p>}
+                    {console.log(categories)}
+
                     <InfoContainer title='todas las categorias' info={categories}/>
 
                     <InfoContainer title='todos los estados' info={status}/>

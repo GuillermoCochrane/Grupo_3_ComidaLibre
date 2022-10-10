@@ -25,8 +25,8 @@ InfoCard.propTypes = {
 InfoCard.defaultProps = {
         name: 'Not Found',
         count: 0,
-        color: 'default',
-        backgroundColor: 'default'
+        color: 'darkBrown',
+        backgroundColor: 'lightGreen'
     }
 
 export default InfoCard

@@ -2,8 +2,8 @@ import React, {Fragment} from 'react';
 import StatsContainer from './stats-container/StatsContainer';
 import ProductInfoContainer from './product-info-container/ProductInfoContainer';
 import UserProductContainer from './user-product-container/UserProductContainer';
-import AllProducts from './all-products/AllProducts';
-import AllUsers from './all-users/AllUsers';
+// import AllProducts from './all-products/AllProducts';
+// import AllUsers from './all-users/AllUsers';
 import './main.css';
 
 
@@ -21,9 +21,9 @@ function Main(){
 
                     <UserProductContainer/>
 
-                    <AllProducts/>
+                    {/* <AllProducts/>
 
-                    <AllUsers/>
+                    <AllUsers/> */}
 
                 {/* </div>                */}
 
