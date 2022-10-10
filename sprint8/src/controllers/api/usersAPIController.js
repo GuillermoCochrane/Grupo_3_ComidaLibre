@@ -1,39 +1,52 @@
 const db = require("../../database/models")
 
 module.exports = {
-  allUsers: (req, res) => {
+  users: async (req, res) => {
     let page = req.query.page ? req.query.page : 1;
-    db.User.findAndCountAll({
-      attributes: { exclude: ['password', 'roles_id'] },
-      offset: (10 * (page - 1)),
-      limit: 10
-    })
-    .then(allUsers => {
-      let responseArray = []
-      for(let user of allUsers.rows) {
-        let resObj = {
-          id: user.id,
-          username: user.username,
-          email: user.email,
-          detail: `http://localhost:3000/api/users/${user.id}` 
-        }
-        responseArray.push(resObj)
-      }
-      let response
-      if (responseArray.length === 0) {
-        response = {
-          msg: 'no more users'
+    let allUsers
+    try {
+      if (isNaN(page)) {
+        if (page !== 'all') {
+          throw error = { response: 'invalid query' }
+        } else {
+          allUsers = await db.User.findAndCountAll({
+            attributes: { exclude: ['password', 'roles_id'] },
+          })
         }
       } else {
-        response = {
-          count: allUsers.count,
-          users: responseArray
-        }
+        allUsers = await db.User.findAndCountAll({
+          attributes: { exclude: ['password', 'roles_id'] },
+          offset: (10 * (page - 1)),
+          limit: 10
+        })
       }
+    } catch (error) {
+      return res.json(error)
+    }
 
-      res.json(response)
-    })
-    .catch(errors => console.log(errors))
+    let responseArray = []
+    for(let user of allUsers.rows) {
+      let resObj = {
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        detail: `http://localhost:3000/api/users/${user.id}` 
+      }
+      responseArray.push(resObj)
+    }
+    let response
+    if (responseArray.length === 0) {
+      response = {
+        msg: 'no more users'
+      }
+    } else {
+      response = {
+        count: allUsers.count,
+        users: responseArray
+      }
+    }
+
+    return res.json(response)
   },
   oneUser: (req, res) => {
     db.User.findOne({
@@ -55,6 +68,21 @@ module.exports = {
       }
       res.json(response)
     })
+  },
+  lastUser: (req, res) => {
+    db.User.findOne({
+      attributes: { exclude: ['password', 'roles_id'] },
+      order: [["id","DESC"]],
+      raw: true
+    })
+    .then(data => {
+      let response = {
+        ...data,
+        imageURL: `http://localhost:3000/images/avatar/${data.image}`
+      }
+      res.json(response)
+    })
+    .catch(error => res.json(error))
   },
 
   findByUsername: (req, res) => {
