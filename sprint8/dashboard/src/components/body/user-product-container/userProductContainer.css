@@ -9,3 +9,15 @@
     border-radius: 10px;
     box-shadow: 0 0 15px rgb(65, 65, 65);
 }
+
+.last-product-img,.last-user-img{
+    margin: 10px;
+    padding: 5px;
+    width: 300px;
+    border-radius: 10px;
+    border: 1px black solid;
+}
+
+.last-user-info{
+    margin: 3px;
+}

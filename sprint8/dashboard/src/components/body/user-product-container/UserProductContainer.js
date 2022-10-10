@@ -1,24 +1,18 @@
 import React, {Fragment} from 'react'
 import './userProductContainer.css'
+import LastProduct from './last-product/LastProduct'
+import LastUser from './last-user/LastUser'
 
 function UserProductContainer() {
     return (
         <Fragment>
             <div className="user-product-container">
                 <div className="last-user-container">
-                    <div className="last-user-card">
-                        <h2>Ultimo usuario</h2>
-                        <img src="" alt="user-img"/>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis aperiam molestias nulla distinctio nesciunt, quod dignissimos at sint eveniet, quaerat amet ipsa aspernatur consectetur. Beatae et aspernatur voluptatem consectetur reprehenderit?</p>
-                    </div>
+                    <LastUser/>
                 </div>
 
                 <div className="last-product-container">
-                    <div className="last-product-card">
-                        <h2>Ultimo producto</h2>
-                        <img src="" alt="user-img"/>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis aperiam molestias nulla distinctio nesciunt, quod dignissimos at sint eveniet, quaerat amet ipsa aspernatur consectetur. Beatae et aspernatur voluptatem consectetur reprehenderit?</p>
-                    </div>
+                    <LastProduct/>
                 </div>
             </div>
         </Fragment>

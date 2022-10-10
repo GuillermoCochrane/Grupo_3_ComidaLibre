@@ -32,7 +32,6 @@ function ProductInfoContainer() {
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-		// Petición Asincrónica al montarse el componente
 		const endpoint = 'http://localhost:3000/api/products'
 		
         fetch(endpoint)
@@ -49,7 +48,6 @@ function ProductInfoContainer() {
             <Fragment>
                 <div className="product-info-container">
                     {categories.lenght === 0 && <p>Cargando</p>}
-                    {console.log(categories)}
 
                     <InfoContainer title='todas las categorias' info={categories}/>
 
