@@ -1,0 +1,254 @@
+.nav-dishes {
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.nav-dishes i {
+  margin: 0px 5px;
+}
+h2 {
+  margin: 15px;
+  align-self: center;
+}
+.title0 {
+  display: none;
+}
+
+h1 {
+  margin: 10px;
+  margin-bottom: 0px;
+  text-align: center;
+  color: #2b2929;
+  font-size: 30px;
+}
+#image {
+  width: 100%;
+  justify-self: center;
+  align-self: center;
+}
+#main-image {
+  width: 100%;
+  justify-self: center;
+  align-self: center;
+}
+.main-product {
+  display: flex;
+  margin: 10px;
+  flex-direction: column;
+  box-shadow: 0px 0px 10px rgb(100, 100, 100);
+  background-color: white;
+  border-radius: 10px;
+}
+.main-detail {
+  position: relative;
+  margin: auto;
+  text-align: center;
+  padding: 15px;
+  align-items: center;
+}
+.name {
+  margin: 10px;
+  font-size: 25px;
+}
+.price {
+  margin: 10px;
+  font-size: 30px;
+  font-weight: bold;
+}
+.list {
+  display: none;
+}
+select {
+  font-size: 19px;
+  border-radius: 6px;
+  background-color: #87c99b;
+  border: 1px solid #87c99bcc;
+  color: rgb(32, 32, 32);
+  cursor: pointer; 
+  margin-right: 10px;
+}
+.add-button {
+  border: 1px solid #87c99bcc;
+  border-radius: 10px;
+  text-decoration: none;
+  width: 100%;
+  height: 45px;
+  background-color: #87c99b;
+  font-weight: bold;
+  color: rgb(32, 32, 32);
+  font-size: 17px;
+  transition: 0.25s;
+  cursor: pointer;
+  font-family: "Archivo Narrow";
+}
+.add-button:hover {
+  background-color: #6fa57f;
+  border: 1px solid #87c99bcc;
+}
+.reco {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.product {
+  margin: 15px 0;
+  width: 95%;
+  background-color: white;
+  box-shadow: 0px 0px 10px rgb(100, 100, 100);
+  border-radius: 10px;
+}
+.product > img {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.discount {
+  display: inline;
+  margin: 0px 10px;
+  padding: 5px;
+  font-size: 20px;
+  border-radius: 10px;
+  background-color: rgb(223, 203, 25);
+  box-shadow: 0px 0px 10px rgb(223, 203, 25);
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 15px;
+}
+.descrip {
+  margin: 10px;
+  font-size: 19px;
+}
+.add-to {
+  display: flex;
+}
+
+/*buttons edit-delete*/
+.delete-edit-div {
+  display: flex;
+  justify-content: space-evenly;
+}
+.edit-btn > button {
+  margin-top: 44px;
+  border: 1px solid #e6e473cc;
+  border-radius: 10px;
+  width: 100px;
+  height: 45px;
+  background-color: #e6e473cc;
+  font-weight: bold;
+  color: rgb(32, 32, 32);
+  font-size: 17px;
+  transition: 0.25s;
+  cursor: pointer;
+  font-family: "Archivo Narrow";
+  justify-self: flex-start;
+}
+.delete-btn > button {
+  margin-top: 44px;
+  border: 1px solid #e67373cc;
+  border-radius: 10px;
+  width: 100px;
+  height: 45px;
+  background-color: #e67373cc;
+  font-weight: bold;
+  color: rgb(32, 32, 32);
+  font-size: 17px;
+  transition: 0.25s;
+  cursor: pointer;
+  font-family: "Archivo Narrow";
+}
+.discount-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.price-original {
+  margin: 10px;
+  font-size: 25px;
+  font-weight: bold;
+  text-decoration: line-through 3px #87c99b;
+}
+.form-add-cart {
+  display: flex;
+  width: 100%;
+}
+.form-fav {
+  margin: 0 10px 0 0;
+  width: 50px;
+}
+.btn-fav {
+  border: 1px solid #87c99bcc;
+  border-radius: 10px;
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+  background-color: #87c99b;
+  font-weight: bold;
+  color: rgb(32, 32, 32);
+  font-size: 18px;
+  transition: 0.25s;
+  cursor: pointer;
+}
+.btn-fav:hover {
+  background-color: #6fa57f;
+  border: 1px solid #87c99bcc;
+  border-radius: 8px;
+  color: white;
+}
+
+@media (min-width: 768px) {
+  .nav-dishes {
+    margin-left: 25px;
+    margin-right: 25px;
+  }
+  /*.main-product{
+        flex-direction: row;
+        margin-left: 25px;
+        margin-right: 25px;
+        justify-content: space-around;
+    }*/
+  #main-image {
+    margin-left: 25px;
+    width: 100%;
+    max-width: 500px;
+  }
+  .title0 {
+    display: block;
+  }
+  .title {
+    display: none;
+  }
+  .product {
+    width: 45%;
+  }
+  .list {
+    display: block;
+    text-align: start;
+  }
+}
+@media (min-width: 900px) {
+  #main-image {
+    width: 100%;
+  }
+}
+
+@media (min-width: 1024px) {
+  #main-image {
+    width: 100%;
+  }
+  .nav-dishes {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  .main-product {
+    flex-direction: row;
+    margin-left: 50px;
+    margin-right: 50px;
+    justify-content: space-around;
+  }
+  .product {
+    width: 30%;
+  }
+}

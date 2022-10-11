@@ -19,7 +19,7 @@ function LastProduct() {
   return (
     <Fragment>
         <div className="last-product-card">
-            <h2>Ultimo producto</h2>
+            <h2>Último producto</h2>
             <div className='last-product-img'>
                 <img src="" alt="user-img"/>
             </div>            

@@ -5,7 +5,7 @@ function LinkCard(props) {
     return (
         <Fragment>
                 <li className="sidebar-nav-item">
-                    <Link Link to={`${props.link}`} exact="true" className='sidebar-link'>
+                    <Link Link to={`${props.link}`} exact="true" >
                         <span className='sidebar-span'>
                             <i className={`sidebar-icon fas fa-${props.icon}`}></i>
                             {props.text}

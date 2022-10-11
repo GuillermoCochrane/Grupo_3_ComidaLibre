@@ -183,5 +183,41 @@ module.exports = {
         }
       });
     }
-  }
+  },
+  
+  allUsersTable: (req, res) => {
+    let page = req.query.page ? req.query.page : 1;
+    db.User.findAndCountAll({
+      attributes: { exclude: ['password', 'roles_id'] },
+    })
+    .then(allUsers => {
+      let responseArray = []
+      for(let user of allUsers.rows) {
+        let resObj = {
+          id: user.id,
+          username: user.username,
+          email: user.email,
+          first_name: user.first_name,
+          last_name: user.last_name,
+          phone: user.phone,
+          address: user.address,
+        }
+        responseArray.push(resObj)
+      }
+      let response
+      if (responseArray.length === 0) {
+        response = {
+          msg: 'no more users'
+        }
+      } else {
+        response = {
+          count: allUsers.count,
+          users: responseArray
+        }
+      }
+
+      res.json(response)
+    })
+    .catch(errors => console.log(errors))
+  },
 }

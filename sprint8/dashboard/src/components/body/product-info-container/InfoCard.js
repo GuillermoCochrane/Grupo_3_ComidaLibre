@@ -26,7 +26,7 @@ InfoCard.defaultProps = {
         name: 'Not Found',
         count: 0,
         color: 'darkBrown',
-        backgroundColor: 'lightGreen'
+        backgroundColor: 'gray'
     }
 
 export default InfoCard

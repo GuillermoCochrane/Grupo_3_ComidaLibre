@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import Main from '../components/body/Main';
 import AllProducts from '../components/body/all-products/AllProducts';
 import AllUsers from '../components/body/all-users/AllUsers';
+import ProductDetail from '../components/body/product-user-detail/ProductDetail';
+import UserDetail from '../components/body/product-user-detail/UserDetail';
 import NotFound from '../components/body/NotFound';
 
 import { Route, Switch } from 'react-router-dom';
@@ -9,7 +11,7 @@ import { Route, Switch } from 'react-router-dom';
 function MainRouter(){
 
     return(
-        <React.Fragment>         
+        <Fragment>         
             <Switch>
                 <Route path="/" exact>
                     <Main/>
@@ -20,7 +22,7 @@ function MainRouter(){
                 </Route>
 
                 <Route path="/products/:id" exact>
-                    <AllProducts />
+                    <ProductDetail />
                 </Route>
 
                 <Route path="/users/" exact>
@@ -28,13 +30,13 @@ function MainRouter(){
                 </Route>
 
                 <Route path="/users/:id" exact>
-                    <AllUsers />
+                    <UserDetail />
                 </Route>
 
                 <Route component={NotFound}/>
 
             </Switch>
-        </React.Fragment>
+        </Fragment>
     )
 }
 

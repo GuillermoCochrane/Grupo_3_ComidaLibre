@@ -47,9 +47,9 @@
 }
 
 .card-title{
-    font-size: .7rem;
+    font-size: .75rem;
     color: #4e73df!important;
-    font-weight: 700!important;
+    font-weight: 800!important;
     text-transform: uppercase!important;
     margin-bottom: 0.25rem!important;
 }
@@ -81,7 +81,7 @@
     border-left: 0.5rem solid #e67373cc!important
 }
 .border-green{
-    border-left: 0.5rem solid #87c99bcc!important
+    border-left: 0.5rem solid #82cb98cc!important
 }
 .border-lightGreen{
     border-left: 0.5rem solid #87c99b!important
@@ -98,31 +98,36 @@
 .border-brown{
     border-left: 0.5rem solid #c98787be
 }
-
+.border-blue{
+    border-left: 0.5rem solid #256af5be
+}
 .gray{
     color: #dddfeb!important
 }
 .yellow{
-    color:    rgb(223, 203, 25)!important
+    color: rgb(223, 203, 25)!important
 }
 .red{
-    color:#e67373cc!important
+    color: #e67373cc!important
 }
 .green{
-    color: #87c99bcc!important
+    color: #82cb98cc!important
 }
 .lightGreen{
-    color:#87c99b!important
+    color: #87c99b!important
 }
 .darkBrown{
     color: #4c3524!important
 }
 .lightBrown{
-    color:#ccb489!important
+    color: #ccb489!important
 }
 .lighterBrown{
     color: #ebd2a3!important
 }
 .brown{
-    color:#c98787be!important
+    color: #c98787be!important
+}
+.blue{
+    color: #256af5be!important
 }

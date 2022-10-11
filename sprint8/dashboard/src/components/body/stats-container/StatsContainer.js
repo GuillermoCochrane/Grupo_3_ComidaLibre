@@ -12,14 +12,14 @@ let data=[
   {
     title: 'total productos',
     count: 999,
-    icon: 'gift',
-    color: 'yellow',
+    icon: 'utensils',
+    color: 'blue',
   },
   {
     title: 'ventas realizadas',
     count: 999,
-    icon: 'card',
-    color: 'lightBrown',
+    icon: 'coins',
+    color: 'green',
   }
 ]
 

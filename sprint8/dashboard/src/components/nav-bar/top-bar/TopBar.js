@@ -1,13 +1,18 @@
 import React, {Fragment} from 'react';
 import './topBar.css'
+import logo from '../../../assets/images/FreeFood2.png';
+import userImage from '../../../assets/images/user.png';
+
 function TopBar () {
 
     return(
         <Fragment>
             <header className="header">
-                <img src="" alt="logo"/>
+                <div className="topbar-logo">
+                    <img src={logo} alt="logo" className='logo-image'/>
+                </div>
                 <div className="profile-info">
-                    <img src="" alt="pf-pic"/>
+                    <img src={userImage} alt="pf-pic" className='profile-image'/>
                     <p>username</p>
                 </div>
             </header>

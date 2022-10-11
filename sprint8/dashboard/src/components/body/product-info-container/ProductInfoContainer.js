@@ -7,13 +7,13 @@ let status =[
         name: 'En oferta',
         count: "13",
         color: '',
-        backgroundColor: 'default'
+        backgroundColor: 'red'
     },
     {
-        name: 'Mas vendido',
+        name: 'Más vendido',
         count: 33,
         color: '',
-        backgroundColor: 'gray'
+        backgroundColor: 'yellow'
     },
     {
         name: 'Nuevo',
@@ -22,10 +22,10 @@ let status =[
         backgroundColor: 'lightGreen'
     },
     {
-        name: 'recomendado',
+        name: 'Recomendado',
         count: 6,
         color: '',
-        backgroundColor: 'brown'
+        backgroundColor: 'blue'
     },
 ]
 function ProductInfoContainer() {
@@ -49,9 +49,9 @@ function ProductInfoContainer() {
                 <div className="product-info-container">
                     {categories.lenght === 0 && <p>Cargando</p>}
 
-                    <InfoContainer title='todas las categorias' info={categories}/>
+                    <InfoContainer title='Todas las categorías' info={categories}/>
 
-                    <InfoContainer title='todos los estados' info={status}/>
+                    <InfoContainer title='Todos los estados' info={status}/>
                 </div>
             </Fragment>
 )
