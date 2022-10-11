@@ -4,10 +4,12 @@ import DetailInfo from './DetailInfo';
 import Price from './Price';
 import DetailImg from './DetailImg';
 import DetailTitle from './DetailTitle';
+import DetailEditDelete from './DetailEditDelete';
 
 import './productDetail.css'
 
 function ProductDetail() {
+
     const [productDetail, setProductDetail] = useState([]);
     const {id} = useParams();
     let tipoDePlato = "Cargando"
@@ -59,14 +61,7 @@ function ProductDetail() {
 
                     <DetailInfo title='Descripción: ' data={productDetail.description}/>
 
-                    <div className="delete-edit-div">
-                        <form className="edit-btn" action={`/products/edit/${id}`} method="GET">
-                        <button type="submit">Editar</button>
-                        </form>
-                        <form className="delete-btn" action={`/products${id}?_method=DELETE`} method="POST">
-                        <button type="submit">Eliminar</button>
-                        </form>
-                    </div>
+                    <DetailEditDelete id={productDetail.id} />
 
                 </div>
             </article>
