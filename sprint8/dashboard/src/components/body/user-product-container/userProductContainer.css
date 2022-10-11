@@ -2,7 +2,7 @@
     display: flex;
 }
 
-.last-product-card,.last-user-card {
+.last-card {
     margin: 10px;
     padding: 10px;
     background-color: white;
@@ -10,7 +10,7 @@
     box-shadow: 0 0 15px rgb(65, 65, 65);
 }
 
-.last-product-img,.last-user-img{
+.last-img{
     margin: 10px;
     padding: 5px;
     width: 300px;
@@ -18,6 +18,10 @@
     border: 1px black solid;
 }
 
-.last-user-info{
+.last-info-container{
+    display:flex
+}
+
+.last-info{
     margin: 3px;
 }

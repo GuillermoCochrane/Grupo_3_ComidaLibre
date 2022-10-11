@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react'
 import './userProductContainer.css'
-import LastProduct from './last-product/LastProduct'
-import LastUser from './last-user/LastUser'
+import LastProduct from './LastProduct'
+import LastUser from './LastUser'
 
 function UserProductContainer() {
     return (
