@@ -13,7 +13,7 @@ function StatsCard(props) {
                                 <div className="card-count">{props.count}</div>{/* h5 mb-0 font-weight-bold text-gray-800 */}
                             </div>
                             <div className="icon-container">
-                                <i className={`fas fa-film fa-${props.icon} ${props.color}`}></i>
+                                <i className={`fas fa-${props.icon} ${props.color}`}></i>
                             </div>
                         </div>
                     </div>

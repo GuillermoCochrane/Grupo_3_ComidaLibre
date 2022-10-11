@@ -1,11 +1,11 @@
 .sidebar-container {
     width: 23%!important;
     min-height: 100vh;
-    background-color: #ccb489;
+    background-color: #efebe2;
     background-size: cover;
     display: flex;
     flex-direction: column;
-    padding-left: 0;
+    padding-left: 25px;
     margin-bottom: 0;
     list-style: none;
     margin-top: 0;
@@ -31,14 +31,16 @@
 
 .sidebar-icon {
     color: rgba(0,0,0,.3);
-    font-size: .85rem;
-    margin-right: 0.25rem;
+    font-size: 1rem;
+    margin-right: 0.5rem;
 }
 
 .sidebar-span {
     font-size: 15px;
-    font-weight: 400;
+    font-weight: bold;
     display: inline;
+    text-decoration:none;
+    color: #666666;
 }
 
 .sidebar-divider {

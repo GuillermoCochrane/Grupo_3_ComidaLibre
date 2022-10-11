@@ -20,7 +20,7 @@ function LastUser() {
     <Fragment>
         <div className="last-user-container">
             <div className="last-user-card">
-                <h2>Ultimo usuario:  {lastUser.username}</h2>
+                <h2>Último usuario:  {lastUser.username}</h2>
                 <div className='last-user-img'>
                     <img src="" alt="user-img"/>
                 </div>

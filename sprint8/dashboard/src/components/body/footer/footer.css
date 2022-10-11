@@ -2,9 +2,13 @@
     position: absolute;
     bottom: 0;
     width: 100%;
-    background-color: burlywood;
+    height: 5vh;
+    background-color: #897d69;
+    color: #4c3524;
+    text-align: center;
+    margin: auto;
 }
 
-.content-footer{
-    border: none;
+.content-footer p{
+    padding-top: 1.5vh;
 }

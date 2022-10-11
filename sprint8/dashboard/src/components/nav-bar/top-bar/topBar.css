@@ -1,11 +1,26 @@
 .header {
     display: flex;
     justify-content: space-between;
-    padding: 20px;
-    background-color: antiquewhite;
+    background-color: #efebe2;
+    max-height: 15vh;
+    padding-top: 10px;
+    padding-right: 30px;
+    padding-left: 3%;
+    padding-bottom: 20px;
+}
+
+.logo-image{
+    max-height: 12vh;
 }
 
 .profile-info{
     padding: 5px;
+    text-align: center;
 }
 
+.profile-image{
+    margin-top:10px;
+    height:2rem;
+    width:2rem;
+    border-radius:50%
+}
