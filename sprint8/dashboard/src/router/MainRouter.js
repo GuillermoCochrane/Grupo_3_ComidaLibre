@@ -2,6 +2,7 @@ import React from 'react';
 import Main from '../components/body/Main';
 import AllProducts from '../components/body/all-products/AllProducts';
 import AllUsers from '../components/body/all-users/AllUsers';
+import ProductDetail from '../components/body/product-detail/ProductDetail';
 import NotFound from '../components/body/NotFound';
 
 import { Route, Switch } from 'react-router-dom';
@@ -20,7 +21,7 @@ function MainRouter(){
                 </Route>
 
                 <Route path="/products/:id" exact>
-                    <AllProducts />
+                    <ProductDetail />
                 </Route>
 
                 <Route path="/users/" exact>
