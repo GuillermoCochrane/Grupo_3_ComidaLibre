@@ -3,6 +3,7 @@ const productsAPIController = require('../../controllers/api/productsAPIControll
 const router = express.Router();
 
 router.get('/', productsAPIController.products)
+router.get('/last', productsAPIController.lastProduct)
 router.get('/sales', productsAPIController.sales)
 router.get('/name/:productname', productsAPIController.findByName);
 router.get('/:id', productsAPIController.oneProduct)
