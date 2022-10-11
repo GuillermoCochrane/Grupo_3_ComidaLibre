@@ -1,14 +1,21 @@
 import React,{useState, useEffect} from 'react' 
 import { useParams } from 'react-router-dom';
+import DetailInfo from './DetailInfo';
+import Price from './Price';
+import DetailImg from './DetailImg';
+import DetailTitle from './DetailTitle';
 
 import './productDetail.css'
-// let id = 1
+
 function ProductDetail() {
     const [productDetail, setProductDetail] = useState([]);
-    let {id} = useParams();
+    const {id} = useParams();
+    let tipoDePlato = "Cargando"
+    let status = "Cargando"
+    let discount = 0
+    let newprice = 0
 
     useEffect(() => {
-		
 		const endpoint = `http://localhost:3000/api/products/${id}`
 		
         fetch(endpoint)
@@ -17,47 +24,50 @@ function ProductDetail() {
             setProductDetail(data);
         })
         .catch(error => console.log(error));
-		
+		// eslint-disable-next-line
 	}, []);
-    const tipoDePlato = productDetail.relaciones[0].category 
-    console.log(id)
-    console.log(productDetail.relaciones[0].category)
+    
+
+    if(productDetail.length !==0 ){
+        tipoDePlato = productDetail.relaciones[0].category
+        status = productDetail.relaciones[1].status
+        discount = productDetail.discount
+        newprice = productDetail.price-(productDetail.price*(discount/100)).toFixed(2)        
+    }
+
     return (
         <main className="main-product-detail">
-            {/*  */}
-            <h1>Detalle del producto {productDetail.id}</h1>
+
+            <DetailTitle title='producto' id={productDetail.id} />
+
+            {productDetail.lenght === 0 && <p>Cargando</p>}
+
             <article className="main-product">
-                <img id="main-image" src={productDetail.imgURL}  alt={productDetail.name}/>
+
+                <DetailImg img={productDetail.imgURL} name={productDetail.name} />
+
                 <div className="main-detail">
-                <h2 className="title0">{productDetail.name}</h2>
-                {/* <% if(product.discount) {%>
-                <div className="discount-div">
-                    <p className="price-original">$<%= product.price %></p>
-                    <p className="price">
-                    $<%= (product.price-(product.price*(product.discount/100))).toFixed(2) %>
-                    </p>
-                </div>
-                <p className="discount">-<%= product.discount %>% OFF</p>
-                <% } else {%>
-                    <p className="price">$<%= product.price %></p>
-                <% } %> */}
-                <p className="name">
-                    <strong>Tipo de plato: </strong> {tipoDePlato}
-                </p>
-                <p className="name">
-                    <strong>Tipo de plato: </strong> {tipoDePlato}
-                </p>
-                <p className="name">
-                    <strong>Descripción: </strong> {productDetail.description}
-                </p>
-                <div className="delete-edit-div">
-                    <form className="edit-btn" action={`/products/edit/${id}`} method="GET">
-                    <button type="submit">Editar</button>
-                    </form>
-                    <form className="delete-btn" action={`/products${id}?_method=DELETE`} method="POST">
-                    <button type="submit">Eliminar</button>
-                    </form>
-                </div>
+                    <h2 className="title0">
+                        {productDetail.name}
+                    </h2>
+
+                    <Price price={productDetail.price} discount={discount} newPrice={newprice} />
+
+                    <DetailInfo title='Tipo de plato: ' data={tipoDePlato} />
+
+                    <DetailInfo title={status} />
+
+                    <DetailInfo title='Descripción: ' data={productDetail.description}/>
+
+                    <div className="delete-edit-div">
+                        <form className="edit-btn" action={`/products/edit/${id}`} method="GET">
+                        <button type="submit">Editar</button>
+                        </form>
+                        <form className="delete-btn" action={`/products${id}?_method=DELETE`} method="POST">
+                        <button type="submit">Eliminar</button>
+                        </form>
+                    </div>
+
                 </div>
             </article>
         </main>
