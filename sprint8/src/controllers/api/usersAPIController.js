@@ -1,4 +1,5 @@
 const db = require("../../database/models")
+const { validationResult } = require('express-validator')
 
 module.exports = {
   users: async (req, res) => {
@@ -123,5 +124,64 @@ module.exports = {
       res.json(response)
     })
     .catch( errors => res.json(errors) )
+  },
+
+  //testing
+  login: (req, res) => {
+    let errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      let  response = {
+        meta: {
+          status: 204,
+        },
+        errors: errors.mapped()
+      }
+      return res.json(response)
+    } else {
+      let data = { ...req.body };
+      db.User.findOne({ 
+        attributes: {exclude: ['password']},
+        where: { email: data.emailUser }, raw: true 
+      })
+      .then(user => {
+        if (!user) {
+          db.User.findOne({
+            attributes: {exclude: ['password']}, 
+            where: { username: data.emailUser }, raw: true 
+          })
+          .then(user => {
+            if (data.remember_user) {
+              res.cookie("userEmail", user.email, { maxAge: 600000 * 6 });
+            }
+            let response = {
+              meta: {
+                status: 200,
+                msg: 'usuario logueado por username'
+              },
+              data: {
+                token: 'token123',
+                user: user
+              }
+            }
+            return res.json(response)
+          });
+        } else {
+          if (data.remember_user) {
+            res.cookie("userEmail", user.email, { maxAge: 600000 * 6 });
+          }
+          let response = {
+            meta: {
+              status: 200,
+              msg: 'usuario logueado por email'
+            },
+            data: {
+              token: 'token321',
+              user: user
+            }
+          }
+          return res.json(response)
+        }
+      });
+    }
   }
 }

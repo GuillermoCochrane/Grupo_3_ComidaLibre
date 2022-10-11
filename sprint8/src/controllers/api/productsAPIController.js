@@ -1,4 +1,5 @@
 const db = require("../../database/models")
+const { validationResult } = require('express-validator')
 
 module.exports = {
   products: async (req, res) => {
@@ -224,5 +225,129 @@ module.exports = {
       res.json(response)
     })
     .catch( errors => res.json(errors) )
+  },
+
+  //testing (to do: imagen)
+  create: (req, res) => {
+    let errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.json(errors.mapped())
+    } else {
+      let data = { ...req.body };
+      let newProduct = {};
+      if (req.file) {
+        newProduct = {
+          name: data.name,
+          price: data.price,
+          description: data.description,
+          discount: data.discount,
+          categories_id: data.idCat,
+          statuses_id: data.status,
+          image: req.file.filename,
+        };
+        db.Product.create(newProduct);
+      } else {
+        newProduct = {
+          name: data.name,
+          price: data.price,
+          description: data.description,
+          discount: data.discount,
+          categories_id: data.idCat,
+          statuses_id: data.status,
+        };
+        db.Product.create(newProduct)
+          .then(data => {
+            let response = {
+              meta: {
+                status: 200,
+                msg: 'producto creado'
+              },
+              data: data
+            }
+            return res.json(response)
+          })
+          .catch(errors => res.json(errors))
+      }
+    }
+  },
+  edit: (req, res) => {
+    let errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.json(errors.mapped())
+    } else {
+      let data = { ...req.body };
+      let productId = req.params.idProduct;
+      let updatedProduct;
+      if (req.file) {
+        updatedProduct = {
+          name: data.name,
+          price: data.price,
+          image: req.file.filename,
+          description: data.description,
+          discount: data.discount,
+          categories_id: data.idCat,
+          statuses_id: data.status,
+        };
+        db.Product.update(updatedProduct, { where: { id: productId } })
+        .then(data => {
+          let response = {
+            meta: {
+              status: 200,
+              msg: 'producto actualizado'
+            },
+            data: data
+          }
+          return res.json(response)
+        })
+        .catch(errors => res.json(errors));
+      } else {
+        updatedProduct = {
+          name: data.name,
+          price: data.price,
+          description: data.description,
+          discount: data.discount,
+          categories_id: data.idCat,
+          statuses_id: data.status,
+        };
+        db.Product.update(updatedProduct, { where: { id: productId } })
+          .then(data => {
+            let response = {
+              meta: {
+                status: 200,
+                msg: 'producto actualizado'
+              },
+              data: data
+            }
+            return res.json(response)
+          })
+          .catch(errors => res.json(errors));
+      }
+    }
+  },
+  delete: (req, res) => {
+    let productId = req.params.idProduct;
+    db.Product.destroy({ where: { id: productId } })
+      .then(data => {
+        if (data === 1) {
+          let response = {
+            meta: {
+              status: 200,
+              msg: 'producto borrado'
+            },
+            data: data
+          }
+          return res.json(response)
+        } else {
+          let response = {
+            meta: {
+              status: 200,
+              msg: 'id producto no encontrado'
+            },
+            data: data
+          }
+          return res.json(response)
+        }
+      })
+      .catch(errors => res.json(errors));
   }
 }
