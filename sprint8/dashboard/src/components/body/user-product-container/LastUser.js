@@ -2,6 +2,7 @@ import React, {Fragment, useState, useEffect} from 'react';
 import LastTitle from './LastTitle';
 import LastImg from './LastImg';
 import LastInfo from './LastInfo';
+import './lastUser.css';
 
 function LastUser() {
     const [lastUser, setLastUser] = useState([]);
@@ -32,12 +33,12 @@ function LastUser() {
                     <div>
                         <LastImg img={lastUser.imageURL} name={lastUser.username}/>
                     </div>
-                    <div>
+                    <div className='last-info-detail'>
                         <LastInfo title="Nombre:" data={lastUser.first_name} />
                         <LastInfo title="Apellido: " data={lastUser.last_name} />
                         <LastInfo title='E-Mail: ' data={lastUser.email}/>
-                        <LastInfo title='Direccion: ' data={lastUser.address}/>
-                        <LastInfo title='Telefono:' data={lastUser.phone}/>
+                        <LastInfo title='Dirección: ' data={lastUser.address}/>
+                        <LastInfo title='Teléfono:' data={lastUser.phone}/>
                     </div>
                 </div>
 

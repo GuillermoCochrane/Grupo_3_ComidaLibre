@@ -3,7 +3,7 @@
     width: 100%;
     padding-right: 0.75rem;
     padding-left: 0.75rem;
-    margin-bottom: 1.5rem!important;
+    /* margin-bottom: 1.5rem!important; */
     flex: 0 0 33.33333%;
     max-width: 33.33333%;
 }

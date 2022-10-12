@@ -2,6 +2,7 @@ import React, {Fragment, useState, useEffect} from 'react';
 import LastTitle from './LastTitle';
 import LastImg from './LastImg';
 import LastInfo from './LastInfo';
+import './lastProduct.css';
 
 function LastProduct() {
     const [lastProduct, setLastProduct] = useState([]);
@@ -46,13 +47,13 @@ function LastProduct() {
               <div>
                 <LastImg img={lastProduct.imgURL} name={lastProduct.name}/>
               </div>
-              <div>
-                <LastInfo title="Tipo De Plato" data={tipoDePlato} />
+              <div className='last-info-detail'>
+                <LastInfo title="Categoría:" data={tipoDePlato} />
                 <LastInfo title={status} />
-                { lastProduct.discount !== 0  && <LastInfo title='Precio original' data={originalPrice} /> }
-                { lastProduct.discount !== 0  && <LastInfo title='Descuento' data={discount}/>}
-                <LastInfo title='Precio final' data={finalPrice}/>
-                <LastInfo title='Descripcion del plato' data={lastProduct.description}/>
+                { lastProduct.discount !== 0  && <LastInfo title='Precio inicial:' data={originalPrice} /> }
+                { lastProduct.discount !== 0  && <LastInfo title='Descuento:' data={discount}/>}
+                <LastInfo title='Precio final:' data={finalPrice}/>
+                <LastInfo title='Descripción:' data={lastProduct.description}/>
               </div>
               
           </div>

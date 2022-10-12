@@ -1,5 +1,6 @@
 .product-info-container {
     display: flex;
+    margin-top: 2rem!important;
 }
 
 .product-category-container{

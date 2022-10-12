@@ -1,5 +1,6 @@
 .user-product-container {
     display: flex;
+    justify-content: space-between;
 }
 
 .last-card {
@@ -24,4 +25,8 @@
 
 .last-info{
     margin: 3px;
+}
+
+.last-user-container, .last-product-container{
+    width: 50%;
 }
