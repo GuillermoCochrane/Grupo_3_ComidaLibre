@@ -12,18 +12,15 @@ import MainRouter from '../router/MainRouter'
 function App() {
   return (
     <Fragment>
-          <TopBar/>
+          <TopBar className="header"/>
           <div id="content-wrapper" className="content-wrapper">
-
             <SideBar/>
-            
               <div className="main-content">
                 <SearchContainer/>
                 <MainRouter/>
-
               </div>
-            <Footer/>
           </div>
+          <Footer/>
     </Fragment>
   );
 }
