@@ -1,8 +1,7 @@
-import React, {Fragment, useState, useEffect} from 'react'
-import ProductHeader from './ProductHeader'
-import ProductRow from './ProductRow'
-import './allProducts.css'
-
+import React, {Fragment, useState, useEffect} from 'react';
+import ProductHeader from './ProductHeader';
+import ProductRow from './ProductRow';
+import './allProducts.css';
 
 function AllProducts() {
     const [productsList, setProductsList] = useState([]);
@@ -22,28 +21,29 @@ function AllProducts() {
 
   return (
     <Fragment>
-        <div className="allproducts">
-            <table className='products-table' width="100%" cellSpacing="0">
-                <caption>
-                    PRODUCTS
-                </caption>
-
-                <thead>
-                    <ProductHeader/>
-                </thead>
-
-                <tbody>
-                    {
-                        productsList.map((item, i) => {
-                            return <ProductRow {...item} key = {`productRow-${i}`} />
-                            })
-                    }                   
-                </tbody>
-
-            </table>
+        <div className="card shadow mb-4">
+            <div className="card-body">
+                <div className="table-responsive">
+                    <caption>
+                        PRODUCTOS
+                    </caption>
+                    <table className="table table-bordered" width="100%" cellSpacing="0">
+                        <thead>
+                            <ProductHeader/>
+                        </thead>
+                        <tbody>
+                            {
+                                productsList.map((item, i) => {
+                                    return <ProductRow {...item} key = {`productRow-${i}`} />
+                                    })
+                            }                   
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </Fragment>
   )
 }
 
-export default AllProducts
+export default AllProducts;

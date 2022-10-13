@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 import LinkCard from './LinkCard';
-import './sidebar.css'
+import './sidebar.css';
 
 let linksData = [
     {
@@ -49,4 +49,4 @@ function SideBar(){
             )
         }
 
-export default SideBar
+export default SideBar;

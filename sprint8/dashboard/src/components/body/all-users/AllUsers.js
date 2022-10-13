@@ -1,8 +1,7 @@
-import React, {Fragment, useState, useEffect} from 'react'
-import './allUsers.css';
+import React, {Fragment, useState, useEffect} from 'react';
 import UserRow from './UserRow';
-import UserHeader from './UserHeader'
-
+import UserHeader from './UserHeader';
+import './allUsers.css';
 
 function AllUsers() {
 
@@ -22,26 +21,29 @@ function AllUsers() {
 	}, []);
   return (
     <Fragment>
-        <div className="allusers">
-            <table className='users-table'>
-                <caption>
-                    USERS
-                </caption>
-                <thead>
-                    <UserHeader/>
-                </thead>
-
-                <tbody>
-                    {
-                        usersList.map((item, i) => {
-                            return <UserRow {...item} key = {`userRow-${i}`} />
-                            })
-                    }
-                </tbody>
-            </table>
+        <div className="card shadow mb-4">
+            <div className="card-body">
+                <div className="table-responsive">
+                    <caption>
+                        USUARIOS
+                    </caption>
+                    <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
+                        <thead>
+                            <UserHeader/>
+                        </thead>
+                        <tbody>
+                            {
+                                usersList.map((item, i) => {
+                                    return <UserRow {...item} key = {`userRow-${i}`} />
+                                    })
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </Fragment>
     )
 }
 
-export default AllUsers
+export default AllUsers;

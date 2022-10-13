@@ -1,6 +1,6 @@
 .sidebar-container {
     width: 23%!important;
-    min-height: 100vh;
+    /* min-height: 100vh; */
     min-width: 200px;
     background-color: #efebe2;
     background-size: cover;
