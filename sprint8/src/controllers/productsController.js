@@ -199,7 +199,9 @@ module.exports = {
   //ELIMINA UN PRODUCTO DE LA LISTA
   delete: (req, res) => {
     let productId = req.params.idProduct;
-    db.Product.destroy({ where: { id: productId } });
+    db.Cart.destroy({ where: { products_id: productId }, force: true });
+    db.Favourite.destroy({ where: { products_id: productId }, force: true });
+    db.Product.destroy({ where: { id: productId }, force: true });
     return res.redirect("/products");
   },
 };

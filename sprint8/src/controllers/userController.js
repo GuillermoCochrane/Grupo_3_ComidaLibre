@@ -235,7 +235,9 @@ module.exports = {
   //ELIMINA UN USUARIO
   delete: (req, res) => {
     let id = req.params.id;
-    Users.destroy({ where: { id: id }, force: true });
+    db.Cart.destroy({ where: { users_id: id }, force: true });
+    db.Favourite.destroy({ where: { users_id: id }, force: true });
+    db.User.destroy({ where: { id: id }, force: true });
     return res.redirect("/user");
   },
   //DESLOGUEA AL USUARIO
