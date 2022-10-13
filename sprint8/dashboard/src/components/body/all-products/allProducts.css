@@ -7,7 +7,7 @@
     background-color:#fff;
     background-clip:border-box;
     border:1px solid #e3e6f0;
-    border-radius:.35rem
+    border-radius:.35rem;
 }
 .shadow{
     box-shadow:0 .15rem 1.75rem 0 rgba(58,59,69,.15)!important
