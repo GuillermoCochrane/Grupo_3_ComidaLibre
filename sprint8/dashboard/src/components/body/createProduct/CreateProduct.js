@@ -4,20 +4,15 @@ const CreateProduct = () => {
 
   const createForm = (e) => {
     e.preventDefault();
-    console.log(e.target)
     let formValues = new FormData(e.target)
-    let body = {}
+    let formData = new FormData()
     for (let entry of formValues.entries()) {
-      body[entry[0]] = entry[1]
+      formData.append(entry[0], entry[1])
     }
-    console.log(body)
     let url = "http://localhost:3000/api/products/create"
     fetch(url, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-      body: body
+      body: formData
     })
     .then(response => response.json())
     .then(data => console.log(data))
