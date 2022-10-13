@@ -14,7 +14,7 @@ let linksData = [
         icon: 'search'
     },
     {
-        link: '/',
+        link: '/create',
         text: 'Agregar Producto',
         icon: 'cart-plus'
     },

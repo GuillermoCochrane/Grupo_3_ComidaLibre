@@ -245,7 +245,18 @@ module.exports = {
           statuses_id: data.status,
           image: req.file.filename,
         };
-        db.Product.create(newProduct);
+        db.Product.create(newProduct)
+          .then(data => {
+            let response = {
+              meta: {
+                status: 200,
+                msg: 'producto creado'
+              },
+              data: data
+            }
+            return res.json(response)
+          })
+          .catch(errors => res.json(errors));
       } else {
         newProduct = {
           name: data.name,
@@ -326,7 +337,9 @@ module.exports = {
   },
   delete: (req, res) => {
     let productId = req.params.idProduct;
-    db.Product.destroy({ where: { id: productId } })
+    db.Cart.destroy({ where: { products_id: productId }, force: true });
+    db.Favourite.destroy({ where: { products_id: productId }, force: true });
+    db.Product.destroy({ where: { id: productId }, force: true })
       .then(data => {
         if (data === 1) {
           let response = {
