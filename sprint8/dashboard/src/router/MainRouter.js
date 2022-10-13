@@ -5,6 +5,7 @@ import AllUsers from '../components/body/all-users/AllUsers';
 import ProductDetail from '../components/body/product-user-detail/ProductDetail';
 import UserDetail from '../components/body/product-user-detail/UserDetail';
 import NotFound from '../components/body/NotFound';
+import CreateProduct from '../components/body/createProduct/CreateProduct';
 
 import { Route, Switch } from 'react-router-dom';
 
@@ -31,6 +32,10 @@ function MainRouter(){
 
                 <Route path="/users/:id" exact>
                     <UserDetail />
+                </Route>
+
+                <Route path="/create/" exact>
+                    <CreateProduct />
                 </Route>
 
                 <Route component={NotFound}/>
