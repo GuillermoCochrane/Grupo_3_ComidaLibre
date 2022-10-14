@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react';
 import SideBar from './nav-bar/side-bar/SideBar';
 import Footer from './body/footer/Footer';
-import SearchContainer from './body/search-container/SearchContainer';
+
 import TopBar from './nav-bar/top-bar/TopBar';
 import MainRouter from '../router/MainRouter';
 import './app.css';
@@ -13,7 +13,6 @@ function App() {
           <div id="content-wrapper" className="content-wrapper">
             <SideBar/>
               <div className="main-content">
-                <SearchContainer/>
                 <MainRouter/>
               </div>
           </div>

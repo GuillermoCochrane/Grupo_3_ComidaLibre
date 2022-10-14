@@ -9,8 +9,8 @@ let linksData = [
         icon: 'home'
     },
     {
-        link: '/',
-        text: 'Search',
+        link: '/search/',
+        text: 'Búsqueda',
         icon: 'search'
     },
     {

@@ -3,6 +3,7 @@ import Main from '../components/body/Main';
 import AllProducts from '../components/body/all-products/AllProducts';
 import AllUsers from '../components/body/all-users/AllUsers';
 import ProductDetail from '../components/body/product-user-detail/ProductDetail';
+import SearchContainer from '../components/body/search-container/SearchContainer'
 import UserDetail from '../components/body/product-user-detail/UserDetail';
 import NotFound from '../components/body/NotFound';
 import CreateProduct from '../components/body/createProduct/CreateProduct';
@@ -37,6 +38,11 @@ function MainRouter(){
                 <Route path="/create/" exact>
                     <CreateProduct />
                 </Route>
+
+                <Route path="/search/" exact>
+                    <SearchContainer/>
+                </Route>
+
 
                 <Route component={NotFound}/>
 

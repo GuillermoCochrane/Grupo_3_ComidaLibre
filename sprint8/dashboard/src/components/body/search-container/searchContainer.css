@@ -1,3 +1,207 @@
 .search-container{
     color: black;
 }
+
+/* search bar */
+
+div.form-search-header {
+    display: flex;
+    flex-direction: column;
+    border: none;
+  }
+  .form-search-header-m {
+    display: none;
+  }
+  .form-search-header {
+    display: flex;
+    margin: 10px 0px;
+    border: 1px solid #87c99b;
+    border-radius: 30px;
+    flex-grow: 0.66;
+  }
+  .form-search-header > input {
+    flex-grow: 1;
+    padding: 5px;
+    padding-left: 20px;
+    border: none;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    font-size: 16px;
+  }
+  .form-search-header > input:focus {
+    outline-color: #6fa57f;
+  }
+  .form-search-header > button {
+    min-width: 40px;
+    min-height: 40px;
+    background-color: #87c99b;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border: none;
+  }
+  .form-search-header > button:hover {
+    cursor: pointer;
+    background-color: #6fa57f;
+  }
+
+  #search-result-div {
+    position: relative;
+  }
+  .search-result-list-off {
+    display: none; 
+    position: absolute;
+  }
+  .search-result-list-on {
+    display: block;
+    position: absolute; 
+    background: #87c99bf1;
+    z-index: 999;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgb(100, 100, 100);
+  }
+  .search-result-list-on > li {
+    margin: 10px 15px;
+    font-weight: bold;
+  }
+  .search-result-list-on > li:hover {
+    background: #72aa83;
+  }
+  .search-result-list-on > li > a:hover {
+    background: #72aa83;
+  }
+
+  .main-products {
+    margin: auto;
+    width: 95%;
+    text-align: center;
+  }
+  .main-products > h1 {
+    color: #2b2929;
+    font-size: 30px;
+    margin-bottom: 10px;
+  }
+  
+  .section-article {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .products-title{
+    color: tomato;
+  }
+  .main-article {
+    margin: 15px 0;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0px 0px 10px rgb(100, 100, 100);
+    border-radius: 10px;
+    position: relative;
+  }
+  article img {
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  .product-detail {
+    border-top: 1px solid #ebebeb;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 15px;
+  }
+  .product-name {
+    font-size: 22px;
+  }
+  .search-price{
+    font-size: 20px;
+  }
+  .search-discount {
+    font-size: 22px;
+    position: absolute;
+    background: rgb(218, 36, 36);
+    color: black;
+    border-radius: 50%;
+    padding: 7px;
+    font-weight: bold;
+    top: 0;
+    left: 0;
+  }
+  .discount-hidden {
+    visibility: hidden;
+  }
+  .btn-detail {
+    border: 1px solid #87c99bcc;
+    border-radius: 10px;
+    text-decoration: none;
+    width: 100%;
+    height: 40px;
+    background-color: #87c99b;
+    font-weight: bold;
+    color: rgb(32, 32, 32);
+    font-size: 18px;
+    transition: 0.25s;
+    cursor: pointer;
+  }
+  .btn-detail:hover {
+    background-color: #6fa57f;
+    border: 1px solid #87c99bcc;
+    border-radius: 8px;
+    color: white;
+  }
+  .btn-fav {
+    border: 1px solid #87c99bcc;
+    border-radius: 10px;
+    text-decoration: none;
+    width: 100%;
+    height: 40px;
+    background-color: #87c99b;
+    font-weight: bold;
+    color: rgb(32, 32, 32);
+    font-size: 18px;
+    transition: 0.25s;
+    cursor: pointer;
+  }
+  .btn-fav:hover {
+    background-color: #6fa57f;
+    border: 1px solid #87c99bcc;
+    border-radius: 8px;
+    color: white;
+  }
+  .buttons {
+    display: flex;
+    width: 100%;
+  }
+  .form-detail {
+    flex-grow: 1;
+  }
+  .form-fav {
+    padding: 0px 0px 0px 10px;
+  }
+  .btn-fav > i {
+    font-size: 30px;
+    margin: 0px 5px;
+  }
+
+  @media (min-width: 576px) {
+    .main-article {
+      width: 47%;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .main-article {
+      width: 30%;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .main-article {
+      width: 23%;
+    }
+  }
+  @media (min-width: 1600px) {
+    .main-article {
+      width: 18%;
+    }
+  }
