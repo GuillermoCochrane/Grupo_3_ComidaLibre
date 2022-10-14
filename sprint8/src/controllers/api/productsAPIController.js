@@ -66,6 +66,7 @@ module.exports = {
         name: product.name,
         description: product.description,
         mainRelation: product.product_category,
+        imgURL: `http://localhost:3000/images/products/${product.image}`,
         detail: `http://localhost:3000/api/products/${product.id}` 
       }
       responseArray.push(resObj)

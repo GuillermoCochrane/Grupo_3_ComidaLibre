@@ -31,6 +31,7 @@ module.exports = {
         id: user.id,
         username: user.username,
         email: user.email,
+        imgURL: `http://localhost:3000/images/avatar/${user.image}`,
         detail: `http://localhost:3000/api/users/${user.id}` 
       }
       responseArray.push(resObj)
