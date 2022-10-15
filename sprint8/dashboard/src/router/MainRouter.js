@@ -7,6 +7,7 @@ import SearchContainer from '../components/body/search-container/SearchContainer
 import UserDetail from '../components/body/product-user-detail/UserDetail';
 import NotFound from '../components/body/NotFound';
 import CreateProduct from '../components/body/createProduct/CreateProduct';
+import DeleteConfirm from '../components/body/deleteConfirm/DeleteConfirm';
 
 import { Route, Switch } from 'react-router-dom';
 
@@ -36,7 +37,15 @@ function MainRouter(){
                 </Route>
 
                 <Route path="/create/" exact>
-                    <CreateProduct />
+                    <CreateProduct mode={'create'} />
+                </Route>
+
+                <Route path="/edit/:id" exact>
+                    <CreateProduct mode={'edit'} />
+                </Route>
+
+                <Route path="/delete/:id" exact>
+                    <DeleteConfirm />
                 </Route>
 
                 <Route path="/search/" exact>

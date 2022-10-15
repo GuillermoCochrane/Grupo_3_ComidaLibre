@@ -1,7 +1,9 @@
 import React from 'react'
 import './createProduct.css'
+import { useParams } from 'react-router-dom'
 
-const CreateProduct = () => {
+const CreateProduct = (props) => {
+  const { id } = useParams();
 
   const createForm = (e) => {
     e.preventDefault();
@@ -19,15 +21,31 @@ const CreateProduct = () => {
     .then(data => console.log(data))
     .catch(errors => console.log(errors))
   }
+  const editForm = (e) => {
+    e.preventDefault();
+    let formValues = new FormData(e.target)
+    let formData = new FormData()
+    for (let entry of formValues.entries()) {
+      formData.append(entry[0], entry[1])
+    }
+    let url = `http://localhost:3000/api/products/edit/${id}`
+    fetch(url, {
+      method: 'PUT',
+      body: formData
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(errors => console.log(errors))
+  }
 
   return (
     <div className="main-edit-create">
-      <h1>Agregá un producto</h1>
+      <h1>{props.mode} un producto</h1>
       <form 
         id="create-product-form" 
         className="input-container-form" 
         
-        onSubmit={createForm}
+        onSubmit={props.mode && props.mode === 'create' ? createForm : editForm}
         >
 
         <label for="name">
