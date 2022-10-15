@@ -19,7 +19,6 @@ function LastUser() {
         .catch(error => console.log(error));
 		
 	}, []);
-    console.log(lastUser)
 
   return (
     <Fragment>

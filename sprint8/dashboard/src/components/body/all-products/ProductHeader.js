@@ -6,9 +6,7 @@ function ProductHeader() {
         <tr>
             <th>Id</th>
             <th>Nombre</th>
-            <th>Precio</th>
             <th>Categoría</th>
-            <th>Estado</th>
         </tr>
     </Fragment>
   )

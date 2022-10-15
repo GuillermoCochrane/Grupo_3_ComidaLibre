@@ -12,7 +12,7 @@ const DeleteConfirm = () => {
     })
     .then(response => response.json())
     .then(data => {
-      if(data == 1) {
+      if(data === 1) {
         setDeleteStatus(true)
       }
       console.log(data)

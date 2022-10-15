@@ -7,9 +7,7 @@ function ProductRow(props) {
                 <tr>
                     <td>{props.id}</td>
                     <td><Link to={`/products/${props.id}`}>{props.name}</Link></td>
-                    <td>{props.price}</td>
                     <td>{props.mainRelation.category}</td>
-                    <td>{props.status}</td>
                 </tr>
         </Fragment>
 )
