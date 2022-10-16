@@ -1,6 +1,7 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useRef} from 'react';
 import LinkCard from './LinkCard';
 import './sidebar.css';
+
 
 let linksData = [
     {
@@ -31,10 +32,26 @@ let linksData = [
 ]
 
 function SideBar(){
+    const sideBar = useRef();
+    const hideBTN = useRef();
+    const showBTN = useRef();
+    const BTN =useRef()
+
+    const toggle = () =>{
+        console.log(sideBar.current)
+        sideBar.current.classList.toggle('active')
+        hideBTN.current.classList.toggle('hide')
+        showBTN.current.classList.toggle('hide')
+    }
 
         return (
             <Fragment>                
-                <ul className="sidebar-container">
+                <ul className="sidebar-container" ref={sideBar}>
+                    <br/>
+                    <div className='sidebar-toggleBTN' ref={BTN} onClick={toggle}>
+                        <i class="fas fa-angle-double-left hide" ref={hideBTN}></i>
+                        <i class="fas fa-angle-double-right" ref={showBTN} > </i>
+                    </div>
 
                     <hr className="sidebar-divider"/>
 

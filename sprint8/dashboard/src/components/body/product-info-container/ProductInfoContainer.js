@@ -2,40 +2,10 @@ import React, {Fragment, useState, useEffect} from 'react'
 import './productInfoContainer.css'
 import InfoContainer from './InfoContainer'
 
-// let status =[
-//     {
-//         name: 'En oferta',
-//         count: "13",
-//         color: '',
-//         backgroundColor: 'red'
-//     },
-//     {
-//         name: 'Más vendido',
-//         count: 33,
-//         color: '',
-//         backgroundColor: 'yellow'
-//     },
-//     {
-//         name: 'Nuevo',
-//         count: 7,
-//         color: '',
-//         backgroundColor: 'lightGreen'
-//     },
-//     {
-//         name: 'Recomendado',
-//         count: 6,
-//         color: '',
-//         backgroundColor: 'blue'
-//     },
-// ]
+
 function ProductInfoContainer() {
     const [categories, setCategories] = useState([]);
     const [status, setStatus] = useState([]);
-    
- 
-    // productsList.map((item, i) => {
-    // return <ProductRow {...item} key = {`productRow-${i}`} />
-    // })
 
     useEffect(() => {
 		const endpoint = 'http://localhost:3000/api/products'
@@ -46,7 +16,7 @@ function ProductInfoContainer() {
             setCategories(data.countByCategory);
             const statusBackgroundColor = [ 'red', 'yellow', 'lightGreen', 'blue']
             let newStatus = data.countByStatus.map((item,i)=>{
-                return {...item, backgroundColor: statusBackgroundColor[i] }
+                return { ...item, backgroundColor: statusBackgroundColor[i] }
             })
             setStatus(newStatus)
         })
