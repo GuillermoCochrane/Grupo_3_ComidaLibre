@@ -228,112 +228,96 @@ module.exports = {
     .catch( errors => res.json(errors) )
   },
 
-  //testing (to do: imagen)
-  create: (req, res) => {
-    let errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.json(errors.mapped())
-    } else {
-      let data = { ...req.body };
-      let newProduct = {};
-      if (req.file) {
-        newProduct = {
-          name: data.name,
-          price: data.price,
-          description: data.description,
-          discount: data.discount,
-          categories_id: data.idCat,
-          statuses_id: data.status,
-          image: req.file.filename,
-        };
-        db.Product.create(newProduct)
-          .then(data => {
-            let response = {
-              meta: {
-                status: 200,
-                msg: 'producto creado'
-              },
-              data: data
-            }
-            return res.json(response)
-          })
-          .catch(errors => res.json(errors));
+  //testing
+  create: async(req, res) => {
+    try {
+      let errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        throw {errors: errors.mapped()}
       } else {
-        newProduct = {
-          name: data.name,
-          price: data.price,
-          description: data.description,
-          discount: data.discount,
-          categories_id: data.idCat,
-          statuses_id: data.status,
+        let body = { ...req.body };
+        let newProduct = {};
+        if (req.file) {
+          newProduct = {
+            name: body.name,
+            price: body.price,
+            description: body.description,
+            discount: body.discount,
+            categories_id: body.idCat,
+            statuses_id: body.status,
+            image: req.file.filename,
+          }
+        } else {
+          newProduct = {
+            name: body.name,
+            price: body.price,
+            description: body.description,
+            discount: body.discount,
+            categories_id: body.idCat,
+            statuses_id: body.status,
+          };
         };
-        db.Product.create(newProduct)
-          .then(data => {
-            let response = {
-              meta: {
-                status: 200,
-                msg: 'producto creado'
-              },
-              data: data
-            }
-            return res.json(response)
-          })
-          .catch(errors => res.json(errors))
-      }
-    }
-  },
-  edit: (req, res) => {
-    let errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.json(errors.mapped())
-    } else {
-      let data = { ...req.body };
-      let productId = req.params.idProduct;
-      let updatedProduct;
-      if (req.file) {
-        updatedProduct = {
-          name: data.name,
-          price: data.price,
-          image: req.file.filename,
-          description: data.description,
-          discount: data.discount,
-          categories_id: data.idCat,
-          statuses_id: data.status,
-        };
-        db.Product.update(updatedProduct, { where: { id: productId } })
-        .then(data => {
+        let data = await db.Product.create(newProduct)
+        if (data) {
           let response = {
             meta: {
               status: 200,
-              msg: 'producto actualizado'
+              msg: 'Producto creado'
             },
             data: data
           }
           return res.json(response)
-        })
-        .catch(errors => res.json(errors));
-      } else {
-        updatedProduct = {
-          name: data.name,
-          price: data.price,
-          description: data.description,
-          discount: data.discount,
-          categories_id: data.idCat,
-          statuses_id: data.status,
-        };
-        db.Product.update(updatedProduct, { where: { id: productId } })
-          .then(data => {
-            let response = {
-              meta: {
-                status: 200,
-                msg: 'producto actualizado'
-              },
-              data: data
-            }
-            return res.json(response)
-          })
-          .catch(errors => res.json(errors));
+        } else {
+          throw errors = {response : 'error al crear producto'}
+        }
       }
+    } catch (error) {
+      return res.json(error)
+    }
+  },
+  edit: async (req, res) => {
+    try {
+      let errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        throw {errors: errors.mapped()}
+      } else {
+        let body = { ...req.body };
+        let productId = req.params.idProduct;
+        let updatedProduct;
+        if (req.file) {
+          updatedProduct = {
+            name: body.name,
+            price: body.price,
+            image: req.file.filename,
+            description: body.description,
+            discount: body.discount,
+            categories_id: body.idCat,
+            statuses_id: body.status,
+          } 
+        } else {
+          updatedProduct = {
+            name: body.name,
+            price: body.price,
+            description: body.description,
+            discount: body.discount,
+            categories_id: body.idCat,
+            statuses_id: body.status,
+          };
+        };
+        let data = await db.Product.update(updatedProduct, { where: { id: productId } })
+        if (data) {
+          let response = {
+            meta: {
+              status: 200,
+              msg: 'Producto actualizado'
+            },
+            data: data
+          }
+          return res.json(response)
+        }
+      } 
+    } catch (error) {
+      return res.json(error)
     }
   },
   delete: (req, res) => {

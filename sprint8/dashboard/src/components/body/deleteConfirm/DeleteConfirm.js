@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { Redirect, useParams } from 'react-router-dom'
+import { Redirect, Link, useParams } from 'react-router-dom'
 
 const DeleteConfirm = () => {
-  const [deleteStatus, setDeleteStatus] = useState(false)
+  const [deletedMsg, setDeletedMsg] = useState('')
   const {id} = useParams();
   const deleteHandler = (e) => {
     e.preventDefault();
@@ -12,19 +12,29 @@ const DeleteConfirm = () => {
     })
     .then(response => response.json())
     .then(data => {
-      if(data === 1) {
-        setDeleteStatus(true)
-      }
       console.log(data)
+      if(data.data === 1) {
+        setDeletedMsg('Producto borrado')
+      } else {
+        setDeletedMsg('Error al borrar producto')
+      }
     })
     .catch(errors => console.log(errors))
   }
   return (
     <div>
-        <h1>Estas seguro de eliminar producto: {id}</h1>
-        {deleteStatus ? <small>Producto {id} fue borrado</small> : <></>}
-        <button onClick={deleteHandler}>Si</button>
-        <button onClick={() => <Redirect to={`/products/${id}`}/>}>No</button>  
+        {deletedMsg !== '' ?
+          <>
+            <h1>{deletedMsg}: {id}</h1> 
+            <button><Link to='/'>Home</Link></button>
+          </>
+          :
+          <>
+            <h1>Estas seguro de eliminar producto: {id}</h1>
+            <button onClick={deleteHandler}>Si</button>
+            <button ><Link to={`/products/${id}`}>No</Link></button>  
+          </>
+        }
     </div>
   )
 }

@@ -3,6 +3,12 @@
     justify-content: space-between;
     align-items: baseline;
   }
+  .main-edit-create {
+    margin: 20px 0 20px 0;
+  }
+  .main-edit-create h2 {
+    margin: 0 0 10px 0;
+  }
   .main-edit-create > h1 {
     display: block;
     text-align: center;
@@ -157,6 +163,24 @@
   }
   .input-title {
     display: flex;
+  }
+  .success-msg {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    color: #6fa57f;
+  }
+  .success-msg > div {
+    display: flex;
+    justify-content: center;
+  }
+  .success-msg > div > button {
+    margin: 10px;
+    padding: 10px;
+  }
+  .create-edit-title {
+    display: flex;
+    justify-content: space-between;
   }
   
   @media (min-width: 640px) {
