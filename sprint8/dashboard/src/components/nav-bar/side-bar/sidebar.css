@@ -67,7 +67,7 @@
 .sidebar-toggleBTN{
     position: absolute;
     top: 10px;
-    left: 205px;
+    left: 202px;
     cursor: pointer;
     display: block;
     width: 25px;
@@ -85,4 +85,8 @@
 
 .hide{
     display: none;
+}
+
+.inside{
+    left: 170px;
 }

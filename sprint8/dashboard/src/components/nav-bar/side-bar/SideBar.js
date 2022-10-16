@@ -42,6 +42,7 @@ function SideBar(){
         sideBar.current.classList.toggle('active')
         hideBTN.current.classList.toggle('hide')
         showBTN.current.classList.toggle('hide')
+        BTN.current.classList.toggle('inside')
     }
 
         return (

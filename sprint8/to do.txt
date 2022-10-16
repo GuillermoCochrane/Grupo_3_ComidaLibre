@@ -5,9 +5,8 @@ en la barra de busqueda, opciones para ordenar el resultado de la busqueda
 
 
 dashboard
-esconder nav bar lateral
-buscador
+esconder nav bar lateral - corregir
 todos productos / usuarios : 2 vistas, tabla y paginado
-barra de nav superior y lateral fijas
-sacar margenes a img last prod y last user
+
+
 
