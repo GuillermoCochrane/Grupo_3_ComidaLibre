@@ -89,11 +89,9 @@ module.exports = {
   },
   //FUNCIONALIDAD DE LA BARRA DE BUSQUEDA
   search: async (req, res) => {
-    let productCount = await db.Product.count();
-    let pages = Math.ceil(productCount/15)
-    if(req.query.key){
-      let searchKey = req.query.key;
-      let searchResult = await db.Product.findAll({
+    let searchKey = req.query.key;
+    if(searchKey){
+      let { rows, count } = await db.Product.findAndCountAll({
         include: ['product_category', 'product_status'],
         where: {
           [Op.or]: [
@@ -108,10 +106,10 @@ module.exports = {
       return res.render("products/products", {
         headTitle: "Free Food - Resultados de Búsqueda",
         stylesheet: "styles_products.css",
-        productList: searchResult,
+        productList: rows,
         searchKey: searchKey,
-        productCount: productCount,
-        pages: pages
+        productCount: count,
+        pages: (count/10)
       });
     } else {
       return res.redirect('/')
@@ -129,7 +127,7 @@ module.exports = {
   favDelete: (req, res) => {
     let productId = req.params.idProduct;
     let userId = req.session.userLogged.id;
-    db.Favourite.destroy({ where: { products_id: productId, users_id: userId } });
+    db.Favourite.destroy({ where: { products_id: productId, users_id: userId }, force: true });
     return res.redirect("/products");
   },
   sale: async (req, res) => {

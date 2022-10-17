@@ -61,10 +61,8 @@ module.exports = {
   },
   //LISTADO POR CATEGORÍA
   category: async (req, res) => {
-    let productCount = await db.Product.count();
-    let pages = Math.ceil(productCount/15)
     let categoryId = req.params.idCategory;
-    let productList = await db.Product.findAll({
+    let { rows, count } = await db.Product.findAndCountAll({
       include: ["product_category", "product_status"],
       where: { categories_id: categoryId },
       raw: true,
@@ -73,9 +71,9 @@ module.exports = {
     return res.render("products/products", {
       headTitle: "Free Food - Categoría",
       stylesheet: "styles_products.css",
-      productList: productList,
-      productCount: productCount,
-      pages: pages
+      productList: rows,
+      productCount: count,
+      pages: (count/15)
     });
   },
   //DETALLES DE PRODUCTO
@@ -127,7 +125,6 @@ module.exports = {
         statuses_id: data.status,
         image: req.file.filename,
       };
-      db.Product.create(newProduct);
     } else {
       newProduct = {
         name: data.name,
@@ -137,8 +134,8 @@ module.exports = {
         categories_id: data.idCat,
         statuses_id: data.status,
       };
-      db.Product.create(newProduct);
     }
+    db.Product.create(newProduct);
     return res.redirect("/products");
   },
   //FORMULARIO DE EDICIÓN DE PRODUCTO
@@ -182,7 +179,6 @@ module.exports = {
         categories_id: data.idCat,
         statuses_id: data.status,
       };
-      db.Product.update(updatedProduct, { where: { id: productId } });
     } else {
       updatedProduct = {
         name: data.name,
@@ -192,8 +188,8 @@ module.exports = {
         categories_id: data.idCat,
         statuses_id: data.status,
       };
-      db.Product.update(updatedProduct, { where: { id: productId } });
     }
+    db.Product.update(updatedProduct, { where: { id: productId } });
     return res.redirect("/products");
   },
   //ELIMINA UN PRODUCTO DE LA LISTA
@@ -201,6 +197,7 @@ module.exports = {
     let productId = req.params.idProduct;
     db.Cart.destroy({ where: { products_id: productId }, force: true });
     db.Favourite.destroy({ where: { products_id: productId }, force: true });
+    db.SaleDetail.destroy({ where: { products_id: productId }, force: true });
     db.Product.destroy({ where: { id: productId }, force: true });
     return res.redirect("/products");
   },
