@@ -51,8 +51,8 @@ function MainRouter(){
                 <Route path="/search/" exact>
                     <SearchContainer/>
                 </Route>
-
-
+                
+                
                 <Route component={NotFound}/>
 
             </Switch>

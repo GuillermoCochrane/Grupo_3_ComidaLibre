@@ -119,3 +119,43 @@ th{
 .table-borderless tbody+tbody,.table-borderless td,.table-borderless th,.table-borderless thead th{
     border:0
 }
+
+.pageNumbers-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.pageNumbers {
+    list-style: none;
+    display: flex;
+    background-color: #ccb489;
+}
+
+.pageNumbers li{
+    padding: 10px;
+    border: 1px solid white;
+    cursor:pointer
+}
+
+.pageNumbers li.active {
+    background-color: #87c99bcc;
+    color: black;
+}
+
+.pageNumbers li button{
+    background-color: transparent;
+    border: none;
+    color: #4c3524;
+    font-size: 1.5rem;
+    cursor:pointer;
+}
+
+.pageNumbers li button:hover{
+    color: #5a5c69;
+}
+
+.pageNumbers li button:focus{
+    outline: none;
+}
