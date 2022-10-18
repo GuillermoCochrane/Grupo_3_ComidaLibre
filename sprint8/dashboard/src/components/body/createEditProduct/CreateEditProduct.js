@@ -1,12 +1,29 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './createEditProduct.css'
-import { Link, Redirect, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 const CreateProduct = (props) => {
   const { id } = useParams();
+  const [productData, setProductData] = useState([])
+
+  useEffect(() => {
+    if(props.mode === 'edit') {
+      fetch(`http://localhost:3000/api/products/${id}`)
+        .then(response => response.json())
+        .then(data => {
+          setProductData(data);
+          console.log(data)
+        })
+        .catch(error => console.log(error));
+    } else {
+      setProductData([])
+    }
+  },[props.mode])
+
   const [errors, setErrors] = useState({})
   const [success, setSuccess] = useState('')
   const [disabledToggle, setDisabledToggle] = useState(0)
+
   const createForm = (e) => {
     e.preventDefault();
     let formValues = new FormData(e.target)
@@ -62,11 +79,18 @@ const CreateProduct = (props) => {
     <>
     {success !== '' ?
       <div className='success-msg'>
-        <h2>{success}</h2>
-        <div>
-          <button onClick={()=> setSuccess('')}>Crear otro</button>
-          <button><Link to='/'>Home</Link></button>
-        </div>
+        <h1>{success}</h1>
+        {props.mode === 'create' ?
+          <div>
+            <button onClick={()=> setSuccess('')}>Crear otro</button>
+            <button><Link to='/'>Home</Link></button>
+          </div>
+         :
+          <div>
+            <button><Link to='/'>Home</Link></button>
+          </div>
+         }
+
       </div>
       :
       <div className="main-edit-create">
@@ -76,15 +100,27 @@ const CreateProduct = (props) => {
         onSubmit={props.mode && props.mode === 'create' ? createForm : editForm}
         >
         <div className='create-edit-title'>
-          <h2>{props.mode === 'create' ? 'Crear' : 'Editar' } un producto</h2>
-          <button onClick={toggle}><i className="fas fa-edit"></i></button>
+          {props.mode === 'create' ? 
+            <h2>Crear un producto</h2>
+          :
+            <>
+              <h2>Editar un producto</h2>
+              <button onClick={toggle}><i className="fas fa-edit"></i></button>
+            </>
+          }
         </div>
         <label htmlFor="name">
           <h4>Nombre del producto</h4>
         </label>
         <div className="info-container-div">
           <i className="fas fa-file-signature"></i>
-          <input type="text" name="name" id="name" placeholder="ej: Milanesa con puré" disabled={props.mode === 'create' || disabledToggle === 1 ? false : true}/>
+          <input 
+            type="text" 
+            name="name" 
+            id="name" 
+            placeholder="ej: Milanesa con puré"
+            defaultValue={props.mode === 'edit' ? productData.name : null}
+            disabled={props.mode === 'create' || disabledToggle === 1 ? false : true}/>
         </div>
         {errors && errors.name ? 
           <small id="error-name" className="error-input">{errors.name.msg}</small> 
@@ -97,7 +133,14 @@ const CreateProduct = (props) => {
         </label>
         <div className="info-container-div">
           <i className="fas fa-dollar-sign"></i>
-          <input type="text" step="any" name="price" id="price" placeholder="ej: 00.00" disabled={props.mode === 'create' || disabledToggle === 1 ? false : true}/>
+          <input 
+            type="text" 
+            step="any" 
+            name="price" 
+            id="price" 
+            placeholder="ej: 00.00" 
+            defaultValue={props.mode === 'edit' ? productData.price : null}
+            disabled={props.mode === 'create' || disabledToggle === 1 ? false : true}/>
         </div>
         {errors && errors.price ? 
           <small id="error-price" className="error-input">{errors.price.msg}</small> 
@@ -148,7 +191,15 @@ const CreateProduct = (props) => {
         </label>
         <div className="info-container-div">
           <i className="fas fa-percent"></i>
-          <input type="range" name="discount" id="discount" min="0" max="100" step="1" defaultValue="0" disabled={props.mode === 'create' || disabledToggle === 1 ? false : true}/>
+          <input 
+            type="range" 
+            name="discount" 
+            id="discount" 
+            min="0" 
+            max="100" 
+            step="1"
+            defaultValue={props.mode === 'edit' ? productData.discount : '0'}
+            disabled={props.mode === 'create' || disabledToggle === 1 ? false : true}/>
         </div>
         {errors && errors.discount ? 
           <small id="error-discount" className="error-input">{errors.discount.msg}</small> 
@@ -175,7 +226,14 @@ const CreateProduct = (props) => {
             <small id="char-count"></small>
           </h4>
         </label>
-        <textarea name="description" id="description" cols="30" rows="5" placeholder="Descripción (max 500 caracteres)" disabled={props.mode === 'create' || disabledToggle === 1 ? false : true}></textarea>
+        <textarea 
+          name="description" 
+          id="description" 
+          cols="30" 
+          rows="5" 
+          placeholder="Descripción (max 500 caracteres)"
+          defaultValue={props.mode === 'edit' ? productData.description : null}  
+          disabled={props.mode === 'create' || disabledToggle === 1 ? false : true}></textarea>
         {errors && errors.description ? 
           <small id="error-description" className="error-input">{errors.description.msg}</small> 
           : 

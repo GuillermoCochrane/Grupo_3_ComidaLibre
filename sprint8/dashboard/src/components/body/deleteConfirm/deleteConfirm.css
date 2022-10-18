@@ -1,0 +1,40 @@
+.confirm-delete-msg {
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+  margin: 0 auto 0 auto;
+}
+.confirm-delete-msg > h1 {
+  margin: 10px;
+}
+.btn-container {
+  display: flex;
+  justify-content: center;
+}
+button {
+  margin: 10px;
+  padding: 10px;
+  width: 100px;
+  border-radius: 10px;
+  border: none;
+  background-color: #87c99b;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #6fa57f;
+}
+.error-msg {
+  color: red;
+}
+.success-msg {
+  color: green;
+}
+.deleted-msg {
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+  margin: 0 auto 0 auto;
+}
+.deleted-msg > button {
+  align-self: center;
+}

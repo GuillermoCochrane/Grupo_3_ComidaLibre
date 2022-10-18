@@ -128,12 +128,14 @@ article {
   font-weight: bold;
   color: #2b2929;
   transition: 0.25s;
+  cursor: pointer;
 }
 
 .button {
   margin-top: 15px;
   margin-bottom: 15px;
   text-align: center;
+  cursor: pointer;
 }
 
 .continue {

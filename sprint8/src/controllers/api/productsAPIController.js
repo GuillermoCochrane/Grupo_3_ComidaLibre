@@ -324,13 +324,14 @@ module.exports = {
     let productId = req.params.idProduct;
     db.Cart.destroy({ where: { products_id: productId }, force: true });
     db.Favourite.destroy({ where: { products_id: productId }, force: true });
+    db.SaleDetail.destroy({ where: { products_id: productId }, force: true });
     db.Product.destroy({ where: { id: productId }, force: true })
       .then(data => {
         if (data === 1) {
           let response = {
             meta: {
               status: 200,
-              msg: 'producto borrado'
+              msg: 'Producto borrado'
             },
             data: data
           }
@@ -339,7 +340,7 @@ module.exports = {
           let response = {
             meta: {
               status: 200,
-              msg: 'id producto no encontrado'
+              msg: 'Id producto no encontrado'
             },
             data: data
           }

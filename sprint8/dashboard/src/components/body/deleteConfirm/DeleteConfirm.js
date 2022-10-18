@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { Redirect, Link, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
+import './deleteConfirm.css'
 
 const DeleteConfirm = () => {
   const [deletedMsg, setDeletedMsg] = useState('')
@@ -12,11 +13,10 @@ const DeleteConfirm = () => {
     })
     .then(response => response.json())
     .then(data => {
-      console.log(data)
       if(data.data === 1) {
-        setDeletedMsg('Producto borrado')
+        setDeletedMsg(data.meta.msg)
       } else {
-        setDeletedMsg('Error al borrar producto')
+        setDeletedMsg(data.meta.msg)
       }
     })
     .catch(errors => console.log(errors))
@@ -24,16 +24,20 @@ const DeleteConfirm = () => {
   return (
     <div>
         {deletedMsg !== '' ?
-          <>
-            <h1>{deletedMsg}: {id}</h1> 
+          <div className='deleted-msg'>
+            <h1 className={deletedMsg === 'Producto borrado' ? 'success-msg' : 'error-msg'}>
+              {deletedMsg}
+            </h1> 
             <button><Link to='/'>Home</Link></button>
-          </>
+          </div>
           :
-          <>
-            <h1>Estas seguro de eliminar producto: {id}</h1>
-            <button onClick={deleteHandler}>Si</button>
-            <button ><Link to={`/products/${id}`}>No</Link></button>  
-          </>
+          <div className='confirm-delete-msg'>
+            <h1>¿ Estas seguro de eliminar producto: {id} ?</h1>
+            <div className='btn-container'>
+              <button onClick={deleteHandler}>Si</button>
+              <button ><Link to={`/products/${id}`}>No</Link></button>  
+            </div>
+          </div>
         }
     </div>
   )

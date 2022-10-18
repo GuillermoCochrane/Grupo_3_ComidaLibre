@@ -236,16 +236,15 @@ module.exports = {
   delete: async(req, res) => {
     let id = req.params.id;
     let array = await db.Sale.findAll({attributes:['id'], where: {users_id: id }, raw:true})
-    console.log(array)
-    // let idsArray = []
-    // for(let idKey of array) {
-    //   idsArray.push(idKey.id)
-    // }
-    // db.SaleDetail.destroy({ where: { sales_id: idsArray }, force: true });
-    // db.Sale.destroy({ where: { users_id: id }, force: true });
-    // db.Cart.destroy({ where: { users_id: id }, force: true });
-    // db.Favourite.destroy({ where: { users_id: id }, force: true });
-    // db.User.destroy({ where: { id: id }, force: true });
+    let idsArray = []
+    for(let idKey of array) {
+      idsArray.push(idKey.id)
+    }
+    db.SaleDetail.destroy({ where: { sales_id: idsArray }, force: true });
+    db.Sale.destroy({ where: { users_id: id }, force: true });
+    db.Cart.destroy({ where: { users_id: id }, force: true });
+    db.Favourite.destroy({ where: { users_id: id }, force: true });
+    db.User.destroy({ where: { id: id }, force: true });
     return res.redirect("/user");
   },
   //DESLOGUEA AL USUARIO
