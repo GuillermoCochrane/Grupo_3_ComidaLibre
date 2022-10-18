@@ -1,5 +1,6 @@
 .search-container{
     color: black;
+    padding-top: 3%;
 }
 
 /* search bar */
@@ -14,10 +15,13 @@ div.form-search-header {
   }
   .form-search-header {
     display: flex;
-    margin: 10px 0px;
+    margin: auto;
     border: 1px solid #87c99b;
     border-radius: 30px;
     flex-grow: 0.66;
+    width: 80%;
+    min-width: 360px;
+    justify-content: center;
   }
   .form-search-header > input {
     flex-grow: 1;
