@@ -5,6 +5,7 @@ import Price from './Price';
 import DetailImg from './DetailImg';
 import DetailTitle from './DetailTitle';
 import DetailEditDelete from './DetailEditDelete';
+import DetailEditDelete2 from './DetailEditDelete2';
 
 import './productDetail.css'
 
@@ -34,7 +35,7 @@ function ProductDetail() {
         tipoDePlato = productDetail.relaciones[0].category
         status = productDetail.relaciones[1].status
         discount = productDetail.discount
-        newprice = productDetail.price-(productDetail.price*(discount/100)).toFixed(2)        
+        newprice = (productDetail.price-(productDetail.price*(discount/100))).toFixed(2)        
     }
 
     return (
@@ -61,7 +62,9 @@ function ProductDetail() {
 
                     <DetailInfo title='Descripción: ' data={productDetail.description}/>
 
-                    <DetailEditDelete id={productDetail.id} />
+                    {/* <DetailEditDelete id={productDetail.id} /> */}
+
+                    <DetailEditDelete2 id={productDetail.id}/>
 
                 </div>
             </article>

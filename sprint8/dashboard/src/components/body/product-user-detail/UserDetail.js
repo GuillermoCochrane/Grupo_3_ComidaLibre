@@ -50,7 +50,7 @@ function UserDetail() {
 
                     <DetailInfo title='Telefono: ' data={userDetail.phone}/>
 
-                    <DetailEditDelete {...userDetail} />
+                    {/* <DetailEditDelete {...userDetail} /> */}
 
                 </div>
             </article>

@@ -16,9 +16,12 @@ function SearchContainer() {
 		setInputKey(inputValue);
 	};
 
-	const changeStyles = async () => {
-		searchResultList.current.classList.toggle('search-result-list-on')
-		searchResultList.current.classList.toggle('search-result-list-off')
+	const focusForm  = async () => {
+		searchResultList.current.className = "search-result-list-on"
+	}
+
+	const blurForm = async () => {
+		searchResultList.current.className = "search-result-list-off"
 	}
 
 	const searchProduct = async (e) => {
@@ -26,8 +29,7 @@ function SearchContainer() {
 		const inputValue = inputKeyword.current.value;
 		setSubmitKey(inputValue);
 		inputKeyword.current.value = '';
-		searchResultList.current.classList.toggle('search-result-list-off')
-		searchResultList.current.classList.toggle('search-result-list-on')
+		searchResultList.current.className = "search-result-list-off"
 	};
 	
 	useEffect(() => {
@@ -64,7 +66,7 @@ function SearchContainer() {
 				<div className="form-search-header">
 
 					<form id="search-bar-form" className="form-search-header"  method="GET" onSubmit={searchProduct}>
-						<input type="search" name="key" id="key" ref={inputKeyword} placeholder="Buscar productos..." onInput={preSearch}  onChange={changeStyles} /> 
+						<input type="search" name="key" id="key" ref={inputKeyword} placeholder="Buscar productos..." onInput={preSearch}  onBlur={blurForm} onFocus={focusForm} /> 
 						<button id="search-bar-btn" type="submit"><i className="fas fa-search"></i></button>
 					</form>
 
