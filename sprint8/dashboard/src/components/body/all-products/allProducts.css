@@ -150,6 +150,9 @@ th{
     color: #4c3524;
     font-size: 1.5rem;
     cursor:pointer;
+    margin: auto;
+    padding: 0px;
+    width: auto;
 }
 
 .pageNumbers li button:hover{

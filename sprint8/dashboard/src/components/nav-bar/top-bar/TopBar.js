@@ -9,7 +9,9 @@ function TopBar () {
         <Fragment>
             <header className="header">
                 <div className="topbar-logo">
-                    <img src={logo} alt="logo" className='logo-image'/>
+                    <a href='http://localhost:3000/'>
+                        <img src={logo} alt="logo" className='logo-image'/>
+                    </a>
                 </div>
                 <div className="profile-info">
                     <img src={userImage} alt="pf-pic" className='profile-image'/>

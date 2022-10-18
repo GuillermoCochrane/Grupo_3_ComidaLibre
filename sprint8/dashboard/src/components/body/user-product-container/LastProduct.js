@@ -29,13 +29,11 @@ function LastProduct() {
     if(lastProduct.length !==0 ){
         tipoDePlato = lastProduct.relaciones[0].category
         status = lastProduct.relaciones[1].status
-        newPrice = lastProduct.price-(lastProduct.price*((lastProduct.discount)/100)).toFixed(2)
-        finalPrice = `$ ${newPrice}`
+        newPrice = lastProduct.price-(lastProduct.price*((lastProduct.discount)/100))
+        finalPrice = `$ ${newPrice.toFixed(2)}`
         originalPrice = `$ ${lastProduct.price}`
         discount = `${lastProduct.discount}%`
-
-
-     }
+      }
 
   return (
     <Fragment>

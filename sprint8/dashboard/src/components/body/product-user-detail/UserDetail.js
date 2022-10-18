@@ -55,8 +55,7 @@ function UserDetail() {
                 </div>
             </article>
         </main>
-    // <div>UserDetail</div>
-  )
+        )
 }
 
 export default UserDetail
